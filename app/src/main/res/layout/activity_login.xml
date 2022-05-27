@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_line"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.14"></androidx.constraintlayout.widget.Guideline>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_line"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.86"></androidx.constraintlayout.widget.Guideline>
+
+    <EditText
+        android:id="@+id/id_input_box"
+        android:background="@drawable/input_box_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingLeft="20dp"
+        android:hint="Username"
+        android:textSize="13dp"
+        android:textColorHint="@color/hint_text_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/left_line"
+        app:layout_constraintRight_toRightOf="@+id/right_line"
+        app:layout_constraintHeight_percent="0.06"></EditText>
+
+    <EditText
+        android:id="@+id/pw_input_box"
+        android:background="@drawable/input_box_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingLeft="20dp"
+        android:textSize="13dp"
+        android:hint="Password"
+        android:textColorHint="@color/hint_text_color"
+        app:layout_constraintTop_toBottomOf="@+id/id_input_box"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/left_line"
+        app:layout_constraintRight_toRightOf="@+id/right_line"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintVertical_bias="0.05"></EditText>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login_btn"
+        android:background="@drawable/input_box_background"
+        android:backgroundTint="@color/app_basic_color"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="로그인"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_text_color"
+        app:layout_constraintTop_toBottomOf="@+id/pw_input_box"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/left_line"
+        app:layout_constraintRight_toRightOf="@+id/right_line"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintVertical_bias="0.25"></androidx.appcompat.widget.AppCompatButton>
+
+    <TextView
+        android:id="@+id/find_id_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/nskr_medium"
+        android:textSize="13dp"
+        android:text="아이디찾기"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/left_line"
+        app:layout_constraintRight_toLeftOf="@+id/id_pw_border"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"></TextView>
+
+    <View
+        android:id="@+id/id_pw_border"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#707070"
+        app:layout_constraintWidth_percent="0.001"
+        app:layout_constraintTop_toTopOf="@+id/find_id_text"
+        app:layout_constraintBottom_toBottomOf="@+id/find_id_text"
+        app:layout_constraintLeft_toRightOf="@+id/find_id_text"
+        app:layout_constraintRight_toLeftOf="@+id/find_pw_text"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        ></View>
+
+    <TextView
+        android:id="@+id/find_pw_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/nskr_medium"
+        android:text="비밀번호찾기"
+        android:textSize="13dp"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/id_pw_border"
+        app:layout_constraintRight_toLeftOf="@+id/pw_join_border"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintHorizontal_chainStyle="spread"></TextView>
+
+    <View
+        android:id="@+id/pw_join_border"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#707070"
+        app:layout_constraintWidth_percent="0.001"
+        app:layout_constraintTop_toTopOf="@+id/find_id_text"
+        app:layout_constraintBottom_toBottomOf="@+id/find_id_text"
+        app:layout_constraintLeft_toRightOf="@+id/find_pw_text"
+        app:layout_constraintRight_toLeftOf="@+id/join_text"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        ></View>
+
+    <TextView
+        android:id="@+id/join_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/nskr_medium"
+        android:text="회원가입"
+        android:textSize="13dp"
+        android:textColor="@color/active_text_color"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/pw_join_border"
+        app:layout_constraintRight_toRightOf="@+id/right_line"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"></TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
