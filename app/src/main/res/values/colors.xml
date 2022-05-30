@@ -11,5 +11,9 @@
     <color name="hint_text_color">#909090</color>
     <color name="text_color">#797979</color>
     <color name="active_text_color">#009658</color>
+    <color name="shop_category_color">#a1937a</color>
+    <color name="black2">#2b2b2b</color>
+    <color name="background_gray">#f4f4f4</color>
+    <color name="remaining_color">#ff9b33</color>
 
 </resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_gray"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.05"
+        android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.95"
+        android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="광주 동구 동계천로 150 "
+        android:textSize="13dp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/nskr_medium"
+        android:textColor="@color/black2"
+        app:layout_constraintVertical_bias="0.02"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        android:gravity="center"
+        ></TextView>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/kit_category"
+        android:background="@color/background_gray"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_bias="0.02"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintTop_toBottomOf="@+id/address"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        app:layout_constraintRight_toRightOf="@id/guideline_right"
+        ></com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/kit_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/kit_category"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        ></androidx.recyclerview.widget.RecyclerView>
+
+
+    <include
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        layout="@layout/view_pedometer"
+        app:layout_constraintVertical_bias="0.95"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_right"></include>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,19 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.86"></androidx.constraintlayout.widget.Guideline>
 
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/login_app_icon"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintWidth_percent="0.32"
+        app:layout_constraintVertical_bias="0.7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/id_input_box"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        ></ImageView>
+
     <EditText
         android:id="@+id/id_input_box"
         android:background="@drawable/input_box_background"

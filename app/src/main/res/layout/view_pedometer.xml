@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/pedometer_background">
+
+    <TextView
+        android:id="@+id/current_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2022.04.22(금)"
+        android:textSize="13dp"
+        android:fontFamily="@font/nskr_medium"
+        android:includeFontPadding="false"
+        app:layout_constraintHorizontal_bias="0.1"
+        android:textColor="@color/app_basic_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"></TextView>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/pedometer_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/total_step"
+        app:layout_constraintLeft_toRightOf="@+id/current_date"
+        app:layout_constraintRight_toLeftOf="@+id/total_step"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintWidth_percent="0.07"></ImageView>
+
+    <TextView
+        android:id="@+id/total_step"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2480"
+        android:textSize="20dp"
+        android:fontFamily="@font/nskr_medium"
+        android:includeFontPadding="false"
+        app:layout_constraintHorizontal_bias="0.98"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/finish_step"></TextView>
+
+
+    <TextView
+        android:id="@+id/finish_step"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/10000보"
+        android:textSize="12dp"
+        android:fontFamily="@font/nskr_medium"
+        android:includeFontPadding="false"
+        app:layout_constraintHorizontal_bias="0.92"
+        android:textColor="#b9b9b9"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"></TextView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
