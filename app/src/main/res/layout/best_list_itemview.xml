@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="308dp"
+    android:layout_height="400dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/best_kit_img"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/best_kit_item_background"
+        android:backgroundTint="@color/background_gray"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        ></ImageView>
+
+    <TextView
+        android:id="@+id/ranking"
+        android:text="1"
+        android:background="@drawable/best_kit_ranking_background"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="13dp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/nskr_medium"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.18"
+        app:layout_constraintDimensionRatio="1:1"
+        android:gravity="center"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@+id/best_kit_img"
+        app:layout_constraintBottom_toBottomOf="@+id/best_kit_img"
+        app:layout_constraintLeft_toLeftOf="@+id/best_kit_img"
+        app:layout_constraintRight_toRightOf="@+id/best_kit_img"></TextView>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/best_item_like_btn_off"
+        app:layout_constraintWidth_percent="0.16"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toTopOf="@+id/best_kit_img"
+        app:layout_constraintBottom_toBottomOf="@+id/best_kit_img"
+        app:layout_constraintLeft_toLeftOf="@+id/best_kit_img"
+        app:layout_constraintRight_toRightOf="@+id/best_kit_img"
+        app:layout_constraintVertical_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.9"
+        ></ImageView>
+
+    <TextView
+        android:id="@+id/best_kit_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="유기농두부샐러드"
+        android:includeFontPadding="false"
+        android:textSize="13dp"
+        android:textColor="#2b2b2b"
+        android:fontFamily="@font/nskr_medium"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintTop_toBottomOf="@+id/best_kit_img"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        ></TextView>
+
+    <TextView
+        android:id="@+id/best_kit_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12000 원"
+        android:includeFontPadding="false"
+        android:textSize="13dp"
+        android:textColor="#696969"
+        android:fontFamily="@font/nskr_medium"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toBottomOf="@+id/best_kit_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        ></TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

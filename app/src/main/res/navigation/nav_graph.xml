@@ -7,5 +7,27 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.corporation8793.mealkit.fragment.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_mountFragment"
+            app:destination="@id/mountFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_overseasFragment"
+            app:destination="@id/overseasFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_seaFragment"
+            app:destination="@id/seaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mountFragment"
+        android:name="com.corporation8793.mealkit.fragment.MountFragment"
+        android:label="MountFragment" />
+    <fragment
+        android:id="@+id/overseasFragment"
+        android:name="com.corporation8793.mealkit.fragment.OverseasFragment"
+        android:label="OverseasFragment" />
+    <fragment
+        android:id="@+id/seaFragment"
+        android:name="com.corporation8793.mealkit.fragment.SeaFragment"
+        android:label="SeaFragment" />
 </navigation>

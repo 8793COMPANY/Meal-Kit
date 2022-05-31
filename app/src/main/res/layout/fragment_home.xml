@@ -21,6 +21,8 @@
         android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
 
 
+
+
     <TextView
         android:id="@+id/address"
         android:layout_width="0dp"
@@ -51,16 +53,19 @@
         app:layout_constraintRight_toRightOf="@id/guideline_right"
         ></com.google.android.material.tabs.TabLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/kit_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:paddingTop="15dp"
+        android:overScrollMode="never"
         app:layout_constraintTop_toBottomOf="@+id/kit_category"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
-        app:layout_constraintRight_toRightOf="@+id/guideline_right"
-        ></androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        ></androidx.viewpager2.widget.ViewPager2>
+
+
 
 
     <include
@@ -73,4 +78,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintEnd_toEndOf="@+id/guideline_right"></include>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.corporation8793.mealkit
+package com.corporation8793.mealkit.dto
 
 data class KitItem(
        val img : String,

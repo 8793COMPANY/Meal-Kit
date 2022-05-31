@@ -1,11 +1,17 @@
 package com.corporation8793.mealkit.fragment
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.corporation8793.mealkit.KitAdapter
+import com.corporation8793.mealkit.KitDecoration
 import com.corporation8793.mealkit.R
+import com.corporation8793.mealkit.dto.KitItem
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +28,7 @@ class SeaFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    val datas = mutableListOf<KitItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -33,7 +40,34 @@ class SeaFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sea, container, false)
+        val view = inflater.inflate(R.layout.fragment_sea, container, false)
+
+        val kit_list = view.findViewById<RecyclerView>(R.id.kit_list)
+
+
+
+        val display : DisplayMetrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(display)
+        val height : Int =  (display.heightPixels / 6.5).toInt()
+
+        var kitAdapter = KitAdapter(context, height, resources.getColor(R.color.category_sea_color))
+        kit_list.adapter = kitAdapter
+
+        val lm = LinearLayoutManager(context)
+        kit_list.layoutManager = lm
+
+        var divider = KitDecoration(20)
+        kit_list.addItemDecoration(divider)
+
+        datas.apply {
+            add(KitItem("0","22.05.12~22.05.14","해산물 가게","유기농두부샐러드","12,000원","17","1"))
+            add(KitItem("0","22.05.12~22.05.14","스프 가게","시금치스프","8,000원","4","1"))
+            add(KitItem("0","22.05.12~22.05.14","라멘 가게","매운냉라면","10,000원","12","1"))
+
+            kitAdapter.datas = datas
+            kitAdapter.notifyDataSetChanged()
+        }
+        return view
     }
 
     companion object {
@@ -48,7 +82,7 @@ class SeaFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-                LandFragment().apply {
+                SeaFragment().apply {
                     arguments = Bundle().apply {
                         putString(ARG_PARAM1, param1)
                         putString(ARG_PARAM2, param2)

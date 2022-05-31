@@ -1,21 +1,21 @@
 package com.corporation8793.mealkit
 
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.corporation8793.mealkit.dto.KitItem
 
-class KitAdapter (private val context: Context?, val height : Int) : RecyclerView.Adapter<KitAdapter.ViewHolder>() {
+class KitAdapter (private val context: Context?, val height : Int, val color : Int) : RecyclerView.Adapter<KitAdapter.ViewHolder>() {
     var datas = mutableListOf<KitItem>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.kit_list_itemview,parent,false)
         view.layoutParams.height = height
+        Log.e("viewholder","in")
 //        view.findViewById<ImageView>(R.id.herb_event_img).clipToOutline = true
 
         return ViewHolder(view)
@@ -38,9 +38,11 @@ class KitAdapter (private val context: Context?, val height : Int) : RecyclerVie
         private val remaining_count : TextView = itemView.findViewById(R.id.remaining_count)
 
         fun bind(item: KitItem) {
+            Log.e("bind","in")
 //            eventImg.clipToOutline = true
             date.text = item.date
             shop_category.text = item.category
+            shop_category.setTextColor(color)
             kit_name.text = item.name
             kit_price.text = item.price
             remaining_count.text = item.remaining_count
