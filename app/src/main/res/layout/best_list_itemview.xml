@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="308dp"
-    android:layout_height="400dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/background"
+    android:background="@drawable/best_kit_item_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
 
     <ImageView
         android:id="@+id/best_kit_img"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/best_kit_item_background"
-        android:backgroundTint="@color/background_gray"
+        android:src="@drawable/banner2"
+        android:scaleType="fitXY"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,10 +26,6 @@
         android:id="@+id/ranking"
         android:text="1"
         android:background="@drawable/best_kit_ranking_background"
-        android:paddingRight="15dp"
-        android:paddingLeft="15dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:textSize="13dp"
         android:includeFontPadding="false"
         android:fontFamily="@font/nskr_medium"
@@ -43,9 +43,10 @@
         app:layout_constraintRight_toRightOf="@+id/best_kit_img"></TextView>
 
     <ImageView
+        android:id="@+id/kit_like_btn"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/best_item_like_btn_off"
+        android:background="@drawable/like_btn_selector"
         app:layout_constraintWidth_percent="0.16"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toTopOf="@+id/best_kit_img"

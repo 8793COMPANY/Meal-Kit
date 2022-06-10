@@ -6,11 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
-import com.corporation8793.mealkit.dto.KitItem
-import com.google.android.material.tabs.TabLayout
+import com.corporation8793.mealkit.adapter.BestAdapter
+import com.corporation8793.mealkit.decoration.BestDecoration
+import com.corporation8793.mealkit.dto.BestItem
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +27,7 @@ class BestFragment() : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    val datas = mutableListOf<KitItem>()
+    val datas = mutableListOf<BestItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,36 +42,33 @@ class BestFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_best, container, false)
 
-//        val viewPager = view.findViewById<ViewPager2>(R.id.kit_list)
-//        val tabLayout = view.findViewById<TabLayout>(R.id.kit_category)
-//        val kit_list = view.findViewById<RecyclerView>(R.id.kit_list)
-//
-//
-//        val display : DisplayMetrics = DisplayMetrics()
-//        activity?.windowManager?.defaultDisplay?.getMetrics(display)
-//        val height : Int =  (display.heightPixels / 6.5).toInt()
-//
-//        var kitAdapter = KitAdapter(context, height,resources.getColor(R.color.category_land_color))
-//        kit_list.adapter = kitAdapter
-//
-//        val lm = LinearLayoutManager(context)
-//        kit_list.layoutManager = lm
-//
-//        var divider = KitDecoration(20)
-//        kit_list.addItemDecoration(divider)
-//
-//        datas.apply {
-//            add(KitItem("0","22.05.12~22.05.14","샐러드 가게","유기농두부샐러드","12,000원","17","1"))
-//            add(KitItem("0","22.05.12~22.05.14","스프 가게","시금치스프","8,000원","4","1"))
-//            add(KitItem("0","22.05.12~22.05.14","라멘 가게","매운냉라면","10,000원","12","1"))
-//
-//            kitAdapter.datas = datas
-//            kitAdapter.notifyDataSetChanged()
-//        }
-//
-////        viewPager.adapter = ViewPagerAdapter(this)
-////
-//        val tabName = arrayOf<String>("육지","바다","산","해외")
+
+        val kit_list = view.findViewById<RecyclerView>(R.id.best_kit_list)
+
+
+
+        val display : DisplayMetrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(display)
+        val height : Int =  (display.heightPixels / 3.5).toInt()
+
+        var bestAdapter = BestAdapter(context, height, resources.getColor(R.color.category_land_color))
+        kit_list.adapter = bestAdapter
+
+        val lm = GridLayoutManager(context,2)
+        kit_list.layoutManager = lm
+
+        var divider = BestDecoration(20)
+        kit_list.addItemDecoration(divider)
+
+        datas.apply {
+            add(BestItem("0","유기농두부샐러드","12,000원","1","1"))
+            add(BestItem("0","과일그릭요거트보울","12,000원","1","2"))
+            add(BestItem("0","헤이","12,000원","1","3"))
+
+
+            bestAdapter.datas = datas
+            bestAdapter.notifyDataSetChanged()
+        }
 
 
 
@@ -90,7 +88,7 @@ class BestFragment() : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-                HomeFragment().apply {
+                BestFragment().apply {
                     arguments = Bundle().apply {
                         putString(ARG_PARAM1, param1)
                         putString(ARG_PARAM2, param2)

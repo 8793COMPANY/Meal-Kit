@@ -1,13 +1,10 @@
-package com.corporation8793.mealkit
+package com.corporation8793.mealkit.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.corporation8793.mealkit.fragment.LandFragment
-import com.corporation8793.mealkit.fragment.MountFragment
-import com.corporation8793.mealkit.fragment.OverseasFragment
-import com.corporation8793.mealkit.fragment.SeaFragment
+import com.corporation8793.mealkit.fragment.*
 
 private const val NUM_TABS = 4
 
@@ -27,4 +24,5 @@ class ViewPagerAdapter (fragment : Fragment) :
         }
         return LandFragment()
     }
+
 }

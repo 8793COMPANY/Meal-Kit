@@ -1,4 +1,4 @@
-package com.corporation8793.mealkit
+package com.corporation8793.mealkit.activity
 
 import android.media.MediaPlayer.OnPreparedListener
 import android.net.Uri
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.MediaController
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import com.corporation8793.mealkit.R
 
 class PointActivity : AppCompatActivity() {
     lateinit var video: VideoView

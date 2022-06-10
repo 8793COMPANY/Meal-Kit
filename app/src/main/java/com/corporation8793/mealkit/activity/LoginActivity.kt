@@ -1,10 +1,8 @@
-package com.corporation8793.mealkit
+package com.corporation8793.mealkit.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
-import androidx.viewbinding.ViewBinding
 import com.corporation8793.mealkit.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -16,7 +14,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.joinText.setOnClickListener {
-            var intent = Intent(this@LoginActivity,JoinActivity::class.java)
+            var intent = Intent(this@LoginActivity, JoinActivity::class.java)
             startActivity(intent)
         }
     }

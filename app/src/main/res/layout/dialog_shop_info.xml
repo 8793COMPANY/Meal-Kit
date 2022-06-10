@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:behavior_hideable="true"
+    app:behavior_draggable="true"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.08"
+        android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.92"
+        android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+    <View
+        android:id="@+id/dialog_background_item"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#e8e7e9"
+        app:layout_constraintHeight_percent="0.009"
+        app:layout_constraintWidth_percent="0.21"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"></View>
+
+        <TextView
+            android:id="@+id/shop_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nskr_medium"
+            android:includeFontPadding="false"
+            android:text="샐러드집"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            app:layout_constraintVertical_bias="0.04"
+            app:layout_constraintTop_toBottomOf="@+id/dialog_background_item"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+            ></TextView>
+
+        <RatingBar
+            android:id="@+id/kit_rating"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:theme="@style/RatingBar"
+            app:layout_constraintHeight_percent="0.04"
+            app:layout_constraintWidth_percent="0.2"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toBottomOf="@+id/shop_name"
+            app:layout_constraintBottom_toBottomOf="@+id/rating_text"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+            app:layout_constraintRight_toRightOf="@+id/guideline_right"
+            android:numStars="5"
+            android:rating="4"
+            android:stepSize="0.1"
+            ></RatingBar>
+
+        <TextView
+            android:id="@+id/rating_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.0"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintVertical_bias="0.01"
+            app:layout_constraintHorizontal_bias="0.03"
+            app:layout_constraintTop_toBottomOf="@+id/shop_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/kit_rating"
+            app:layout_constraintRight_toRightOf="@+id/guideline_right"></TextView>
+
+
+        <ImageView
+            android:id="@+id/shop_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="290:224"
+            app:layout_constraintWidth_percent="0.4"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintVertical_bias="0.04"
+            app:layout_constraintTop_toBottomOf="@+id/rating_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+            app:layout_constraintRight_toLeftOf="@+id/shop_img2"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"></ImageView>
+
+
+        <ImageView
+            android:id="@+id/shop_img2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="290:224"
+            app:layout_constraintWidth_percent="0.4"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintVertical_bias="0.04"
+            app:layout_constraintTop_toBottomOf="@+id/rating_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/shop_img"
+            app:layout_constraintRight_toRightOf="@+id/guideline_right"></ImageView>
+
+        <TextView
+            android:id="@+id/shop_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="쫄깃한 구운 버섯과 튀긴 연두부의
+    부드럽고 담백한 맛이 일품인 비건 샐러드를 파는
+    동명동 대표 맛집"
+            android:textSize="15dp"
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toBottomOf="@+id/shop_img"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+            app:layout_constraintRight_toRightOf="@+id/guideline_right"></TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</LinearLayout>

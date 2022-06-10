@@ -20,6 +20,7 @@
     <color name="category_sea_color">#0091be</color>
     <color name="category_mount_color">#4c9b3e</color>
     <color name="category_overseas_color">#d97c7c</color>
+    <color name="category_unselected_color">#707070</color>
 
 
 </resources>

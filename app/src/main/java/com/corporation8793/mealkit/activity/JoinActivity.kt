@@ -1,8 +1,9 @@
-package com.corporation8793.mealkit
+package com.corporation8793.mealkit.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.databinding.ActivityJoinBinding
 
 class JoinActivity : AppCompatActivity() {

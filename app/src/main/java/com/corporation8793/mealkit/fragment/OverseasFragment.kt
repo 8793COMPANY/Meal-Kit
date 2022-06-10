@@ -6,10 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.corporation8793.mealkit.KitAdapter
-import com.corporation8793.mealkit.KitDecoration
+import com.corporation8793.mealkit.adapter.KitAdapter
+import com.corporation8793.mealkit.decoration.KitDecoration
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.dto.KitItem
 
@@ -50,7 +51,7 @@ class OverseasFragment : Fragment() {
         activity?.windowManager?.defaultDisplay?.getMetrics(display)
         val height : Int =  (display.heightPixels / 6.5).toInt()
 
-        var kitAdapter = KitAdapter(context, height, resources.getColor(R.color.category_overseas_color))
+        var kitAdapter = KitAdapter(context, height, resources.getColor(R.color.category_overseas_color),findNavController())
         kit_list.adapter = kitAdapter
 
         val lm = LinearLayoutManager(context)

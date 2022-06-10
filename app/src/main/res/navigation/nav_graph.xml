@@ -1,33 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/home">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/home"
         android:name="com.corporation8793.mealkit.fragment.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_mountFragment"
-            app:destination="@id/mountFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_overseasFragment"
-            app:destination="@id/overseasFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_seaFragment"
-            app:destination="@id/seaFragment" />
+            android:id="@+id/action_home_to_kitDetailFragment3"
+            app:destination="@id/kitDetailFragment3" />
     </fragment>
     <fragment
-        android:id="@+id/mountFragment"
-        android:name="com.corporation8793.mealkit.fragment.MountFragment"
-        android:label="MountFragment" />
+        android:id="@+id/best"
+        android:name="com.corporation8793.mealkit.fragment.BestFragment"
+        android:label="BestFragment"
+        tools:layout="@layout/fragment_best"/>
     <fragment
-        android:id="@+id/overseasFragment"
-        android:name="com.corporation8793.mealkit.fragment.OverseasFragment"
-        android:label="OverseasFragment" />
+        android:id="@+id/recipe_list"
+        android:name="com.corporation8793.mealkit.fragment.RecipeListFragment"
+        android:label="RecipeListFragment" >
+
+
+        <action
+            android:id="@+id/action_recipe_list_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/seaFragment"
-        android:name="com.corporation8793.mealkit.fragment.SeaFragment"
-        android:label="SeaFragment" />
+        android:id="@+id/shop"
+        android:name="com.corporation8793.mealkit.fragment.ShopFragment"
+        android:label="ShopFragment" />
+    <fragment
+        android:id="@+id/my"
+        android:name="com.corporation8793.mealkit.fragment.MyFragment"
+        android:label="MyFragment" />
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="com.corporation8793.mealkit.fragment.RecipeFragment"
+        android:label="RecipeFragment" />
+    <fragment
+        android:id="@+id/kitDetailFragment3"
+        android:name="com.corporation8793.mealkit.fragment.KitDetailFragment"
+        android:label="KitDetailFragment" />
+
+
 </navigation>

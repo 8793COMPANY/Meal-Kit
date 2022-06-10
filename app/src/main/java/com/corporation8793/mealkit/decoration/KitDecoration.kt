@@ -1,4 +1,4 @@
-package com.corporation8793.mealkit
+package com.corporation8793.mealkit.decoration
 
 import android.graphics.Rect
 import android.view.View

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_round_background"
+    android:backgroundTint="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.09"
+        android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.91"
+        android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
+
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:id="@+id/recipe_img"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/best_kit_item_background"
+        android:backgroundTint="@color/background_gray"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        ></ImageView>
+
+
+    <TextView
+        android:id="@+id/recipe_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="단호박스프"
+        android:includeFontPadding="false"
+        android:textSize="13dp"
+        android:textColor="#2b2b2b"
+        android:fontFamily="@font/nskr_medium"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_img"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        ></TextView>
+
+    <TextView
+        android:id="@+id/recipe_introdution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="진한 맛의 단호박 스프"
+        android:includeFontPadding="false"
+        android:textSize="11dp"
+        android:textColor="#797979"
+        android:fontFamily="@font/nskr_medium"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        ></TextView>
+
+    <View
+        android:id="@+id/border"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.005"
+        android:backgroundTint="#d9d9d9"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_introdution"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"></View>
+
+
+    <ImageView
+        android:id="@+id/user_img"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/best_kit_item_background"
+        android:backgroundTint="@color/background_gray"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintWidth_percent="0.19"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintTop_toBottomOf="@+id/border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        ></ImageView>
+
+
+    <ImageView
+        android:id="@+id/recipe_like_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/kit_like_btn_on"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintWidth_percent="0.11"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintTop_toTopOf="@+id/user_img"
+        app:layout_constraintBottom_toBottomOf="@+id/user_img"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        ></ImageView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

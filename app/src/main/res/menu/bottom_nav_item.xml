@@ -8,7 +8,7 @@
         android:iconTint="#b7b7b7"
         android:icon="@drawable/home_icon"/>
     <item
-        android:id="@+id/recipe"
+        android:id="@+id/recipe_list"
         android:enabled="true"
         android:title="RECIPE"
         android:iconTint="#b7b7b7"
