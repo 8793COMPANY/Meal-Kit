@@ -7,4 +7,22 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="app_basic_color">#009658</color>
+    <color name="hint_text_color">#909090</color>
+    <color name="text_color">#797979</color>
+    <color name="active_text_color">#009658</color>
+
+    <color name="black2">#2b2b2b</color>
+    <color name="background_gray">#f4f4f4</color>
+    <color name="remaining_color">#ff9b33</color>
+
+    <color name="category_land_color">#a1937a</color>
+    <color name="category_sea_color">#0091be</color>
+    <color name="category_mount_color">#4c9b3e</color>
+    <color name="category_overseas_color">#d97c7c</color>
+    <color name="category_unselected_color">#707070</color>
+
+    <color name="join_already_use_text">#ce2929</color>
+
+
 </resources>

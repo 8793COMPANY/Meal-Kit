@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        bind:layout_constraintGuide_percent="0.05"></androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        bind:layout_constraintGuide_percent="0.95"></androidx.constraintlayout.widget.Guideline>
+
+
+    <include android:id="@+id/action_bar"
+        layout="@layout/custom_actionbar"
+        bind:title="@{title}"></include>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        bind:layout_constraintTop_toBottomOf="@+id/action_bar"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        bind:layout_constraintRight_toRightOf="@+id/guideline_right">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+<!--            <ImageView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="240dp"-->
+<!--                bind:layout_constraintDimensionRatio="1:1"-->
+<!--                bind:layout_constraintWidth_percent="0.63"-->
+<!--                bind:layout_constraintTop_toBottomOf="@+id/action_bar"-->
+<!--                bind:layout_constraintBottom_toBottomOf="parent"-->
+<!--                bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"-->
+<!--                bind:layout_constraintRight_toRightOf="@+id/guideline_right"-->
+<!--                bind:layout_constraintVertical_bias="0"-->
+<!--                ></ImageView>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="유기농두부샐러드"-->
+<!--                android:textColor="#2b2b2b"-->
+<!--                android:textSize="21dp"-->
+<!--                android:includeFontPadding="false"-->
+<!--                android:fontFamily="@font/nskr_medium"></TextView>-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/recipe_img"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    bind:layout_constraintDimensionRatio="3:2"
+                    bind:layout_constraintWidth_percent="1"
+                    bind:layout_constraintTop_toTopOf="parent"
+                    bind:layout_constraintBottom_toBottomOf="parent"
+                    bind:layout_constraintLeft_toLeftOf="parent"
+                    bind:layout_constraintRight_toRightOf="parent"
+                    bind:layout_constraintVertical_bias="0"
+                    ></ImageView>
+
+                <TextView
+                    android:id="@+id/recipe_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="유기농두부샐러드"
+                    android:textColor="#2b2b2b"
+                    android:textSize="21dp"
+                    bind:layout_constraintHorizontal_bias="0"
+                    bind:layout_constraintVertical_bias="0"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/nskr_medium"
+                    bind:layout_constraintTop_toBottomOf="@+id/recipe_img"
+                    bind:layout_constraintBottom_toBottomOf="parent"
+                    bind:layout_constraintLeft_toLeftOf="parent"
+                    bind:layout_constraintRight_toRightOf="parent"></TextView>
+
+                <RatingBar
+                    android:id="@+id/recipe_rating"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    bind:layout_constraintWidth_percent="0.22"
+                    android:numStars="5"
+                    android:rating="4"
+                    android:theme="@style/RatingBar"
+                    bind:layout_constraintVertical_bias="0.5"
+                    bind:layout_constraintHorizontal_bias="0"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    bind:layout_constraintTop_toTopOf="@+id/rating_text"
+                    bind:layout_constraintBottom_toBottomOf="@+id/rating_text"
+                    bind:layout_constraintLeft_toLeftOf="parent"
+                    bind:layout_constraintRight_toRightOf="parent"></RatingBar>
+
+
+
+                <TextView
+                    android:id="@+id/rating_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.0"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/nskr_medium"
+                    android:includeFontPadding="false"
+                    bind:layout_constraintVertical_bias="0.04"
+                    bind:layout_constraintHorizontal_bias="0.05"
+                    bind:layout_constraintTop_toBottomOf="@+id/recipe_name"
+                    bind:layout_constraintBottom_toBottomOf="parent"
+                    bind:layout_constraintLeft_toRightOf="@+id/recipe_rating"
+                    bind:layout_constraintRight_toRightOf="parent"></TextView>
+
+                <View
+                    android:id="@+id/border"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="#d9d9d9"
+                    bind:layout_constraintVertical_bias="0.05"
+                    bind:layout_constraintTop_toBottomOf="@+id/rating_text"
+                    bind:layout_constraintBottom_toBottomOf="parent"
+                    bind:layout_constraintLeft_toLeftOf="parent"
+                    bind:layout_constraintRight_toRightOf="parent"></View>
+
+                <TextView
+                    android:id="@+id/recipe_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Recipe"
+                    android:textColor="@color/black"
+                    android:textSize="23dp"
+                    bind:layout_constraintVertical_bias="0.1"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/nskr_medium"
+                    bind:layout_constraintTop_toBottomOf="@id/border"
+                    bind:layout_constraintBottom_toBottomOf="parent"
+                    bind:layout_constraintLeft_toLeftOf="parent"
+                    bind:layout_constraintRight_toRightOf="parent"></TextView>
+
+                <TextView
+                    android:id="@+id/recipe_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="쫄깃한 구운 버섯과 튀긴 연두부의\n부드럽고 담백한 맛이 일품인 비건 샐러드"
+                    android:textColor="@color/text_color"
+                    android:textSize="14dp"
+                    bind:layout_constraintVertical_bias="0.05"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/nskr_medium"
+                    bind:layout_constraintTop_toBottomOf="@id/recipe_text"
+                    bind:layout_constraintBottom_toBottomOf="parent"
+                    bind:layout_constraintLeft_toLeftOf="parent"
+                    bind:layout_constraintRight_toRightOf="parent"></TextView>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="\n\n\n\n\n\n\n!\n"
+                    bind:layout_constraintVertical_bias="0.1"
+                    bind:layout_constraintTop_toBottomOf="@id/recipe_info"
+                    bind:layout_constraintBottom_toBottomOf="parent"
+                    bind:layout_constraintLeft_toLeftOf="parent"
+                    bind:layout_constraintRight_toRightOf="parent"></TextView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

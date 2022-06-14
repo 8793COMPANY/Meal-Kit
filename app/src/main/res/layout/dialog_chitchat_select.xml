@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:weightSum="450"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/qna_area"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="160"
+        >
+        <ImageView
+            android:id="@+id/cancel_btn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintWidth_percent="0.09"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/qna_divider"
+            app:layout_constraintRight_toRightOf="@+id/qna_divider"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintVertical_bias="0.18"></ImageView>
+
+        <ImageView
+            android:id="@+id/qna_icon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="6:5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_bias="0.6"
+            app:layout_constraintWidth_percent="0.12"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/qna_divider"
+            app:layout_constraintRight_toLeftOf="@+id/qna"
+            ></ImageView>
+
+        <TextView
+            android:id="@+id/qna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="묻고 답하기"
+            android:textColor="@color/black"
+            android:gravity="center"
+            app:layout_constraintVertical_bias="0.6"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            ></TextView>
+
+        <View
+            android:id="@+id/qna_divider"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#979797"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.01"
+            app:layout_constraintWidth_percent="0.85"></View>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/free_board_area"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="130">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="6:5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintWidth_percent="0.12"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/free_board_divider"
+            app:layout_constraintRight_toLeftOf="@+id/free_board_text"
+            ></ImageView>
+        <TextView
+            android:id="@+id/free_board_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="자유게시판"
+            android:textColor="@color/black"
+            android:gravity="center"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"></TextView>
+
+        <View
+            android:id="@+id/free_board_divider"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHeight_percent="0.01"
+            app:layout_constraintWidth_percent="0.85"></View>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="160"
+        >
+
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="6:5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_bias="0.4"
+            app:layout_constraintWidth_percent="0.12"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/shopping_divider"
+            app:layout_constraintRight_toLeftOf="@+id/shopping_text"
+            ></ImageView>
+
+        <TextView
+            android:id="@+id/shopping_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="구매문의"
+            android:textColor="@color/black"
+            android:gravity="center"
+            app:layout_constraintVertical_bias="0.4"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            ></TextView>
+
+        <View
+            android:id="@+id/shopping_divider"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#979797"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHeight_percent="0.01"
+            app:layout_constraintWidth_percent="0.85"></View>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</LinearLayout>

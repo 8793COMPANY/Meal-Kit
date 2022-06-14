@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <EditText
+        android:id="@+id/id_input_box"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="12dp"
+        android:backgroundTint="#d6d6d6"
+        android:hint="아이디 입력"
+        android:textColorHint="#c9c9c9"
+        bind:layout_constraintHeight_percent="0.053"
+        bind:layout_constraintVertical_bias="0.05"
+        bind:layout_constraintRight_toRightOf="parent"
+        bind:layout_constraintTop_toTopOf="parent"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="parent"></EditText>
+
+    <EditText
+        android:id="@+id/vephone_number_input_box"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="12dp"
+        android:backgroundTint="#d6d6d6"
+        android:hint="휴대전화번호 입력"
+        android:textColorHint="#c9c9c9"
+        bind:layout_constraintHeight_percent="0.053"
+        bind:layout_constraintRight_toLeftOf="@+id/verification_code_transmit_btn"
+        bind:layout_constraintTop_toTopOf="@+id/verification_code_transmit_btn"
+        bind:layout_constraintBottom_toBottomOf="@+id/verification_code_transmit_btn"
+        bind:layout_constraintLeft_toLeftOf="parent"></EditText>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/verification_code_transmit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:padding="0dp"
+        bind:layout_constraintHeight_percent="0.04"
+        android:background="@drawable/stroke_round_corner_btn"
+        android:text="인증번호 전송"
+        android:textSize="12dp"
+        android:layout_marginLeft="10dp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/nskr_medium"
+        android:textColor="@color/app_basic_color"
+        bind:layout_constraintHorizontal_bias="1"
+        bind:layout_constraintVertical_bias="0.05"
+        bind:layout_constraintTop_toBottomOf="@+id/id_input_box"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toRightOf="@+id/vephone_number_input_box"
+        bind:layout_constraintRight_toRightOf="parent"
+        ></androidx.appcompat.widget.AppCompatButton>
+
+
+    <EditText
+        android:id="@+id/verification_code_input_box"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="12dp"
+        android:backgroundTint="#d6d6d6"
+        android:hint="인증번호 입력"
+        android:textColorHint="#c9c9c9"
+        bind:layout_constraintHeight_percent="0.053"
+        bind:layout_constraintVertical_bias="0.05"
+        bind:layout_constraintRight_toRightOf="parent"
+        bind:layout_constraintTop_toBottomOf="@+id/vephone_number_input_box"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="parent"></EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="03:00"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textSize="13dp"
+        android:textColor="@color/join_already_use_text"
+        bind:layout_constraintVertical_bias="0.3"
+        bind:layout_constraintTop_toTopOf="@+id/verification_code_input_box"
+        bind:layout_constraintBottom_toBottomOf="@+id/verification_code_input_box"
+        bind:layout_constraintRight_toRightOf="@+id/verification_code_input_box"></TextView>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/join_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="20dp"
+        bind:layout_constraintHeight_percent="0.069"
+        android:background="@drawable/input_box_background"
+        android:backgroundTint="#dddddd"
+        android:text="비밀번호 찾기"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:textColor="@color/white"
+        bind:layout_constraintHorizontal_bias="1"
+        bind:layout_constraintVertical_bias="0.1"
+        bind:layout_constraintTop_toBottomOf="@+id/verification_code_input_box"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="parent"
+        bind:layout_constraintRight_toRightOf="parent"
+        ></androidx.appcompat.widget.AppCompatButton>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="148dp"
+    android:layout_height="70dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1"></androidx.constraintlayout.widget.Guideline>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9"></androidx.constraintlayout.widget.Guideline>
+
+    <ImageView
+        android:id="@+id/tabIcon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHeight_percent="0.7"
+        android:background="@drawable/land_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        ></ImageView>
+
+    <TextView
+        android:id="@+id/tabName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="육지"
+        android:textSize="14dp"
+        android:layout_marginLeft="2dp"
+        android:includeFontPadding="false"
+        app:layout_constraintHorizontal_bias="0.6"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tabIcon"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        app:layout_constraintBottom_toBottomOf="parent"></TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

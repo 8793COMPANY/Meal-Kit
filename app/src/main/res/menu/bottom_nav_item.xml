@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:title="HOME"
+        android:iconTint="#b7b7b7"
+        android:icon="@drawable/home_icon"/>
+    <item
+        android:id="@+id/recipe_list"
+        android:enabled="true"
+        android:title="RECIPE"
+        android:iconTint="#b7b7b7"
+        android:icon="@drawable/recipe_icon"/>
+    <item
+        android:id="@+id/best"
+        android:enabled="true"
+        android:title="BEST"
+        android:iconTint="#b7b7b7"
+        android:icon="@drawable/best_icon"/>
+    <item
+        android:id="@+id/shop"
+        android:enabled="true"
+        android:title="SHOP"
+        android:icon="@drawable/search_icon"/>
+    <item
+        android:id="@+id/my"
+        android:enabled="true"
+        android:title="MY"
+        android:icon="@drawable/my_icon"/>
+
+</menu>

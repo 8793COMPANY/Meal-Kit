@@ -1,11 +1,9 @@
 plugins {
     id 'com.android.application'
 
-    // 코틀린(.kt) 병행 사용 설정
     id 'kotlin-android'
 
-    // dokka
-    id("org.jetbrains.dokka")
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -13,17 +11,18 @@ android {
 
     defaultConfig {
         applicationId "com.corporation8793.mealkit"
-        minSdk 21
+        minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     dataBinding{
         enabled = true
     }
+
+
 
     buildTypes {
         release {
@@ -36,7 +35,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    // 코틀린(.kt) 병행 사용 설정
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
@@ -44,10 +42,11 @@ android {
         viewBinding true
     }
 
-
 }
 
 dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -59,35 +58,20 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    // dokka
-    dokkaHtmlPlugin('org.jetbrains.dokka:kotlin-as-java-plugin:1.6.10')
+    def nav_version = "2.4.2"
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+    androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
 
-    // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    // Jetpack Compose Integration
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 
-    // ROOM
-    def room_version = "2.4.2"
 
-    implementation("androidx.room:room-runtime:$room_version")
-    annotationProcessor "androidx.room:room-compiler:$room_version"
+    //naver map sdk
+    implementation("com.naver.maps:map-sdk:3.15.0")
+    implementation("com.google.android.gms:play-services-location:16.0.0")
 
-    // To use Kotlin annotation processing tool (kapt)
-    apply plugin: 'kotlin-kapt'
-    kapt("androidx.room:room-compiler:$room_version")
 
-    // optional - Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:$room_version")
 
-    // https://mvnrepository.com/artifact/com.google.code.gson/gson
-    // To use Type Convert
-    implementation 'com.google.code.gson:gson:2.9.0'
-
-    implementation 'me.relex:circleindicator:2.1.6'
-
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
-
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
 }

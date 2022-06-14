@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.corporation8793.mealkit.fragment.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_kitDetailFragment3"
+            app:destination="@id/kitDetailFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/best"
+        android:name="com.corporation8793.mealkit.fragment.BestFragment"
+        android:label="BestFragment"
+        tools:layout="@layout/fragment_best"/>
+    <fragment
+        android:id="@+id/recipe_list"
+        android:name="com.corporation8793.mealkit.fragment.RecipeListFragment"
+        android:label="RecipeListFragment" >
+
+
+        <action
+            android:id="@+id/action_recipe_list_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shop"
+        android:name="com.corporation8793.mealkit.fragment.ShopFragment"
+        android:label="ShopFragment" />
+    <fragment
+        android:id="@+id/my"
+        android:name="com.corporation8793.mealkit.fragment.MyFragment"
+        android:label="MyFragment" />
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="com.corporation8793.mealkit.fragment.RecipeFragment"
+        android:label="RecipeFragment" />
+    <fragment
+        android:id="@+id/kitDetailFragment3"
+        android:name="com.corporation8793.mealkit.fragment.KitDetailFragment"
+        android:label="KitDetailFragment" />
+
+
+</navigation>
