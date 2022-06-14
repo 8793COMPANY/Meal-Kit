@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
@@ -42,7 +43,10 @@ class FindIdFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_find_id, container, false)
 
+        val find_id_btn = view.findViewById<Button>(R.id.find_id_btn)
+        find_id_btn.setOnClickListener{
 
+        }
 
 
         return view

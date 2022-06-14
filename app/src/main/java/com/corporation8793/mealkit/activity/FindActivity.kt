@@ -19,7 +19,8 @@ class FindActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_find)
-        binding.setActionBar("아이디 찾기")
+        binding.setActionBar(intent.getStringExtra("title")+" 찾기")
+
 
 
 
@@ -27,7 +28,10 @@ class FindActivity : AppCompatActivity() {
         binding.viewpager.apply {
             (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         }
-        binding.viewpager.setCurrentItem(1,false)
+
+        if (intent.getStringExtra("title").equals("비밀번호"))
+            binding.viewpager.setCurrentItem(1,false)
+
 //
         val tabName = arrayOf<String>("아이디 찾기","비밀번호 찾기")
 
