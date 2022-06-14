@@ -7,55 +7,78 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <ImageView
-        android:id="@+id/best_kit_img"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/img_area"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/best_kit_item_background"
-        android:src="@drawable/banner2"
-        android:scaleType="fitXY"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        ></ImageView>
+        >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/best_kit_img_area"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent">
+            <ImageView
+                android:id="@+id/best_kit_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/test2"
+                android:src="@drawable/test2"
+                android:scaleType="fitXY"
 
-    <TextView
-        android:id="@+id/ranking"
-        android:text="1"
-        android:background="@drawable/best_kit_ranking_background"
-        android:textSize="13dp"
-        android:includeFontPadding="false"
-        android:fontFamily="@font/nskr_medium"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintWidth_percent="0.18"
-        app:layout_constraintDimensionRatio="1:1"
-        android:gravity="center"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintHorizontal_bias="0"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toTopOf="@+id/best_kit_img"
-        app:layout_constraintBottom_toBottomOf="@+id/best_kit_img"
-        app:layout_constraintLeft_toLeftOf="@+id/best_kit_img"
-        app:layout_constraintRight_toRightOf="@+id/best_kit_img"></TextView>
+                ></ImageView>
+        </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/kit_like_btn"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/like_btn_selector"
-        app:layout_constraintWidth_percent="0.16"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintTop_toTopOf="@+id/best_kit_img"
-        app:layout_constraintBottom_toBottomOf="@+id/best_kit_img"
-        app:layout_constraintLeft_toLeftOf="@+id/best_kit_img"
-        app:layout_constraintRight_toRightOf="@+id/best_kit_img"
-        app:layout_constraintVertical_bias="0.08"
-        app:layout_constraintHorizontal_bias="0.9"
-        ></ImageView>
+
+        <TextView
+            android:id="@+id/ranking"
+            android:text="1"
+            android:background="@drawable/best_kit_ranking_background"
+            android:textSize="13dp"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/nskr_medium"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.18"
+            app:layout_constraintDimensionRatio="1:1"
+            android:gravity="center"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintHorizontal_bias="0"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="@+id/best_kit_img_area"
+            app:layout_constraintBottom_toBottomOf="@+id/best_kit_img_area"
+            app:layout_constraintLeft_toLeftOf="@+id/best_kit_img_area"
+            app:layout_constraintRight_toRightOf="@+id/best_kit_img_area"></TextView>
+
+        <ImageView
+            android:id="@+id/kit_like_btn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/like_btn_selector"
+            app:layout_constraintWidth_percent="0.16"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="@+id/best_kit_img_area"
+            app:layout_constraintBottom_toBottomOf="@+id/best_kit_img_area"
+            app:layout_constraintLeft_toLeftOf="@+id/best_kit_img_area"
+            app:layout_constraintRight_toRightOf="@+id/best_kit_img_area"
+            app:layout_constraintVertical_bias="0.08"
+            app:layout_constraintHorizontal_bias="0.9"
+            ></ImageView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/best_kit_name"
@@ -67,7 +90,7 @@
         android:textColor="#2b2b2b"
         android:fontFamily="@font/nskr_medium"
         app:layout_constraintVertical_bias="0.1"
-        app:layout_constraintTop_toBottomOf="@+id/best_kit_img"
+        app:layout_constraintTop_toBottomOf="@+id/img_area"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

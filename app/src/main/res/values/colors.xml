@@ -22,5 +22,7 @@
     <color name="category_overseas_color">#d97c7c</color>
     <color name="category_unselected_color">#707070</color>
 
+    <color name="join_already_use_text">#ce2929</color>
+
 
 </resources>

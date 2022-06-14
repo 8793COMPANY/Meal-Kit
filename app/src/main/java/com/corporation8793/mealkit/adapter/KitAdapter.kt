@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.dto.KitItem
 import com.corporation8793.mealkit.fragment.HomeFragmentDirections
-import com.corporation8793.mealkit.fragment.RecipeListFragmentDirections
+
 
 class KitAdapter (private val context: Context?, val height : Int, val color : Int, val controller : NavController) : RecyclerView.Adapter<KitAdapter.ViewHolder>() {
     var datas = mutableListOf<KitItem>()

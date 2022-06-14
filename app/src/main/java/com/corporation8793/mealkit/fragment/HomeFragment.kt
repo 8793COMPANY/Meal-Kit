@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.compose.ui.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.corporation8793.mealkit.*
 import com.corporation8793.mealkit.adapter.ViewPagerAdapter
@@ -53,9 +54,11 @@ class HomeFragment() : Fragment() {
         val tabLayout = view.findViewById<TabLayout>(R.id.kit_category)
 
 
+        viewPager.apply {
+            adapter = ViewPagerAdapter(requireParentFragment())
+            (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+        }
 
-
-        viewPager.adapter = ViewPagerAdapter(this)
 //
         val tabName = arrayOf<String>("육지","바다"," 산","해외")
         val imageResId = intArrayOf(
@@ -109,6 +112,8 @@ class HomeFragment() : Fragment() {
         val tab_icon = tabView.findViewById<ImageView>(R.id.tabIcon) as ImageView
 
         tab_name.text = tabName
+        if (tabName.equals("육지"))
+            tab_name.setTextColor(resources.getColor(R.color.category_land_color))
         tab_icon.setBackgroundResource(tabIcon)
 
         return tabView

@@ -17,5 +17,22 @@ class LoginActivity : AppCompatActivity() {
             var intent = Intent(this@LoginActivity, JoinActivity::class.java)
             startActivity(intent)
         }
+
+        binding.loginBtn.setOnClickListener {
+            var intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.findIdText.setOnClickListener{
+            var intent = Intent(this@LoginActivity, FindActivity::class.java)
+            intent.putExtra("title","아이디")
+            startActivity(intent)
+        }
+
+        binding.findPwText.setOnClickListener{
+            var intent = Intent(this@LoginActivity, FindActivity::class.java)
+            intent.putExtra("title","비밀번호")
+            startActivity(intent)
+        }
     }
 }

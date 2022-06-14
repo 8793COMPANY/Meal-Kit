@@ -5,6 +5,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.corporation8793.mealkit.fragment.*
+import com.corporation8793.mealkit.fragment.home.LandFragment
+import com.corporation8793.mealkit.fragment.home.MountFragment
+import com.corporation8793.mealkit.fragment.home.OverseasFragment
+import com.corporation8793.mealkit.fragment.home.SeaFragment
 
 private const val NUM_TABS = 4
 

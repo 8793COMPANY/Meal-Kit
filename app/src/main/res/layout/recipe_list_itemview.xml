@@ -22,20 +22,29 @@
         android:orientation="vertical"></androidx.constraintlayout.widget.Guideline>
 
 
-    <ImageView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/recipe_img_area"
         android:layout_marginTop="10dp"
-        android:id="@+id/recipe_img"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/best_kit_item_background"
-        android:backgroundTint="@color/background_gray"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="@+id/guideline_right"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
-        ></ImageView>
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left">
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:id="@+id/recipe_img"
+            android:background="@drawable/test1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></ImageView>
+    </androidx.cardview.widget.CardView>
+
 
 
     <TextView
@@ -49,7 +58,7 @@
         android:fontFamily="@font/nskr_medium"
         app:layout_constraintVertical_bias="0.1"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_img"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_img_area"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
         app:layout_constraintRight_toRightOf="@+id/guideline_right"
