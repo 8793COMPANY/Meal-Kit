@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/find_nav_graph"
+    app:startDestination="@id/findMainFragment">
+
+    <fragment
+        android:id="@+id/findIdFragment"
+        android:name="com.corporation8793.mealkit.fragment.find.FindIdFragment"
+        android:label="FindIdFragment" >
+        <action
+            android:id="@+id/action_findIdFragment_to_afterFindFragment"
+            app:destination="@id/afterFindFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/findPwFragment"
+        android:name="com.corporation8793.mealkit.fragment.find.FindPwFragment"
+        android:label="FindPwFragment" />
+    <fragment
+        android:id="@+id/afterFindFragment"
+        android:name="com.corporation8793.mealkit.fragment.find.AfterFindFragment"
+        android:label="AfterFindFragment" />
+    <fragment
+        android:id="@+id/findMainFragment"
+        android:name="com.corporation8793.mealkit.fragment.find.FindMainFragment"
+        android:label="FindMainFragment" />
+
+    <action android:id="@+id/action_find_id_screen"
+        app:destination="@id/afterFindFragment"></action>
+</navigation>

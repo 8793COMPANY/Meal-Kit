@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_line"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        bind:layout_constraintGuide_percent="0.13"></androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_line"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        bind:layout_constraintGuide_percent="0.87"></androidx.constraintlayout.widget.Guideline>
+
+
+    <TextView
+        android:id="@+id/id_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이디"
+        android:textColor="@color/app_basic_color"
+        bind:layout_constraintHorizontal_bias="0"
+        bind:layout_constraintVertical_bias="0.06"
+        bind:layout_constraintTop_toTopOf="parent"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="@+id/left_line"
+        bind:layout_constraintRight_toRightOf="parent"></TextView>
+
+    <EditText
+        android:id="@+id/id_input_box"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#d6d6d6"
+        android:hint="아이디"
+        android:textSize="12dp"
+        android:textColor="#c9c9c9"
+        android:textColorHint="#c9c9c9"
+        bind:layout_constraintVertical_bias="0"
+        bind:layout_constraintRight_toRightOf="@+id/right_line"
+        bind:layout_constraintTop_toBottomOf="@+id/id_text"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="@+id/left_line"></EditText>
+
+
+
+
+    <TextView
+        android:id="@+id/pw_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호"
+        android:textColor="@color/app_basic_color"
+        bind:layout_constraintHorizontal_bias="0"
+        bind:layout_constraintVertical_bias="0.01"
+        bind:layout_constraintTop_toBottomOf="@+id/id_input_box"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="@+id/left_line"
+        bind:layout_constraintRight_toRightOf="parent"></TextView>
+
+    <EditText
+        android:id="@+id/pw_input_box"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="비밀번호"
+        android:backgroundTint="#d6d6d6"
+        android:textSize="12dp"
+        android:textColor="#c9c9c9"
+        android:textColorHint="#c9c9c9"
+        bind:layout_constraintVertical_bias="0"
+        bind:layout_constraintRight_toRightOf="@+id/right_line"
+        bind:layout_constraintTop_toBottomOf="@+id/pw_text"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="@+id/left_line"></EditText>
+
+
+
+    <TextView
+        android:id="@+id/phone_number_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="연락처"
+        android:textColor="@color/app_basic_color"
+        bind:layout_constraintHorizontal_bias="0"
+        bind:layout_constraintVertical_bias="0.02"
+        bind:layout_constraintTop_toBottomOf="@+id/pw_input_box"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="@+id/left_line"
+        bind:layout_constraintRight_toRightOf="parent"></TextView>
+
+    <EditText
+        android:id="@+id/phone_number_input_box"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="'-'구분없이 입력"
+        android:backgroundTint="#d6d6d6"
+        android:textSize="12dp"
+        android:textColor="#c9c9c9"
+        android:textColorHint="#c9c9c9"
+        bind:layout_constraintVertical_bias="0"
+        bind:layout_constraintRight_toRightOf="@+id/right_line"
+        bind:layout_constraintTop_toBottomOf="@+id/phone_number_text"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="@+id/left_line"></EditText>
+
+    <TextView
+        android:id="@+id/address_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="주소"
+        android:textColor="@color/app_basic_color"
+        bind:layout_constraintHorizontal_bias="0"
+        bind:layout_constraintVertical_bias="0.02"
+        bind:layout_constraintTop_toBottomOf="@+id/phone_number_input_box"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="@+id/left_line"
+        bind:layout_constraintRight_toRightOf="parent"></TextView>
+
+    <View
+        android:id="@+id/post_code_divider"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#d6d6d6"
+        bind:layout_constraintWidth_percent="0.02"
+        bind:layout_constraintHeight_percent="0.001"
+        bind:layout_constraintTop_toTopOf="@+id/post_code_input_box"
+        bind:layout_constraintBottom_toBottomOf="@+id/post_code_input_box"
+        bind:layout_constraintLeft_toRightOf="@+id/post_code_input_box"
+        bind:layout_constraintRight_toLeftOf="@id/post_code_input_box2"></View>
+
+    <EditText
+        android:id="@+id/post_code_input_box"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="우편번호"
+        android:paddingRight="20dp"
+        android:backgroundTint="#d6d6d6"
+        android:textSize="12dp"
+        android:textColor="#c9c9c9"
+        android:textColorHint="#c9c9c9"
+        bind:layout_constraintWidth_percent="0.2"
+        bind:layout_constraintHorizontal_bias="0"
+        bind:layout_constraintVertical_bias="0"
+        bind:layout_constraintLeft_toLeftOf="@+id/left_line"
+        bind:layout_constraintTop_toBottomOf="@+id/address_text"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintRight_toLeftOf="@+id/post_code_divider"
+        ></EditText>
+
+    <EditText
+        android:id="@+id/post_code_input_box2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingRight="20dp"
+        android:backgroundTint="#d6d6d6"
+        android:textSize="12dp"
+        android:textColor="#c9c9c9"
+        android:textColorHint="#c9c9c9"
+        bind:layout_constraintWidth_percent="0.2"
+        bind:layout_constraintHorizontal_bias="0"
+        bind:layout_constraintVertical_bias="0"
+        bind:layout_constraintLeft_toRightOf="@+id/post_code_divider"
+        bind:layout_constraintTop_toBottomOf="@+id/address_text"
+        bind:layout_constraintBottom_toBottomOf="parent"></EditText>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/search_post_code_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        bind:layout_constraintHeight_percent="0.04"
+        android:background="@drawable/stroke_round_corner_btn"
+        android:text="우편번호 검색"
+        android:textSize="13dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_marginLeft="10dp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/nskr_medium"
+        android:textColor="@color/app_basic_color"
+        bind:layout_constraintHorizontal_bias="1"
+        bind:layout_constraintVertical_bias="0"
+        bind:layout_constraintTop_toBottomOf="@+id/address_text"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toRightOf="@+id/post_code_input_box2"
+        bind:layout_constraintRight_toRightOf="@+id/right_line"
+        ></androidx.appcompat.widget.AppCompatButton>
+
+
+    <EditText
+        android:id="@+id/address_input_box"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:backgroundTint="#d6d6d6"
+        android:textSize="12dp"
+        android:textColor="#c9c9c9"
+        android:textColorHint="#c9c9c9"
+        bind:layout_constraintHorizontal_bias="0"
+        bind:layout_constraintVertical_bias="0"
+        bind:layout_constraintLeft_toLeftOf="@+id/left_line"
+        bind:layout_constraintTop_toBottomOf="@+id/post_code_input_box2"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintRight_toRightOf="@id/right_line"></EditText>
+
+    <EditText
+        android:id="@+id/address_detail_input_box"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:backgroundTint="#d6d6d6"
+        android:hint="상세주소"
+        android:textSize="12dp"
+        android:textColor="#c9c9c9"
+        android:textColorHint="#c9c9c9"
+        bind:layout_constraintHorizontal_bias="0"
+        bind:layout_constraintVertical_bias="0"
+        bind:layout_constraintLeft_toLeftOf="@+id/left_line"
+        bind:layout_constraintTop_toBottomOf="@+id/address_input_box"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintRight_toRightOf="@id/right_line"></EditText>
+
+
+    <TextView
+        android:id="@+id/recommender_code_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="추천인 코드"
+        android:textColor="@color/app_basic_color"
+        bind:layout_constraintHorizontal_bias="0"
+        bind:layout_constraintVertical_bias="0.05"
+        bind:layout_constraintTop_toBottomOf="@+id/address_detail_input_box"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="@+id/left_line"
+        bind:layout_constraintRight_toRightOf="parent"></TextView>
+
+    <EditText
+        android:id="@+id/recommender_code_input_box"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="12dp"
+        android:backgroundTint="#d6d6d6"
+        android:hint="추천인 코드 입력"
+        android:textColorHint="#c9c9c9"
+        bind:layout_constraintHeight_percent="0.055"
+        bind:layout_constraintVertical_bias="0.05"
+        bind:layout_constraintRight_toLeftOf="@+id/recommender_code_check_btn"
+        bind:layout_constraintTop_toTopOf="@+id/recommender_code_check_btn"
+        bind:layout_constraintBottom_toBottomOf="@+id/recommender_code_check_btn"
+        bind:layout_constraintLeft_toLeftOf="@+id/left_line"></EditText>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/recommender_code_check_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:padding="0dp"
+        bind:layout_constraintHeight_percent="0.04"
+        android:background="@drawable/stroke_round_corner_btn"
+        android:text="확인"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/nskr_medium"
+        android:textColor="@color/app_basic_color"
+        bind:layout_constraintHorizontal_bias="1"
+        bind:layout_constraintVertical_bias="0"
+        bind:layout_constraintTop_toBottomOf="@+id/recommender_code_text"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toRightOf="@+id/recommender_code_input_box"
+        bind:layout_constraintRight_toRightOf="@+id/right_line"
+        ></androidx.appcompat.widget.AppCompatButton>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/join_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="20dp"
+        bind:layout_constraintHeight_percent="0.069"
+        android:background="@drawable/input_box_background"
+        android:backgroundTint="@color/app_basic_color"
+        android:text="가입하기"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:textColor="@color/white"
+        bind:layout_constraintHorizontal_bias="1"
+        bind:layout_constraintVertical_bias="0.9"
+        bind:layout_constraintTop_toBottomOf="@+id/id_text"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="@+id/left_line"
+        bind:layout_constraintRight_toRightOf="@+id/right_line"
+        ></androidx.appcompat.widget.AppCompatButton>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

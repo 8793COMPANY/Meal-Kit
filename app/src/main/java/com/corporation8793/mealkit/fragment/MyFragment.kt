@@ -1,14 +1,19 @@
 package com.corporation8793.mealkit.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
+import com.corporation8793.mealkit.activity.FindActivity
+import com.corporation8793.mealkit.activity.UserInfoActivity
 import com.corporation8793.mealkit.dto.KitItem
 import com.google.android.material.tabs.TabLayout
 
@@ -41,38 +46,12 @@ class MyFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_my, container, false)
 
-//        val viewPager = view.findViewById<ViewPager2>(R.id.kit_list)
-//        val tabLayout = view.findViewById<TabLayout>(R.id.kit_category)
-//        val kit_list = view.findViewById<RecyclerView>(R.id.kit_list)
-//
-//
-//        val display : DisplayMetrics = DisplayMetrics()
-//        activity?.windowManager?.defaultDisplay?.getMetrics(display)
-//        val height : Int =  (display.heightPixels / 6.5).toInt()
-//
-//        var kitAdapter = KitAdapter(context, height,resources.getColor(R.color.category_land_color))
-//        kit_list.adapter = kitAdapter
-//
-//        val lm = LinearLayoutManager(context)
-//        kit_list.layoutManager = lm
-//
-//        var divider = KitDecoration(20)
-//        kit_list.addItemDecoration(divider)
-//
-//        datas.apply {
-//            add(KitItem("0","22.05.12~22.05.14","샐러드 가게","유기농두부샐러드","12,000원","17","1"))
-//            add(KitItem("0","22.05.12~22.05.14","스프 가게","시금치스프","8,000원","4","1"))
-//            add(KitItem("0","22.05.12~22.05.14","라멘 가게","매운냉라면","10,000원","12","1"))
-//
-//            kitAdapter.datas = datas
-//            kitAdapter.notifyDataSetChanged()
-//        }
-//
-////        viewPager.adapter = ViewPagerAdapter(this)
-////
-//        val tabName = arrayOf<String>("육지","바다","산","해외")
-
-
+        view.findViewById<Button>(R.id.edit_user_info_btn).setOnClickListener {
+            val action = MyFragmentDirections.actionMyToPointFragment()
+            findNavController().navigate(action)
+//            var intent = Intent(activity, UserInfoActivity::class.java)
+//            startActivity(intent)
+        }
 
 
         return view

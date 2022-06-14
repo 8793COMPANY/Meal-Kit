@@ -84,10 +84,11 @@
     <View
         android:id="@+id/border"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.005"
-        android:backgroundTint="#d9d9d9"
+        android:layout_height="1dp"
+        android:background="#d9d9d9"
         app:layout_constraintTop_toBottomOf="@+id/recipe_introdution"
+        app:layout_constraintVertical_bias="0.08"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
         app:layout_constraintRight_toRightOf="@+id/guideline_right"></View>
 
@@ -117,12 +118,28 @@
         android:layout_height="0dp"
         android:background="@drawable/kit_like_btn_on"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintWidth_percent="0.11"
-        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintWidth_percent="0.09"
+        app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintTop_toTopOf="@+id/user_img"
         app:layout_constraintBottom_toBottomOf="@+id/user_img"
-        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        app:layout_constraintRight_toLeftOf="@+id/recipe_like_count"
         app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
         ></ImageView>
+
+    <TextView
+        android:id="@+id/recipe_like_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="11dp"
+        android:text="12"
+        android:textColor="@color/black"
+        android:fontFamily="@font/noto_sans_kr_light"
+        android:includeFontPadding="false"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintTop_toTopOf="@+id/recipe_like_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/recipe_like_btn"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"></TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

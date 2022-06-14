@@ -7,12 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
 import com.corporation8793.mealkit.adapter.BestAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
+import com.corporation8793.mealkit.fragment.HomeFragmentDirections
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,7 +49,7 @@ class FindIdFragment() : Fragment() {
 
         val find_id_btn = view.findViewById<Button>(R.id.find_id_btn)
         find_id_btn.setOnClickListener{
-
+            Navigation.findNavController(view).navigate(R.id.action_find_id_screen)
         }
 
 

@@ -1,7 +1,11 @@
 plugins {
     id 'com.android.application'
 
+    // 코틀린(.kt) 병행 사용 설정
     id 'kotlin-android'
+
+    // dokka
+    id("org.jetbrains.dokka")
 
     id 'androidx.navigation.safeargs.kotlin'
 }
@@ -11,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId "com.corporation8793.mealkit"
-        minSdk 23
+        minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -58,6 +62,35 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
+    // dokka
+    dokkaHtmlPlugin('org.jetbrains.dokka:kotlin-as-java-plugin:1.6.10')
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // ROOM
+    def room_version = "2.4.2"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    // To use Kotlin annotation processing tool (kapt)
+    apply plugin: 'kotlin-kapt'
+    kapt("androidx.room:room-compiler:$room_version")
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
+
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    // To use Type Convert
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+    // coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+
+    // navigation
     def nav_version = "2.4.2"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")

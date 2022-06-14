@@ -5,6 +5,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8fdde340c66a1e486d2cb67786307398/transformed/jetified-lifecycle-runtime-testing-2.3.1/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/8fdde340c66a1e486d2cb67786307398/transformed/jetified-lifecycle-runtime-testing-2.3.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8fdde340c66a1e486d2cb67786307398/transformed/jetified-lifecycle-runtime-testing-2.3.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/85fbd02b6e7c05921ba49e0f766a6400/transformed/jetified-lifecycle-runtime-testing-2.3.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/85fbd02b6e7c05921ba49e0f766a6400/transformed/jetified-lifecycle-runtime-testing-2.3.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/85fbd02b6e7c05921ba49e0f766a6400/transformed/jetified-lifecycle-runtime-testing-2.3.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
