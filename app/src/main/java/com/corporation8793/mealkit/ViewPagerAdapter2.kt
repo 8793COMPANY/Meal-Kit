@@ -17,10 +17,10 @@ class ViewPagerAdapter2 (fragment : Fragment) :
 
     override fun createFragment(position: Int): Fragment {
         when (position) {
-            0 -> return MapFragment()
-            1 -> return ShopListFragment()
+            0 -> return ShopListFragment()
+            1 -> return MapFragment()
         }
-        return MapFragment()
+        return ShopListFragment()
     }
 
 }

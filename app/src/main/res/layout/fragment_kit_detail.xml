@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.LandFragment">
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.Guideline
@@ -202,7 +202,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:elevation="30dp"
-        android:background="@drawable/top_rounded_bg"
+        android:background="@color/white"
         app:layout_constraintHeight_percent="0.13"
         app:layout_constraintVertical_bias="1"
         app:layout_constraintTop_toBottomOf="@+id/kit_explain"
@@ -213,7 +213,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/order_btn_background"
+            android:background="@drawable/input_box_background"
+            android:backgroundTint="@color/app_basic_color"
             app:layout_constraintDimensionRatio="620:96"
             app:layout_constraintWidth_percent="0.8"
             app:layout_constraintTop_toTopOf="@+id/order_area"

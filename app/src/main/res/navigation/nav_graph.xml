@@ -18,7 +18,11 @@
         android:id="@+id/best"
         android:name="com.corporation8793.mealkit.fragment.BestFragment"
         android:label="BestFragment"
-        tools:layout="@layout/fragment_best"/>
+        tools:layout="@layout/fragment_best">
+        <action
+            android:id="@+id/action_best_to_kitDetailFragment3"
+            app:destination="@id/kitDetailFragment3" />
+    </fragment>
     <fragment
         android:id="@+id/recipe_list"
         android:name="com.corporation8793.mealkit.fragment.RecipeListFragment"

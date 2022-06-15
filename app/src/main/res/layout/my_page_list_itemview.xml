@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="140dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_line"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15"></androidx.constraintlayout.widget.Guideline>
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_line"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85"></androidx.constraintlayout.widget.Guideline>
+
+            <ImageView
+                android:id="@+id/about_my_list_img"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/test2"
+                android:scaleType="fitXY"
+                app:cardElevation="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="@id/right_line"
+                app:layout_constraintLeft_toLeftOf="@id/left_line"
+                ></ImageView>
+
+
+
+
+        <TextView
+            android:id="@+id/about_my_list_noti"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="3"
+            android:textSize="9dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintDimensionRatio="9:7"
+            app:layout_constraintWidth_percent="0.25"
+            android:background="@drawable/noti_background"
+            app:layout_constraintTop_toTopOf="@+id/about_my_list_img"
+            app:layout_constraintBottom_toBottomOf="@+id/about_my_list_img"
+            app:layout_constraintLeft_toLeftOf="@+id/about_my_list_img"
+            app:layout_constraintRight_toRightOf="@+id/right_line"
+            app:layout_constraintVertical_bias="0.08"
+            app:layout_constraintHorizontal_bias="1"
+            ></TextView>
+
+
+
+
+    <TextView
+        android:id="@+id/about_my_list_type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="매장 공유 등록"
+        android:includeFontPadding="false"
+        android:textSize="13dp"
+        android:textColor="#2b2b2b"
+        android:fontFamily="@font/nskr_medium"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/about_my_list_img"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        ></TextView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,12 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
 import com.corporation8793.mealkit.adapter.BestAdapter
+import com.corporation8793.mealkit.adapter.KitAdapter
+import com.corporation8793.mealkit.adapter.ShopAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
+import com.corporation8793.mealkit.dto.KitItem
+import com.corporation8793.mealkit.dto.ShopItem
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +34,7 @@ class ShopListFragment() : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    val datas = mutableListOf<BestItem>()
+    val datas = mutableListOf<ShopItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +49,29 @@ class ShopListFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_shop_list, container, false)
 
+        val shop_list = view.findViewById<RecyclerView>(R.id.shop_list)
+
+        val display : DisplayMetrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(display)
+        val height : Int =  (display.heightPixels / 8.5).toInt()
+
+        val shopAdapter = ShopAdapter(context, height, resources.getColor(R.color.category_land_color),findNavController())
+        shop_list.adapter =  shopAdapter
+
+        val lm = LinearLayoutManager(context)
+        shop_list.layoutManager = lm
+
+        shop_list.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))
 
 
+        datas.apply {
+            add(ShopItem("0","샐러드집","광주 동구 동계천로 150"))
+            add(ShopItem("0","샐러드집","광주 동구 동계천로 150"))
+            add(ShopItem("0","샐러드집","광주 동구 동계천로 150"))
 
+            shopAdapter.datas = datas
+            shopAdapter.notifyDataSetChanged()
+        }
         return view
     }
 
