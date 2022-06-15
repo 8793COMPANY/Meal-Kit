@@ -1,17 +1,22 @@
 package com.corporation8793.mealkit.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
+import com.corporation8793.mealkit.activity.FindActivity
 import com.corporation8793.mealkit.adapter.BestAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
+import com.corporation8793.mealkit.payment.PayMentActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,10 +46,12 @@ class KitDetailFragment() : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_kit_detail, container, false)
+        val payment_btn = view.findViewById<ConstraintLayout>(R.id.payment_btn);
 
-
-
-
+        payment_btn.setOnClickListener {
+            var intent = Intent(activity, PayMentActivity::class.java)
+            startActivity(intent);
+        }
 
 
         return view
