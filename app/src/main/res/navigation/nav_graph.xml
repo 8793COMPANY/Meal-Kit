@@ -36,7 +36,11 @@
     <fragment
         android:id="@+id/my"
         android:name="com.corporation8793.mealkit.fragment.MyFragment"
-        android:label="MyFragment" />
+        android:label="MyFragment" >
+        <action
+            android:id="@+id/action_my_to_pointFragment"
+            app:destination="@id/pointFragment" />
+    </fragment>
     <fragment
         android:id="@+id/recipeFragment"
         android:name="com.corporation8793.mealkit.fragment.RecipeFragment"
@@ -45,6 +49,10 @@
         android:id="@+id/kitDetailFragment3"
         android:name="com.corporation8793.mealkit.fragment.KitDetailFragment"
         android:label="KitDetailFragment" />
+    <fragment
+        android:id="@+id/pointFragment"
+        android:name="com.corporation8793.mealkit.fragment.PointFragment"
+        android:label="PointFragment" />
 
 
 </navigation>

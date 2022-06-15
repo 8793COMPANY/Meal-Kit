@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/shop_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="샐러드가게"
+        android:textSize="14dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:includeFontPadding="false"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/saved_money"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"></TextView>
+
+    <TextView
+        android:id="@+id/saved_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-1093"
+        android:textSize="14dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:includeFontPadding="false"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toRightOf="@+id/shop_name"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shop_name"
+        app:layout_constraintBottom_toBottomOf="@+id/shop_name"></TextView>
+
+    <TextView
+        android:id="@+id/saving_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="2022.05.26 03:28"
+        android:textSize="14dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:includeFontPadding="false"
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shop_name"
+        app:layout_constraintBottom_toBottomOf="parent"></TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
