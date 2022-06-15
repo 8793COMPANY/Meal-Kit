@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -57,6 +58,8 @@ class PointFragment() : Fragment() {
 
         var pointAdapter = PointAdapter(context, height)
         point_list.adapter = pointAdapter
+
+        point_list.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
         val lm = LinearLayoutManager(context)
         point_list.layoutManager = lm

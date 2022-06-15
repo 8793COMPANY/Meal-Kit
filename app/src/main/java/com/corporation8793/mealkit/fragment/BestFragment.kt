@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
@@ -51,7 +52,7 @@ class BestFragment() : Fragment() {
         activity?.windowManager?.defaultDisplay?.getMetrics(display)
         val height : Int =  (display.heightPixels / 3.5).toInt()
 
-        var bestAdapter = BestAdapter(context, height, resources.getColor(R.color.category_land_color))
+        var bestAdapter = BestAdapter(context, height, resources.getColor(R.color.category_land_color),findNavController())
         kit_list.adapter = bestAdapter
 
         val lm = GridLayoutManager(context,2)

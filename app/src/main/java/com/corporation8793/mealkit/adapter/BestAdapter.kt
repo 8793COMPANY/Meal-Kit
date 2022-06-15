@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.dto.BestItem
+import com.corporation8793.mealkit.fragment.BestFragmentDirections
+import com.corporation8793.mealkit.fragment.HomeFragmentDirections
 
-class BestAdapter (private val context: Context?, val height : Int, val color : Int) : RecyclerView.Adapter<BestAdapter.ViewHolder>() {
+class BestAdapter (private val context: Context?, val height : Int, val color : Int, val controller : NavController) : RecyclerView.Adapter<BestAdapter.ViewHolder>() {
     var datas = mutableListOf<BestItem>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.best_list_itemview,parent,false)
@@ -56,6 +59,11 @@ class BestAdapter (private val context: Context?, val height : Int, val color : 
                 }else{
                     kit_like_btn.isSelected = true
                 }
+            }
+
+            itemView.setOnClickListener{
+                val action = BestFragmentDirections.actionBestToKitDetailFragment3()
+                controller.navigate(action)
             }
 
 //            if (item.img == "0") {

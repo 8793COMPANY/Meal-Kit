@@ -94,21 +94,21 @@
                     bind:layout_constraintLeft_toLeftOf="parent"
                     bind:layout_constraintRight_toRightOf="parent"></TextView>
 
-                <RatingBar
-                    android:id="@+id/recipe_rating"
+
+                <ImageView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    bind:layout_constraintWidth_percent="0.22"
-                    android:numStars="5"
-                    android:rating="4"
-                    android:theme="@style/RatingBar"
-                    bind:layout_constraintVertical_bias="0.5"
-                    bind:layout_constraintHorizontal_bias="0"
-                    style="@style/Widget.AppCompat.RatingBar.Small"
-                    bind:layout_constraintTop_toTopOf="@+id/rating_text"
-                    bind:layout_constraintBottom_toBottomOf="@+id/rating_text"
-                    bind:layout_constraintLeft_toLeftOf="parent"
-                    bind:layout_constraintRight_toRightOf="parent"></RatingBar>
+                    android:background="@drawable/recipe_like_btn"
+                    android:elevation="40dp"
+                    bind:layout_constraintDimensionRatio="1:1"
+                    bind:layout_constraintWidth_percent="0.11"
+                    bind:layout_constraintVertical_bias="0"
+                    bind:layout_constraintHorizontal_bias="0.98"
+                    bind:layout_constraintTop_toTopOf="@+id/recipe_name"
+                    bind:layout_constraintBottom_toBottomOf="parent"
+                    bind:layout_constraintRight_toRightOf="parent"
+                    bind:layout_constraintLeft_toLeftOf="parent">
+                </ImageView>
 
 
 
@@ -116,15 +116,16 @@
                     android:id="@+id/rating_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4.0"
-                    android:textSize="15dp"
+                    android:text="사용 밀키트: [샐러드가게] 치킨샐러드"
+                    android:textSize="12dp"
+                    android:textColor="@color/app_basic_color"
                     android:fontFamily="@font/nskr_medium"
                     android:includeFontPadding="false"
                     bind:layout_constraintVertical_bias="0.04"
-                    bind:layout_constraintHorizontal_bias="0.05"
+                    bind:layout_constraintHorizontal_bias="0"
                     bind:layout_constraintTop_toBottomOf="@+id/recipe_name"
                     bind:layout_constraintBottom_toBottomOf="parent"
-                    bind:layout_constraintLeft_toRightOf="@+id/recipe_rating"
+                    bind:layout_constraintLeft_toLeftOf="parent"
                     bind:layout_constraintRight_toRightOf="parent"></TextView>
 
                 <View

@@ -1,6 +1,5 @@
 package com.corporation8793.mealkit.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
@@ -8,14 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.GridView
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
-import com.corporation8793.mealkit.activity.FindActivity
-import com.corporation8793.mealkit.activity.UserInfoActivity
+import com.corporation8793.mealkit.adapter.MyAdapter
+import com.corporation8793.mealkit.decoration.KitDecoration
 import com.corporation8793.mealkit.dto.KitItem
-import com.google.android.material.tabs.TabLayout
+import com.corporation8793.mealkit.dto.MyItem
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,7 +31,7 @@ class MyFragment() : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    val datas = mutableListOf<KitItem>()
+    val datas = ArrayList<MyItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +45,29 @@ class MyFragment() : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_my, container, false)
+
+        val my_list = view.findViewById<GridView>(R.id.my_list)
+
+        val display : DisplayMetrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(display)
+        val height : Int =  (display.heightPixels / 6.5).toInt()
+
+        datas.apply {
+            add(MyItem(R.drawable.my_event_icon,"이벤트","N",true))
+            add(MyItem(R.drawable.my_purchase_details_icon,"구매내역","3",true))
+            add(MyItem(R.drawable.my_shop_list_icon,"매장 공유 등록","N",false))
+            add(MyItem(R.drawable.my_point_icon,"포인트","N",false))
+            add(MyItem(R.drawable.my_friend_icon,"친구초대","N",false))
+            add(MyItem(R.drawable.my_kakao_icon,"카카오톡 연동","N",false))
+
+        }
+
+        var myAdapter = MyAdapter(context,datas,findNavController())
+
+        my_list.adapter = myAdapter
+
+
+
 
         view.findViewById<Button>(R.id.edit_user_info_btn).setOnClickListener {
             val action = MyFragmentDirections.actionMyToPointFragment()

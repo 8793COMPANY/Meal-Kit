@@ -14,16 +14,7 @@ class KitDecoration(
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
 
-
-
-//        if(parent.getChildAdapterPosition(view)==0){
-//            outRect.top = height
-//        }
-//
-//        outRect.bottom = height;
-
             outRect.bottom = 25
-
 
 
     }
