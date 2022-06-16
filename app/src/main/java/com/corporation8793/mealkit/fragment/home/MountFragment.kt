@@ -61,6 +61,7 @@ class MountFragment : Fragment() {
         kit_list.addItemDecoration(divider)
 
         datas.apply {
+            datas.clear()
             add(KitItem("0","22.05.12~22.05.14","산 가게","유기농두부샐러드","12,000원","17","1"))
             add(KitItem("0","22.05.12~22.05.14","스프 가게","시금치스프","8,000원","4","1"))
             add(KitItem("0","22.05.12~22.05.14","라멘 가게","매운냉라면","10,000원","12","1"))

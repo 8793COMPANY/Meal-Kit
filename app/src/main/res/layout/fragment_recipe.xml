@@ -4,24 +4,6 @@
     android:layout_height="match_parent"
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_left"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        bind:layout_constraintGuide_percent="0.05"></androidx.constraintlayout.widget.Guideline>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_right"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        bind:layout_constraintGuide_percent="0.95"></androidx.constraintlayout.widget.Guideline>
-
-
-    <include android:id="@+id/action_bar"
-        layout="@layout/custom_actionbar"
-        bind:title="@{title}"></include>
 
 
     <androidx.core.widget.NestedScrollView
@@ -29,10 +11,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:overScrollMode="never"
-        bind:layout_constraintTop_toBottomOf="@+id/action_bar"
+        bind:layout_constraintTop_toTopOf="parent"
         bind:layout_constraintBottom_toBottomOf="parent"
-        bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
-        bind:layout_constraintRight_toRightOf="@+id/guideline_right">
+        bind:layout_constraintLeft_toLeftOf="parent"
+        bind:layout_constraintRight_toRightOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,6 +46,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_left"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    bind:layout_constraintGuide_percent="0.05"></androidx.constraintlayout.widget.Guideline>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_right"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    bind:layout_constraintGuide_percent="0.95"></androidx.constraintlayout.widget.Guideline>
+
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/back_btn"
+                    bind:layout_constraintDimensionRatio="1:1"
+                    bind:layout_constraintTop_toTopOf="@+id/recipe_img"
+                    bind:layout_constraintBottom_toBottomOf="@+id/recipe_img"
+                    bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+                    bind:layout_constraintRight_toRightOf="@+id/guideline_right"
+                    bind:layout_constraintVertical_bias="0.05"
+                    bind:layout_constraintHorizontal_bias="0"
+                    bind:layout_constraintWidth_percent="0.08"></androidx.appcompat.widget.AppCompatButton>
+
+
                 <ImageView
                     android:id="@+id/recipe_img"
                     android:layout_width="0dp"
@@ -78,6 +90,7 @@
                     bind:layout_constraintVertical_bias="0"
                     ></ImageView>
 
+
                 <TextView
                     android:id="@+id/recipe_name"
                     android:layout_width="0dp"
@@ -91,8 +104,8 @@
                     android:fontFamily="@font/nskr_medium"
                     bind:layout_constraintTop_toBottomOf="@+id/recipe_img"
                     bind:layout_constraintBottom_toBottomOf="parent"
-                    bind:layout_constraintLeft_toLeftOf="parent"
-                    bind:layout_constraintRight_toRightOf="parent"></TextView>
+                    bind:layout_constraintLeft_toLeftOf="@id/guideline_left"
+                    bind:layout_constraintRight_toRightOf="@id/guideline_right"></TextView>
 
 
                 <ImageView
@@ -106,8 +119,8 @@
                     bind:layout_constraintHorizontal_bias="0.98"
                     bind:layout_constraintTop_toTopOf="@+id/recipe_name"
                     bind:layout_constraintBottom_toBottomOf="parent"
-                    bind:layout_constraintRight_toRightOf="parent"
-                    bind:layout_constraintLeft_toLeftOf="parent">
+                    bind:layout_constraintLeft_toLeftOf="@id/guideline_left"
+                    bind:layout_constraintRight_toRightOf="@id/guideline_right">
                 </ImageView>
 
 
@@ -125,8 +138,8 @@
                     bind:layout_constraintHorizontal_bias="0"
                     bind:layout_constraintTop_toBottomOf="@+id/recipe_name"
                     bind:layout_constraintBottom_toBottomOf="parent"
-                    bind:layout_constraintLeft_toLeftOf="parent"
-                    bind:layout_constraintRight_toRightOf="parent"></TextView>
+                    bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+                    bind:layout_constraintRight_toRightOf="@+id/guideline_right"></TextView>
 
                 <View
                     android:id="@+id/border"
@@ -136,8 +149,8 @@
                     bind:layout_constraintVertical_bias="0.05"
                     bind:layout_constraintTop_toBottomOf="@+id/rating_text"
                     bind:layout_constraintBottom_toBottomOf="parent"
-                    bind:layout_constraintLeft_toLeftOf="parent"
-                    bind:layout_constraintRight_toRightOf="parent"></View>
+                    bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+                    bind:layout_constraintRight_toRightOf="@+id/guideline_right"></View>
 
                 <TextView
                     android:id="@+id/recipe_text"
@@ -151,8 +164,8 @@
                     android:fontFamily="@font/nskr_medium"
                     bind:layout_constraintTop_toBottomOf="@id/border"
                     bind:layout_constraintBottom_toBottomOf="parent"
-                    bind:layout_constraintLeft_toLeftOf="parent"
-                    bind:layout_constraintRight_toRightOf="parent"></TextView>
+                    bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+                    bind:layout_constraintRight_toRightOf="@+id/guideline_right"></TextView>
 
                 <TextView
                     android:id="@+id/recipe_info"
@@ -166,18 +179,18 @@
                     android:fontFamily="@font/nskr_medium"
                     bind:layout_constraintTop_toBottomOf="@id/recipe_text"
                     bind:layout_constraintBottom_toBottomOf="parent"
-                    bind:layout_constraintLeft_toLeftOf="parent"
-                    bind:layout_constraintRight_toRightOf="parent"></TextView>
+                    bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+                    bind:layout_constraintRight_toRightOf="@+id/guideline_right"></TextView>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="\n\n\n\n\n\n\n!\n"
+                    android:text="\n\n\n\n\n\n\n!\n!\n\n\n\n\n\n\n!\n"
                     bind:layout_constraintVertical_bias="0.1"
                     bind:layout_constraintTop_toBottomOf="@id/recipe_info"
                     bind:layout_constraintBottom_toBottomOf="parent"
-                    bind:layout_constraintLeft_toLeftOf="parent"
-                    bind:layout_constraintRight_toRightOf="parent"></TextView>
+                    bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+                    bind:layout_constraintRight_toRightOf="@+id/guideline_right"></TextView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

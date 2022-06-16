@@ -1,4 +1,4 @@
-package com.corporation8793.mealkit.fragment
+package com.corporation8793.mealkit.fragment.shop
 
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -30,7 +30,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ShopListFragment() : Fragment() {
+class SearchFragment() : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -47,31 +47,9 @@ class ShopListFragment() : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_shop_list, container, false)
-
-        val shop_list = view.findViewById<RecyclerView>(R.id.shop_list)
-
-        val display : DisplayMetrics = DisplayMetrics()
-        activity?.windowManager?.defaultDisplay?.getMetrics(display)
-        val height : Int =  (display.heightPixels / 8.5).toInt()
-
-        val shopAdapter = ShopAdapter(context, height, resources.getColor(R.color.category_land_color),findNavController())
-        shop_list.adapter =  shopAdapter
-
-        val lm = LinearLayoutManager(context)
-        shop_list.layoutManager = lm
-
-        shop_list.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))
+        var view = inflater.inflate(R.layout.fragment_search, container, false)
 
 
-        datas.apply {
-            add(ShopItem("0","샐러드집","광주 동구 동계천로 150"))
-            add(ShopItem("0","샐러드집","광주 동구 동계천로 150"))
-            add(ShopItem("0","샐러드집","광주 동구 동계천로 150"))
-
-            shopAdapter.datas = datas
-            shopAdapter.notifyDataSetChanged()
-        }
         return view
     }
 
@@ -87,7 +65,7 @@ class ShopListFragment() : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-                ShopListFragment().apply {
+                SearchFragment().apply {
                     arguments = Bundle().apply {
                         putString(ARG_PARAM1, param1)
                         putString(ARG_PARAM2, param2)

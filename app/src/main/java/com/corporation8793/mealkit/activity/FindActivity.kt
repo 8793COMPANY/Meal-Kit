@@ -14,6 +14,8 @@ import com.corporation8793.mealkit.adapter.FindAdapter
 import com.corporation8793.mealkit.adapter.ViewPagerAdapter
 import com.corporation8793.mealkit.databinding.ActivityFindBinding
 import com.corporation8793.mealkit.databinding.ActivityMainBinding
+import com.corporation8793.mealkit.fragment.my.EditUserFragment
+import com.corporation8793.mealkit.fragment.my.PwCheckFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -24,10 +26,12 @@ class FindActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_find)
         binding.setActionBar(intent.getStringExtra("title")+" 찾기")
 
+        binding.actionBar.backBtn.setOnClickListener {
+            finish()
+        }
+    }
 
-
-
-
-
+    fun changeTitle(title: String){
+        binding.setActionBar(title)
     }
 }

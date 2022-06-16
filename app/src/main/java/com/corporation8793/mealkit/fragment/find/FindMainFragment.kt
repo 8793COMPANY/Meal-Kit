@@ -1,18 +1,15 @@
 package com.corporation8793.mealkit.fragment.find
 
 import android.os.Bundle
-import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.corporation8793.mealkit.*
-import com.corporation8793.mealkit.adapter.BestAdapter
+import com.corporation8793.mealkit.activity.FindActivity
 import com.corporation8793.mealkit.adapter.FindAdapter
-import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -45,7 +42,7 @@ class FindMainFragment() : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_find_main, container, false)
-        var kindOfSearch = view.findViewById<TabLayout>(R.id.kind_of_search)
+        var kindOfSearch = view.findViewById<TabLayout>(R.id.kind_of_find)
         var viewpager = view.findViewById<ViewPager2>(R.id.viewpager)
         viewpager.adapter = FindAdapter(activity!!)
         viewpager.apply {
@@ -63,7 +60,19 @@ class FindMainFragment() : Fragment() {
             tab.text = tabName[position].toString()
         }.attach()
 
+        kindOfSearch.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                (activity as FindActivity).changeTitle(tab!!.text.toString())
+            }
 
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+        })
 
 
         return view

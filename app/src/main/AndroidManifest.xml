@@ -17,11 +17,15 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".activity.FindActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="9l8w6ft1l8" />
+
+        <activity
+            android:name=".activity.ChangePwActivity" />
 
         <activity
             android:name=".activity.PointActivity"

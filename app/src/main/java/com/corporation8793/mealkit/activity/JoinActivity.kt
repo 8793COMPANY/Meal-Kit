@@ -13,5 +13,9 @@ class JoinActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_join)
         binding.title = "회원가입"
+
+        binding.actionBar.backBtn.setOnClickListener {
+            finish()
+        }
     }
 }
