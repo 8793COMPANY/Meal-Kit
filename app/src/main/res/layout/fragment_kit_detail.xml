@@ -227,6 +227,7 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/payment_btn"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/input_box_background"
