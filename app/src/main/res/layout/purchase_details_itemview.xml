@@ -175,7 +175,7 @@
         app:layout_constraintRight_toRightOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@+id/kit_img_area"
         app:layout_constraintBottom_toBottomOf="@+id/guideline_bottom">
-        
+
 
         <TextView
             android:id="@+id/order_details_btn"

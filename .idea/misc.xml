@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
@@ -96,7 +97,10 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17_PREVIEW" project-jdk-name="17" project-jdk-type="JavaSDK" />
+>>>>>>> 1f73169548f3e418032edbbbd6bfb44a68a4b5a4
   <component name="ProjectType">
-    <option name="id" value="Android" />
+    <option name="id" value="jpab" />
   </component>
 </project>
