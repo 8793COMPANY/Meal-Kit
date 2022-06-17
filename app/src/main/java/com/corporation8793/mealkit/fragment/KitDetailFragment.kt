@@ -8,12 +8,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-<<<<<<< HEAD
 import android.widget.Button
 import androidx.navigation.Navigation
-=======
 import androidx.constraintlayout.widget.ConstraintLayout
->>>>>>> 41e714a299ae6e14aa4ab39f6dac2b43d803f002
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
@@ -53,18 +50,15 @@ class KitDetailFragment() : Fragment() {
         var view = inflater.inflate(R.layout.fragment_kit_detail, container, false)
         val payment_btn = view.findViewById<ConstraintLayout>(R.id.payment_btn);
 
-<<<<<<< HEAD
         view.findViewById<Button>(R.id.back_btn).setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_back_to_home)
         }
 
 
-=======
         payment_btn.setOnClickListener {
             var intent = Intent(activity, PayMentActivity::class.java)
             startActivity(intent);
         }
->>>>>>> 41e714a299ae6e14aa4ab39f6dac2b43d803f002
 
 
         return view

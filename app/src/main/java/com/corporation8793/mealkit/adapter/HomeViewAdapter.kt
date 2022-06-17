@@ -12,7 +12,7 @@ import com.corporation8793.mealkit.fragment.home.SeaFragment
 
 private const val NUM_TABS = 4
 
-class ViewPagerAdapter (fragment : Fragment) :
+class HomeViewAdapter (fragment : Fragment) :
         FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int {

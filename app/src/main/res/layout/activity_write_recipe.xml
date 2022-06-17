@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="actionBar"
+            type="String"/>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <include android:id="@+id/action_bar"
+            layout="@layout/custom_actionbar"
+            bind:title="@{actionBar}"></include>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="등록"
+            android:textColor="@color/app_basic_color"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:textSize="16dp"
+            bind:layout_constraintHorizontal_bias="0.95"
+            bind:layout_constraintTop_toTopOf="@+id/action_bar"
+            bind:layout_constraintBottom_toBottomOf="@+id/action_bar"
+            bind:layout_constraintLeft_toLeftOf="@+id/action_bar"
+            bind:layout_constraintRight_toRightOf="@+id/action_bar"></TextView>
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            bind:layout_constraintTop_toBottomOf="@+id/action_bar"
+            bind:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintLeft_toLeftOf="parent"
+            bind:layout_constraintRight_toRightOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!--            <ImageView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="240dp"-->
+                <!--                bind:layout_constraintDimensionRatio="1:1"-->
+                <!--                bind:layout_constraintWidth_percent="0.63"-->
+                <!--                bind:layout_constraintTop_toBottomOf="@+id/action_bar"-->
+                <!--                bind:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"-->
+                <!--                bind:layout_constraintRight_toRightOf="@+id/guideline_right"-->
+                <!--                bind:layout_constraintVertical_bias="0"-->
+                <!--                ></ImageView>-->
+
+                <!--            <TextView-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="유기농두부샐러드"-->
+                <!--                android:textColor="#2b2b2b"-->
+                <!--                android:textSize="21dp"-->
+                <!--                android:includeFontPadding="false"-->
+                <!--                android:fontFamily="@font/nskr_medium"></TextView>-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_left"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        bind:layout_constraintGuide_percent="0.05"></androidx.constraintlayout.widget.Guideline>
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_right"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        bind:layout_constraintGuide_percent="0.95"></androidx.constraintlayout.widget.Guideline>
+
+
+                    <ImageView
+                        android:id="@+id/recipe_img"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="#f4f4f4"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        bind:layout_constraintDimensionRatio="720:600"
+                        bind:layout_constraintHorizontal_bias="0.0"
+                        bind:layout_constraintLeft_toLeftOf="parent"
+                        bind:layout_constraintRight_toRightOf="parent"
+                        bind:layout_constraintTop_toTopOf="parent"
+                        bind:layout_constraintVertical_bias="0.0"
+                        bind:layout_constraintWidth_percent="1"></ImageView>
+
+
+                        <ImageView
+                            android:id="@+id/register_icon"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@drawable/register_icon"
+                            bind:layout_constraintDimensionRatio="1:1"
+                            bind:layout_constraintWidth_percent="0.1"
+                            bind:layout_constraintVertical_bias="0.4"
+                            bind:layout_constraintTop_toTopOf="@+id/recipe_img"
+                            bind:layout_constraintBottom_toBottomOf="@+id/recipe_img"
+                            bind:layout_constraintLeft_toLeftOf="@+id/recipe_img"
+                            bind:layout_constraintRight_toRightOf="@+id/recipe_img"></ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="사진 등록"
+                        android:textColor="#8e8e8e"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:textSize="14dp"
+                        android:includeFontPadding="false"
+                        bind:layout_constraintTop_toBottomOf="@+id/register_icon"
+                        bind:layout_constraintVertical_bias="0.05"
+                        bind:layout_constraintBottom_toBottomOf="@+id/recipe_img"
+                        bind:layout_constraintLeft_toLeftOf="@+id/recipe_img"
+                        bind:layout_constraintRight_toRightOf="@+id/recipe_img"></TextView>
+
+
+                    <EditText
+                        android:id="@+id/recipe_name"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        bind:layout_constraintHeight_percent="0.05"
+                        android:text="안녕"
+                        android:textColor="#2b2b2b"
+                        android:textSize="14dp"
+                        android:background="@null"
+                        android:drawableRight="@drawable/resize_write_icon"
+                        bind:layout_constraintHorizontal_bias="0"
+                        bind:layout_constraintVertical_bias="0"
+                        android:includeFontPadding="false"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        bind:layout_constraintTop_toBottomOf="@+id/recipe_img"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        bind:layout_constraintLeft_toLeftOf="@id/guideline_left"
+                        bind:layout_constraintRight_toRightOf="@id/guideline_right"></EditText>
+
+
+                    <View
+                        android:id="@+id/recipe_name_border"
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:background="#d6d6d6"
+                        bind:layout_constraintTop_toBottomOf="@+id/recipe_name"
+                        bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+                        bind:layout_constraintRight_toRightOf="@id/guideline_right"></View>
+
+
+
+                    <EditText
+                        android:id="@+id/user_mealkit"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        bind:layout_constraintHeight_percent="0.05"
+                        android:text="사용 밀키트"
+                        android:textColor="#2b2b2b"
+                        android:textSize="14dp"
+                        android:background="@null"
+                        bind:layout_constraintHorizontal_bias="0"
+                        bind:layout_constraintVertical_bias="0"
+                        android:includeFontPadding="false"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        bind:layout_constraintTop_toBottomOf="@+id/recipe_name_border"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        bind:layout_constraintLeft_toLeftOf="@id/guideline_left"
+                        bind:layout_constraintRight_toRightOf="@id/guideline_right"></EditText>
+
+
+                    <View
+                        android:id="@+id/user_mealkit_border"
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:background="#d6d6d6"
+                        bind:layout_constraintTop_toBottomOf="@+id/user_mealkit"
+                        bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+                        bind:layout_constraintRight_toRightOf="@id/guideline_right"></View>
+
+
+                    <TextView
+                        android:id="@+id/recipe_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="레시피 소개"
+                        android:textColor="#2b2b2b"
+                        android:textSize="14dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
+                        android:layout_marginTop="10dp"
+                        bind:layout_constraintVertical_bias="0"
+                        bind:layout_constraintTop_toBottomOf="@+id/user_mealkit_border"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+                        bind:layout_constraintRight_toRightOf="@+id/guideline_right"></TextView>
+
+
+                    <EditText
+                        android:id="@+id/recipe_introdution"
+                        android:layout_width="0dp"
+                        android:layout_height="117dp"
+                        bind:layout_constraintHeight_percent="0.05"
+                        android:textColor="#2b2b2b"
+                        android:textSize="14dp"
+                        android:background="@null"
+                        android:gravity="top"
+                        bind:layout_constraintVertical_bias="0"
+                        bind:layout_constraintHorizontal_bias="0"
+                        android:layout_marginTop="5dp"
+                        android:includeFontPadding="false"
+                        android:fontFamily="@font/nskr_medium"
+                        bind:layout_constraintTop_toBottomOf="@+id/recipe_text"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        bind:layout_constraintLeft_toLeftOf="@id/guideline_left"
+                        bind:layout_constraintRight_toRightOf="@id/guideline_right"></EditText>
+
+
+                    <TextView
+                        android:id="@+id/letter_limit_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0/1000"
+                        bind:layout_constraintVertical_bias="0"
+                        bind:layout_constraintTop_toBottomOf="@+id/recipe_introdution"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        bind:layout_constraintLeft_toLeftOf="@+id/recipe_introdution"
+                        bind:layout_constraintRight_toRightOf="@+id/recipe_introdution"
+                        bind:layout_constraintHorizontal_bias="1"></TextView>
+
+                    <View
+                        android:id="@+id/recipe_introdution_border"
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:background="#d6d6d6"
+                        bind:layout_constraintTop_toBottomOf="@+id/letter_limit_count"
+                        bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+                        bind:layout_constraintRight_toRightOf="@id/guideline_right"></View>
+
+
+
+                    <TextView
+                        android:id="@+id/write_recipe_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="레시피를 순서대로 작성하여 주세요"
+                        android:textColor="#2b2b2b"
+                        android:textSize="14dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
+                        android:layout_marginTop="10dp"
+                        bind:layout_constraintVertical_bias="0"
+                        bind:layout_constraintTop_toBottomOf="@+id/recipe_introdution_border"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+                        bind:layout_constraintRight_toRightOf="@+id/guideline_right"></TextView>
+
+
+                    <EditText
+                        android:id="@+id/write_recipe"
+                        android:layout_width="0dp"
+                        android:layout_height="224dp"
+                        bind:layout_constraintHeight_percent="0.05"
+                        android:textColor="#2b2b2b"
+                        android:textSize="14dp"
+                        android:background="@null"
+                        android:gravity="top"
+                        bind:layout_constraintHorizontal_bias="0"
+                        android:layout_marginTop="5dp"
+                        android:includeFontPadding="false"
+                        android:fontFamily="@font/nskr_medium"
+                        bind:layout_constraintTop_toBottomOf="@+id/write_recipe_text"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        bind:layout_constraintLeft_toLeftOf="@id/guideline_left"
+                        bind:layout_constraintRight_toRightOf="@id/guideline_right"></EditText>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0/1000"
+                        bind:layout_constraintTop_toBottomOf="@+id/write_recipe"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        bind:layout_constraintLeft_toLeftOf="@+id/write_recipe"
+                        bind:layout_constraintRight_toRightOf="@+id/write_recipe"
+                        bind:layout_constraintHorizontal_bias="1"></TextView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            </LinearLayout>
+
+
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</layout>

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.corporation8793.mealkit.*
-import com.corporation8793.mealkit.adapter.ViewPagerAdapter
+import com.corporation8793.mealkit.adapter.ShopViewAdapter
 import com.corporation8793.mealkit.dto.KitItem
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
@@ -53,7 +53,7 @@ class ShopFragment() : Fragment() {
 
 //
         val viewPager = view.findViewById<ViewPager2>(R.id.kit_list)
-        viewPager.adapter = ViewPagerAdapter2(this)
+        viewPager.adapter = ShopViewAdapter(this)
         val imageResId = intArrayOf(
                 R.drawable.shop_map_icon,
                 R.drawable.shop_list_icon)

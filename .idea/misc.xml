@@ -13,6 +13,7 @@
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/drawable-mdpi/point_ sort_btn_on.xml" value="0.2655" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/drawable-mdpi/point_sort_btn_off.xml" value="0.2655" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/drawable-v24/like_btn_selector.xml" value="0.265" />
+        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/drawable-xxhdpi/resize_write_icon.xml" value="0.1955" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/drawable-xxxhdpi/order_btn_background.xml" value="0.1955" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/drawable-xxxhdpi/resize_lock_icon.xml" value="0.1955" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/drawable-xxxhdpi/resizes_user_icon.xml" value="0.1955" />
@@ -27,15 +28,17 @@
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/drawable/top_rounded_bg.xml" value="0.1955" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/activity_change_pw.xml" value="0.274609375" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/activity_find.xml" value="0.140625" />
-        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/activity_join.xml" value="0.28125" />
+        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/activity_join.xml" value="0.2" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/activity_main.xml" value="0.12" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/activity_point.xml" value="0.1875" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/activity_user_info.xml" value="0.140625" />
+        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/activity_write_recipe.xml" value="0.25" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/best_list_itemview.xml" value="0.4871447902571042" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/custom_actionbar.xml" value="0.25" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/custom_tab.xml" value="0.5" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/dialog_chitchat_select.xml" value="0.1875" />
+        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/dialog_kit_score.xml" value="0.1" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/dialog_shop_info.xml" value="0.33" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_after_find.xml" value="0.18" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_best.xml" value="0.5" />
@@ -49,12 +52,13 @@
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_land.xml" value="0.1875" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_map.xml" value="0.16" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_mount.xml" value="0.1875" />
-        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_my.xml" value="0.28125" />
+        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_my.xml" value="0.5" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_overseas.xml" value="0.1875" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_point.xml" value="0.22" />
+        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_purchase_details.xml" value="0.12" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_pw_check.xml" value="0.21" />
-        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_recipe.xml" value="0.33" />
-        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_recipe_list.xml" value="0.1875" />
+        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_recipe.xml" value="0.16" />
+        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_recipe_list.xml" value="0.33" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_sea.xml" value="0.1875" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_search.xml" value="0.140625" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/fragment_search_region.xml" value="0.140625" />
@@ -64,7 +68,7 @@
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/map_indicator_view.xml" value="0.140625" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/my_page_list_itemview.xml" value="0.75" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/point_list_itemview.xml" value="0.25" />
-        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/purchase_details_itemview.xml" value="0.33" />
+        <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/purchase_details_itemview.xml" value="0.2" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/recipe_list_itemview.xml" value="0.2" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/shop_list_itemview.xml" value="0.16" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/view_pedometer.xml" value="0.5" />
