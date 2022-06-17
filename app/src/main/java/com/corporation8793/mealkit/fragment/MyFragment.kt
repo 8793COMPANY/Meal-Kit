@@ -2,15 +2,23 @@ package com.corporation8793.mealkit.fragment
 
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.AdapterView
+import android.widget.Button
+import android.widget.GridView
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
+import com.corporation8793.mealkit.adapter.MyAdapter
+import com.corporation8793.mealkit.decoration.KitDecoration
 import com.corporation8793.mealkit.dto.KitItem
-import com.google.android.material.tabs.TabLayout
+import com.corporation8793.mealkit.dto.MyItem
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +34,7 @@ class MyFragment() : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    val datas = mutableListOf<KitItem>()
+    val datas = ArrayList<MyItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,38 +49,36 @@ class MyFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_my, container, false)
 
-//        val viewPager = view.findViewById<ViewPager2>(R.id.kit_list)
-//        val tabLayout = view.findViewById<TabLayout>(R.id.kit_category)
-//        val kit_list = view.findViewById<RecyclerView>(R.id.kit_list)
-//
-//
-//        val display : DisplayMetrics = DisplayMetrics()
-//        activity?.windowManager?.defaultDisplay?.getMetrics(display)
-//        val height : Int =  (display.heightPixels / 6.5).toInt()
-//
-//        var kitAdapter = KitAdapter(context, height,resources.getColor(R.color.category_land_color))
-//        kit_list.adapter = kitAdapter
-//
-//        val lm = LinearLayoutManager(context)
-//        kit_list.layoutManager = lm
-//
-//        var divider = KitDecoration(20)
-//        kit_list.addItemDecoration(divider)
-//
-//        datas.apply {
-//            add(KitItem("0","22.05.12~22.05.14","샐러드 가게","유기농두부샐러드","12,000원","17","1"))
-//            add(KitItem("0","22.05.12~22.05.14","스프 가게","시금치스프","8,000원","4","1"))
-//            add(KitItem("0","22.05.12~22.05.14","라멘 가게","매운냉라면","10,000원","12","1"))
-//
-//            kitAdapter.datas = datas
-//            kitAdapter.notifyDataSetChanged()
-//        }
-//
-////        viewPager.adapter = ViewPagerAdapter(this)
-////
-//        val tabName = arrayOf<String>("육지","바다","산","해외")
+        val my_list = view.findViewById<GridView>(R.id.my_list)
 
 
+        val display : DisplayMetrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(display)
+        val height : Int =  (display.heightPixels / 6.5).toInt()
+
+        datas.apply {
+            datas.clear()
+            add(MyItem(R.drawable.my_event_icon,"이벤트","N",true))
+            add(MyItem(R.drawable.my_purchase_details_icon,"구매내역","3",true))
+            add(MyItem(R.drawable.my_shop_list_icon,"매장 공유 등록","N",false))
+            add(MyItem(R.drawable.my_point_icon,"포인트","N",false))
+            add(MyItem(R.drawable.my_friend_icon,"친구초대","N",false))
+            add(MyItem(R.drawable.my_kakao_icon,"카카오톡 연동","N",false))
+
+        }
+
+        var myAdapter = MyAdapter(context,datas,findNavController())
+
+        my_list.adapter = myAdapter
+
+        my_list.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
+            Log.e("check",i.toString())
+            if (i == 3){
+                val action = MyFragmentDirections.actionMyToPointFragment()
+                findNavController().navigate(action)
+            }
+
+        })
 
 
         return view

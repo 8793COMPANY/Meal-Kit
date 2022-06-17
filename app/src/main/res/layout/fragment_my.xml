@@ -1,11 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <!-- TODO: Update blank fragment layout -->
 
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="actionBar"
+            type="String"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include android:id="@+id/action_bar"
+            layout="@layout/custom_actionbar"
+            bind:title="@{actionBar}"></include>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_line"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            bind:layout_constraintGuide_percent="0.04"></androidx.constraintlayout.widget.Guideline>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_line"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            bind:layout_constraintGuide_percent="0.96"></androidx.constraintlayout.widget.Guideline>
+
+
+        <ImageView
+            android:id="@+id/user_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintWidth_percent="0.22"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintTop_toBottomOf="@+id/action_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            ></ImageView>
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            app:layout_constraintDimensionRatio="1:1"-->
+<!--            app:layout_constraintWidth_percent="0.06"-->
+<!--            app:layout_constraintVertical_bias="0.07"-->
+<!--            app:layout_constraintHorizontal_bias="0.3"-->
+<!--            app:layout_constraintTop_toTopomOf="@+id/user_img"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/user_img"-->
+<!--            app:layout_constraintLeft_toLeftOf="@id/user_img"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            ></androidx.appcompat.widget.AppCompatButton>-->
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="홍길동"
+            android:textSize="18dp"
+            android:fontFamily="@font/nskr_medium"
+            android:textColor="@color/black"
+            android:gravity="center"
+            app:layout_constraintVertical_bias="0.01"
+            app:layout_constraintTop_toBottomOf="@id/user_img"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"></TextView>
+
+
+        <TextView
+            android:id="@+id/go_user_info_edit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.03"
+            android:text="회원정보 수정"
+            android:textSize="12dp"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:background="@drawable/point_sort_btn_off"
+            app:layout_constraintVertical_bias="0.01"
+            app:layout_constraintTop_toBottomOf="@id/user_name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"></TextView>
+
+        <View
+            android:id="@+id/start_border"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#cccccc"
+            app:layout_constraintVertical_bias="0.08"
+            app:layout_constraintTop_toBottomOf="@+id/go_user_info_edit_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"></View>
+
+        <GridView
+            android:gravity="center"
+            android:id="@+id/my_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="0dp"
+            android:verticalSpacing="24dp"
+            android:layout_margin="30dp"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintHeight_percent="0.26"
+            app:layout_constraintTop_toBottomOf="@+id/start_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:numColumns="4"
+            ></GridView>
+
+        <View
+            android:id="@+id/end_border"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#cccccc"
+            app:layout_constraintVertical_bias="0.08"
+            app:layout_constraintTop_toBottomOf="@+id/my_list"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"></View>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</layout>

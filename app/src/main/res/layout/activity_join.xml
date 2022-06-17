@@ -304,7 +304,7 @@
             android:id="@+id/recommender_code_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="추천인 코드"
+            android:text="추천인 아이디"
             android:textColor="@color/app_basic_color"
             bind:layout_constraintHorizontal_bias="0"
             bind:layout_constraintVertical_bias="0.1"
@@ -373,7 +373,7 @@
             ></androidx.appcompat.widget.AppCompatButton>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             bind:layout_constraintHorizontal_bias="0"
            bind:layout_constraintTop_toTopOf="@+id/go_access_terms_btn"
@@ -382,20 +382,35 @@
             bind:layout_constraintRight_toRightOf="@id/right_line"
             >
 
+            <RadioButton
+                android:id="@+id/access_term_agree_btn"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/radio_btn_selector"
+                android:button="@null"
+                bind:layout_constraintDimensionRatio="1:1"
+                bind:layout_constraintHorizontal_bias="0"
+                bind:layout_constraintTop_toTopOf="parent"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintLeft_toLeftOf="parent"
+                bind:layout_constraintRight_toRightOf="parent"></RadioButton>
+
+            <TextView
+                android:id="@+id/access_term_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="개인정보처리방침"
+                android:textColor="#797979"
+                android:textSize="13dp"
+                android:layout_marginLeft="5dp"
+                bind:layout_constraintTop_toTopOf="parent"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintLeft_toRightOf="@+id/access_term_agree_btn"></TextView>
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <RadioButton
-            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/app_basic_color"
-            bind:layout_constraintDimensionRatio="1:1"
-            bind:layout_constraintHorizontal_bias="0"
-            bind:layout_constraintTop_toTopOf="parent"
-            bind:layout_constraintBottom_toBottomOf="parent"
-            bind:layout_constraintLeft_toLeftOf="parent"
-            bind:layout_constraintRight_toRightOf="parent"></RadioButton>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/go_access_terms_btn"

@@ -62,6 +62,7 @@ class RecipeListFragment() : Fragment() {
         recipe_list.addItemDecoration(divider)
 
         datas.apply {
+            datas.clear()
             add(RecipeItem("0","단호박스프","진한 맛의 단호박 스프","1","1","5"))
             add(RecipeItem("0","단호박스프","진한 맛의 풍미를 느낄 수 있는\n" +
                     "신선한 바질 시금치 스프를\n" +

@@ -18,7 +18,11 @@
         android:id="@+id/best"
         android:name="com.corporation8793.mealkit.fragment.BestFragment"
         android:label="BestFragment"
-        tools:layout="@layout/fragment_best"/>
+        tools:layout="@layout/fragment_best">
+        <action
+            android:id="@+id/action_best_to_kitDetailFragment3"
+            app:destination="@id/kitDetailFragment3" />
+    </fragment>
     <fragment
         android:id="@+id/recipe_list"
         android:name="com.corporation8793.mealkit.fragment.RecipeListFragment"
@@ -36,7 +40,11 @@
     <fragment
         android:id="@+id/my"
         android:name="com.corporation8793.mealkit.fragment.MyFragment"
-        android:label="MyFragment" />
+        android:label="MyFragment" >
+        <action
+            android:id="@+id/action_my_to_pointFragment"
+            app:destination="@id/pointFragment" />
+    </fragment>
     <fragment
         android:id="@+id/recipeFragment"
         android:name="com.corporation8793.mealkit.fragment.RecipeFragment"
@@ -45,6 +53,14 @@
         android:id="@+id/kitDetailFragment3"
         android:name="com.corporation8793.mealkit.fragment.KitDetailFragment"
         android:label="KitDetailFragment" />
+    <fragment
+        android:id="@+id/pointFragment"
+        android:name="com.corporation8793.mealkit.fragment.PointFragment"
+        android:label="PointFragment" />
 
+
+    <action android:id="@+id/action_back_to_home"
+        app:destination="@id/home"
+        app:popUpTo="@id/home"></action>
 
 </navigation>
