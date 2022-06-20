@@ -373,14 +373,13 @@
             ></androidx.appcompat.widget.AppCompatButton>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            bind:layout_constraintHorizontal_bias="0"
-           bind:layout_constraintTop_toTopOf="@+id/go_access_terms_btn"
+            android:layout_width="111dp"
+            android:layout_height="15dp"
             bind:layout_constraintBottom_toBottomOf="@+id/go_access_terms_btn"
+            bind:layout_constraintHorizontal_bias="0"
             bind:layout_constraintLeft_toLeftOf="@+id/left_line"
             bind:layout_constraintRight_toRightOf="@id/right_line"
-            >
+            bind:layout_constraintTop_toTopOf="@+id/go_access_terms_btn">
 
             <RadioButton
                 android:id="@+id/access_term_agree_btn"
@@ -388,25 +387,24 @@
                 android:layout_height="0dp"
                 android:background="@drawable/radio_btn_selector"
                 android:button="@null"
+                bind:layout_constraintBottom_toBottomOf="parent"
                 bind:layout_constraintDimensionRatio="1:1"
                 bind:layout_constraintHorizontal_bias="0"
-                bind:layout_constraintTop_toTopOf="parent"
-                bind:layout_constraintBottom_toBottomOf="parent"
                 bind:layout_constraintLeft_toLeftOf="parent"
-                bind:layout_constraintRight_toRightOf="parent"></RadioButton>
+                bind:layout_constraintRight_toRightOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"></RadioButton>
 
             <TextView
                 android:id="@+id/access_term_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:text="개인정보처리방침"
                 android:textColor="#797979"
                 android:textSize="13dp"
-                android:layout_marginLeft="5dp"
-                bind:layout_constraintTop_toTopOf="parent"
                 bind:layout_constraintBottom_toBottomOf="parent"
-                bind:layout_constraintLeft_toRightOf="@+id/access_term_agree_btn"></TextView>
-
+                bind:layout_constraintLeft_toRightOf="@+id/access_term_agree_btn"
+                bind:layout_constraintTop_toTopOf="parent"></TextView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

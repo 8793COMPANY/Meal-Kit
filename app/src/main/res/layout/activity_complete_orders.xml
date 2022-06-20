@@ -1,9 +1,267 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".payment.CompleteOrdersActivity">
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    tools:context=".payment.PayMentActivity">
+    <data>
+        <variable
+            name="actionBar"
+            type="String"/>
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_line"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            bind:layout_constraintGuide_percent="0.06"></androidx.constraintlayout.widget.Guideline>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_line"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            bind:layout_constraintGuide_percent="0.95"></androidx.constraintlayout.widget.Guideline>
+
+
+
+        <include android:id="@+id/payment_action_bar"
+            layout="@layout/custom_actionbar"
+            android:textSize="36sp"
+            android:fontFamily="@font/nskr_medium"
+            bind:title="@{actionBar}"></include>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/completeorder_check_image"
+            app:layout_constraintLeft_toLeftOf="@+id/left_line"
+            app:layout_constraintRight_toRightOf="@+id/right_line"
+            app:layout_constraintTop_toBottomOf="@+id/payment_action_bar"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintWidth_percent="0.1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            ></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="결제가 완료되었습니다!"
+            android:textSize="20sp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/black_2b2b2b"
+            app:layout_constraintVertical_bias="0.25"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/left_line"
+            app:layout_constraintRight_toRightOf="@+id/right_line"
+            ></TextView>
+
+
+        <View
+            android:id="@+id/border"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/gray_cccccc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.003"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/left_line"
+            app:layout_constraintRight_toRightOf="@+id/right_line"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.33"></View>
+
+        <TextView
+            android:id="@+id/completeOrders_OrderNumberText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1537531946"
+            android:textSize="15sp"
+            android:textColor="@color/black_1f1f1f"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toBottomOf="@+id/border"
+            app:layout_constraintRight_toRightOf="@+id/right_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.08"
+            ></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주문번호"
+            android:textSize="15sp"
+            android:textColor="@color/black_1f1f1f"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toTopOf="@+id/completeOrders_OrderNumberText"
+            app:layout_constraintLeft_toLeftOf="@+id/left_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            ></TextView>
+
+
+        <TextView
+            android:id="@+id/completeOrders_ShopNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="요거트가게"
+            android:textSize="15sp"
+            android:textColor="@color/black_1f1f1f"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toBottomOf="@+id/completeOrders_OrderNumberText"
+            app:layout_constraintRight_toRightOf="@+id/right_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            ></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상호명"
+            android:textSize="15sp"
+            android:textColor="@color/black_1f1f1f"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toTopOf="@+id/completeOrders_ShopNameText"
+            app:layout_constraintLeft_toLeftOf="@+id/left_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/completeOrders_BuyListText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="바질시금치스프 | 2개"
+            android:textSize="15sp"
+            android:textColor="@color/black_1f1f1f"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toBottomOf="@+id/completeOrders_ShopNameText"
+            app:layout_constraintRight_toRightOf="@+id/right_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            ></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주문내역"
+            android:textSize="15sp"
+            android:textColor="@color/black_1f1f1f"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toTopOf="@+id/completeOrders_BuyListText"
+            app:layout_constraintLeft_toLeftOf="@+id/left_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/completeOrders_BuyMoneyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18,900원"
+            android:textSize="15sp"
+            android:textColor="@color/black_1f1f1f"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toBottomOf="@+id/completeOrders_BuyListText"
+            app:layout_constraintRight_toRightOf="@+id/right_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            ></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="결제금액"
+            android:textSize="15sp"
+            android:textColor="@color/black_1f1f1f"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toTopOf="@+id/completeOrders_BuyMoneyText"
+            app:layout_constraintLeft_toLeftOf="@+id/left_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            ></TextView>
+
+
+        <TextView
+            android:id="@+id/completeOrders_PointText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="189원"
+            android:textSize="15sp"
+            android:textColor="@color/black_1f1f1f"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toBottomOf="@+id/completeOrders_BuyMoneyText"
+            app:layout_constraintRight_toRightOf="@+id/right_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            ></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="적립금"
+            android:textSize="15sp"
+            android:textColor="@color/black_1f1f1f"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toTopOf="@+id/completeOrders_PointText"
+            app:layout_constraintLeft_toLeftOf="@+id/left_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            ></TextView>
+
+        <View
+            android:id="@+id/border2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/gray_cccccc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.003"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/left_line"
+            app:layout_constraintRight_toRightOf="@+id/right_line"
+            app:layout_constraintTop_toBottomOf="@+id/completeOrders_PointText"
+            app:layout_constraintVertical_bias="0.1"></View>
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/completeOrders_OrderList_btn"
+            android:background="@drawable/completeorder_orderlist_btn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="주문내역 확인"
+            android:textColor="@color/green_009658"
+            android:textColorHint="@color/hint_text_color"
+            app:layout_constraintTop_toBottomOf="@+id/border2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/left_line"
+            app:layout_constraintRight_toRightOf="@+id/right_line"
+            app:layout_constraintHeight_percent="0.07"
+            app:layout_constraintVertical_bias="0.1"></androidx.appcompat.widget.AppCompatButton>
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
