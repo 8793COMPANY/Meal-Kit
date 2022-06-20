@@ -706,7 +706,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/payment_Payment_btn"
                     android:background="@drawable/input_box_background"
-                    android:backgroundTint="@color/button_inactivation_color"
+                    android:backgroundTint="@color/gray_dddddd"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:text="결제하기"

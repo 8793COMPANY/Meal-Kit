@@ -17,7 +17,7 @@
     <color name="remaining_color">#ff9b33</color>
     
     <color name="text_inactivation_color">#9a9a9a</color>
-    <color name="button_inactivation_color">#dddddd</color>
+    <color name="gray_dddddd">#dddddd</color>
 
     <color name="category_land_color">#a1937a</color>
     <color name="category_sea_color">#0091be</color>

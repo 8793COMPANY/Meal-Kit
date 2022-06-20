@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
@@ -19,6 +21,7 @@ import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,17 +51,18 @@ class AfterFindFragment() : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_after_find, container, false)
+        val find_text = view.findViewById<TextView>(R.id.find_text)
+        val find_id_box = view.findViewById<TextView>(R.id.find_id_box)
+        val go_login_btn = view.findViewById<Button>(R.id.go_login_btn)
+        val user_id = arguments?.getString("email")!!
+        Log.e("check bundle",user_id)
 
-        Log.e("check bundle",arguments?.getString("email")!!)
-//        NonceService.findUsername(arguments?.getString("email")!!)
-        GlobalScope.launch(Dispatchers.Default) {
-            val value = NonceRepository().findUsername(arguments?.getString("email")!!)
-            println(value.first)
-            println(value.second)
-            Log.e("value",value.toString())
+        find_id_box.setText(user_id)
+
+
+        go_login_btn.setOnClickListener {
+            activity?.finish()
         }
-
-
 
         return view
     }
