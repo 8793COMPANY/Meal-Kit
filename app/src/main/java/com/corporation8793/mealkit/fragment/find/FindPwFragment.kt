@@ -2,6 +2,8 @@ package com.corporation8793.mealkit.fragment.find
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.DisplayMetrics
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
@@ -56,8 +59,35 @@ class FindPwFragment() : Fragment() {
         var view = inflater.inflate(R.layout.fragment_find_pw, container, false)
 
         val id_input_box = view.findViewById<EditText>(R.id.id_input_box)
+        val find_pw_btn = view.findViewById<Button>(R.id.find_pw_btn)
 
-        view.findViewById<Button>(R.id.find_pw_btn).setOnClickListener{
+
+        id_input_box.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if (p0!!.trim().length > 5) {
+//                    val drawable = find_id_btn.background as GradientDrawable
+                    find_pw_btn.backgroundTintList = ContextCompat.getColorStateList(context!!,R.color.app_basic_color)
+                    find_pw_btn.isEnabled = true
+//                    drawable.setColor(ContextCompat.getColor(context!!,R.color.app_basic_color))
+                }else{
+//                    val drawable = find_id_btn.background as GradientDrawable
+//                    drawable.setColor(ContextCompat.getColor(context!!,R.color.gray_dddddd))
+                    find_pw_btn.backgroundTintList = ContextCompat.getColorStateList(context!!,R.color.gray_dddddd)
+                    find_pw_btn.isEnabled = false
+                }
+            }
+
+        })
+
+        find_pw_btn.setOnClickListener{
             GlobalScope.launch(Dispatchers.Default) {
                 val value = NonceRepository().sendPassResetLink(id_input_box.text.toString().trim())
                 println("value : "+value)
@@ -65,18 +95,20 @@ class FindPwFragment() : Fragment() {
                 println("value second: "+value.second)
 
                 val status = value.second?.status
+                var email = ""
 
                 if (status.equals("ok")) {
                     val user_email = NonceRepository().checkUsername(id_input_box.text.toString().trim())
                     Log.e("user_email",user_email.second?.get(0).toString())
                     Log.e("user_email",user_email.first)
+                    email = user_email.second?.get(0)?.email!!
                 }
 
                 GlobalScope.launch(Dispatchers.Main) {
                     if (!status.equals("error")){
                         requireActivity().finish()
                         var intent = Intent(activity, ChangePwActivity::class.java)
-//                        intent.putExtra("email",)
+                        intent.putExtra("email",email)
                         startActivity(intent)
 
                     }else{

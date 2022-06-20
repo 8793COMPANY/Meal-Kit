@@ -41,12 +41,12 @@ class SignUp {
 
         println("--- checkUsername() ----")
         val checkUsernameResponse = nonceRepository.checkUsername("test22")
-        println("checkUsername : ${checkUsernameResponse.first}, ${checkUsernameResponse.second?.get(0)?.username}")
+        println("checkUsername : ${checkUsernameResponse.first}, ${checkUsernameResponse.second?.get(0)}")
 
 
         println("---- findUsername() ----")
         val findUsernameResponse = nonceRepository.findUsername("gyeongyeongi22@gmail.com")
-        println("findUsername : ${findUsernameResponse.first}, ${findUsernameResponse.second?.get(0)?.username}")
+        println("findUsername : ${findUsernameResponse.first}, ${findUsernameResponse.second?.get(0)}")
 
 
         println("-- sendPassResetLink() -")

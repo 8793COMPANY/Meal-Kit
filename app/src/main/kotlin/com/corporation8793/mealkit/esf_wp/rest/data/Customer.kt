@@ -5,6 +5,7 @@ package com.corporation8793.mealkit.esf_wp.rest.data
  * @author  두동근
  * @param   id                  회원의 고유 번호(User ID)
  * @param   username            회원의 로그인 아이디
+ * @param   email               회원의 이메일
  * @param   first_name          고객의 이름
  * @param   billing             [Billing] 클래스
  * @param   shipping            [Shipping] 클래스
@@ -12,6 +13,7 @@ package com.corporation8793.mealkit.esf_wp.rest.data
  */
 data class Customer(val id : String,
                     val username : String,
+                    val email : String,
                     val first_name : String,
                     val billing : Billing,
                     val shipping : Shipping,
