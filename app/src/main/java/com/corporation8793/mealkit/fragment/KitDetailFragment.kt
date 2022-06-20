@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.Navigation
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -48,6 +50,11 @@ class KitDetailFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_kit_detail, container, false)
         val payment_btn = view.findViewById<ConstraintLayout>(R.id.payment_btn);
+
+        view.findViewById<Button>(R.id.back_btn).setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_back_to_home)
+        }
+
 
         payment_btn.setOnClickListener {
             var intent = Intent(activity, SelectProductActivity::class.java)

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.corporation8793.mealkit.*
-import com.corporation8793.mealkit.adapter.ViewPagerAdapter
+import com.corporation8793.mealkit.adapter.ShopViewAdapter
 import com.corporation8793.mealkit.dto.KitItem
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
@@ -53,7 +53,7 @@ class ShopFragment() : Fragment() {
 
 //
         val viewPager = view.findViewById<ViewPager2>(R.id.kit_list)
-        viewPager.adapter = ViewPagerAdapter2(this)
+        viewPager.adapter = ShopViewAdapter(this)
         val imageResId = intArrayOf(
                 R.drawable.shop_map_icon,
                 R.drawable.shop_list_icon)
@@ -65,22 +65,22 @@ class ShopFragment() : Fragment() {
         tabLayout.tabRippleColor = null
 
         //탭이 선택되었을 때, 뷰페이저가 같이 변경되도록
-//        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-//            override fun onTabSelected(tab: TabLayout.Tab?) {
-//                tab.customView!!.findViewById<TextView>(R.id.tabName).setTextColor(resources.getColor(textColor[tab!!.position]))
-//                val drawable = tabLayout.tabSelectedIndicator as GradientDrawable
-//                drawable.setStroke(3, ContextCompat.getColor(context!!, textColor[tab!!.position]))
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//                tab!!.customView!!.findViewById<TextView>(R.id.tabName).setTextColor(resources.getColor(R.color.category_unselected_color))
-//            }
-//
-//            override fun onTabReselected(tab: TabLayout.Tab?) {
-//
-//            }
-//
-//        })
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+               tab!!.icon!!.setTint(resources.getColor(R.color.white))
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                tab!!.icon!!.setTint(resources.getColor(R.color.app_basic_color))
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+        })
+
+        viewPager.setCurrentItem(1,false)
 
 
 

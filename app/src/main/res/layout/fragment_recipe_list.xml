@@ -97,6 +97,26 @@
         app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
         app:layout_constraintRight_toRightOf="@+id/guideline_right"
         ></androidx.recyclerview.widget.RecyclerView>
+    
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/go_recipe_write_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/app_basic_color"
+        android:src="@drawable/write_recipe_btn"
+        app:tint="@null"
+        tools:ignore="ContentDescription"
+        app:fabCustomSize="40dp"
+        android:padding="0dp"
+        android:layout_gravity="bottom|end"
+        app:layout_anchorGravity="bottom|right|end"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintWidth_percent="0.13"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        app:layout_constraintVertical_bias="0.95"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

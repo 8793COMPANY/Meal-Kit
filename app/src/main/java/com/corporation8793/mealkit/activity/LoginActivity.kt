@@ -34,5 +34,13 @@ class LoginActivity : AppCompatActivity() {
             intent.putExtra("title","비밀번호")
             startActivity(intent)
         }
+
+        binding.autoLogin.setOnClickListener {
+            if (binding.accessTermAgreeBtn.isChecked)
+                binding.accessTermAgreeBtn.isChecked = false
+            else
+                binding.accessTermAgreeBtn.isChecked = true
+
+        }
     }
 }

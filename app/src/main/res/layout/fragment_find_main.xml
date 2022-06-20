@@ -21,9 +21,10 @@
 
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/kind_of_search"
+        android:id="@+id/kind_of_find"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="40dp"
         bind:layout_constraintVertical_bias="0"
         bind:layout_constraintTop_toTopOf="parent"
         bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
@@ -42,7 +43,7 @@
         android:id="@+id/viewpager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        bind:layout_constraintTop_toBottomOf="@id/kind_of_search"
+        bind:layout_constraintTop_toBottomOf="@id/kind_of_find"
         bind:layout_constraintBottom_toBottomOf="parent"
         bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
         bind:layout_constraintRight_toRightOf="@+id/guideline_right"></androidx.viewpager2.widget.ViewPager2>

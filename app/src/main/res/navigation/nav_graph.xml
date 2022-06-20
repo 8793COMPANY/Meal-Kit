@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_my_to_pointFragment"
             app:destination="@id/pointFragment" />
+        <action
+            android:id="@+id/action_my_to_purchaseDetailsFragment"
+            app:destination="@id/purchaseDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/recipeFragment"
@@ -57,6 +60,20 @@
         android:id="@+id/pointFragment"
         android:name="com.corporation8793.mealkit.fragment.PointFragment"
         android:label="PointFragment" />
+
+
+    <action android:id="@+id/action_back_to_home"
+        app:destination="@id/home"
+        app:popUpTo="@id/home"></action>
+
+    <action android:id="@+id/action_purchase_details_screen"
+        app:destination="@id/purchaseDetailsFragment"></action>
+
+    <fragment
+        android:id="@+id/purchaseDetailsFragment"
+        android:name="com.corporation8793.mealkit.fragment.my.PurchaseDetailsFragment"
+        android:label="fragment_purchase_details"
+        tools:layout="@layout/fragment_purchase_details" />
 
 
 </navigation>

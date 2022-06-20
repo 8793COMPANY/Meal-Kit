@@ -6,96 +6,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- TODO: Update blank fragment layout -->
-
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/left_line"
+        android:id="@+id/guideline_left"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05"></androidx.constraintlayout.widget.Guideline>
+        app:layout_constraintGuide_percent="0.2"></androidx.constraintlayout.widget.Guideline>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/right_line"
+        android:id="@+id/guideline_right"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95"></androidx.constraintlayout.widget.Guideline>
+        app:layout_constraintGuide_percent="0.8"></androidx.constraintlayout.widget.Guideline>
 
-    <EditText
-        android:id="@+id/region_input_box"
-        android:background="@drawable/stroke_round_corner_btn"
-        android:backgroundTint="#f5f5f5"
+
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/kind_of_search"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingLeft="20dp"
-        android:hint="광역시/도"
-        android:textSize="13dp"
-        android:fontFamily="@font/nskr_medium"
-        android:includeFontPadding="false"
+        app:tabIndicatorFullWidth="false"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintHorizontal_bias="0"
-        android:textColorHint="#5c5c5c"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+        app:layout_constraintRight_toRightOf="@id/guideline_right"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/left_line"
-        app:layout_constraintRight_toLeftOf="@+id/city_input_box"
-        app:layout_constraintWidth_percent="0.33"
-        app:layout_constraintDimensionRatio="240:70"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        ></EditText>
+        app:layout_constraintHeight_percent="0.06"
+        app:tabIndicatorHeight="3dp"
+        android:background="@null"
+        app:tabIndicatorColor="@color/app_basic_color"
+        app:tabIndicatorAnimationMode="linear"
+        app:tabTextColor="#9a9a9a"
+        app:tabSelectedTextColor="@color/app_basic_color"
+        ></com.google.android.material.tabs.TabLayout>
 
-    <EditText
-        android:id="@+id/city_input_box"
-        android:background="@drawable/stroke_round_corner_btn"
-        android:backgroundTint="#f5f5f5"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingLeft="20dp"
-        android:hint="시/군/구"
-        android:textSize="13dp"
-        android:fontFamily="@font/nskr_medium"
-        android:includeFontPadding="false"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintHorizontal_bias="0"
-        android:textColorHint="#5c5c5c"
-        app:layout_constraintTop_toTopOf="parent"
+        android:paddingTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/kind_of_search"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/region_input_box"
-        app:layout_constraintRight_toLeftOf="@+id/search_btn"
-        app:layout_constraintWidth_percent="0.33"
-        app:layout_constraintDimensionRatio="240:70"
-        ></EditText>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/search_btn"
-        android:background="@drawable/stroke_round_corner_btn"
-        android:backgroundTint="@color/app_basic_color"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="검색"
-        android:textColor="@color/white"
-        android:textSize="13dp"
-        android:fontFamily="@font/nskr_medium"
-        android:includeFontPadding="false"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/city_input_box"
-        app:layout_constraintRight_toRightOf="@+id/right_line"
-        app:layout_constraintWidth_percent="0.19"
-        app:layout_constraintDimensionRatio="140:70"
-        ></androidx.appcompat.widget.AppCompatButton>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/shop_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/region_input_box"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/left_line"
-        app:layout_constraintRight_toRightOf="@id/right_line"></androidx.recyclerview.widget.RecyclerView>
-
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"></androidx.viewpager2.widget.ViewPager2>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

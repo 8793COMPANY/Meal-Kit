@@ -1,24 +1,27 @@
-package com.corporation8793.mealkit.fragment
+package com.corporation8793.mealkit.fragment.shop
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import androidx.compose.ui.graphics.Color
+import android.widget.Button
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.corporation8793.mealkit.*
-import com.corporation8793.mealkit.adapter.BestAdapter
+import com.corporation8793.mealkit.activity.FindActivity
+import com.corporation8793.mealkit.adapter.*
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.naver.maps.map.NaverMap
-import com.naver.maps.map.OnMapReadyCallback
+import com.corporation8793.mealkit.dto.KitItem
+import com.corporation8793.mealkit.dto.ShopItem
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,11 +33,11 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MapFragment() : Fragment() , OnMapReadyCallback{
+class ShopListFragment() : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    val datas = mutableListOf<BestItem>()
+    val datas = mutableListOf<ShopItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,12 +50,47 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_map, container, false)
+        var view = inflater.inflate(R.layout.fragment_shop_list, container, false)
 
-        val bottomSheetView = layoutInflater.inflate(R.layout.dialog_shop_info, null)
-        val bottomSheetDialog = BottomSheetDialog(context!!)
-        bottomSheetDialog.setContentView(bottomSheetView)
-        bottomSheetDialog.show()
+
+        var kindOfSearch = view.findViewById<TabLayout>(R.id.kind_of_search)
+        var viewpager = view.findViewById<ViewPager2>(R.id.viewpager)
+        viewpager.adapter = SearchAdapter(activity!!)
+        viewpager.apply {
+            (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+        }
+
+//        if (intent.getStringExtra("title").equals("비밀번호"))
+//            binding.viewpager.setCurrentItem(1,false)
+
+//
+        val tabName = arrayOf<String>("직접검색","지역검색")
+
+        kindOfSearch.tabRippleColor = null
+        
+        TabLayoutMediator(kindOfSearch, viewpager) { tab, position ->
+            tab.text = tabName[position].toString()
+        }.attach()
+
+
+        kindOfSearch.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+        })
+
+        viewpager.setCurrentItem(1,false)
+
+
+
 
         return view
     }
@@ -69,15 +107,11 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-                MapFragment().apply {
+                ShopListFragment().apply {
                     arguments = Bundle().apply {
                         putString(ARG_PARAM1, param1)
                         putString(ARG_PARAM2, param2)
                     }
                 }
-    }
-
-    override fun onMapReady(p0: NaverMap) {
-        TODO("Not yet implemented")
     }
 }

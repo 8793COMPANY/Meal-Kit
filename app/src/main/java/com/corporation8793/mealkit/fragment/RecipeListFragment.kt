@@ -1,19 +1,24 @@
 package com.corporation8793.mealkit.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.corporation8793.mealkit.*
+import com.corporation8793.mealkit.activity.JoinActivity
+import com.corporation8793.mealkit.activity.WriteRecipeActivity
 import com.corporation8793.mealkit.adapter.RecipeAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.RecipeItem
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,6 +50,12 @@ class RecipeListFragment() : Fragment() {
         var view = inflater.inflate(R.layout.fragment_recipe_list, container, false)
 
         val recipe_list = view.findViewById<RecyclerView>(R.id.recipe_list)
+        val go_recipe_write_btn = view.findViewById<FloatingActionButton>(R.id.go_recipe_write_btn)
+
+        go_recipe_write_btn.setOnClickListener {
+            var intent = Intent(activity, WriteRecipeActivity::class.java)
+            startActivity(intent)
+        }
 
 
 
@@ -62,6 +73,7 @@ class RecipeListFragment() : Fragment() {
         recipe_list.addItemDecoration(divider)
 
         datas.apply {
+            datas.clear()
             add(RecipeItem("0","단호박스프","진한 맛의 단호박 스프","1","1","5"))
             add(RecipeItem("0","단호박스프","진한 맛의 풍미를 느낄 수 있는\n" +
                     "신선한 바질 시금치 스프를\n" +

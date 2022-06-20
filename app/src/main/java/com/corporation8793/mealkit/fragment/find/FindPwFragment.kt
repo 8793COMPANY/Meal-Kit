@@ -1,14 +1,17 @@
 package com.corporation8793.mealkit.fragment.find
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
+import com.corporation8793.mealkit.activity.ChangePwActivity
 import com.corporation8793.mealkit.adapter.BestAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
@@ -42,7 +45,11 @@ class FindPwFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_find_pw, container, false)
 
-
+        view.findViewById<Button>(R.id.find_pw_btn).setOnClickListener{
+            activity!!.finish()
+            var intent = Intent(activity, ChangePwActivity::class.java)
+            startActivity(intent)
+        }
 
 
         return view

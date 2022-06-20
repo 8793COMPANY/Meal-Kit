@@ -2,12 +2,15 @@ package com.corporation8793.mealkit.fragment
 
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.GridView
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -48,11 +51,13 @@ class MyFragment() : Fragment() {
 
         val my_list = view.findViewById<GridView>(R.id.my_list)
 
+
         val display : DisplayMetrics = DisplayMetrics()
         activity?.windowManager?.defaultDisplay?.getMetrics(display)
         val height : Int =  (display.heightPixels / 6.5).toInt()
 
         datas.apply {
+            datas.clear()
             add(MyItem(R.drawable.my_event_icon,"이벤트","N",true))
             add(MyItem(R.drawable.my_purchase_details_icon,"구매내역","3",true))
             add(MyItem(R.drawable.my_shop_list_icon,"매장 공유 등록","N",false))
@@ -66,15 +71,17 @@ class MyFragment() : Fragment() {
 
         my_list.adapter = myAdapter
 
+        my_list.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
+            Log.e("check",i.toString())
+            if (i==1){
+                val action = MyFragmentDirections.actionPurchaseDetailsScreen()
+                findNavController().navigate(action)
+            } else if (i == 3){
+                val action = MyFragmentDirections.actionMyToPointFragment()
+                findNavController().navigate(action)
+            }
 
-
-
-        view.findViewById<Button>(R.id.edit_user_info_btn).setOnClickListener {
-            val action = MyFragmentDirections.actionMyToPointFragment()
-            findNavController().navigate(action)
-//            var intent = Intent(activity, UserInfoActivity::class.java)
-//            startActivity(intent)
-        }
+        })
 
 
         return view

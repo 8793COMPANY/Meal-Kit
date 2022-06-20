@@ -36,10 +36,10 @@ class KitAdapter (private val context: Context?, val height : Int, val color : I
 
         private val kitImg: ImageView = itemView.findViewById(R.id.kit_img)
         private val likeBtn: ImageView = itemView.findViewById(R.id.like_btn)
-        private val date: TextView = itemView.findViewById(R.id.group_purchase_date)
-        private val shop_category: TextView = itemView.findViewById(R.id.shop_category)
-        private val kit_name: TextView = itemView.findViewById(R.id.kit_name)
-        private val kit_price: TextView = itemView.findViewById(R.id.kit_price)
+        private val date: TextView = itemView.findViewById(R.id.kit_shop_name)
+        private val shop_category: TextView = itemView.findViewById(R.id.kit_name)
+        private val kit_name: TextView = itemView.findViewById(R.id.kit_price)
+        private val kit_price: TextView = itemView.findViewById(R.id.shipping_status)
         private val remaining_count : TextView = itemView.findViewById(R.id.remaining_count)
 
         fun bind(item: KitItem) {

@@ -62,6 +62,7 @@ class BestFragment() : Fragment() {
         kit_list.addItemDecoration(divider)
 
         datas.apply {
+            datas.clear()
             add(BestItem("0","유기농두부샐러드","12,000원","1","1"))
             add(BestItem("0","과일그릭요거트보울","12,000원","1","2"))
             add(BestItem("0","헤이","12,000원","1","3"))
@@ -75,6 +76,10 @@ class BestFragment() : Fragment() {
 
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     companion object {
