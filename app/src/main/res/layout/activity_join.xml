@@ -437,18 +437,10 @@
 
 
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
-<<<<<<< HEAD
-            android:layout_width="111dp"
-            android:layout_height="15dp"
-=======
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            bind:layout_constraintHorizontal_bias="0"
             bind:layout_constraintVertical_bias="0"
-           bind:layout_constraintTop_toTopOf="@+id/go_access_terms_btn"
->>>>>>> 07bdf76ee3579274ff5e1065205e8d76d4cdb059
             bind:layout_constraintBottom_toBottomOf="@+id/go_access_terms_btn"
             bind:layout_constraintHorizontal_bias="0"
             bind:layout_constraintLeft_toLeftOf="@+id/left_line"
@@ -504,12 +496,8 @@
 
 
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
     </LinearLayout>
-
-
 
 
     </androidx.core.widget.NestedScrollView>

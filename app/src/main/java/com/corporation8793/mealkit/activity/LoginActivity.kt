@@ -3,6 +3,8 @@ package com.corporation8793.mealkit.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.corporation8793.mealkit.MainApplication
 import com.corporation8793.mealkit.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -19,8 +21,16 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.loginBtn.setOnClickListener {
-            var intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
+//            var intent = Intent(this@LoginActivity, MainActivity::class.java)
+//            startActivity(intent)
+
+            val sharedPreference = getSharedPreferences("other", 0)
+            val editor = sharedPreference.edit()
+            editor.putString("id", "d")
+            editor.putString("pw", "a")
+            editor.apply()
+
+            Log.e("asda", MainApplication.instance.test)
         }
 
         binding.findIdText.setOnClickListener{

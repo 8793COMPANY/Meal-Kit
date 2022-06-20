@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.corporation8793.mealkit">
 
+
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_main"
         android:label="@string/app_name"
@@ -10,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MealKit"
         android:usesCleartextTraffic="true">
+
         <activity
             android:name=".payment.CompleteOrdersActivity"
             android:exported="true"
