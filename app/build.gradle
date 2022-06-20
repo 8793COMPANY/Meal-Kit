@@ -8,6 +8,7 @@ plugins {
     id("org.jetbrains.dokka")
 
     id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-android-extensions'
 }
 
 android {
