@@ -75,6 +75,11 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="action_back_to_home">
+                    <value>
+                      <LayoutPositions />
+                    </value>
+                  </entry>
                   <entry key="best">
                     <value>
                       <LayoutPositions>
@@ -83,6 +88,15 @@
                             <option name="x" value="-810" />
                             <option name="y" value="1242" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_best_to_kitDetailFragment3">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -148,6 +162,18 @@
                           <Point>
                             <option name="x" value="12" />
                             <option name="y" value="1672" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="purchaseDetailsFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="13" />
+                            <option name="y" value="1990" />
                           </Point>
                         </option>
                       </LayoutPositions>

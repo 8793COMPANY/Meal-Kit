@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.adapter.FindAdapter
-import com.corporation8793.mealkit.adapter.ViewPagerAdapter
 import com.corporation8793.mealkit.databinding.ActivityFindBinding
 import com.corporation8793.mealkit.databinding.ActivityMainBinding
 import com.corporation8793.mealkit.fragment.my.EditUserFragment

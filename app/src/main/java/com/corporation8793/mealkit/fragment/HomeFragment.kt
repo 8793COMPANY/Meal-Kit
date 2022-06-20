@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.corporation8793.mealkit.*
-import com.corporation8793.mealkit.adapter.ViewPagerAdapter
+import com.corporation8793.mealkit.adapter.HomeViewAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.w3c.dom.Text
@@ -55,7 +55,7 @@ class HomeFragment() : Fragment() {
 
 
         viewPager.apply {
-            adapter = ViewPagerAdapter(requireParentFragment())
+            adapter = HomeViewAdapter(requireParentFragment())
             (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         }
 

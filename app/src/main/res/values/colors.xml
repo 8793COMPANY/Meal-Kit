@@ -27,7 +27,19 @@
 
     <color name="join_already_use_text">#ce2929</color>
 
+   //gray
+    <color name="gray_ededed">#ededed</color>
+    <color name="gray_cccccc">#cccccc</color>
+    <color name="gray_797979">#797979</color>
 
+
+
+    <color name="green_009658">#009658</color>
+
+
+    black
+    <color name="black_2b2b2b">#2b2b2b</color>
+    <color name="black_1f1f1f">#1f1f1f</color>
 
 
 </resources>

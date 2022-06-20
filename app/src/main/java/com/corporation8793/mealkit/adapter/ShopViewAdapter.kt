@@ -10,7 +10,7 @@ import com.corporation8793.mealkit.fragment.shop.ShopListFragment
 
 private const val NUM_TABS = 2
 
-class ViewPagerAdapter2 (fragment : Fragment) :
+class ShopViewAdapter (fragment : Fragment) :
         FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int {

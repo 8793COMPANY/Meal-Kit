@@ -73,7 +73,10 @@ class MyFragment() : Fragment() {
 
         my_list.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
             Log.e("check",i.toString())
-            if (i == 3){
+            if (i==1){
+                val action = MyFragmentDirections.actionPurchaseDetailsScreen()
+                findNavController().navigate(action)
+            } else if (i == 3){
                 val action = MyFragmentDirections.actionMyToPointFragment()
                 findNavController().navigate(action)
             }
