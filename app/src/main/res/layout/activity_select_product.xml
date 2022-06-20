@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    tools:context=".payment.selectProducttActivity">
+    <data>
+        <variable
+            name="actionBar"
+            type="String"/>
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_gray"
+        >
+
+        <include android:id="@+id/selectProduct_action_bar"
+            layout="@layout/custom_actionbar"
+            android:textSize="36sp"
+            android:fontFamily="@font/nskr_medium"
+            bind:title="@{actionBar}"></include>
+
+
+
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/selectProduct_action_bar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0"
+                    android:background="@color/white">
+
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/selectProduct_left_line"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        bind:layout_constraintGuide_percent="0.06"></androidx.constraintlayout.widget.Guideline>
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/selectProduct_right_line"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        bind:layout_constraintGuide_percent="0.95"></androidx.constraintlayout.widget.Guideline>
+
+
+                    <ImageView
+                        android:id="@+id/selectProduct_ProductImg"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/ordertest"
+                        app:layout_constraintWidth_percent="0.3"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        bind:layout_constraintDimensionRatio="1:0.8"
+                        bind:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintVertical_bias="0.5"
+                        bind:layout_constraintLeft_toLeftOf="@+id/selectProduct_left_line"
+                        bind:layout_constraintRight_toRightOf="@+id/selectProduct_right_line"
+                        app:layout_constraintTop_toTopOf="parent"
+                        ></ImageView>
+
+
+                    <TextView
+                        android:id="@+id/selectProduct_shopText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="[요거트 가게]"
+                        android:textColor="@color/category_unselected_color"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toEndOf="@+id/selectProduct_ProductImg"
+                        app:layout_constraintVertical_bias="0.0"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="@+id/selectProduct_right_line"
+                        bind:layout_constraintTop_toTopOf="@+id/selectProduct_ProductImg"></TextView>
+
+
+                    <TextView
+                        android:id="@+id/selectProduct_productText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="1dp"
+                        android:text="바질시금치스프"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/selectProduct_shopText"
+                        app:layout_constraintTop_toBottomOf="@+id/selectProduct_shopText"
+                        app:layout_constraintVertical_bias="0.0"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="@+id/selectProduct_right_line"></TextView>
+
+
+                    <TextView
+                        android:id="@+id/selectProduct_AmountText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="1dp"
+                        android:text="15,900원"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="@+id/selectProduct_shopText"
+                        app:layout_constraintTop_toBottomOf="@+id/selectProduct_productText"
+                        app:layout_constraintVertical_bias="0.0"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="@+id/selectProduct_right_line"></TextView>
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/selectProduct_Minus_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="1dp"
+                        android:background="@drawable/selectproduct_minus_btn"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintRight_toRightOf="@+id/selectProduct_right_line"
+                        app:layout_constraintStart_toStartOf="@+id/selectProduct_shopText"
+                        app:layout_constraintTop_toBottomOf="@+id/selectProduct_AmountText"
+                        app:layout_constraintVertical_bias="0.1"
+                        app:layout_constraintWidth_percent="0.05"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"></androidx.appcompat.widget.AppCompatButton>
+
+
+                    <TextView
+                        android:id="@+id/selectProduct_CountText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/nskr_medium"
+                        app:layout_constraintVertical_bias="0"
+                        app:layout_constraintLeft_toRightOf="@+id/selectProduct_Minus_btn"
+                        app:layout_constraintTop_toBottomOf="@+id/selectProduct_AmountText"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="@+id/selectProduct_right_line"
+                        app:layout_constraintHorizontal_bias="0.05"
+                        android:includeFontPadding="false"
+                        ></TextView>
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/selectproduct_plus_btn"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintHorizontal_bias="0.11"
+                        app:layout_constraintLeft_toLeftOf="@+id/selectProduct_CountText"
+                        app:layout_constraintRight_toRightOf="@+id/selectProduct_right_line"
+                        app:layout_constraintTop_toBottomOf="@+id/selectProduct_AmountText"
+                        app:layout_constraintVertical_bias="0.1"
+                        app:layout_constraintWidth_percent="0.05"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"></androidx.appcompat.widget.AppCompatButton>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        app:layout_constraintTop_toBottomOf="@+id/selectProduct_ProductImg"
+                        app:layout_constraintEnd_toEndOf="@+id/selectProduct_right_line"
+                        app:layout_constraintStart_toStartOf="@+id/selectProduct_left_line"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        ></View>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    app:layout_constraintVertical_bias="0.99"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/selectProduct_FinalLayout"
+
+                    android:background="@color/white">
+
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/selectProduct_left_line5"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        bind:layout_constraintGuide_percent="0.06"></androidx.constraintlayout.widget.Guideline>
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/selectProduct_right_line5"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        bind:layout_constraintGuide_percent="0.95"></androidx.constraintlayout.widget.Guideline>
+
+
+
+
+
+                    <RadioButton
+                        android:id="@+id/selectProduct_DeliveryRadio_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintWidth_percent="0.05"
+                        android:background="@drawable/radio_btn_selector"
+                        android:button="@null"
+                        bind:layout_constraintBottom_toBottomOf="@+id/selectProduct_PickupRadio_btn"
+                        bind:layout_constraintDimensionRatio="1:1"
+                        bind:layout_constraintHorizontal_bias="0"
+                        bind:layout_constraintLeft_toLeftOf="@+id/selectProduct_left_line5"
+                        app:layout_constraintVertical_bias="0.3"
+                        bind:layout_constraintRight_toRightOf="@+id/selectProduct_right_line5"
+                        bind:layout_constraintTop_toTopOf="parent"></RadioButton>
+
+                    <TextView
+                        android:id="@+id/selectProduct_DeliveryRadio_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="배달로 받을게요"
+                        android:textSize="17sp"
+                        android:textColor="@color/black_2b2b2b"
+                        bind:layout_constraintBottom_toBottomOf="@+id/selectProduct_DeliveryRadio_btn"
+                        bind:layout_constraintLeft_toRightOf="@+id/selectProduct_DeliveryRadio_btn"
+                        bind:layout_constraintTop_toTopOf="@+id/selectProduct_DeliveryRadio_btn"></TextView>
+
+
+                    <RadioButton
+                        android:id="@+id/selectProduct_PickupRadio_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintWidth_percent="0.05"
+                        android:background="@drawable/radio_btn_selector"
+                        android:button="@null"
+                        bind:layout_constraintBottom_toBottomOf="parent"
+                        bind:layout_constraintDimensionRatio="1:1"
+                        bind:layout_constraintHorizontal_bias="0"
+                        bind:layout_constraintLeft_toLeftOf="@+id/selectProduct_left_line5"
+                        app:layout_constraintVertical_bias="0.07"
+                        bind:layout_constraintRight_toRightOf="@+id/selectProduct_right_line5"
+                         app:layout_constraintTop_toBottomOf="@+id/selectProduct_DeliveryRadio_btn"></RadioButton>
+
+                    <TextView
+                        android:id="@+id/selectProduct_PickupRadio_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="포장해서 직접 가지러 갈게요"
+                        android:textSize="17sp"
+                    android:textColor="@color/black_2b2b2b"
+                    bind:layout_constraintBottom_toBottomOf="@+id/selectProduct_PickupRadio_btn"
+                    bind:layout_constraintLeft_toRightOf="@+id/selectProduct_PickupRadio_btn"
+                    bind:layout_constraintTop_toTopOf="@+id/selectProduct_PickupRadio_btn"></TextView>
+
+
+                    <View
+                        android:id="@+id/border"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="#bfbfbf"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHeight_percent="0.003"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintLeft_toLeftOf="@+id/selectProduct_left_line5"
+                        app:layout_constraintRight_toRightOf="@+id/selectProduct_right_line5"
+                        app:layout_constraintTop_toBottomOf="@+id/selectProduct_PickupRadio_btn"
+                        app:layout_constraintVertical_bias="0.093"></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="@+id/selectProduct_left_line5"
+                        app:layout_constraintTop_toBottomOf="@+id/border"
+                        app:layout_constraintBottom_toBottomOf="@+id/selectProduct_DeliveryMoneyText"
+                        app:layout_constraintVertical_bias="0.3"
+                        android:text="상품금액"
+                        android:textSize="16sp"
+                        android:textColor="@color/black_2b2b2b"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
+                        ></TextView>
+
+
+                    <TextView
+                        android:id="@+id/selectProduct_ProductMoneyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="@+id/selectProduct_right_line5"
+                        app:layout_constraintTop_toBottomOf="@+id/border"
+                        app:layout_constraintBottom_toBottomOf="@+id/selectProduct_DeliveryMoneyText"
+                        app:layout_constraintVertical_bias="0.3"
+                        android:text="15,900원"
+                        android:textSize="16sp"
+                        android:textColor="@color/black_2b2b2b"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
+                        ></TextView>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="@+id/selectProduct_left_line5"
+                        app:layout_constraintTop_toBottomOf="@+id/selectProduct_ProductMoneyText"
+                        app:layout_constraintBottom_toBottomOf="@+id/border2"
+                        app:layout_constraintVertical_bias="0.3"
+                        android:text="배송비"
+                        android:textSize="16sp"
+                        android:textColor="@color/black_2b2b2b"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
+                        ></TextView>
+
+
+                    <TextView
+                        android:id="@+id/selectProduct_DeliveryMoneyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="@+id/selectProduct_right_line5"
+                        app:layout_constraintTop_toBottomOf="@+id/selectProduct_ProductMoneyText"
+                        app:layout_constraintBottom_toBottomOf="@+id/border2"
+                        app:layout_constraintVertical_bias="0.3"
+                        android:text="3000원"
+                        android:textSize="16sp"
+                        android:textColor="@color/black_2b2b2b"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
+                        ></TextView>
+
+                    <View
+                        android:id="@+id/border2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintHeight_percent="0.003"
+                        android:background="#bfbfbf"
+                        app:layout_constraintVertical_bias="0.4"
+                        app:layout_constraintLeft_toLeftOf="@+id/selectProduct_left_line5"
+                        app:layout_constraintRight_toRightOf="@+id/selectProduct_right_line5"
+                        app:layout_constraintTop_toBottomOf="@+id/selectProduct_DeliveryMoneyText"
+                        app:layout_constraintBottom_toBottomOf="@+id/selectProduct_FinalMoneyText"></View>
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="@+id/selectProduct_left_line5"
+                        app:layout_constraintTop_toBottomOf="@+id/border2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintVertical_bias="0.3"
+                        android:text="결정예정금액"
+                        android:textSize="16sp"
+                        android:textColor="@color/black_2b2b2b"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
+                        ></TextView>
+
+
+                    <TextView
+                        android:id="@+id/selectProduct_FinalMoneyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="@+id/selectProduct_right_line5"
+                        app:layout_constraintTop_toBottomOf="@+id/border2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintVertical_bias="0.3"
+                        android:text="3000원"
+                        android:textSize="16sp"
+                        android:textColor="@color/black_2b2b2b"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
+                        ></TextView>
+
+
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/selectProduct_FinalLayout"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/white"
+            >
+
+
+                                <androidx.constraintlayout.widget.Guideline
+                                    android:id="@+id/selectProduct_left_line6"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:orientation="vertical"
+                                    bind:layout_constraintGuide_percent="0.06"></androidx.constraintlayout.widget.Guideline>
+
+                                <androidx.constraintlayout.widget.Guideline
+                                    android:id="@+id/selectProduct_right_line6"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:orientation="vertical"
+                                    bind:layout_constraintGuide_percent="0.95"></androidx.constraintlayout.widget.Guideline>
+
+
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/selectProduct_Order_btn"
+                android:background="@drawable/input_box_background"
+                android:backgroundTint="@color/button_inactivation_color"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="18,900원 주문하기"
+                android:textColor="@color/white"
+                android:textColorHint="@color/hint_text_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="@+id/selectProduct_left_line6"
+                app:layout_constraintRight_toRightOf="@+id/selectProduct_right_line6"
+                app:layout_constraintHeight_percent="0.6"
+                app:layout_constraintVertical_bias="0.4"></androidx.appcompat.widget.AppCompatButton>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

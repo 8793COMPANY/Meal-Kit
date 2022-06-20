@@ -2,11 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.corporation8793.mealkit">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_main"
@@ -16,20 +11,25 @@
         android:theme="@style/Theme.MealKit"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".payment.PayMentActivity"
-            android:exported="true" >
-
+            android:name=".payment.CompleteOrdersActivity"
+            android:exported="true"
+            >
         </activity>
 
+        <activity
+            android:name=".payment.SelectProductActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".payment.PayMentActivity"
+            android:exported="true" />
         <activity
             android:name=".activity.FindActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"/>
-
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="9l8w6ft1l8" />
-
         <activity
             android:name=".activity.ChangePwActivity" />
 
@@ -53,6 +53,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -61,6 +62,14 @@
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.UserInfoActivity" />
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="9l8w6ft1l8" />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

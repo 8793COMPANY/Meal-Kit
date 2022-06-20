@@ -75,13 +75,24 @@
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/layout/view_pedometer.xml" value="0.5" />
         <entry key="..\:/Users/Genie/AndroidStudioProjects/MealKit/app/src/main/res/menu/bottom_nav_item.xml" value="0.1875" />
         <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/drawable-xxxhdpi/order_btn_background.xml" value="0.192" />
+        <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/drawable/completeorder_orderlist_btn.xml" value="0.219" />
+        <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/drawable/payment_btn_style.xml" value="0.235" />
+        <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/drawable/paymnet_allusebtn_style.xml" value="0.2845" />
+        <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/drawable/selectproduct_minus_btn.xml" value="0.268" />
+        <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/drawable/selectproduct_plus_btn.xml" value="0.268" />
+        <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/drawable/tab_indicator_bg.xml" value="0.268" />
+        <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/activity_complete_order.xml" value="0.3098958333333333" />
+        <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/activity_complete_orders.xml" value="0.5" />
+        <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/activity_complete_payment.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/activity_find.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/activity_join.xml" value="0.2609375" />
         <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/activity_pay_ment.xml" value="0.33" />
+        <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/activity_pay_ment.xml" value="0.4600985221674877" />
         <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/activity_point.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/activity_select_product.xml" value="0.2809278350515464" />
         <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/best_list_itemview.xml" value="0.26458333333333334" />
         <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/custom_actionbar.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/custom_tab.xml" value="0.3536458333333333" />
         <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/fragment_best.xml" value="0.3211050724637681" />
         <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/fragment_find_id.xml" value="0.3211050724637681" />
         <entry key="..\:/Users/Kim/Desktop/github/market/app/src/main/res/layout/fragment_find_main.xml" value="0.3211050724637681" />

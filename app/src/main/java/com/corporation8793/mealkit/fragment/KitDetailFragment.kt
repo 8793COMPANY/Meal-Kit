@@ -19,6 +19,7 @@ import com.corporation8793.mealkit.adapter.BestAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
 import com.corporation8793.mealkit.payment.PayMentActivity
+import com.corporation8793.mealkit.payment.SelectProductActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,7 +57,7 @@ class KitDetailFragment() : Fragment() {
 
 
         payment_btn.setOnClickListener {
-            var intent = Intent(activity, PayMentActivity::class.java)
+            var intent = Intent(activity, SelectProductActivity::class.java)
             startActivity(intent);
         }
 
