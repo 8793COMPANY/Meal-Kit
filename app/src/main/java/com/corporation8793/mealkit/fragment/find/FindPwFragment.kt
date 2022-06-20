@@ -3,11 +3,17 @@ package com.corporation8793.mealkit.fragment.find
 import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
@@ -15,6 +21,10 @@ import com.corporation8793.mealkit.activity.ChangePwActivity
 import com.corporation8793.mealkit.adapter.BestAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
+import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,11 +55,40 @@ class FindPwFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_find_pw, container, false)
 
+        val id_input_box = view.findViewById<EditText>(R.id.id_input_box)
+
         view.findViewById<Button>(R.id.find_pw_btn).setOnClickListener{
-            activity!!.finish()
-            var intent = Intent(activity, ChangePwActivity::class.java)
-            startActivity(intent)
+            GlobalScope.launch(Dispatchers.Default) {
+                val value = NonceRepository().sendPassResetLink(id_input_box.text.toString().trim())
+                println("value : "+value)
+                println("value first: "+value.first)
+                println("value second: "+value.second)
+
+                val status = value.second?.status
+
+                if (status.equals("ok")) {
+                    val user_email = NonceRepository().checkUsername(id_input_box.text.toString().trim())
+                    Log.e("user_email",user_email.second?.get(0).toString())
+                    Log.e("user_email",user_email.first)
+                }
+
+                GlobalScope.launch(Dispatchers.Main) {
+                    if (!status.equals("error")){
+                        requireActivity().finish()
+                        var intent = Intent(activity, ChangePwActivity::class.java)
+//                        intent.putExtra("email",)
+                        startActivity(intent)
+
+                    }else{
+                        Toast.makeText(context,"아이디를 찾지 못했습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
         }
+
+
+
 
 
         return view
