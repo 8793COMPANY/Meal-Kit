@@ -53,6 +53,8 @@ class AfterFindFragment() : Fragment() {
 //        NonceService.findUsername(arguments?.getString("email")!!)
         GlobalScope.launch(Dispatchers.Default) {
             val value = NonceRepository().findUsername(arguments?.getString("email")!!)
+            println(value.first)
+            println(value.second)
             Log.e("value",value.toString())
         }
 
