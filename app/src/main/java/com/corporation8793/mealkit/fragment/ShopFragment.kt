@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.corporation8793.mealkit.*
 import com.corporation8793.mealkit.adapter.ViewPagerAdapter
+import com.corporation8793.mealkit.adapter.ViewPagerAdapter2
 import com.corporation8793.mealkit.dto.KitItem
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout

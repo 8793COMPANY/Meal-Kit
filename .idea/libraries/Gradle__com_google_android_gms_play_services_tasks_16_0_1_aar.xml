@@ -1,19 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.android.gms:play-services-tasks:16.0.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3e5afa966b60c5b64be7ea2b54d6ae9d/transformed/jetified-play-services-tasks-16.0.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dabc84184f298691ace7d107b759a4af/transformed/jetified-play-services-tasks-16.0.1/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/dabc84184f298691ace7d107b759a4af/transformed/jetified-play-services-tasks-16.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dabc84184f298691ace7d107b759a4af/transformed/jetified-play-services-tasks-16.0.1/res" />
-<<<<<<< HEAD
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/875a5adfe01c34ec37bc0503cfddf1cd/transformed/jetified-play-services-tasks-16.0.1/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/875a5adfe01c34ec37bc0503cfddf1cd/transformed/jetified-play-services-tasks-16.0.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/875a5adfe01c34ec37bc0503cfddf1cd/transformed/jetified-play-services-tasks-16.0.1/jars/classes.jar!/" />
-=======
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/baa65b733a0963b8dacffbfc70139919/transformed/jetified-play-services-tasks-16.0.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/baa65b733a0963b8dacffbfc70139919/transformed/jetified-play-services-tasks-16.0.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/baa65b733a0963b8dacffbfc70139919/transformed/jetified-play-services-tasks-16.0.1/AndroidManifest.xml" />
->>>>>>> 41e714a299ae6e14aa4ab39f6dac2b43d803f002
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dabc84184f298691ace7d107b759a4af/transformed/jetified-play-services-tasks-16.0.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
