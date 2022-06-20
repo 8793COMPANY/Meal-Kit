@@ -1,9 +1,5 @@
 package com.corporation8793.mealkit.esf_wp.rest
 
-import com.corporation8793.mealkit.esf_wp.rest.data.Billing
-import com.corporation8793.mealkit.esf_wp.rest.data.Meta_data
-import com.corporation8793.mealkit.esf_wp.rest.data.Shipping
-import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.SignUpBody
 import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
 import org.junit.Assert
 import org.junit.Test
@@ -19,6 +15,12 @@ class SignUp {
         nonceRepository.getNonce()
         Assert.assertNotEquals("", nonceRepository.nonce)
         println("nonce value : ${nonceRepository.nonce}")
+
+        println("\n------ runLogin() ------")
+        val loginResponse = nonceRepository.Login(username = "test22", password = "153")
+        println("runLogin : ${loginResponse.first}, ${loginResponse.second}")
+        println("------------------------\n")
+
 
 //        println("------ runSignUp() ------")
 //
@@ -36,7 +38,6 @@ class SignUp {
 //        Assert.assertEquals("201", runSignUpResponse.first)
 //
 //        println("runSignUp : ${runSignUpResponse.first}, ${runSignUpResponse.second}")
-
 
         println("--- checkUsername() ----")
         val checkUsernameResponse = nonceRepository.checkUsername("test22")
