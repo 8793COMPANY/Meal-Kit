@@ -21,11 +21,17 @@ class BoardRepository(val basicAuth : String) {
      * 전체 상품을 검색합니다.
      * @author  두동근
      * @return  responseCode (expected : "200"), [List<Product>]
+     * @param   category                    카테고리 필터링 (미지정시 전체 출력)
+     * * [RestClient.PRODUCT_LAND]          육지
+     * * [RestClient.PRODUCT_SEA]           바다
+     * * [RestClient.PRODUCT_MOUNTAIN]      산
+     * * [RestClient.PRODUCT_OVERSEAS]      해외
+     * * [RestClient.PRODUCT_NULL]          미분류
      * @see     Post
      * @see     Pair
      */
-    fun listAllProduct() : Pair<String, List<Product>?> {
-        val call = RestClient.boardService.listAllProduct()
+    fun listAllProduct(category : String = "") : Pair<String, List<Product>?> {
+        val call = RestClient.boardService.listAllProduct(category)
 
         val response = call.execute()
 
