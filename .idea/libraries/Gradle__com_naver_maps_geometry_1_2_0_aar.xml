@@ -4,6 +4,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b5b8047756a642f8b036453d9ee5edc9/transformed/jetified-geometry-1.2.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b5b8047756a642f8b036453d9ee5edc9/transformed/jetified-geometry-1.2.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b5b8047756a642f8b036453d9ee5edc9/transformed/jetified-geometry-1.2.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cc94f0a5b194f77b8b728627857cb1e6/transformed/jetified-geometry-1.2.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cc94f0a5b194f77b8b728627857cb1e6/transformed/jetified-geometry-1.2.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/cc94f0a5b194f77b8b728627857cb1e6/transformed/jetified-geometry-1.2.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.naver.maps/geometry/1.2.0/138d4cfee091f636e2b2329957ad4c02bade560e/geometry-1.2.0-javadoc.jar!/" />
