@@ -9,11 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.*
 import com.corporation8793.mealkit.activity.FindActivity
 import com.corporation8793.mealkit.adapter.BestAdapter
@@ -57,11 +59,13 @@ class KitDetailFragment() : Fragment() {
         var name = arguments?.getString("name")
         var price = arguments?.getString("price")
         var stock = arguments?.getString("stock")
+        var img = arguments?.getString("img")
+        Glide.with(this).load(img).into(view.findViewById<ImageView>(R.id.kit_img))
         view.findViewById<TextView>(R.id.kit_category).setText(category)
         view.findViewById<TextView>(R.id.kit_name).setText(name)
         view.findViewById<TextView>(R.id.price).setText(price)
         view.findViewById<TextView>(R.id.stock_count).setText(stock+"개")
-
+        view.findViewById<ImageView>(R.id.kit_img)
         view.findViewById<Button>(R.id.back_btn).setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_back_to_home)
         }

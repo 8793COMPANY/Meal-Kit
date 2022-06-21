@@ -2,6 +2,7 @@ package com.corporation8793.mealkit.fragment.home
 
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,11 @@ import com.corporation8793.mealkit.adapter.KitAdapter
 import com.corporation8793.mealkit.decoration.KitDecoration
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.dto.KitItem
+import com.corporation8793.mealkit.esf_wp.rest.RestClient
+import com.corporation8793.mealkit.esf_wp.rest.data.Product
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,14 +66,32 @@ class SeaFragment : Fragment() {
         var divider = KitDecoration(20)
         kit_list.addItemDecoration(divider)
 
-        datas.apply {
-            datas.clear()
-//            add(KitItem("0","22.05.12~22.05.14","해산물 가게","유기농두부샐러드","12,000원","17","1"))
-//            add(KitItem("0","22.05.12~22.05.14","스프 가게","시금치스프","8,000원","4","1"))
-//            add(KitItem("0","22.05.12~22.05.14","라멘 가게","매운냉라면","10,000원","12","1"))
+        GlobalScope.launch(Dispatchers.Default) {
+            val item : List<Product> = RestClient.boardService.listAllProduct(RestClient.PRODUCT_SEA).execute().body()!!
 
-            kitAdapter.datas = datas
-            kitAdapter.notifyDataSetChanged()
+            GlobalScope.launch(Dispatchers.Main) {
+                datas.apply {
+                    Log.e("item sizse",item.size.toString())
+                    item.forEach {
+                        var pr = item.get(0)
+                        add(KitItem(pr.id,pr.images.first().src, pr.date_on_sale_from,pr.date_on_sale_to, "샐러드 가게",
+                                pr.name, pr.price, pr.stock_quantity, pr.acf.total_stock!!,"1"))
+//                        println("상품 카테고리 : ${pr.categories.first().name}")
+//                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
+//                        println("별점 (5.00) : ${pr.average_rating}")
+//                        println("상품 이미지 URL : ${pr.images.first().src}")
+//                        println("상품 세일 기간 : ${pr.date_on_sale_from} ~ ${pr.date_on_sale_to}")
+//                        println("상품가격 : ${pr.price}원")
+//                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
+//                        println("---------------")
+
+                    }
+
+                    kitAdapter.datas = datas
+                    kitAdapter.notifyDataSetChanged()
+                }
+            }
+//                binding.checkText.visibility = View.VISIBLE
         }
         return view
     }

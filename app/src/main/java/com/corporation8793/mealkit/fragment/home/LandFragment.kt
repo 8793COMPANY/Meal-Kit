@@ -70,7 +70,7 @@ class LandFragment : Fragment() {
         kit_list.addItemDecoration(divider)
 
         GlobalScope.launch(Dispatchers.Default) {
-            val item : List<Product> = RestClient.boardService.listAllProduct().execute().body()!!
+            val item : List<Product> = RestClient.boardService.listAllProduct(RestClient.PRODUCT_LAND).execute().body()!!
 
             GlobalScope.launch(Dispatchers.Main) {
                 datas.apply {

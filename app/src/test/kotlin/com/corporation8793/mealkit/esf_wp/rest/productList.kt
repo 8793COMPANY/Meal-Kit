@@ -19,7 +19,8 @@ class productList {
         println("====== productList     ======")
 
         println("------ listAllProduct() -----")
-        val listAllProductResponse = boardRepository.listAllProduct()
+        // 22-06-21 카테고리 필터링 요청
+        val listAllProductResponse = boardRepository.listAllProduct(RestClient.PRODUCT_SEA)
         println("listAllStore : ${listAllProductResponse.first}, ${listAllProductResponse.second}\n")
 
         // 상품 리스트 정리

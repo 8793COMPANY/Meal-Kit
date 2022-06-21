@@ -16,14 +16,14 @@ class SignUp {
         println("====== SignUp     ======")
         println("------ getNonce() ------")
 
-        nonceRepository.getNonce()
-        Assert.assertNotEquals("", nonceRepository.nonce)
-        println("nonce value : ${nonceRepository.nonce}")
-
-        println("\n------ runLogin() ------")
-        val loginResponse = nonceRepository.Login(username = "test22", password = "1234")
-        println("runLogin : ${loginResponse.first}, ${loginResponse.second}")
-        println("------------------------\n")
+//        nonceRepository.getNonce()
+//        Assert.assertNotEquals("", nonceRepository.nonce)
+//        println("nonce value : ${nonceRepository.nonce}")
+//
+//        println("\n------ runLogin() ------")
+//        val loginResponse = nonceRepository.Login(username = "test22", password = "1234")
+//        println("runLogin : ${loginResponse.first}, ${loginResponse.second}")
+//        println("------------------------\n")
 
 
 //        println("------ runSignUp() ------")
@@ -48,14 +48,14 @@ class SignUp {
         println("checkUsername : ${checkUsernameResponse.first}, ${checkUsernameResponse.second?.get(0)}")
 
 
-        println("---- findUsername() ----")
-        val findUsernameResponse = nonceRepository.findUsername("gyeongyeongi22@gmail.com")
-        println("findUsername : ${findUsernameResponse.first}, ${findUsernameResponse.second?.get(0)}")
-
-
-        println("-- sendPassResetLink() -")
-        val sendPassResetLinkResponse = nonceRepository.sendPassResetLink("test22")
-        println("sendPassResetLink : ${sendPassResetLinkResponse.first}, ${sendPassResetLinkResponse.second?.status}")
+//        println("---- findUsername() ----")
+//        val findUsernameResponse = nonceRepository.findUsername("gyeongyeongi22@gmail.com")
+//        println("findUsername : ${findUsernameResponse.first}, ${findUsernameResponse.second?.get(0)}")
+//
+//
+//        println("-- sendPassResetLink() -")
+//        val sendPassResetLinkResponse = nonceRepository.sendPassResetLink("test22")
+//        println("sendPassResetLink : ${sendPassResetLinkResponse.first}, ${sendPassResetLinkResponse.second?.status}")
 
 
 
