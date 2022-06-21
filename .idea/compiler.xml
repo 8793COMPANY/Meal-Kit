@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="15">
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <module name="MealKit.app" target="11" />
-=======
-=======
-      <module name="AndroidStudioProjects.MealKit.app" target="11" />
->>>>>>> 9fd4433bf916464f0b08a89dc2aee5be9bba9ab2
-      <module name="Meal-Kit.MealKit.app" target="11" />
-      <module name="MealKit.app" target="17" />
->>>>>>> 3ba46bfe0dbcba544b90e7d071444225002829b9
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11" />
   </component>
 </project>
