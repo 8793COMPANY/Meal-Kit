@@ -4,13 +4,17 @@ import com.corporation8793.mealkit.esf_wp.rest.data.DisableProduct
 import com.corporation8793.mealkit.esf_wp.rest.data.Store
 import com.corporation8793.mealkit.esf_wp.rest.repository.BoardRepository
 import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
+import okhttp3.Credentials
 import org.junit.Assert
 import org.junit.Test
 
 class storeList {
     @Test
     fun storeList() {
-        val boardRepository = BoardRepository()
+        val testId = "test22"
+        val testPw = "1234"
+        val basicAuth = Credentials.basic(testId, testPw)
+        val boardRepository = BoardRepository(basicAuth)
 
         println("====== storeList     ======")
 

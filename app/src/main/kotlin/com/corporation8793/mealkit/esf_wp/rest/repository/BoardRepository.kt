@@ -13,7 +13,7 @@ import okhttp3.Credentials
  * @see     <a href="https://developer.wordpress.org/rest-api/reference/posts/">WP-Posts [REST API Reference]</a>
  * @see     <a href="https://developer.wordpress.org/rest-api/reference/comments/">WP-Comments [REST API Reference]</a>
  */
-class BoardRepository {
+class BoardRepository(val basicAuth : String) {
     /**
      * 전체 상품을 검색합니다.
      * @author  두동근

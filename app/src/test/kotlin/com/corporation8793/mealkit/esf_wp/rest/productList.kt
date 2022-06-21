@@ -2,12 +2,16 @@ package com.corporation8793.mealkit.esf_wp.rest
 
 import com.corporation8793.mealkit.esf_wp.rest.data.DisableProduct
 import com.corporation8793.mealkit.esf_wp.rest.repository.BoardRepository
+import okhttp3.Credentials
 import org.junit.Test
 
 class productList {
     @Test
     fun productList() {
-        val boardRepository = BoardRepository()
+        val testId = "test22"
+        val testPw = "1234"
+        val basicAuth = Credentials.basic(testId, testPw)
+        val boardRepository = BoardRepository(basicAuth)
 
         println("====== storeList     ======")
 

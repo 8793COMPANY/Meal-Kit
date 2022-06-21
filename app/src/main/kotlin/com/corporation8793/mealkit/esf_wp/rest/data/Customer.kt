@@ -17,7 +17,7 @@ data class Customer(val id : String,
                     val first_name : String,
                     val billing : Billing,
                     val shipping : Shipping,
-                    val meta_data : Array<Meta_data>)
+                    val meta_data : List<Meta_data>)
 /**
  * [Customer.billing]
  * @author  두동근
@@ -52,4 +52,4 @@ data class Shipping(val address_1 : String,
  */
 data class Meta_data(val id : Int?,
                      val key : String?,
-                     val value : String?)
+                     val value : Any?)

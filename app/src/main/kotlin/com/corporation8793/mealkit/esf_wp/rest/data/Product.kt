@@ -26,7 +26,7 @@ data class Product(val id : String,
                    val average_rating : String,
                    val categories : Array<Categories>,
                    val images : Array<Images>,
-                   val meta_data : Array<ProductMetadata>)
+                   val acf : StockAcf)
 /**
  * [Product.categories]
  * @author  두동근
@@ -42,10 +42,10 @@ data class Categories(val id : String, val name : String, val slug : String)
  */
 data class Images(val src : String)
 /**
- * [Product.meta_data]
+ * [Product.acf]
  * @author  두동근
- * @param   id          id
- * @param   key         key ("total_stock, product_likes")
- * @param   value       value (value of total_stock, uid of product_likes)
+ * @param   total_stock       상품의 전체 재고 개수
+ * @param   product_likes     상품의 좋아요 누른 유저의 id 리스트
  */
-data class ProductMetadata(val id : Int?, val key : String?, val value : String?)
+data class StockAcf(val total_stock : String?,
+                    val product_likes : Array<String>)
