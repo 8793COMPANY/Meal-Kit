@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_home_to_kitDetailFragment3"
             app:destination="@id/kitDetailFragment3" />
+        <action
+            android:id="@+id/action_home_to_challengeFragment"
+            app:destination="@id/challengeFragment" />
     </fragment>
     <fragment
         android:id="@+id/best"
@@ -74,6 +77,11 @@
         android:name="com.corporation8793.mealkit.fragment.my.PurchaseDetailsFragment"
         android:label="fragment_purchase_details"
         tools:layout="@layout/fragment_purchase_details" />
+    <fragment
+        android:id="@+id/challengeFragment"
+        android:name="com.corporation8793.mealkit.fragment.ChallengeFragment"
+        android:label="fragment_challenge"
+        tools:layout="@layout/fragment_challenge" />
 
 
 </navigation>

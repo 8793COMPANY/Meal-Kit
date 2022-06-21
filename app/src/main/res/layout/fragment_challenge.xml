@@ -45,11 +45,14 @@
        app:layout_constraintBottom_toBottomOf="parent"></androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_btn"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintVertical_bias="0.9"
         android:background="@drawable/input_box_background"
         android:backgroundTint="@color/app_basic_color"
+        android:elevation="20dp"
+
         android:text="GO!"
         android:textColor="@color/white"
         android:fontFamily="@font/nskr_medium"
@@ -66,12 +69,14 @@
         android:id="@+id/point_percentage_info_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="각각의 포인트 확률은 12.5%입니다."
+        android:text="각각의 포인트 확률은 20%입니다."
         android:textColor="@color/app_basic_color"
         android:fontFamily="sans-serif-medium"
+        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
         app:layout_constraintRight_toRightOf="@+id/guideline_right"
         app:layout_constraintVertical_bias="0.95"></TextView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

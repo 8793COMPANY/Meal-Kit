@@ -66,19 +66,19 @@ class LandFragment : Fragment() {
         var divider = KitDecoration(20)
         kit_list.addItemDecoration(divider)
 
-        GlobalScope.launch(Dispatchers.Default) {
-            val value = BoardRepository().listAllProduct()
-            println("value : " + value)
-            println("value first: " + value.first)
-            println("value second: " + value.second!!.size)
-
-            
-
-            GlobalScope.launch(Dispatchers.Main) {
-
-            }
-//                binding.checkText.visibility = View.VISIBLE
-        }
+//        GlobalScope.launch(Dispatchers.Default) {
+//            val value = BoardRepository().listAllProduct()
+//            println("value : " + value)
+//            println("value first: " + value.first)
+//            println("value second: " + value.second!!.size)
+//
+//
+//
+//            GlobalScope.launch(Dispatchers.Main) {
+//
+//            }
+////                binding.checkText.visibility = View.VISIBLE
+//        }
 
 
         datas.apply {

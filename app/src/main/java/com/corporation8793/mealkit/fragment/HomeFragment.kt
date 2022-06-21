@@ -11,12 +11,14 @@ import android.widget.TextView
 import androidx.compose.ui.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.corporation8793.mealkit.*
 import com.corporation8793.mealkit.adapter.HomeViewAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.w3c.dom.Text
 
 
@@ -97,6 +99,11 @@ class HomeFragment() : Fragment() {
             }
 
         })
+
+        view.findViewById<View>(R.id.pedometer).setOnClickListener{
+            val action = HomeFragmentDirections.actionHomeToChallengeFragment()
+            findNavController().navigate(action)
+        }
 
 
 
