@@ -48,4 +48,4 @@ data class Images(val src : String)
  * @param   product_likes     상품의 좋아요 누른 유저의 id 리스트
  */
 data class StockAcf(val total_stock : String?,
-                    val product_likes : Array<String>)
+                    val product_likes : Any)
