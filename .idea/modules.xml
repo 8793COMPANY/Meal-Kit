@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
+=======
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.MealKit.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.MealKit.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MealKit.iml" filepath="$PROJECT_DIR$/.idea/modules/MealKit.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MealKit.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MealKit.app.iml" />
+>>>>>>> 9fd4433bf916464f0b08a89dc2aee5be9bba9ab2
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MealKit.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MealKit.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MealKit.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MealKit.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MealKit.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MealKit.app.unitTest.iml" />
