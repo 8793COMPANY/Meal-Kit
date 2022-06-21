@@ -44,7 +44,7 @@ class FindMainFragment() : Fragment() {
         var view = inflater.inflate(R.layout.fragment_find_main, container, false)
         var kindOfSearch = view.findViewById<TabLayout>(R.id.kind_of_find)
         var viewpager = view.findViewById<ViewPager2>(R.id.viewpager)
-        viewpager.adapter = FindAdapter(activity!!)
+        viewpager.adapter = FindAdapter(requireActivity())
         viewpager.apply {
             (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         }
@@ -74,6 +74,9 @@ class FindMainFragment() : Fragment() {
 
         })
 
+
+
+//        viewpager.setCurrentItem()
 
         return view
     }

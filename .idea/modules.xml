@@ -8,9 +8,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MealKit.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MealKit.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MealKit.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MealKit.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MealKit.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MealKit.app.unitTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.MealKit.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.MealKit.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.MealKit.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.MealKit.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.MealKit.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.MealKit.app.unitTest.iml" />
     </modules>
   </component>
 </project>

@@ -17,7 +17,7 @@
     <color name="remaining_color">#ff9b33</color>
     
     <color name="text_inactivation_color">#9a9a9a</color>
-    <color name="button_inactivation_color">#dddddd</color>
+    <color name="gray_dddddd">#dddddd</color>
 
     <color name="category_land_color">#a1937a</color>
     <color name="category_sea_color">#0091be</color>
@@ -25,12 +25,13 @@
     <color name="category_overseas_color">#d97c7c</color>
     <color name="category_unselected_color">#707070</color>
 
-    <color name="join_already_use_text">#ce2929</color>
+    <color name="red_ce2929">#ce2929</color>
 
    //gray
     <color name="gray_ededed">#ededed</color>
     <color name="gray_cccccc">#cccccc</color>
     <color name="gray_797979">#797979</color>
+    <color name="gray_4e4e4e">#4e4e4e</color>
 
 
 

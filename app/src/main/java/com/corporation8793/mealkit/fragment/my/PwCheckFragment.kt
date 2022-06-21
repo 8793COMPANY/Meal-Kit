@@ -4,22 +4,15 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import androidx.compose.ui.graphics.Color
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
 import com.corporation8793.mealkit.activity.UserInfoActivity
-import com.corporation8793.mealkit.adapter.BestAdapter
-import com.corporation8793.mealkit.decoration.BestDecoration
-import com.corporation8793.mealkit.dto.BestItem
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,7 +61,7 @@ class PwCheckFragment() : Fragment() {
                     btnColorChange(R.color.app_basic_color)
                     next_btn.setTextColor(resources.getColor(R.color.app_basic_color))
                 }else{
-                    btnColorChange(R.color.button_inactivation_color)
+                    btnColorChange(R.color.gray_dddddd)
                     next_btn.setTextColor(resources.getColor(R.color.text_inactivation_color))
                 }
             }
@@ -79,7 +72,7 @@ class PwCheckFragment() : Fragment() {
             (activity as UserInfoActivity).changeFragment(2)
         }
 
-        btnColorChange(R.color.button_inactivation_color)
+        btnColorChange(R.color.gray_dddddd)
 
         return view
     }
