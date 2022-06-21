@@ -533,18 +533,14 @@
                     android:backgroundTint="@color/gray_dddddd"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    bind:layout_constraintDimensionRatio="640:90"
                     bind:layout_constraintTop_toTopOf="parent"
                     bind:layout_constraintBottom_toBottomOf="parent"
-<<<<<<< HEAD
                     bind:layout_constraintDimensionRatio="1:1"
                     bind:layout_constraintHorizontal_bias="0"
                     bind:layout_constraintLeft_toLeftOf="parent"
-                    bind:layout_constraintRight_toRightOf="parent"></androidx.appcompat.widget.AppCompatButton>
-=======
-                    bind:layout_constraintLeft_toLeftOf="@id/btn_left_guideline"
-                    bind:layout_constraintRight_toRightOf="@id/btn_right_guideline"></androidx.appcompat.widget.AppCompatButton>
->>>>>>> 9fd4433bf916464f0b08a89dc2aee5be9bba9ab2
+                    bind:layout_constraintRight_toRightOf="parent">
+
+                </androidx.appcompat.widget.AppCompatButton>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -29,10 +29,10 @@ class SignUp {
 //        println("------ runSignUp() ------")
 //
 //        val runSignUpResponse = nonceRepository.runSignUp(
-//            "wisi8793@naver.com",
-//            "Eat So Fresh",
-//            "@esfadmin*0967",
-//            "상점 관리자",
+//            "test52@naver.com",
+//            "test52",
+//            "testjohn",
+//            "오이오이",
 //            SignUpBody(
 //                Billing("광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", "010-8793-8793"),
 //                Shipping("광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", "010-8793-8793"),
