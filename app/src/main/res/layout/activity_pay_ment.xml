@@ -327,6 +327,7 @@
                     ></androidx.appcompat.widget.AppCompatButton>
 
                 <TextView
+                    android:id="@+id/address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="광주광역시 북구 동구 동계천로150,\n502호,팔칠구삼"
@@ -488,6 +489,7 @@
                     ></TextView>
 
                 <TextView
+                    android:id="@+id/payment_ProductPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintRight_toRightOf="@+id/payment_right_line4"
@@ -517,6 +519,7 @@
                     ></TextView>
 
                 <TextView
+                    android:id="@+id/payment_DeliveryMoneyPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintRight_toRightOf="@+id/payment_right_line4"
@@ -587,6 +590,7 @@
                     ></TextView>
 
                 <TextView
+                    android:id="@+id/payment_FinalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintRight_toRightOf="@+id/payment_right_line4"

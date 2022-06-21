@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,6 +21,7 @@ import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
 import com.corporation8793.mealkit.payment.PayMentActivity
 import com.corporation8793.mealkit.payment.SelectProductActivity
+import org.w3c.dom.Text
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,6 +52,15 @@ class KitDetailFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_kit_detail, container, false)
         val payment_btn = view.findViewById<ConstraintLayout>(R.id.payment_btn);
+        var id = arguments?.getString("id")
+        var category = arguments?.getString("category")
+        var name = arguments?.getString("name")
+        var price = arguments?.getString("price")
+        var stock = arguments?.getString("stock")
+        view.findViewById<TextView>(R.id.kit_category).setText(category)
+        view.findViewById<TextView>(R.id.kit_name).setText(name)
+        view.findViewById<TextView>(R.id.price).setText(price)
+        view.findViewById<TextView>(R.id.stock_count).setText(stock+"개")
 
         view.findViewById<Button>(R.id.back_btn).setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_back_to_home)
@@ -58,6 +69,10 @@ class KitDetailFragment() : Fragment() {
 
         payment_btn.setOnClickListener {
             var intent = Intent(activity, SelectProductActivity::class.java)
+            intent.putExtra("id",id)
+            intent.putExtra("category",category)
+            intent.putExtra("name",name)
+            intent.putExtra("price",price)
             startActivity(intent);
         }
 

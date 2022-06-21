@@ -13,5 +13,18 @@ class CompleteOrdersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_complete_orders)
         binding.setActionBar("주문 완료")
+
+        var order_id = intent.getStringExtra("id")
+        var shop = intent.getStringExtra("shop_name")
+        var name = intent.getStringExtra("name")
+        var price = intent.getStringExtra("price")
+        var quantity = intent.getStringExtra("quantity")
+        var order_point = intent.getStringExtra("order_point")
+
+        binding.completeOrdersOrderNumberText.setText(order_id)
+        binding.completeOrdersShopNameText.setText(shop)
+        binding.completeOrdersBuyListText.setText(name+"|"+quantity+"개")
+        binding.completeOrdersBuyMoneyText.setText(price+"원")
+        binding.completeOrdersPointText.setText(order_point+"원")
     }
 }
