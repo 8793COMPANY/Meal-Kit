@@ -30,7 +30,7 @@ class JoinActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.overlapCheckBtn.setOnClickListener {
+        binding.recommenderCodeCheckBtn.setOnClickListener {
             GlobalScope.launch(Dispatchers.Default) {
                 val value = NonceRepository().checkUsername(binding.idInputBox.text.toString().trim())
                 println("value : " + value)
@@ -40,17 +40,40 @@ class JoinActivity : AppCompatActivity() {
 
 
                 GlobalScope.launch(Dispatchers.Main) {
-                    binding.overlapCheckText.visibility = View.VISIBLE
-                    if(value.second!!.size > 0){
-                        binding.overlapCheckText.setText("이미 사용중인 아이디입니다.")
-                        binding.overlapCheckText.setTextColor(resources.getColor(R.color.red_ce2929))
-                    }else{
-                        binding.overlapCheckText.setText("사용가능한 아이디입니다.")
-                        binding.overlapCheckText.setTextColor(resources.getColor(R.color.gray_4e4e4e))
-                    }
 
                 }
 //                binding.checkText.visibility = View.VISIBLE
+            }
+        }
+
+        binding.overlapCheckBtn.setOnClickListener {
+            val id = binding.idInputBox.text.toString()
+            if(id.trim().equals("")){
+                binding.overlapCheckText.setText("아이디를 입력해주세요.")
+            }else if(id.length < 5){
+                binding.overlapCheckText.setText("아이디를 다섯글자이상 입력해주세요.")
+            }else {
+                GlobalScope.launch(Dispatchers.Default) {
+                    val value = NonceRepository().checkUsername(binding.idInputBox.text.toString().trim())
+                    println("value : " + value)
+                    println("value first: " + value.first)
+                    println("value second: " + value.second!!.size)
+
+
+
+                    GlobalScope.launch(Dispatchers.Main) {
+                        binding.overlapCheckText.visibility = View.VISIBLE
+                        if (value.second!!.size > 0) {
+                            binding.overlapCheckText.setText("이미 사용중인 아이디입니다.")
+                            binding.overlapCheckText.setTextColor(resources.getColor(R.color.red_ce2929))
+                        } else {
+                            binding.overlapCheckText.setText("사용가능한 아이디입니다.")
+                            binding.overlapCheckText.setTextColor(resources.getColor(R.color.gray_4e4e4e))
+                        }
+
+                    }
+//                binding.checkText.visibility = View.VISIBLE
+                }
             }
         }
 
@@ -65,7 +88,7 @@ class JoinActivity : AppCompatActivity() {
                         SignUpBody(
                         Billing("광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", binding.phoneNumberInputBox.text.toString()),
                         Shipping("광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", binding.phoneNumberInputBox.text.toString()),
-                        arrayOf(Meta_data(id = null, key = "recommender", value = "test2"))
+                        arrayOf(Meta_data(id = null, key = "recommender", value = binding.recommenderCodeInputBox.text.toString()))
                         )
                 )
 
