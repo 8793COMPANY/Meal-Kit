@@ -65,12 +65,10 @@ class NonceRepository {
                 }
                 "ok" -> {
                     println("validationUser id(${validationUserResponse.user?.id}) → login ok")
-
                     println("------------------------")
                     val getValidUserInfoResponse = getValidUserInfo(validationUserResponse.user?.id)
                     println("Info : ${validationUserResponse.status}, ${getValidUserInfoResponse.second}")
                     println("------------------------")
-
                     response = getValidUserInfoResponse.second!!
                 }
             }
@@ -114,6 +112,10 @@ class NonceRepository {
 
         return Pair(response.code().toString(), response.body())
     }
+
+
+
+
 
     /**
      * 입력받은 정보로 회원가입합니다.

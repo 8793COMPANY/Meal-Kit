@@ -63,6 +63,7 @@ interface NonceService {
     @GET("api/user/retrieve_password/?insecure=cool")
     fun sendPassResetLink(@Query("user_login") user_login: String) : Call<PassResetLink>
 
+
     /**
      * 입력받은 정보로 회원가입합니다.
      * @author  두동근
