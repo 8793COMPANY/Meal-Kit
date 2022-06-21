@@ -13,6 +13,11 @@ import com.corporation8793.mealkit.adapter.KitAdapter
 import com.corporation8793.mealkit.decoration.KitDecoration
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.dto.KitItem
+import com.corporation8793.mealkit.esf_wp.rest.repository.BoardRepository
+import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,6 +65,21 @@ class LandFragment : Fragment() {
 
         var divider = KitDecoration(20)
         kit_list.addItemDecoration(divider)
+
+        GlobalScope.launch(Dispatchers.Default) {
+            val value = BoardRepository().listAllProduct()
+            println("value : " + value)
+            println("value first: " + value.first)
+            println("value second: " + value.second!!.size)
+
+            
+
+            GlobalScope.launch(Dispatchers.Main) {
+
+            }
+//                binding.checkText.visibility = View.VISIBLE
+        }
+
 
         datas.apply {
             datas.clear()
