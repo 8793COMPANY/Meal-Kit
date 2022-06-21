@@ -276,17 +276,7 @@
                 bind:layout_constraintLeft_toLeftOf="@+id/left_guideline"
                 bind:layout_constraintRight_toRightOf="@id/right_guideline"></TextView>
 
-            <View
-                android:id="@+id/post_code_divider"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="#d6d6d6"
-                bind:layout_constraintWidth_percent="0.02"
-                bind:layout_constraintHeight_percent="0.001"
-                bind:layout_constraintTop_toTopOf="@+id/post_code_input_box"
-                bind:layout_constraintBottom_toBottomOf="@+id/post_code_input_box"
-                bind:layout_constraintLeft_toRightOf="@+id/post_code_input_box"
-                bind:layout_constraintRight_toLeftOf="@id/post_code_input_box2"></View>
+
 
             <EditText
                 android:id="@+id/post_code_input_box"
@@ -298,30 +288,15 @@
                 android:textSize="12dp"
                 android:textColor="#c9c9c9"
                 android:textColorHint="#c9c9c9"
-                bind:layout_constraintWidth_percent="0.25"
                 bind:layout_constraintHorizontal_bias="0"
                 bind:layout_constraintVertical_bias="0"
                 bind:layout_constraintLeft_toLeftOf="@+id/left_guideline"
                 bind:layout_constraintTop_toBottomOf="@+id/address_text"
                 bind:layout_constraintBottom_toBottomOf="parent"
-                bind:layout_constraintRight_toLeftOf="@+id/post_code_divider"
+                bind:layout_constraintRight_toLeftOf="@+id/search_post_code_btn"
                 ></EditText>
 
-            <EditText
-                android:id="@+id/post_code_input_box2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingRight="20dp"
-                android:backgroundTint="#d6d6d6"
-                android:textSize="12dp"
-                android:textColor="#c9c9c9"
-                android:textColorHint="#c9c9c9"
-                bind:layout_constraintWidth_percent="0.25"
-                bind:layout_constraintHorizontal_bias="0"
-                bind:layout_constraintVertical_bias="0"
-                bind:layout_constraintLeft_toRightOf="@+id/post_code_divider"
-                bind:layout_constraintTop_toBottomOf="@+id/address_text"
-                bind:layout_constraintBottom_toBottomOf="parent"></EditText>
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/search_post_code_btn"
@@ -341,7 +316,7 @@
                 bind:layout_constraintVertical_bias="0"
                 bind:layout_constraintTop_toBottomOf="@+id/address_text"
                 bind:layout_constraintBottom_toBottomOf="parent"
-                bind:layout_constraintLeft_toRightOf="@+id/post_code_input_box2"
+                bind:layout_constraintLeft_toRightOf="@+id/post_code_input_box"
                 bind:layout_constraintRight_toRightOf="@+id/right_guideline"
                 ></androidx.appcompat.widget.AppCompatButton>
 

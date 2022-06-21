@@ -1,10 +1,15 @@
 package com.corporation8793.mealkit.fragment
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.VideoView
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.corporation8793.mealkit.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -33,7 +38,24 @@ class ChallengeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_challenge, container, false)
+        val view = inflater.inflate(R.layout.fragment_challenge, container, false)
+        val videoview = view.findViewById<VideoView>(R.id.videoview)
+
+        var uri = Uri.parse("android.resource://"+requireActivity().packageName+"/"+R.raw.point_10)
+        videoview.setVideoURI(uri)
+        videoview.seekTo(1)
+
+
+        view.findViewById<Button>(R.id.go_btn).setOnClickListener {
+            videoview.start()
+        }
+
+        view.findViewById<Button>(R.id.back_btn).setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_back_to_home)
+        }
+
+        return view
+
     }
 
     companion object {

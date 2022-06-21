@@ -120,9 +120,11 @@ class JoinActivity : AppCompatActivity() {
         if(resultCode == Activity.RESULT_OK){
             when(requestCode){
                 1000 -> {
-                    val name = data?.getStringExtra("data")
-                    if (name != null)
-                        Log.e("data",name)
+                    val address = data?.getStringExtra("data")!!.split(",")
+                    if (address != null) {
+                        binding.postCodeInputBox.setText(address[0])
+                        binding.addressInputBox.setText(address[1])
+                    }
                 }
             }
         }
