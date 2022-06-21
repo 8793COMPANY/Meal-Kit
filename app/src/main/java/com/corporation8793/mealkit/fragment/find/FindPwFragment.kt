@@ -2,12 +2,21 @@ package com.corporation8793.mealkit.fragment.find
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
@@ -15,6 +24,10 @@ import com.corporation8793.mealkit.activity.ChangePwActivity
 import com.corporation8793.mealkit.adapter.BestAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
+import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,11 +58,69 @@ class FindPwFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_find_pw, container, false)
 
-        view.findViewById<Button>(R.id.find_pw_btn).setOnClickListener{
-            activity!!.finish()
-            var intent = Intent(activity, ChangePwActivity::class.java)
-            startActivity(intent)
+        val id_input_box = view.findViewById<EditText>(R.id.id_input_box)
+        val find_pw_btn = view.findViewById<Button>(R.id.find_pw_btn)
+
+
+        id_input_box.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if (p0!!.trim().length > 5) {
+//                    val drawable = find_id_btn.background as GradientDrawable
+                    find_pw_btn.backgroundTintList = ContextCompat.getColorStateList(context!!,R.color.app_basic_color)
+                    find_pw_btn.isEnabled = true
+//                    drawable.setColor(ContextCompat.getColor(context!!,R.color.app_basic_color))
+                }else{
+//                    val drawable = find_id_btn.background as GradientDrawable
+//                    drawable.setColor(ContextCompat.getColor(context!!,R.color.gray_dddddd))
+                    find_pw_btn.backgroundTintList = ContextCompat.getColorStateList(context!!,R.color.gray_dddddd)
+                    find_pw_btn.isEnabled = false
+                }
+            }
+
+        })
+
+        find_pw_btn.setOnClickListener{
+            GlobalScope.launch(Dispatchers.Default) {
+                val value = NonceRepository().sendPassResetLink(id_input_box.text.toString().trim())
+                println("value : "+value)
+                println("value first: "+value.first)
+                println("value second: "+value.second)
+
+                val status = value.second?.status
+                var email = ""
+
+                if (status.equals("ok")) {
+                    val user_email = NonceRepository().checkUsername(id_input_box.text.toString().trim())
+                    Log.e("user_email",user_email.second?.get(0).toString())
+                    Log.e("user_email",user_email.first)
+                    email = user_email.second?.get(0)?.email!!
+                }
+
+                GlobalScope.launch(Dispatchers.Main) {
+                    if (!status.equals("error")){
+                        requireActivity().finish()
+                        var intent = Intent(activity, ChangePwActivity::class.java)
+                        intent.putExtra("email",email)
+                        startActivity(intent)
+
+                    }else{
+                        Toast.makeText(context,"아이디를 찾지 못했습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
         }
+
+
+
 
 
         return view

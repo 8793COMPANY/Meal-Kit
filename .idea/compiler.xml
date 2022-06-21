@@ -2,7 +2,12 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="15">
+<<<<<<< HEAD
       <module name="MealKit.app" target="11" />
+=======
+      <module name="Meal-Kit.MealKit.app" target="11" />
+      <module name="MealKit.app" target="17" />
+>>>>>>> 3ba46bfe0dbcba544b90e7d071444225002829b9
     </bytecodeTargetLevel>
   </component>
 </project>

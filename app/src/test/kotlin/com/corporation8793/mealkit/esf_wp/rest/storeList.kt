@@ -21,8 +21,7 @@ class storeList {
         // 물품 필터링
         println("------ Filtering     -----")
         val notSaleStore = listAllStoreResponse.second?.filter { it.acf.disable_product.contains(DisableProduct("유기농두부샐러드")) }
-
-        println("\n유기농두부샐러드 안파는 가게들 : ")
+        println("유기농두부샐러드 안파는 가게들 : ")
         if (notSaleStore != null) {
             for ((i, ns) in notSaleStore.withIndex()) {
                 println("${i+1}. ${ns.title.rendered}")

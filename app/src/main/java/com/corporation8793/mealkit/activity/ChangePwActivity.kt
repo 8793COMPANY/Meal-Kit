@@ -17,5 +17,7 @@ class ChangePwActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.findIdBox.setText(intent.getStringExtra("email"))
+
     }
 }

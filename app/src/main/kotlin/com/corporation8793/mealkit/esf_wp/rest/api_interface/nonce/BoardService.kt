@@ -1,5 +1,6 @@
 package com.corporation8793.mealkit.esf_wp.rest.api_interface.nonce
 
+import com.corporation8793.mealkit.esf_wp.rest.data.Product
 import com.corporation8793.mealkit.esf_wp.rest.data.Store
 import okhttp3.Credentials
 import retrofit2.Call
@@ -14,6 +15,12 @@ import retrofit2.http.Query
  * @see     <a href="https://developer.wordpress.org/rest-api/reference/comments/">WP-Comments [REST API Reference]</a>
  */
 interface BoardService {
+    /**
+     * 전체 상품을 검색합니다.
+     * @author  두동근
+     */
+    @GET("wp-json/wc/v3/products")
+    fun listAllProduct() : Call<List<Product>>
     /**
      * 전체 체인점을 검색합니다.
      * @author  두동근
