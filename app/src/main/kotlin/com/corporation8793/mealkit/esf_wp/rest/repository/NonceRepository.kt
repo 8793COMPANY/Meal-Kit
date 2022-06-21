@@ -4,6 +4,7 @@ import com.corporation8793.mealkit.esf_wp.rest.RestClient
 import com.corporation8793.mealkit.esf_wp.rest.data.*
 import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.PassResetLink
 import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.SignUpBody
+import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.ValidUserStatus
 
 /**
  * [NonceService]의 구현 클래스
@@ -26,6 +27,54 @@ class NonceRepository {
 
         // for test (execute)
         nonce = call.execute().body()!!.nonce
+    }
+    /**
+     * 유저를 검증합니다.
+     * @author  두동근
+     * @return  responseCode (expected : "200"), [ValidUserStatus]
+     * @param   username        회원의 로그인 아이디
+     * @param   password        회원의 로그인 패스워드
+     * @see     Pair
+     * @see     ValidUserStatus
+     */
+    fun validationUser(username: String, password: String) : Pair<String, ValidUserStatus?> {
+        val response = RestClient.nonceService.validationUser(username, password).execute()
+
+        return Pair(response.code().toString(), response.body())
+    }
+    /**
+     * 검증된 유저의 정보를 조회합니다.
+     * @author  두동근
+     * @param   id        [validationUser] id
+     * @return  responseCode (expected : "200"), [Customer]
+     * @see     Pair
+     */
+    fun getValidUserInfo(id: String?) : Pair<String, Customer?> {
+        val response = RestClient.nonceService.getValidUserInfo(id).execute()
+
+        return Pair(response.code().toString(), response.body())
+    }
+    fun Login(username: String, password: String) : Pair<String?, Customer?> {
+        val validationUserResponse = RestClient.nonceService.validationUser(username, password).execute().body()
+        var response : Customer? = null
+
+        if (validationUserResponse != null) {
+            when (validationUserResponse.status) {
+                "error" -> {
+                    println("validation : error")
+                }
+                "ok" -> {
+                    println("validationUser id(${validationUserResponse.user?.id}) → login ok")
+                    println("------------------------")
+                    val getValidUserInfoResponse = getValidUserInfo(validationUserResponse.user?.id)
+                    println("Info : ${validationUserResponse.status}, ${getValidUserInfoResponse.second}")
+                    println("------------------------")
+                    response = getValidUserInfoResponse.second!!
+                }
+            }
+        }
+
+        return Pair(validationUserResponse?.status, response)
     }
     /**
      * 아이디를 조회합니다.

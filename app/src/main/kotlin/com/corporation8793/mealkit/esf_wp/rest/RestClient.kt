@@ -1,5 +1,6 @@
 package com.corporation8793.mealkit.esf_wp.rest
 
+import com.corporation8793.mealkit.esf_wp.rest.api_interface.nonce.BoardService
 import com.corporation8793.mealkit.esf_wp.rest.api_interface.nonce.NonceService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -64,5 +65,5 @@ object RestClient {
     /**
      * [retrofit]의 [BoardService]
      */
-    //val boardService = retrofit.create(BoardService::class.java)
+    val boardService = retrofit.create(BoardService::class.java)
 }

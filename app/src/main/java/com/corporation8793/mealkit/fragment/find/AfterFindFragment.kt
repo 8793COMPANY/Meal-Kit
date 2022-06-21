@@ -2,6 +2,7 @@ package com.corporation8793.mealkit.fragment.find
 
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,12 @@ import com.corporation8793.mealkit.*
 import com.corporation8793.mealkit.adapter.BestAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
+import com.corporation8793.mealkit.esf_wp.rest.api_interface.nonce.NonceService
+import com.corporation8793.mealkit.esf_wp.rest.data.Nonce
+import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,6 +49,14 @@ class AfterFindFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_after_find, container, false)
 
+        Log.e("check bundle",arguments?.getString("email")!!)
+//        NonceService.findUsername(arguments?.getString("email")!!)
+        GlobalScope.launch(Dispatchers.Default) {
+            val value = NonceRepository().findUsername(arguments?.getString("email")!!)
+            println(value.first)
+            println(value.second)
+            Log.e("value",value.toString())
+        }
 
 
 

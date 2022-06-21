@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -48,8 +51,15 @@ class FindIdFragment() : Fragment() {
         var view = inflater.inflate(R.layout.fragment_find_id, container, false)
 
         val find_id_btn = view.findViewById<Button>(R.id.find_id_btn)
+        val verification_code_input_box = view.findViewById<EditText>(R.id.verification_code_input_box)
+
         find_id_btn.setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_find_id_screen)
+            if (!verification_code_input_box.text.toString().trim().equals("")) {
+                val bundle = bundleOf("email" to verification_code_input_box.text.toString().trim())
+                Navigation.findNavController(view).navigate(R.id.action_find_id_screen, bundle)
+            }else{
+                Toast.makeText(context,"이메일을 입력해주세요.",Toast.LENGTH_SHORT).show()
+            }
         }
 
 

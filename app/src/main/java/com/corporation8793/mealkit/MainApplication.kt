@@ -2,10 +2,12 @@ package com.corporation8793.mealkit
 
 import android.app.Application
 import android.content.Context
+import com.corporation8793.mealkit.esf_wp.rest.data.Customer
 
 class MainApplication : Application() {
 
-  var test ="aa";
+
+    lateinit var user:Customer;
     override fun onCreate() {
         super.onCreate()
         // initialize Rudder SDK here
@@ -20,5 +22,12 @@ class MainApplication : Application() {
         fun ApplicationContext() : Context {
             return instance.applicationContext
         }
+    }
+
+
+    fun setCustomer(customer: Customer?){
+        if (customer != null) {
+            user = customer
+        };
     }
 }

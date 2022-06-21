@@ -67,14 +67,15 @@
         android:id="@+id/kit_img_area"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:cardCornerRadius="25dp"
+        app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintDimensionRatio="250:218"
-        app:layout_constraintWidth_percent="0.34"
         app:layout_constraintVertical_bias="0.15"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintTop_toBottomOf="@+id/purchase_text"
-        app:layout_constraintBottom_toTopOf="@+id/test"
-
+        app:layout_constraintBottom_toBottomOf="@+id/guideline_bottom"
+        app:layout_constraintRight_toRightOf="@id/guideline_right"
         app:layout_constraintLeft_toLeftOf="@+id/guideline_left">
 
         <ImageView
@@ -170,7 +171,6 @@
         android:layout_height="0dp"
         android:background="@drawable/pedometer_background"
         app:layout_constraintDimensionRatio="640:72"
-        app:layout_constraintWidth_percent="1"
         app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
         app:layout_constraintRight_toRightOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@+id/kit_img_area"

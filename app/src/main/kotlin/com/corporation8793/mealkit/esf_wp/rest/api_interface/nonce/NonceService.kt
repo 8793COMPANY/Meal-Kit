@@ -3,11 +3,10 @@ package com.corporation8793.mealkit.esf_wp.rest.api_interface.nonce
 import com.corporation8793.mealkit.esf_wp.rest.data.*
 import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.PassResetLink
 import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.SignUpBody
+import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.ValidUserStatus
+import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * Nonce, 회원가입의 인터페이스
@@ -21,6 +20,22 @@ interface NonceService {
      */
     @POST("api/get_nonce/?controller=user&method=generate_auth_cookie")
     fun getNonce() : Call<Nonce>
+
+    /**
+     * 유저를 검증합니다.
+     * @author  두동근
+     * @see     Pair
+     */
+    @GET("api/user/generate_auth_cookie/?insecure=cool")
+    fun validationUser(@Query("username") username: String,
+                       @Query("password") password: String,) : Call<ValidUserStatus>
+
+    /**
+     * 검증된 유저의 정보를 조회합니다.
+     * @author  두동근
+     */
+    @GET("wp-json/wc/v3/customers/{id}")
+    fun getValidUserInfo(@Path("id") id: String?) : Call<Customer>
 
     /**
      * 아이디를 조회합니다.
