@@ -20,32 +20,31 @@ class SignUp {
 //        Assert.assertNotEquals("", nonceRepository.nonce)
 //        println("nonce value : ${nonceRepository.nonce}")
 //
-//        println("\n------ runLogin() ------")
-//        val loginResponse = nonceRepository.Login(username = "test22", password = "1234")
-//        println("runLogin : ${loginResponse.first}, ${loginResponse.second}")
-//        println("------------------------\n")
 
 
-//        println("------ runSignUp() ------")
-//
-//        val runSignUpResponse = nonceRepository.runSignUp(
-//            "test52@naver.com",
-//            "test52",
-//            "testjohn",
-//            "오이오이",
-//            SignUpBody(
-//                Billing("광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", "010-8793-8793"),
-//                Shipping("광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", "010-8793-8793"),
-//                arrayOf(Meta_data(id = null, key = "recommender", value = "test2"))
-//            )
-//        )
-//        Assert.assertEquals("201", runSignUpResponse.first)
-//
-//        println("runSignUp : ${runSignUpResponse.first}, ${runSignUpResponse.second}")
+        println("------ runSignUp() ------")
+
+        val runSignUpResponse = nonceRepository.runSignUp(
+            "test123456@gmail.com",
+            "test9",
+
+            "testjohn",
+            "오이오이",
+            SignUpBody(
+                Billing("광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", "010-8793-8793"),
+                Shipping("광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", "010-8793-8793"),
+                arrayOf(Meta_data(id = null, key = "recommender", value = "test2"))
+            )
+        )
+
+        //Assert.assertEquals("201", runSignUpResponse.first)
+
+
+        println("runSignUp : ${runSignUpResponse.first}, ${runSignUpResponse.second}")
 
         println("--- checkUsername() ----")
         val checkUsernameResponse = nonceRepository.checkUsername("test22")
-        println("checkUsername : ${checkUsernameResponse.first}, ${checkUsernameResponse.second?.get(0)}")
+        println("checkUsername : ${checkUsernameResponse.first}, ${checkUsernameResponse.second?.toString()}")
 
 
 //        println("---- findUsername() ----")
