@@ -55,6 +55,14 @@ object RestClient {
      * 상품 카테고리(해외)
      */
     const val PRODUCT_OVERSEAS = "55"
+    /**
+     * 레시피 카테고리(고객)
+     */
+    const val RECIPE_CUSTOMER = "58"
+    /**
+     * 레시피 카테고리(베스트)
+     */
+    const val RECIPE_BEST = "59"
 
     /**
      * OAuth 1.0 Consumer
