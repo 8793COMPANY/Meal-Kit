@@ -9,6 +9,7 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.adapter.SelectStoreAdapter
 import com.corporation8793.mealkit.databinding.ActivitySelectStoreBinding
@@ -54,6 +55,7 @@ class SelectStoreActivity : AppCompatActivity() {
         binding.selectProductActionBar.backBtn.setOnClickListener {
             finish()
         }
+
 
 
         val display : DisplayMetrics = DisplayMetrics()

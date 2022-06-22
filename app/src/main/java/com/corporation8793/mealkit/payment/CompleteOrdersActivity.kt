@@ -45,4 +45,11 @@ class CompleteOrdersActivity : AppCompatActivity() {
 //
 
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        var intent = Intent(this@CompleteOrdersActivity, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+    }
 }

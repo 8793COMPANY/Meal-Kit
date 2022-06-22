@@ -66,19 +66,19 @@
             bind:layout_constraintRight_toRightOf="@id/guideline_right"></TextView>
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/change_pw_btn"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/pedometer_background"
-            android:text="비밀번호 변경"
-            android:textColor="@color/app_basic_color"
-            app:layout_constraintVertical_bias="0.1"
-            app:layout_constraintHeight_percent="0.07"
-            app:layout_constraintTop_toBottomOf="@+id/find_id_box"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
-            app:layout_constraintRight_toRightOf="@+id/guideline_right"></androidx.appcompat.widget.AppCompatButton>
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/change_pw_btn"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:background="@drawable/pedometer_background"-->
+<!--            android:text="비밀번호 변경"-->
+<!--            android:textColor="@color/app_basic_color"-->
+<!--            app:layout_constraintVertical_bias="0.1"-->
+<!--            app:layout_constraintHeight_percent="0.07"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/find_id_box"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintLeft_toLeftOf="@+id/guideline_left"-->
+<!--            app:layout_constraintRight_toRightOf="@+id/guideline_right"></androidx.appcompat.widget.AppCompatButton>-->
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/go_login_btn"
@@ -90,7 +90,7 @@
             android:textColor="@color/white"
             app:layout_constraintVertical_bias="0.05"
             app:layout_constraintHeight_percent="0.07"
-            app:layout_constraintTop_toBottomOf="@+id/change_pw_btn"
+            app:layout_constraintTop_toBottomOf="@+id/find_id_box"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
             app:layout_constraintRight_toRightOf="@+id/guideline_right"></androidx.appcompat.widget.AppCompatButton>
