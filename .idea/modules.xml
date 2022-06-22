@@ -5,6 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.MealKit.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.MealKit.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MealKit.iml" filepath="$PROJECT_DIR$/.idea/modules/MealKit.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MealKit.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MealKit.app.iml" />
+<<<<<<< HEAD
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/market.MealKit.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/market.MealKit.app.iml" />
+>>>>>>> 456fd3b982c2cec9f00dbe33b26c304f4c301654
     </modules>
   </component>
 </project>
