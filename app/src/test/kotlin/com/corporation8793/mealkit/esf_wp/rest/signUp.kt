@@ -29,8 +29,8 @@ class SignUp {
         println("------ runSignUp() ------")
 
         val runSignUpResponse = nonceRepository.runSignUp(
-            "test123456@gmail.com",
-            "test9",
+            "ggggg2@gmail.com",
+            "test9995",
             "testjohn",
             "오이오이",
             SignUpBody(

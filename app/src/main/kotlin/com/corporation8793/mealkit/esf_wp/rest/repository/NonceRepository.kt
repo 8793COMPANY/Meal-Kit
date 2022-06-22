@@ -10,7 +10,6 @@ import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.ValidUserStatus
  * [NonceService]의 구현 클래스
  * @author  두동근
  * @see     NonceService
- * @see     <a href="https://wordpress.org/plugins/json-api-user/">WP-Plugin [JSON API User]</a>
  */
 class NonceRepository {
     /**
@@ -125,7 +124,6 @@ class NonceRepository {
      * @param   password        회원의 로그인 패스워드
      * @param   first_name      고객의 이름
      * @param   signUpBody      [SignUpBody] 클래스
-     * @see     <a href="https://wordpress.org/plugins/json-api-user/#method%3A%20register">Method: register [JSON API User]</a>
      */
     fun runSignUp(email: String,
                   username: String,
@@ -133,25 +131,38 @@ class NonceRepository {
                   first_name: String,
                   signUpBody: SignUpBody
     ) : Pair<String, Customer?> {
-        val validResponseUsername = RestClient.nonceService.checkUsername(username).execute().body()?.size
-        val validResponseEmail = RestClient.nonceService.findUsername(email).execute().body()?.size
+        val validResponseUsername = RestClient.nonceService.checkUsername(username).execute()
+        val validResponseEmail = RestClient.nonceService.findUsername(email).execute()
+        val vru = Triple(validResponseUsername.code(), validResponseUsername.message(), validResponseUsername.body())
+        val vre = Triple(validResponseEmail.code(), validResponseEmail.message(), validResponseEmail.body())
 
-        return when (validResponseEmail == 0 && validResponseUsername == 0) {
-            true -> {
+        return when {
+                // 정상동작
+            ((vru.first == 200 && vru.third?.size == 0) && (vre.first == 200 && vre.third?.size == 0)) -> {
                 val response = RestClient.nonceService.runSignUp(email, username, password, first_name, signUpBody).execute()
-                Pair("${response.code()} - ${response.message()} / ", response.body())
+                Pair(response.code().toString(), response.body())
+            }
+            ((vru.first == 200 && vru.third?.size == 0) && (vre.first == 200 && vre.third?.size != 0)) -> {
+                // 중복 이메일
+                Pair("501", null)
+            }
+            ((vru.first == 200 && vru.third?.size != 0) && (vre.first == 200 && vre.third?.size == 0)) -> {
+                // 중복 아이디
+                Pair("502", null)
+            }
+            ((vru.first == 200 && vru.third?.size != 0) && (vre.first == 200 && vre.third?.size != 0)) -> {
+                // 중복 아이디, 중복 이메일
+                Pair("503", null)
+            }
+            ((vru.first == 200 && vru.third?.size != 0) && (vre.first == 400 && vre.third?.size == null)) -> {
+                // 중복 아이디, 올바르지 않은 이메일 형식
+                Pair("504", null)
             }
             else -> {
-                if (validResponseEmail != 0) {
-                    // 이메일 중복
-                    Pair("501", null)
-                } else if (validResponseUsername != 0) {
-                    // 아이디 중복
-                    Pair("502", null)
-                } else {
-                    // NULL
-                    Pair("503", null)
-                }
+                // 예외발생
+                println("아이디 로그 : ${vru.first} / ${vru.second} / ${vru.third?.size}")
+                println("이메일 로그 : ${vre.first} / ${vre.second} / ${vre.third?.size}")
+                Pair("510", null)
             }
         }
     }
