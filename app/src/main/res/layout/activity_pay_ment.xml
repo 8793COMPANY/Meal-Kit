@@ -734,7 +734,7 @@
                     app:layout_constraintVertical_bias="0.1"
                     app:layout_constraintLeft_toLeftOf="@+id/payment_left_line5"
                     app:layout_constraintRight_toRightOf="@+id/payment_right_line5"
-                    android:background="@drawable/payment_agree_gray"
+                    android:background="@drawable/payment_agree_btn_selector"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintWidth_percent="0.045"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -798,6 +798,22 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+    <RelativeLayout
+        android:id="@+id/payment_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_80"
+        android:visibility="gone"
+        >
+        <ProgressBar
+            android:layout_centerInParent="true"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:indeterminateTint="@color/app_basic_color"
+            ></ProgressBar>
+
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

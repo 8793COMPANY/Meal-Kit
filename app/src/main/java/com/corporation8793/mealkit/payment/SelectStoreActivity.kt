@@ -1,5 +1,6 @@
 package com.corporation8793.mealkit.payment
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,6 +26,10 @@ import okhttp3.Credentials
 
 
 class SelectStoreActivity : AppCompatActivity() {
+    companion object{
+        lateinit var _selectStoreActivity : Activity
+    }
+
     lateinit var binding : ActivitySelectStoreBinding
     var productAmount = 0
     var finalMoney = 0
@@ -43,6 +48,8 @@ class SelectStoreActivity : AppCompatActivity() {
         var quantity = intent.getStringExtra("quantity")
         var product_amount = intent.getIntExtra("product_amount",0)
         var final_money = intent.getIntExtra("final_money",0)
+
+        _selectStoreActivity = this
 
         binding.selectProductActionBar.backBtn.setOnClickListener {
             finish()

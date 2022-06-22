@@ -1,5 +1,6 @@
 package com.corporation8793.mealkit.payment
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,9 @@ import com.corporation8793.mealkit.databinding.ActivitySelectProductBinding
 
 
 class SelectProductActivity : AppCompatActivity() {
+    companion object{
+        lateinit var _selectProductActivity : Activity
+    }
     lateinit var binding : ActivitySelectProductBinding
     var productAmount = 0
     var finalMoney = 0
@@ -18,6 +22,8 @@ class SelectProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_product)
         binding.setActionBar("상품 선택")
+        _selectProductActivity = this
+
 
         var id = intent.getStringExtra("id")
         var category = intent.getStringExtra("category")
