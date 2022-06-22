@@ -2,6 +2,7 @@ package com.corporation8793.mealkit.payment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.databinding.ActivityCompleteOrdersBinding
@@ -21,6 +22,7 @@ class CompleteOrdersActivity : AppCompatActivity() {
         var quantity = intent.getStringExtra("quantity")
         var order_point = intent.getStringExtra("order_point")
 
+        Log.e("order_id",order_id+"")
         binding.completeOrdersOrderNumberText.setText(order_id)
         binding.completeOrdersShopNameText.setText(shop)
         binding.completeOrdersBuyListText.setText(name+"|"+quantity+"개")

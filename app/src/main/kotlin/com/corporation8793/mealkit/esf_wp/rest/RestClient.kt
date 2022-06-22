@@ -15,17 +15,14 @@ import se.akerfeldt.okhttp.signpost.SigningInterceptor
 object RestClient {
     /**
      * Static IP of AWS Server (Eat-So-Fresh 밀키트)
-     * @see     <a href="http://13.209.29.68/">Eat-So-Fresh 밀키트</a>
      */
     private const val baseUrl = "http://13.209.29.68/"
     /**
      * CONSUMER KEY
-     * @see     <a href="https://woocommerce.github.io/woocommerce-rest-api-docs/#authentication">authentication</a>
      */
     private const val CONSUMER_KEY = "ck_c293912d956a0a48e86e8682af5e993c591d72fe"
     /**
      * CONSUMER SECRET
-     * @see     <a href="https://woocommerce.github.io/woocommerce-rest-api-docs/#authentication">authentication</a>
      */
     private const val CONSUMER_SECRET = "cs_5668293b63987df1626bf652f408c1fec67498c2"
 
@@ -66,12 +63,10 @@ object RestClient {
 
     /**
      * OAuth 1.0 Consumer
-     * @see     <a href="https://github.com/pakerfeldt/okhttp-signpost">okhttp-signpost</a>
      */
     private val consumer = OkHttpOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET)
     /**
      * OAuth 1.0 Client
-     * @see     <a href="https://github.com/pakerfeldt/okhttp-signpost">okhttp-signpost</a>
      */
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(SigningInterceptor(consumer))

@@ -229,6 +229,7 @@ class JoinActivity : AppCompatActivity() {
 
                     if(value.first.toString().equals("201")){
                         Toast.makeText(this@JoinActivity, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                        finish();
                     }
 //                    binding.checkText.visibility = View.VISIBLE
 //                    if(value.second!!.size > 0){
@@ -263,42 +264,33 @@ class JoinActivity : AppCompatActivity() {
         isActiveJoinBtn = false
 
         if(binding.idInputBox.text.length == 0){
-            Log.e("1","asdasd111");
             return
         }
         if(!isOverlapCheck){
-            Log.e("2","asdasd111");
             return
         }
         if(binding.nameInputBox.text.length == 0){
-            Log.e("3","asdasd111");
             return
         }
       if(!binding.pwInputBox.text.toString().equals(binding.pwCheckInputBox.text.toString())){
-          Log.e("4","asdasd111");
           return
       }
 
         if(binding.phoneNumberInputBox.text.length == 0){
-            Log.e("6","asdasd111");
             return
         }
         if(binding.emailInputBox.text.length == 0){
-            Log.e("7","asdasd111");
             return
         }
 
         if(binding.postCodeInputBox.text.length == 0){
-            Log.e("8","asdasd111");
             return
         }
-
 
 //
 //        if(!binding.accessTermBtn.isChecked){
 //            return
 //        }
-
 
         binding.joinBtn.setBackgroundTintList(ContextCompat.getColorStateList(this,R.color.green_009658))
         isActiveJoinBtn = true

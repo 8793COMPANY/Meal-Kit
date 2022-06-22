@@ -11,7 +11,6 @@ import retrofit2.http.*
 /**
  * Nonce, 회원가입의 인터페이스
  * @author  두동근
- * @see     <a href="https://wordpress.org/plugins/json-api-user/">WP-Plugin [JSON API User]</a>
  */
 interface NonceService {
     /**

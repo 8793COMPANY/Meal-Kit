@@ -150,6 +150,7 @@
 
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/selectProduct_Plus_btn"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:background="@drawable/selectproduct_plus_btn"
@@ -205,32 +206,32 @@
 
 
 
-                    <RadioButton
-                        android:id="@+id/selectProduct_DeliveryRadio_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        app:layout_constraintWidth_percent="0.05"
-                        android:background="@drawable/radio_btn_selector"
-                        android:button="@null"
-                        bind:layout_constraintBottom_toBottomOf="@+id/selectProduct_PickupRadio_btn"
-                        bind:layout_constraintDimensionRatio="1:1"
-                        bind:layout_constraintHorizontal_bias="0"
-                        bind:layout_constraintLeft_toLeftOf="@+id/selectProduct_left_line5"
-                        app:layout_constraintVertical_bias="0.3"
-                        bind:layout_constraintRight_toRightOf="@+id/selectProduct_right_line5"
-                        bind:layout_constraintTop_toTopOf="parent"></RadioButton>
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/selectProduct_DeliveryRadio_btn"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        app:layout_constraintWidth_percent="0.05"-->
+<!--                        android:background="@drawable/radio_btn_selector"-->
+<!--                        android:button="@null"-->
+<!--                        bind:layout_constraintBottom_toBottomOf="@+id/selectProduct_PickupRadio_btn"-->
+<!--                        bind:layout_constraintDimensionRatio="1:1"-->
+<!--                        bind:layout_constraintHorizontal_bias="0"-->
+<!--                        bind:layout_constraintLeft_toLeftOf="@+id/selectProduct_left_line5"-->
+<!--                        app:layout_constraintVertical_bias="0.3"-->
+<!--                        bind:layout_constraintRight_toRightOf="@+id/selectProduct_right_line5"-->
+<!--                        bind:layout_constraintTop_toTopOf="parent"></RadioButton>-->
 
-                    <TextView
-                        android:id="@+id/selectProduct_DeliveryRadio_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="배달로 받을게요"
-                        android:textSize="17sp"
-                        android:textColor="@color/black_2b2b2b"
-                        bind:layout_constraintBottom_toBottomOf="@+id/selectProduct_DeliveryRadio_btn"
-                        bind:layout_constraintLeft_toRightOf="@+id/selectProduct_DeliveryRadio_btn"
-                        bind:layout_constraintTop_toTopOf="@+id/selectProduct_DeliveryRadio_btn"></TextView>
+<!--                    <TextView-->
+<!--                        android:id="@+id/selectProduct_DeliveryRadio_text"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="5dp"-->
+<!--                        android:text="배달로 받을게요"-->
+<!--                        android:textSize="17sp"-->
+<!--                        android:textColor="@color/black_2b2b2b"-->
+<!--                        bind:layout_constraintBottom_toBottomOf="@+id/selectProduct_DeliveryRadio_btn"-->
+<!--                        bind:layout_constraintLeft_toRightOf="@+id/selectProduct_DeliveryRadio_btn"-->
+<!--                        bind:layout_constraintTop_toTopOf="@+id/selectProduct_DeliveryRadio_btn"></TextView>-->
 
 
                     <RadioButton
@@ -240,13 +241,14 @@
                         app:layout_constraintWidth_percent="0.05"
                         android:background="@drawable/radio_btn_selector"
                         android:button="@null"
+                        android:checked="true"
                         bind:layout_constraintBottom_toBottomOf="parent"
                         bind:layout_constraintDimensionRatio="1:1"
                         bind:layout_constraintHorizontal_bias="0"
                         bind:layout_constraintLeft_toLeftOf="@+id/selectProduct_left_line5"
                         app:layout_constraintVertical_bias="0.07"
                         bind:layout_constraintRight_toRightOf="@+id/selectProduct_right_line5"
-                         app:layout_constraintTop_toBottomOf="@+id/selectProduct_DeliveryRadio_btn"></RadioButton>
+                         app:layout_constraintTop_toTopOf="parent"></RadioButton>
 
                     <TextView
                         android:id="@+id/selectProduct_PickupRadio_text"
@@ -418,7 +420,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/selectProduct_Order_btn"
                 android:background="@drawable/input_box_background"
-                android:backgroundTint="@color/gray_dddddd"
+                android:backgroundTint="@color/app_basic_color"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:text="18,900원 주문하기"

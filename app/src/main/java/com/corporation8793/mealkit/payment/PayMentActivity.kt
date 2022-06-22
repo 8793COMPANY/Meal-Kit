@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.corporation8793.mealkit.R
+import com.corporation8793.mealkit.activity.JoinActivity
 
 import com.corporation8793.mealkit.databinding.ActivityPayMentBinding
 import com.corporation8793.mealkit.esf_wp.rest.api_interface.nonce.BoardService
@@ -36,16 +37,17 @@ class PayMentActivity : AppCompatActivity() {
         var name = intent.getStringExtra("name")
         var price = intent.getStringExtra("price")
         var quantity = intent.getStringExtra("quantity")
+        var product_amount = intent.getIntExtra("product_amount",0)
+        var final_money = intent.getIntExtra("final_money",0)
 
-        var total = (price!!.toInt()+3000).toString()
 
         binding.paymentShopText.setText(shop)
         binding.paymentProductText.setText(name)
         binding.paymentAmountText.setText(price+"원")
         binding.paymentProductCountText.setText(quantity+"개")
 
-        binding.paymentProductPrice.setText(price+"원")
-        binding.paymentFinalPrice.setText(total+"원")
+        binding.paymentProductPrice.setText(product_amount.toString()+"원")
+        binding.paymentFinalPrice.setText(final_money.toString()+"원")
 
         GlobalScope.launch(Dispatchers.Default) {
             val sharedPreference = getSharedPreferences("other", 0)
@@ -71,6 +73,7 @@ class PayMentActivity : AppCompatActivity() {
         }
 
         binding.paymentPaymentBtn.setOnClickListener {
+
             GlobalScope.launch(Dispatchers.Default) {
                 val sharedPreference = getSharedPreferences("other", 0)
                 val id = sharedPreference.getString("id","test22")
@@ -91,7 +94,7 @@ class PayMentActivity : AppCompatActivity() {
                         billing = Billing(address_1, address_2, post_code, post_code),
                         shipping = Shipping(address_1, address_2, post_code, post_code),
                         line_items = listOf(
-                                LineItems(name = name, product_id = product_id!!, quantity = quantity!!, total = total)
+                                LineItems(name = name, product_id = product_id!!, quantity = quantity!!, total = final_money.toString())
                         ),
                         meta_data = listOf(
                                 OrderMeta(id = null, key = "store_name", value = shop!!),
