@@ -6,15 +6,11 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.join"
     >
-
     <data>
-
         <variable
             name="title"
             type="String"/>
-
     </data>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -77,6 +73,7 @@
                 bind:layout_constraintTop_toBottomOf="@+id/id_text"
                 bind:layout_constraintLeft_toLeftOf="@+id/left_guideline"
                 bind:layout_constraintRight_toLeftOf="@+id/overlap_check_btn"
+                android:singleLine="true"
                 ></EditText>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -138,7 +135,12 @@
                 bind:layout_constraintTop_toBottomOf="@+id/name_text"
                 bind:layout_constraintLeft_toLeftOf="@+id/left_guideline"
                 bind:layout_constraintRight_toRightOf="@+id/right_guideline"
+                android:singleLine="true"
                 ></EditText>
+
+
+
+
 
             <TextView
                 android:id="@+id/pw_text"
@@ -164,10 +166,23 @@
                 android:textSize="13dp"
                 android:hint="비밀번호"
                 android:backgroundTint="#d6d6d6"
+                android:inputType="textPassword"
                 bind:layout_constraintTop_toBottomOf="@+id/pw_text"
                 bind:layout_constraintLeft_toLeftOf="@+id/left_guideline"
                 bind:layout_constraintRight_toRightOf="@+id/right_guideline"
+                android:singleLine="true"
                 ></EditText>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/join_password_show_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/join_password_hide_image"
+                app:layout_constraintBottom_toBottomOf="@+id/pw_input_box"
+                app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                android:layout_marginRight="10dp"
+
+                app:layout_constraintTop_toBottomOf="@+id/pw_text"></androidx.appcompat.widget.AppCompatButton>
 
 
             <TextView
@@ -191,13 +206,46 @@
                 android:id="@+id/pw_check_input_box"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:textSize="13dp"
                 android:hint="비밀번호 확인"
                 android:backgroundTint="#d6d6d6"
                 bind:layout_constraintTop_toBottomOf="@+id/pw_check_text"
                 bind:layout_constraintLeft_toLeftOf="@+id/left_guideline"
                 bind:layout_constraintRight_toRightOf="@+id/right_guideline"
+                android:singleLine="true"
                 ></EditText>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/join_passwordcheck_show_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/join_password_hide_image"
+                app:layout_constraintBottom_toBottomOf="@+id/pw_check_input_box"
+                app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/pw_check_text"
+                android:layout_marginRight="10dp"
+                ></androidx.appcompat.widget.AppCompatButton>
+
+
+            <TextView
+                android:id="@+id/join_password_errorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/app_basic_color"
+                android:textSize="12dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:layout_marginTop="3dp"
+                bind:layout_constraintVertical_bias="0"
+                app:layout_constraintHorizontal_bias="0"
+                bind:layout_constraintTop_toBottomOf="@+id/pw_check_input_box"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintLeft_toLeftOf="@id/left_guideline"
+                bind:layout_constraintRight_toRightOf="@id/right_guideline"
+                ></TextView>
 
 
             <TextView
@@ -211,7 +259,7 @@
                 android:includeFontPadding="false"
                 android:layout_marginTop="10dp"
                 bind:layout_constraintVertical_bias="0"
-                bind:layout_constraintTop_toBottomOf="@+id/pw_check_input_box"
+                bind:layout_constraintTop_toBottomOf="@+id/join_password_errorText"
                 bind:layout_constraintBottom_toBottomOf="parent"
                 bind:layout_constraintLeft_toLeftOf="@id/left_guideline"
                 bind:layout_constraintRight_toRightOf="@id/right_guideline"
@@ -222,11 +270,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="13dp"
+                android:inputType="phone"
                 android:hint="‘-’ 구분없이 입력"
                 android:backgroundTint="#d6d6d6"
                 bind:layout_constraintTop_toBottomOf="@+id/phone_number_text"
                 bind:layout_constraintLeft_toLeftOf="@+id/left_guideline"
                 bind:layout_constraintRight_toRightOf="@+id/right_guideline"
+                android:singleLine="true"
                 ></EditText>
 
 
@@ -257,6 +307,7 @@
                 bind:layout_constraintTop_toBottomOf="@+id/email_text"
                 bind:layout_constraintLeft_toLeftOf="@+id/left_guideline"
                 bind:layout_constraintRight_toRightOf="@+id/right_guideline"
+                android:singleLine="true"
                 ></EditText>
 
 
@@ -286,7 +337,8 @@
                 android:paddingRight="20dp"
                 android:backgroundTint="#d6d6d6"
                 android:textSize="12dp"
-                android:textColor="#c9c9c9"
+                android:textColor="@color/black"
+                android:enabled="false"
                 android:textColorHint="#c9c9c9"
                 bind:layout_constraintHorizontal_bias="0"
                 bind:layout_constraintVertical_bias="0"
@@ -294,6 +346,7 @@
                 bind:layout_constraintTop_toBottomOf="@+id/address_text"
                 bind:layout_constraintBottom_toBottomOf="parent"
                 bind:layout_constraintRight_toLeftOf="@+id/search_post_code_btn"
+                android:singleLine="true"
                 ></EditText>
 
 
@@ -327,16 +380,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:backgroundTint="#d6d6d6"
+                android:enabled="false"
                 android:hint="주소"
-                android:textSize="12dp"
-                android:textColor="#c9c9c9"
+                android:singleLine="true"
                 android:textColorHint="#c9c9c9"
-                bind:layout_constraintHorizontal_bias="0"
-                bind:layout_constraintVertical_bias="0"
-                bind:layout_constraintLeft_toLeftOf="@+id/left_guideline"
-                bind:layout_constraintTop_toBottomOf="@+id/post_code_input_box"
+                android:textSize="12dp"
+                android:textColor="@color/black"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintVertical_bias="0.01"
                 bind:layout_constraintBottom_toBottomOf="parent"
-                bind:layout_constraintRight_toRightOf="@id/right_guideline"></EditText>
+                bind:layout_constraintLeft_toLeftOf="@+id/left_guideline"
+                bind:layout_constraintRight_toRightOf="@id/right_guideline"
+                bind:layout_constraintTop_toBottomOf="@+id/post_code_input_box"
+               ></EditText>
 
             <EditText
                 android:id="@+id/address_detail_input_box"
@@ -346,7 +402,7 @@
                 android:backgroundTint="#d6d6d6"
                 android:hint="상세주소"
                 android:textSize="12dp"
-                android:textColor="#c9c9c9"
+                android:singleLine="true"
                 android:textColorHint="#c9c9c9"
                 bind:layout_constraintHorizontal_bias="0"
                 bind:layout_constraintVertical_bias="0"
@@ -377,6 +433,7 @@
                 android:id="@+id/recommender_code_input_box"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:textSize="13dp"
                 android:backgroundTint="#d6d6d6"
                 android:hint="추천인 코드 입력"
