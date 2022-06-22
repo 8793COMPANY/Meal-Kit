@@ -20,10 +20,13 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class FindActivity : AppCompatActivity() {
     lateinit var binding : ActivityFindBinding
+    lateinit var title : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        title = intent.getStringExtra("title")!!
         binding = DataBindingUtil.setContentView(this, R.layout.activity_find)
-        binding.setActionBar(intent.getStringExtra("title")+" 찾기")
+
+        binding.setActionBar(title+" 찾기")
 
         binding.actionBar.backBtn.setOnClickListener {
             finish()
@@ -33,4 +36,13 @@ class FindActivity : AppCompatActivity() {
     fun changeTitle(title: String){
         binding.setActionBar(title)
     }
+
+    fun getFind(): Int{
+        if (title.equals("아이디")){
+            return 0
+        }
+
+        return 1
+    }
+
 }

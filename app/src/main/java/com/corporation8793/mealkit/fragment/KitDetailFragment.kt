@@ -74,6 +74,7 @@ class KitDetailFragment() : Fragment() {
         payment_btn.setOnClickListener {
             var intent = Intent(activity, SelectProductActivity::class.java)
             intent.putExtra("id",id)
+            intent.putExtra("img",img)
             intent.putExtra("category",category)
             intent.putExtra("name",name)
             intent.putExtra("price",price)

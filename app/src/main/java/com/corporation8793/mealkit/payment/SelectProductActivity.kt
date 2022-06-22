@@ -5,7 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.databinding.ActivitySelectProductBinding
 
@@ -29,9 +31,12 @@ class SelectProductActivity : AppCompatActivity() {
         var category = intent.getStringExtra("category")
         var name = intent.getStringExtra("name")
         var price = intent.getStringExtra("price")
+        var img = intent.getStringExtra("img")
 
         productAmount = (price!!.toInt() * count)
         finalMoney = (productAmount+3000)
+
+        Glide.with(this).load(img).into(binding.selectProductProductImg)
 
         binding.selectProductShopText.setText(category)
         binding.selectProductProductText.setText(name)
