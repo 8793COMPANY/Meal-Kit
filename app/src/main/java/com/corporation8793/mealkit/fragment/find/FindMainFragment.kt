@@ -59,11 +59,13 @@ class FindMainFragment() : Fragment() {
 
         TabLayoutMediator(kindOfSearch, viewpager) { tab, position ->
             tab.text = tabName[position].toString()
+
         }.attach()
 
         kindOfSearch.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 (activity as FindActivity).changeTitle(tab!!.text.toString())
+
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {

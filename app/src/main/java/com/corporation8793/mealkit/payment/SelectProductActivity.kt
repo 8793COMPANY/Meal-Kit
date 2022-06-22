@@ -73,6 +73,7 @@ class SelectProductActivity : AppCompatActivity() {
             var intent = Intent(this, SelectStoreActivity::class.java)
             intent.putExtra("id",id)
             intent.putExtra("category",category)
+            intent.putExtra("img",img)
             intent.putExtra("name",name)
             intent.putExtra("price",price)
             intent.putExtra("quantity",binding.selectProductCountText.text.toString())

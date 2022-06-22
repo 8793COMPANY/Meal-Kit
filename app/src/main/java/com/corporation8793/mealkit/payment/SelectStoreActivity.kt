@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -49,6 +50,8 @@ class SelectStoreActivity : AppCompatActivity() {
         var quantity = intent.getStringExtra("quantity")
         var product_amount = intent.getIntExtra("product_amount",0)
         var final_money = intent.getIntExtra("final_money",0)
+        var img = intent.getStringExtra("img")
+
 
         _selectStoreActivity = this
 
@@ -75,6 +78,7 @@ class SelectStoreActivity : AppCompatActivity() {
                 var intent = Intent(this@SelectStoreActivity, PayMentActivity::class.java)
                 intent.putExtra("id",product_id)
                 intent.putExtra("category",shop)
+                intent.putExtra("img",img)
                 intent.putExtra("name",name)
                 intent.putExtra("price",price)
                 intent.putExtra("quantity",quantity)

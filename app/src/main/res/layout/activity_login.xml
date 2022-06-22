@@ -86,6 +86,7 @@
         android:layout_height="0dp"
         android:paddingLeft="20dp"
         android:textSize="13dp"
+        android:inputType="textPassword"
         android:hint="Password"
         android:textColorHint="@color/hint_text_color"
         android:drawableStart="@drawable/resize_lock_icon"
@@ -247,7 +248,6 @@
             android:layout_centerInParent="true"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:indeterminateTint="@color/app_basic_color"
         ></ProgressBar>
 
 

@@ -602,6 +602,23 @@
 
     </androidx.core.widget.NestedScrollView>
 
+        <RelativeLayout
+            android:id="@+id/join_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_80"
+            android:visibility="gone"
+            >
+            <ProgressBar
+                android:layout_centerInParent="true"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+
+                ></ProgressBar>
+
+
+        </RelativeLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

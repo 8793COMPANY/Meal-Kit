@@ -78,11 +78,12 @@
                     bind:layout_constraintVertical_bias="0.05"
                    ></TextView>
 
-                <ImageView
-                    android:id="@+id/payment_ProductImg"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/payment_ProductImgArea"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@drawable/ordertest"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="0dp"
                     app:layout_constraintWidth_percent="0.3"
                     bind:layout_constraintBottom_toBottomOf="parent"
                     bind:layout_constraintDimensionRatio="1:0.8"
@@ -90,7 +91,32 @@
                     app:layout_constraintVertical_bias="0.2"
                     bind:layout_constraintLeft_toLeftOf="@+id/payment_left_line"
                     bind:layout_constraintRight_toRightOf="@+id/payment_right_line"
-                    bind:layout_constraintTop_toBottomOf="@+id/payment_OrderText"></ImageView>
+                    bind:layout_constraintTop_toBottomOf="@+id/payment_OrderText">
+
+                    <ImageView
+                        android:id="@+id/payment_ProductImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+
+                        ></ImageView>
+
+                </androidx.cardview.widget.CardView>
+
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/payment_ProductImg"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="0dp"-->
+<!--                    android:scaleType="fitXY"-->
+<!--                    app:layout_constraintWidth_percent="0.3"-->
+<!--                    bind:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    bind:layout_constraintDimensionRatio="1:0.8"-->
+<!--                    bind:layout_constraintHorizontal_bias="0"-->
+<!--                    app:layout_constraintVertical_bias="0.2"-->
+<!--                    bind:layout_constraintLeft_toLeftOf="@+id/payment_left_line"-->
+<!--                    bind:layout_constraintRight_toRightOf="@+id/payment_right_line"-->
+<!--                    bind:layout_constraintTop_toBottomOf="@+id/payment_OrderText"></ImageView>-->
 
 
                 <TextView
@@ -101,11 +127,11 @@
                     android:text="[요거트 가게]"
                     android:textColor="@color/category_unselected_color"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@+id/payment_ProductImg"
+                    app:layout_constraintStart_toEndOf="@+id/payment_ProductImgArea"
                     app:layout_constraintVertical_bias="0.0"
                     bind:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="@+id/payment_right_line"
-                    bind:layout_constraintTop_toTopOf="@+id/payment_ProductImg"></TextView>
+                    bind:layout_constraintTop_toTopOf="@+id/payment_ProductImgArea"></TextView>
 
 
                 <TextView
@@ -170,7 +196,7 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="35dp"
-                    app:layout_constraintTop_toBottomOf="@+id/payment_ProductImg"
+                    app:layout_constraintTop_toBottomOf="@+id/payment_ProductImgArea"
                     app:layout_constraintEnd_toEndOf="@+id/payment_right_line"
                     app:layout_constraintStart_toStartOf="@+id/payment_left_line"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -279,7 +305,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/white">
                 <androidx.constraintlayout.widget.Guideline
@@ -313,6 +339,7 @@
                     app:layout_constraintVertical_bias="0.1"></TextView>
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/payment_AddressChange"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/payment_btn_style"
@@ -327,20 +354,39 @@
                     ></androidx.appcompat.widget.AppCompatButton>
 
                 <TextView
-                    android:id="@+id/address"
+                    android:id="@+id/payment_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="광주광역시 북구 동구 동계천로150,\n502호,팔칠구삼"
+                    android:text="광주광역시 북구 동구 동계천로150,"
+                    android:lineHeight="23sp"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="5dp"
+                    app:layout_constraintVertical_bias="0.3"
+                    app:layout_constraintLeft_toLeftOf="@+id/payment_left_line2"
+                    app:layout_constraintTop_toBottomOf="@+id/payment_DeliveryInfoext"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    ></TextView>
+
+
+                <EditText
+                    android:id="@+id/payment_address_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
                     android:lineHeight="23sp"
                     android:textSize="13sp"
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:includeFontPadding="false"
                     android:textColor="@color/black"
                     app:layout_constraintVertical_bias="0.3"
+                    android:ems="10"
                     app:layout_constraintLeft_toLeftOf="@+id/payment_left_line2"
-                    app:layout_constraintTop_toBottomOf="@+id/payment_DeliveryInfoext"
+                    app:layout_constraintTop_toBottomOf="@+id/payment_address"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    ></TextView>
+                    ></EditText>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -810,7 +856,7 @@
             android:layout_centerInParent="true"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:indeterminateTint="@color/app_basic_color"
+
             ></ProgressBar>
 
 
