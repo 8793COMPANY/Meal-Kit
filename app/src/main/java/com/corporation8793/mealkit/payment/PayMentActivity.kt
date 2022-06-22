@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -71,6 +73,21 @@ class PayMentActivity : AppCompatActivity() {
             }
         }
 
+//        binding.paymentUsepointEdit.addTextChangedListener(object: TextWatcher {
+//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//
+//            }
+//
+//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//
+//            }
+//
+//            override fun afterTextChanged(p0: Editable?) {
+//
+//            }
+//
+//        })
+
         GlobalScope.launch(Dispatchers.Default) {
             val sharedPreference = getSharedPreferences("other", 0)
             val editor = sharedPreference.getString("id","test22")
@@ -89,6 +106,7 @@ class PayMentActivity : AppCompatActivity() {
                 binding.paymentOrdererNameInput.setText(value.second?.get(0)?.first_name)
                 binding.paymentOrdererContactInput.setText(phone)
                 binding.address.setText(value.second?.get(0)?.billing?.address_1+",\n"+value.second?.get(0)?.billing?.address_2)
+
 
             }
 //                binding.checkText.visibility = View.VISIBLE
