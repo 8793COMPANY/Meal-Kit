@@ -20,14 +20,17 @@ class SignUp {
 //        Assert.assertNotEquals("", nonceRepository.nonce)
 //        println("nonce value : ${nonceRepository.nonce}")
 //
+//        println("\n------ runLogin() ------")
+//        val loginResponse = nonceRepository.Login(username = "test22", password = "1234")
+//        println("runLogin : ${loginResponse.first}, ${loginResponse.second}")
+//        println("------------------------\n")
 
 
         println("------ runSignUp() ------")
 
         val runSignUpResponse = nonceRepository.runSignUp(
-            "test123456@gmail.com",
-            "test9",
-
+            "ggggg2@gmail.com",
+            "test9995",
             "testjohn",
             "오이오이",
             SignUpBody(
@@ -36,9 +39,7 @@ class SignUp {
                 arrayOf(Meta_data(id = null, key = "recommender", value = "test2"))
             )
         )
-
         //Assert.assertEquals("201", runSignUpResponse.first)
-
 
         println("runSignUp : ${runSignUpResponse.first}, ${runSignUpResponse.second}")
 

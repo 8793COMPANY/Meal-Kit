@@ -64,7 +64,7 @@ class PayMentActivity : AppCompatActivity() {
                 binding.paymentAgreeCheckBox.isSelected = false
                 binding.paymentPaymentBtn.backgroundTintList = ContextCompat.getColorStateList(this,R.color.gray_dddddd)
                 binding.paymentPaymentBtn.isEnabled = false
-            }else { 
+            }else {
                 binding.paymentAgreeCheckBox.isSelected = true
                 binding.paymentPaymentBtn.backgroundTintList = ContextCompat.getColorStateList(this,R.color.app_basic_color)
                 binding.paymentPaymentBtn.isEnabled = true
