@@ -194,7 +194,7 @@ class JoinActivity : AppCompatActivity() {
             if(!isActiveJoinBtn){
                 return@setOnClickListener
             }
-
+            binding.joinProgress.visibility=View.VISIBLE
             GlobalScope.launch(Dispatchers.Default) {
                 val value = NonceRepository().runSignUp(
                         binding.emailInputBox.text.toString().trim(),
@@ -214,7 +214,7 @@ class JoinActivity : AppCompatActivity() {
 //                println(value.second?.id)
 
                 GlobalScope.launch(Dispatchers.Main) {
-
+                    binding.joinProgress.visibility=View.GONE
                     if(value.first.toString().equals("504")){
                         Toast.makeText(this@JoinActivity, "올바르지 않은 이메일 형식입니다.", Toast.LENGTH_SHORT).show()
                     }
