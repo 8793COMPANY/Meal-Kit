@@ -4,10 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.corporation8793.mealkit.R
+import com.corporation8793.mealkit.activity.AddreesWebActivity
 import com.corporation8793.mealkit.activity.JoinActivity
 
 import com.corporation8793.mealkit.databinding.ActivityPayMentBinding
@@ -70,6 +73,25 @@ class PayMentActivity : AppCompatActivity() {
                 binding.paymentPaymentBtn.isEnabled = true
             }
         }
+        binding.paymentAddressChange.setOnClickListener{
+            var intent = Intent(this@PayMentActivity, AddreesWebActivity::class.java)
+            startActivityForResult(intent,1000)
+        }
+
+//        binding.paymentUsepointEdit.addTextChangedListener(object: TextWatcher {
+//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//
+//            }
+//
+//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//
+//            }
+//
+//            override fun afterTextChanged(p0: Editable?) {
+//
+//            }
+//
+//        })
 
         GlobalScope.launch(Dispatchers.Default) {
             val sharedPreference = getSharedPreferences("other", 0)
@@ -88,7 +110,8 @@ class PayMentActivity : AppCompatActivity() {
             GlobalScope.launch(Dispatchers.Main) {
                 binding.paymentOrdererNameInput.setText(value.second?.get(0)?.first_name)
                 binding.paymentOrdererContactInput.setText(phone)
-                binding.address.setText(value.second?.get(0)?.billing?.address_1+",\n"+value.second?.get(0)?.billing?.address_2)
+                binding.paymentAddress.setText(value.second?.get(0)?.billing?.address_1+",\n")
+                binding.paymentAddressDetail.setText(value.second?.get(0)?.billing?.address_2)
 
             }
 //                binding.checkText.visibility = View.VISIBLE
@@ -114,8 +137,8 @@ class PayMentActivity : AppCompatActivity() {
                         id = null,
                         date_created = null,
                         customer_id = user_id,
-                        billing = Billing(address_1, address_2, post_code, post_code),
-                        shipping = Shipping(address_1, address_2, post_code, post_code),
+                        billing = Billing(address_1, binding.paymentAddressDetail.text.toString(), post_code, post_code),
+                        shipping = Shipping(address_1, binding.paymentAddressDetail.text.toString(), post_code, post_code),
                         line_items = listOf(
                                 LineItems(name = name, product_id = product_id!!, quantity = quantity!!, total = final_money.toString())
                         ),
@@ -148,6 +171,22 @@ class PayMentActivity : AppCompatActivity() {
 
                 }
 //                binding.checkText.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK){
+            when(requestCode){
+                1000 -> {
+                    val address = data?.getStringExtra("data")!!.split(",")
+                    if (address != null) {
+                        binding.paymentAddress.setText(address[0]+address[1])
+                        post_code = address[0]
+                        address_1 = address[1]
+                    }
+                }
             }
         }
     }

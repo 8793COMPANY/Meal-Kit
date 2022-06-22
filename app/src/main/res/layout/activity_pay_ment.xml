@@ -279,7 +279,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/white">
                 <androidx.constraintlayout.widget.Guideline
@@ -313,6 +313,7 @@
                     app:layout_constraintVertical_bias="0.1"></TextView>
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/payment_AddressChange"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/payment_btn_style"
@@ -327,20 +328,39 @@
                     ></androidx.appcompat.widget.AppCompatButton>
 
                 <TextView
-                    android:id="@+id/address"
+                    android:id="@+id/payment_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="광주광역시 북구 동구 동계천로150,\n502호,팔칠구삼"
+                    android:text="광주광역시 북구 동구 동계천로150,"
+                    android:lineHeight="23sp"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="5dp"
+                    app:layout_constraintVertical_bias="0.3"
+                    app:layout_constraintLeft_toLeftOf="@+id/payment_left_line2"
+                    app:layout_constraintTop_toBottomOf="@+id/payment_DeliveryInfoext"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    ></TextView>
+
+
+                <EditText
+                    android:id="@+id/payment_address_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
                     android:lineHeight="23sp"
                     android:textSize="13sp"
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:includeFontPadding="false"
                     android:textColor="@color/black"
                     app:layout_constraintVertical_bias="0.3"
+                    android:ems="10"
                     app:layout_constraintLeft_toLeftOf="@+id/payment_left_line2"
-                    app:layout_constraintTop_toBottomOf="@+id/payment_DeliveryInfoext"
+                    app:layout_constraintTop_toBottomOf="@+id/payment_address"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    ></TextView>
+                    ></EditText>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -424,7 +444,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/payment_UsepointEdit"
                     app:layout_constraintLeft_toLeftOf="@id/payment_left_line3"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:text="사용가능 적립금 2,280원"
+                    android:text="사용가능 적립금 0원"
                     android:textSize="14sp"
                     android:textColor="@color/gray_797979"
                     android:fontFamily="@font/nskr_medium"
@@ -782,6 +802,7 @@
                     android:backgroundTint="@color/gray_dddddd"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:enabled="false"
                     android:text="결제하기"
                     android:textColor="@color/white"
                     android:textColorHint="@color/hint_text_color"

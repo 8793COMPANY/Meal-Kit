@@ -75,6 +75,7 @@ class LoginActivity : AppCompatActivity() {
                     binding.loginProgress.visibility = View.GONE
                 }else{
                     Toast.makeText(this@LoginActivity,"로그인이 실패하였습니다",Toast.LENGTH_LONG).show();
+                    binding.loginProgress.visibility = View.GONE
                     return@launch
                 }
 
