@@ -52,8 +52,11 @@ class HomeFragment() : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        val address = view.findViewById<TextView>(R.id.address)
         val viewPager = view.findViewById<ViewPager2>(R.id.kit_list)
         val tabLayout = view.findViewById<TabLayout>(R.id.kit_category)
+
+        address.setText(MainApplication.instance.user.billing.address_1)
 
 
         viewPager.apply {

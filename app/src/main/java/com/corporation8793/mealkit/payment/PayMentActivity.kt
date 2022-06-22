@@ -1,8 +1,11 @@
 package com.corporation8793.mealkit.payment
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.activity.JoinActivity
@@ -21,6 +24,11 @@ import okhttp3.Credentials
 
 class PayMentActivity : AppCompatActivity() {
 
+    companion object{
+        lateinit var _paymentActivity : Activity
+    }
+
+
     lateinit var binding : ActivityPayMentBinding
     var user_id = ""
     var address_1 = ""
@@ -31,6 +39,8 @@ class PayMentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pay_ment)
         binding.setActionBar("주문/결제")
+
+        _paymentActivity = this
 
         var product_id = intent.getStringExtra("id")
         var shop = intent.getStringExtra("category")
@@ -48,6 +58,18 @@ class PayMentActivity : AppCompatActivity() {
 
         binding.paymentProductPrice.setText(product_amount.toString()+"원")
         binding.paymentFinalPrice.setText(final_money.toString()+"원")
+
+        binding.paymentAgreeCheckBox.setOnClickListener {
+            if(binding.paymentAgreeCheckBox.isSelected) {
+                binding.paymentAgreeCheckBox.isSelected = false
+                binding.paymentPaymentBtn.backgroundTintList = ContextCompat.getColorStateList(this,R.color.gray_dddddd)
+                binding.paymentPaymentBtn.isEnabled = false
+            }else {
+                binding.paymentAgreeCheckBox.isSelected = true
+                binding.paymentPaymentBtn.backgroundTintList = ContextCompat.getColorStateList(this,R.color.app_basic_color)
+                binding.paymentPaymentBtn.isEnabled = true
+            }
+        }
 
         GlobalScope.launch(Dispatchers.Default) {
             val sharedPreference = getSharedPreferences("other", 0)
@@ -73,6 +95,7 @@ class PayMentActivity : AppCompatActivity() {
         }
 
         binding.paymentPaymentBtn.setOnClickListener {
+            binding.paymentProgress.visibility = View.VISIBLE
 
             GlobalScope.launch(Dispatchers.Default) {
                 val sharedPreference = getSharedPreferences("other", 0)
@@ -110,16 +133,18 @@ class PayMentActivity : AppCompatActivity() {
                 println("적립금 : ${makeOrderResponse.second?.meta_data?.filter { orderMeta -> orderMeta.key == "order_point" }?.first()?.value}")
 
                 GlobalScope.launch(Dispatchers.Main) {
+                    binding.paymentProgress.visibility = View.GONE
                     var intent = Intent(applicationContext, CompleteOrdersActivity::class.java)
                     var shop_name = makeOrderResponse.second?.meta_data?.get(0)!!.value.toString()
                     var order_point = makeOrderResponse.second?.meta_data?.get(1)!!.value.toString()
-                    intent.putExtra("id",makeOrderResponse.second?.id)
+                    intent.putExtra("id",makeOrderResponse.second?.id.toString())
                     intent.putExtra("shop_name",shop_name)
                     intent.putExtra("name",makeOrderResponse.second?.line_items?.first()?.name)
                     intent.putExtra("quantity",makeOrderResponse.second?.line_items?.first()?.quantity)
                     intent.putExtra("price",makeOrderResponse.second?.line_items?.first()?.total)
                     intent.putExtra("order_point",order_point)
                     startActivity(intent);
+
 
                 }
 //                binding.checkText.visibility = View.VISIBLE
