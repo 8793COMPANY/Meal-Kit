@@ -10,9 +10,11 @@
         android:name="com.corporation8793.mealkit.fragment.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
+
         <action
             android:id="@+id/action_home_to_kitDetailFragment3"
             app:destination="@id/kitDetailFragment3" />
+
         <action
             android:id="@+id/action_home_to_challengeFragment"
             app:destination="@id/challengeFragment" />

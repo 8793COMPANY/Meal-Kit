@@ -24,7 +24,7 @@ interface BoardService {
      * @author  두동근
      */
     @GET("wp-json/wc/v3/products")
-    fun listAllProduct() : Call<List<Product>>
+    fun listAllProduct(@Query("category") category : String? = "") : Call<List<Product>>
     /**
      * 전체 체인점을 검색합니다.
      * @author  두동근

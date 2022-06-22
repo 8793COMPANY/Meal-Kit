@@ -133,8 +133,26 @@ class NonceRepository {
                   first_name: String,
                   signUpBody: SignUpBody
     ) : Pair<String, Customer?> {
-        val response = RestClient.nonceService.runSignUp(email, username, password, first_name, signUpBody).execute()
+        val validResponseUsername = RestClient.nonceService.checkUsername(username).execute().body()?.size
+        val validResponseEmail = RestClient.nonceService.findUsername(email).execute().body()?.size
 
-        return Pair(response.code().toString(), response.body())
+        return when (validResponseEmail == 0 && validResponseUsername == 0) {
+            true -> {
+                val response = RestClient.nonceService.runSignUp(email, username, password, first_name, signUpBody).execute()
+                Pair("${response.code()} - ${response.message()} / ", response.body())
+            }
+            else -> {
+                if (validResponseEmail != 0) {
+                    // 이메일 중복
+                    Pair("501", null)
+                } else if (validResponseUsername != 0) {
+                    // 아이디 중복
+                    Pair("502", null)
+                } else {
+                    // NULL
+                    Pair("503", null)
+                }
+            }
+        }
     }
 }

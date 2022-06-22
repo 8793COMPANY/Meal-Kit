@@ -32,10 +32,37 @@ object RestClient {
 
     /**
      * Some 카테고리
-     * @see     <a href="http://3.37.133.132/category/recommend/">Eat-So-Fresh 밀키트 - Some 카테고리</a>
      */
     const val CATEGORY_RECOMMEND = "0"
 
+    /**
+     * 상품 카테고리(미분류)
+     */
+    const val PRODUCT_NULL = "50"
+    /**
+     * 상품 카테고리(육지)
+     */
+    const val PRODUCT_LAND = "52"
+    /**
+     * 상품 카테고리(바다)
+     */
+    const val PRODUCT_SEA = "53"
+    /**
+     * 상품 카테고리(산)
+     */
+    const val PRODUCT_MOUNTAIN = "54"
+    /**
+     * 상품 카테고리(해외)
+     */
+    const val PRODUCT_OVERSEAS = "55"
+    /**
+     * 레시피 카테고리(고객)
+     */
+    const val RECIPE_CUSTOMER = "58"
+    /**
+     * 레시피 카테고리(베스트)
+     */
+    const val RECIPE_BEST = "59"
 
     /**
      * OAuth 1.0 Consumer
