@@ -43,8 +43,8 @@ data class PostExcerpt(val rendered : String)
  */
 data class PostContent(val rendered : String)
 /**
- * 게시물 ACF(Advanced Custom Fields) - 작업 중...
+ * 게시물 ACF(Advanced Custom Fields)
  * @author  두동근
  * @see     [Post.acf]
  */
-data class PostAcf(val price : String, val product_likes : Any)
+data class PostAcf(val product : String, val price : String, val product_likes : Any)

@@ -8,6 +8,11 @@ import com.corporation8793.mealkit.esf_wp.rest.data.PostExcerpt
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.http.Header
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 import java.io.File
 
 class Board4BaRepository(val basicAuth : String) {
@@ -24,7 +29,7 @@ class Board4BaRepository(val basicAuth : String) {
      * @return  responseCode (expected : "201")
      */
     fun createPost(title : String, content : String, categories : String =
-        RestClient.RECIPE_CUSTOMER, featured_media : String? = "0", excerpt: String) : String {
+        RestClient.RECIPE_CUSTOMER, featured_media : String? = "0", excerpt: String) : Post? {
 
         val verifiedCategories = when (categories) {
             RestClient.RECIPE_CUSTOMER -> categories
@@ -37,7 +42,7 @@ class Board4BaRepository(val basicAuth : String) {
         val call = RestClient.board4BaService.createPost(basicAuth, title = title, content = content,
             categories = verifiedCategories, featured_media = featured_media, excerpt = excerpt)
 
-        return call.execute().code().toString()
+        return call.execute().body()
     }
 
     /**
@@ -146,6 +151,17 @@ class Board4BaRepository(val basicAuth : String) {
      */
     fun retrieveMedia(mediaId : String?) : Pair<String, Media?> {
         val response = RestClient.board4BaService.retrieveMedia(mediaId).execute()
+
+        return Pair(response.code().toString(), response.body())
+    }
+
+    // Acf
+    /**
+     * 레시피 메타 수정
+     * @author  두동근
+     */
+    fun updatePostAcf(id : String?, product : String?) : Pair<String, PostAcf?> {
+        val response = RestClient.board4BaService.updatePostAcf(basicAuth, id, product).execute()
 
         return Pair(response.code().toString(), response.body())
     }
