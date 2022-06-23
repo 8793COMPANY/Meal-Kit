@@ -81,7 +81,7 @@ class PayMentActivity : AppCompatActivity() {
 
                 val basicAuth = Credentials.basic(id, pw)
                 // 저장소 초기화
-                val boardRepository = BoardRepository(basicAuth)
+                val boardRepository = BoardRepository()
 
                 println("====== productOrder    ======")
 

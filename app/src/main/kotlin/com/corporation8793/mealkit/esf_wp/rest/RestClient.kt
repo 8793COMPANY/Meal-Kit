@@ -1,5 +1,6 @@
 package com.corporation8793.mealkit.esf_wp.rest
 
+import com.corporation8793.mealkit.esf_wp.rest.api_interface.nonce.Board4BaService
 import com.corporation8793.mealkit.esf_wp.rest.api_interface.nonce.BoardService
 import com.corporation8793.mealkit.esf_wp.rest.api_interface.nonce.NonceService
 import okhttp3.OkHttpClient
@@ -79,6 +80,13 @@ object RestClient {
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()
+    /**
+     * baseUrl 정보로 초기화된 [Retrofit]_ba
+     */
+    private val retrofit_ba = Retrofit.Builder()
+        .baseUrl(baseUrl)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
     /**
      * [retrofit]의 [NonceService]
@@ -88,4 +96,8 @@ object RestClient {
      * [retrofit]의 [BoardService]
      */
     val boardService = retrofit.create(BoardService::class.java)
+    /**
+     * [retrofit]의 [BoardService]
+     */
+    val board4BaService = retrofit_ba.create(Board4BaService::class.java)
 }
