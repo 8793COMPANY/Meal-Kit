@@ -95,7 +95,7 @@ class SelectStoreActivity : AppCompatActivity() {
                 val testPw = "1234"
                 val basicAuth = Credentials.basic(testId, testPw)
                 // 저장소 초기화
-                val boardRepository = BoardRepository(basicAuth)
+                val boardRepository = BoardRepository()
 
                 println("====== storeList     ======")
 
