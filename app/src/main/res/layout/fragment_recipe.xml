@@ -64,6 +64,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/back_btn"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/back_btn"
@@ -110,6 +111,7 @@
 
 
                 <ImageView
+                    android:id="@+id/recipe_like_btn"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/recipe_like_btn"
@@ -135,7 +137,8 @@
                     android:textColor="@color/app_basic_color"
                     android:fontFamily="@font/nskr_medium"
                     android:includeFontPadding="false"
-                    bind:layout_constraintVertical_bias="0.04"
+                    android:layout_marginTop="15dp"
+                    bind:layout_constraintVertical_bias="0"
                     bind:layout_constraintHorizontal_bias="0"
                     bind:layout_constraintTop_toBottomOf="@+id/recipe_name"
                     bind:layout_constraintBottom_toBottomOf="parent"
@@ -147,7 +150,8 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:background="#d9d9d9"
-                    bind:layout_constraintVertical_bias="0.05"
+                    bind:layout_constraintVertical_bias="0"
+                    android:layout_marginTop="20dp"
                     bind:layout_constraintTop_toBottomOf="@+id/rating_text"
                     bind:layout_constraintBottom_toBottomOf="parent"
                     bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
@@ -160,7 +164,8 @@
                     android:text="Recipe"
                     android:textColor="@color/black"
                     android:textSize="23dp"
-                    bind:layout_constraintVertical_bias="0.1"
+                    android:layout_marginTop="20dp"
+                    bind:layout_constraintVertical_bias="0"
                     android:includeFontPadding="false"
                     android:fontFamily="@font/nskr_medium"
                     bind:layout_constraintTop_toBottomOf="@id/border"
@@ -175,7 +180,8 @@
                     android:text="쫄깃한 구운 버섯과 튀긴 연두부의\n부드럽고 담백한 맛이 일품인 비건 샐러드"
                     android:textColor="@color/text_color"
                     android:textSize="14dp"
-                    bind:layout_constraintVertical_bias="0.05"
+                    android:layout_marginTop="10dp"
+                    bind:layout_constraintVertical_bias="0"
                     android:includeFontPadding="false"
                     android:fontFamily="@font/nskr_medium"
                     bind:layout_constraintTop_toBottomOf="@id/recipe_text"
@@ -184,10 +190,12 @@
                     bind:layout_constraintRight_toRightOf="@+id/guideline_right"></TextView>
 
                 <TextView
+                    android:id="@+id/detailed_recipe"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="\n\n\n\n\n\n\n!\n!\n\n\n\n\n\n\n!\n"
-                    bind:layout_constraintVertical_bias="0.1"
+                    android:layout_marginTop="20dp"
+                    android:text=""
+                    bind:layout_constraintVertical_bias="0"
                     bind:layout_constraintTop_toBottomOf="@id/recipe_info"
                     bind:layout_constraintBottom_toBottomOf="parent"
                     bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"

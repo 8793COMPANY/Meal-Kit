@@ -71,6 +71,8 @@
         app:destination="@id/home"
         app:popUpTo="@id/home"></action>
 
+
+
     <action android:id="@+id/action_purchase_details_screen"
         app:destination="@id/purchaseDetailsFragment"></action>
 
