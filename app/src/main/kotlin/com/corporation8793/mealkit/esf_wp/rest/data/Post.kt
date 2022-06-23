@@ -47,4 +47,4 @@ data class PostContent(val rendered : String)
  * @author  두동근
  * @see     [Post.acf]
  */
-data class PostAcf(val temp : String?)
+data class PostAcf(val price : String, val product_likes : Any)
