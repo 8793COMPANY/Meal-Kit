@@ -52,12 +52,12 @@
                         android:orientation="vertical"
                         bind:layout_constraintGuide_percent="0.95"></androidx.constraintlayout.widget.Guideline>
 
-
-                    <ImageView
-                        android:id="@+id/selectProduct_ProductImg"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/selectProduct_ProductImgArea"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:background="@drawable/ordertest"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="0dp"
                         app:layout_constraintWidth_percent="0.3"
                         bind:layout_constraintBottom_toBottomOf="parent"
                         bind:layout_constraintDimensionRatio="1:0.8"
@@ -65,8 +65,18 @@
                         app:layout_constraintVertical_bias="0.5"
                         bind:layout_constraintLeft_toLeftOf="@+id/selectProduct_left_line"
                         bind:layout_constraintRight_toRightOf="@+id/selectProduct_right_line"
-                        app:layout_constraintTop_toTopOf="parent"
-                        ></ImageView>
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/selectProduct_ProductImg"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+
+                            ></ImageView>
+
+                    </androidx.cardview.widget.CardView>
+
 
 
                     <TextView
@@ -77,11 +87,11 @@
                         android:text="[요거트 가게]"
                         android:textColor="@color/category_unselected_color"
                         android:textSize="14sp"
-                        app:layout_constraintStart_toEndOf="@+id/selectProduct_ProductImg"
+                        app:layout_constraintStart_toEndOf="@+id/selectProduct_ProductImgArea"
                         app:layout_constraintVertical_bias="0.0"
                         bind:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintRight_toRightOf="@+id/selectProduct_right_line"
-                        bind:layout_constraintTop_toTopOf="@+id/selectProduct_ProductImg"></TextView>
+                        bind:layout_constraintTop_toTopOf="@+id/selectProduct_ProductImgArea"></TextView>
 
 
                     <TextView
@@ -167,7 +177,7 @@
                     <View
                         android:layout_width="0dp"
                         android:layout_height="35dp"
-                        app:layout_constraintTop_toBottomOf="@+id/selectProduct_ProductImg"
+                        app:layout_constraintTop_toBottomOf="@+id/selectProduct_ProductImgArea"
                         app:layout_constraintEnd_toEndOf="@+id/selectProduct_right_line"
                         app:layout_constraintStart_toStartOf="@+id/selectProduct_left_line"
                         app:layout_constraintBottom_toBottomOf="parent"

@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,17 @@ class RatingDialog(val activity: Activity) : DialogFragment() {
         // 제목, 내용 설정
 //        binding.Confirm.text = title
 //        binding.customTvContent.text = content
+        binding.cancel.setOnClickListener {
+            dismiss()
+        }
+        binding.confirm.setOnClickListener {
+            dismiss()
+        }
+
+        binding.rating.setOnRatingBarChangeListener { ratingBar, fl, b ->
+            binding.title.setText("별점 등록 ("+fl.toString()+"/5.0)")
+            Log.e("rating",fl.toString())
+        }
 //
 //        // 취소 버튼
 //        binding.customTvBtn1.setOnClickListener {

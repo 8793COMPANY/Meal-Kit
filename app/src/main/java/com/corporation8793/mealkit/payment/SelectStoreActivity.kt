@@ -1,13 +1,16 @@
 package com.corporation8793.mealkit.payment
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.adapter.SelectStoreAdapter
 import com.corporation8793.mealkit.databinding.ActivitySelectStoreBinding
@@ -25,6 +28,10 @@ import okhttp3.Credentials
 
 
 class SelectStoreActivity : AppCompatActivity() {
+    companion object{
+        lateinit var _selectStoreActivity : Activity
+    }
+
     lateinit var binding : ActivitySelectStoreBinding
     var productAmount = 0
     var finalMoney = 0
@@ -43,10 +50,15 @@ class SelectStoreActivity : AppCompatActivity() {
         var quantity = intent.getStringExtra("quantity")
         var product_amount = intent.getIntExtra("product_amount",0)
         var final_money = intent.getIntExtra("final_money",0)
+        var img = intent.getStringExtra("img")
+
+
+        _selectStoreActivity = this
 
         binding.selectProductActionBar.backBtn.setOnClickListener {
             finish()
         }
+
 
 
         val display : DisplayMetrics = DisplayMetrics()
@@ -66,6 +78,7 @@ class SelectStoreActivity : AppCompatActivity() {
                 var intent = Intent(this@SelectStoreActivity, PayMentActivity::class.java)
                 intent.putExtra("id",product_id)
                 intent.putExtra("category",shop)
+                intent.putExtra("img",img)
                 intent.putExtra("name",name)
                 intent.putExtra("price",price)
                 intent.putExtra("quantity",quantity)

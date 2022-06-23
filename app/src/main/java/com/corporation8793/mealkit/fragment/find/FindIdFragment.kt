@@ -106,7 +106,7 @@ class FindIdFragment() : Fragment() {
                             Navigation.findNavController(view).navigate(R.id.action_find_id_screen, bundle)
 
                         }else{
-                           Toast.makeText(context,"아이디를 찾지 못했습니다.",Toast.LENGTH_SHORT).show()
+                           Toast.makeText(context,"존재하지 않는 아이디입니다.",Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

@@ -1,5 +1,6 @@
 package com.corporation8793.mealkit.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -18,6 +19,12 @@ class ChangePwActivity : AppCompatActivity() {
         }
 
         binding.findIdBox.setText(intent.getStringExtra("email"))
+
+        binding.comfirmBtn.setOnClickListener {
+            var intent = Intent(this@ChangePwActivity, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
 
     }
 }

@@ -1,6 +1,7 @@
 package com.corporation8793.mealkit.fragment.find
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -58,11 +59,13 @@ class FindMainFragment() : Fragment() {
 
         TabLayoutMediator(kindOfSearch, viewpager) { tab, position ->
             tab.text = tabName[position].toString()
+
         }.attach()
 
         kindOfSearch.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 (activity as FindActivity).changeTitle(tab!!.text.toString())
+
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -73,10 +76,17 @@ class FindMainFragment() : Fragment() {
             }
 
         })
+        Log.e("check",(activity as FindActivity).getFind().toString())
+        var check = (activity as FindActivity).getFind()
 
+//        if(check == 1)
+//            viewpager.setCurrentItem(1,false)
+        if(check == 1) {
+            viewpager.post {
+                viewpager.setCurrentItem(1,false)
+            }
+        }
 
-
-//        viewpager.setCurrentItem()
 
         return view
     }

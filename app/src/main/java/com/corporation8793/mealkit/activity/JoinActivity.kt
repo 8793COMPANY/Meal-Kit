@@ -8,6 +8,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
@@ -76,16 +77,22 @@ class JoinActivity : AppCompatActivity() {
 
 
         binding.recommenderCodeCheckBtn.setOnClickListener {
-
             GlobalScope.launch(Dispatchers.Default) {
-                val value = NonceRepository().checkUsername(binding.idInputBox.text.toString().trim())
-                println("value : " + value)
-                println("value first: " + value.first)
-                println("value second: " + value.second!!.size)
+                val value = NonceRepository().checkUsername(binding.recommenderCodeInputBox.text.toString().trim())
+                Log.e("3", value.first);
+                Log.e("3", value.second!!.size.toString());
 
 
                 GlobalScope.launch(Dispatchers.Main) {
-                    activeJoinBtn()
+                    if(value.second!!.size > 0){
+                        binding.recommenderErrorText.setText("추천인이 확인 되었습니다.")
+                        binding.recommenderErrorText.setTextColor(resources.getColor(R.color.app_basic_color))
+                        activeJoinBtn()
+                       }else{
+                        binding.recommenderErrorText.setTextColor(resources.getColor(R.color.red_ce2929))
+                        binding.recommenderErrorText.setText("추천인을 확인 할 수 없습니다.")
+
+                       }
                 }
 //                binding.checkText.visibility = View.VISIBLE
             }
@@ -140,7 +147,6 @@ class JoinActivity : AppCompatActivity() {
         }
 
         binding.pwCheckInputBox.addTextChangedListener{
-
             if(binding.pwInputBox.text.toString().equals(binding.pwCheckInputBox.text.toString())){
                 binding.joinPasswordErrorText.setTextColor(resources.getColor(R.color.app_basic_color))
                 binding.joinPasswordErrorText.setText("사용 가능합니다.")
@@ -150,7 +156,6 @@ class JoinActivity : AppCompatActivity() {
                 binding.joinPasswordErrorText.setText("비밀번호가 동일하지 않습니다.")
                 activeJoinBtn()
             }
-
         }
 
 
@@ -189,7 +194,7 @@ class JoinActivity : AppCompatActivity() {
             if(!isActiveJoinBtn){
                 return@setOnClickListener
             }
-
+            binding.joinProgress.visibility=View.VISIBLE
             GlobalScope.launch(Dispatchers.Default) {
                 val value = NonceRepository().runSignUp(
                         binding.emailInputBox.text.toString().trim(),
@@ -202,12 +207,30 @@ class JoinActivity : AppCompatActivity() {
                         arrayOf(Meta_data(id = null, key = "recommender", value = binding.recommenderCodeInputBox.text.toString()))
                         )
                 )
-                println("value ==== "+value)
+               println("value ==== "+value)
+                Log.e("value ==== ",value.first)
 
 //                println(value.first)
 //                println(value.second?.id)
 
                 GlobalScope.launch(Dispatchers.Main) {
+                    binding.joinProgress.visibility=View.GONE
+                    if(value.first.toString().equals("504")){
+                        Toast.makeText(this@JoinActivity, "올바르지 않은 이메일 형식입니다.", Toast.LENGTH_SHORT).show()
+                    }
+
+                    if(value.first.toString().equals("501")){
+                            Toast.makeText(this@JoinActivity, " 이메일 중복입니다.", Toast.LENGTH_SHORT).show()
+                    }
+
+                    if(value.first.toString().equals("502")){
+                        Toast.makeText(this@JoinActivity, "아이디 중복입니다.", Toast.LENGTH_SHORT).show()
+                    }
+
+                    if(value.first.toString().equals("201")){
+                        Toast.makeText(this@JoinActivity, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                        finish();
+                    }
 //                    binding.checkText.visibility = View.VISIBLE
 //                    if(value.second!!.size > 0){
 //
@@ -241,42 +264,33 @@ class JoinActivity : AppCompatActivity() {
         isActiveJoinBtn = false
 
         if(binding.idInputBox.text.length == 0){
-            Log.e("1","asdasd111");
             return
         }
         if(!isOverlapCheck){
-            Log.e("2","asdasd111");
             return
         }
         if(binding.nameInputBox.text.length == 0){
-            Log.e("3","asdasd111");
             return
         }
       if(!binding.pwInputBox.text.toString().equals(binding.pwCheckInputBox.text.toString())){
-          Log.e("4","asdasd111");
           return
       }
 
         if(binding.phoneNumberInputBox.text.length == 0){
-            Log.e("6","asdasd111");
             return
         }
         if(binding.emailInputBox.text.length == 0){
-            Log.e("7","asdasd111");
             return
         }
 
         if(binding.postCodeInputBox.text.length == 0){
-            Log.e("8","asdasd111");
             return
         }
-
 
 //
 //        if(!binding.accessTermBtn.isChecked){
 //            return
 //        }
-
 
         binding.joinBtn.setBackgroundTintList(ContextCompat.getColorStateList(this,R.color.green_009658))
         isActiveJoinBtn = true

@@ -1,15 +1,21 @@
 package com.corporation8793.mealkit.payment
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.databinding.ActivitySelectProductBinding
 
 
 class SelectProductActivity : AppCompatActivity() {
+    companion object{
+        lateinit var _selectProductActivity : Activity
+    }
     lateinit var binding : ActivitySelectProductBinding
     var productAmount = 0
     var finalMoney = 0
@@ -18,14 +24,23 @@ class SelectProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_product)
         binding.setActionBar("상품 선택")
+        _selectProductActivity = this
+
+        binding.selectProductActionBar.backBtn.setOnClickListener {
+            finish()
+        }
+
 
         var id = intent.getStringExtra("id")
         var category = intent.getStringExtra("category")
         var name = intent.getStringExtra("name")
         var price = intent.getStringExtra("price")
+        var img = intent.getStringExtra("img")
 
         productAmount = (price!!.toInt() * count)
         finalMoney = (productAmount+3000)
+
+        Glide.with(this).load(img).into(binding.selectProductProductImg)
 
         binding.selectProductShopText.setText(category)
         binding.selectProductProductText.setText(name)
@@ -62,6 +77,7 @@ class SelectProductActivity : AppCompatActivity() {
             var intent = Intent(this, SelectStoreActivity::class.java)
             intent.putExtra("id",id)
             intent.putExtra("category",category)
+            intent.putExtra("img",img)
             intent.putExtra("name",name)
             intent.putExtra("price",price)
             intent.putExtra("quantity",binding.selectProductCountText.text.toString())

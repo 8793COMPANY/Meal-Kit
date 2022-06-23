@@ -150,11 +150,7 @@ class NonceRepository {
                 // 중복 아이디
                 Pair("502", null)
             }
-            ((vru.first == 200 && vru.third?.size != 0) && (vre.first == 200 && vre.third?.size != 0)) -> {
-                // 중복 아이디, 중복 이메일
-                Pair("503", null)
-            }
-            ((vru.first == 200 && vru.third?.size != 0) && (vre.first == 400 && vre.third?.size == null)) -> {
+            ( (vre.first == 400 && vre.third?.size == null)) -> {
                 // 중복 아이디, 올바르지 않은 이메일 형식
                 Pair("504", null)
             }

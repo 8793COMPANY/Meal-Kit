@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:text="별점등록(4/5)"
+        android:text="별점등록(0.0/5.0)"
         android:textColor="#707070"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,27 +24,29 @@
         app:layout_constraintVertical_bias="0.1" />
 
     <RatingBar
+        android:id="@+id/rating"
         style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintDimensionRatio="370:56"
-        android:rating="4"
+        android:rating="0"
         android:numStars="5"
         android:theme="@style/RatingBar"
+        android:isIndicator="false"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        app:layout_constraintBottom_toTopOf="@+id/submit"
+        app:layout_constraintBottom_toTopOf="@+id/cancel"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"></RatingBar>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/submit"
+        android:id="@+id/cancel"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginRight="22dp"
         android:background="@drawable/stroke_round_corner_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Confirm"
+        app:layout_constraintEnd_toStartOf="@+id/confirm"
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent="0.25"
         app:layout_constraintHorizontal_bias="0.5"
@@ -71,7 +73,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/Confirm"
+        android:id="@+id/confirm"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/stroke_round_corner_btn"
@@ -79,9 +81,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/submit"
-        app:layout_constraintTop_toTopOf="@id/submit"
-        app:layout_constraintBottom_toBottomOf="@id/submit"
+        app:layout_constraintStart_toEndOf="@+id/cancel"
+        app:layout_constraintTop_toTopOf="@id/cancel"
+        app:layout_constraintBottom_toBottomOf="@id/cancel"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="0.4"
         app:layout_constraintHeight_percent="0.25">
