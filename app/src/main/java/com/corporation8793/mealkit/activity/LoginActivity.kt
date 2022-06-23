@@ -89,6 +89,8 @@ class LoginActivity : AppCompatActivity() {
                 }else{
                     val sharedPreference = getSharedPreferences("other", 0)
                     val editor = sharedPreference.edit()
+                    editor.putString("id", binding.idInputBox.text.toString())
+                    editor.putString("pw", binding.pwInputBox.text.toString())
                     editor.putBoolean("autoLogin",false)
                     editor.apply()
                 }

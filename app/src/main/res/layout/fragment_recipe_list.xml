@@ -55,6 +55,7 @@
             android:id="@+id/comment_input_box"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:singleLine="true"
             android:textColor="#c1c1c1"
             android:textSize="13dp"
             android:paddingLeft="15dp"

@@ -26,6 +26,10 @@ class SelectProductActivity : AppCompatActivity() {
         binding.setActionBar("상품 선택")
         _selectProductActivity = this
 
+        binding.selectProductActionBar.backBtn.setOnClickListener {
+            finish()
+        }
+
 
         var id = intent.getStringExtra("id")
         var category = intent.getStringExtra("category")

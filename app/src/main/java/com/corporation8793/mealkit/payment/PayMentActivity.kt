@@ -4,20 +4,16 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.activity.AddreesWebActivity
-import com.corporation8793.mealkit.activity.JoinActivity
 
 import com.corporation8793.mealkit.databinding.ActivityPayMentBinding
-import com.corporation8793.mealkit.esf_wp.rest.api_interface.nonce.BoardService
 import com.corporation8793.mealkit.esf_wp.rest.data.*
-import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.SignUpBody
 import com.corporation8793.mealkit.esf_wp.rest.repository.BoardRepository
 import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
 import kotlinx.android.synthetic.main.activity_pay_ment.*
@@ -65,6 +61,10 @@ class PayMentActivity : AppCompatActivity() {
         binding.paymentProductPrice.setText(product_amount.toString()+"원")
         binding.paymentFinalPrice.setText(final_money.toString()+"원")
 
+        binding.paymentActionBar.backBtn.setOnClickListener {
+            finish()
+        }
+
         binding.paymentAgreeCheckBox.setOnClickListener {
             if(binding.paymentAgreeCheckBox.isSelected) {
                 binding.paymentAgreeCheckBox.isSelected = false
@@ -98,8 +98,9 @@ class PayMentActivity : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.Default) {
             val sharedPreference = getSharedPreferences("other", 0)
-            val editor = sharedPreference.getString("id","test22")
-            val value = NonceRepository().checkUsername(editor!!)
+            val id = sharedPreference.getString("id","test22")
+            Log.e("id",id!!)
+            val value = NonceRepository().checkUsername(id!!)
 
             println(value.first)
             println(value.second?.get(0))
