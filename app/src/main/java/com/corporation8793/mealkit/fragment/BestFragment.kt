@@ -75,9 +75,8 @@ class BestFragment() : Fragment() {
                 datas.apply {
                     datas.clear()
                     item.forEach {
-                        var pr = item.get(0)
-                        Log.e("price",pr.acf.price)
-                        add(BestItem(pr.id!!,pr.featured_media_src_url,pr.title.rendered,pr.acf.price+"원",pr.acf.product_likes.toString(),count.toString()))
+                        it.acf.price?.let { it1 -> Log.e("price", it1) }
+                        add(BestItem(it.id!!,it.featured_media_src_url,it.title.rendered,it.acf.price+"원",it.acf.product_likes.toString(),count.toString()))
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
 //                        println("별점 (5.00) : ${pr.average_rating}")

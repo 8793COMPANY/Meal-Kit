@@ -1,6 +1,8 @@
 package com.corporation8793.mealkit.fragment.shop
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.DisplayMetrics
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -83,6 +85,30 @@ class SearchFragment() : Fragment() {
             shopAdapter.filter(address_input_box.text.toString().toLowerCase(Locale.getDefault()))
         }
 
+        address_input_box.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(arg0: Editable) {
+                if (arg0.length ==0) {
+                    val text: String = address_input_box.getText().toString()
+                            .toLowerCase(Locale.getDefault())
+                    shopAdapter.filter(text)
+                }
+            }
+
+            override fun beforeTextChanged(
+                    arg0: CharSequence, arg1: Int,
+                    arg2: Int, arg3: Int
+            ) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun onTextChanged(
+                    arg0: CharSequence, arg1: Int, arg2: Int,
+                    arg3: Int
+            ) {
+                // TODO Auto-generated method stub
+            }
+        })
+
         shop_list.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))
 
             GlobalScope.launch(Dispatchers.Default) {
@@ -100,9 +126,10 @@ class SearchFragment() : Fragment() {
                 val listAllStoreResponse = boardRepository.listAllStore()
 
                 listAllStoreResponse.second!!.forEach {
+                    Log.e("it",it.toString())
 
-                    datas.add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,it.acf.address!!))
-                    alldatas.add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,it.acf.address!!))
+                    datas.add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,it.acf.metropolitan+" "+it.acf.address!!))
+                    alldatas.add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,it.acf.metropolitan+" "+it.acf.address!!))
                 }
 
 

@@ -21,8 +21,14 @@ import com.corporation8793.mealkit.activity.FindActivity
 import com.corporation8793.mealkit.adapter.BestAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
+import com.corporation8793.mealkit.dto.KitItem
+import com.corporation8793.mealkit.esf_wp.rest.RestClient
+import com.corporation8793.mealkit.esf_wp.rest.data.Product
 import com.corporation8793.mealkit.payment.PayMentActivity
 import com.corporation8793.mealkit.payment.SelectProductActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.w3c.dom.Text
 
 // TODO: Rename parameter arguments, choose names that match
@@ -54,6 +60,7 @@ class KitDetailFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_kit_detail, container, false)
         val payment_btn = view.findViewById<ConstraintLayout>(R.id.payment_btn);
+        val like_btn = view.findViewById<ImageView>(R.id.like_btn);
         var id = arguments?.getString("id")
         var category = arguments?.getString("category")
         var name = arguments?.getString("name")
@@ -68,6 +75,17 @@ class KitDetailFragment() : Fragment() {
         view.findViewById<ImageView>(R.id.kit_img)
         view.findViewById<Button>(R.id.back_btn).setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_back_to_home)
+        }
+
+        like_btn.setOnClickListener {
+            GlobalScope.launch(Dispatchers.Default) {
+                val response = RestClient.boardService.productLikesEdit(id=id!!,likesBody = ).execute().body()!!
+
+                GlobalScope.launch(Dispatchers.Main) {
+
+                }
+//                binding.checkText.visibility = View.VISIBLE
+            }
         }
 
 

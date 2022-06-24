@@ -95,4 +95,26 @@ class ShopAdapter ( private val context: Context?, val height : Int, val color :
         notifyDataSetChanged()
     }
 
+    fun region_filter(metropolitan: String, address:String) {
+        var metropolitan = metropolitan
+        var address = address
+        metropolitan = metropolitan.toLowerCase(Locale.getDefault())
+        address = address.toLowerCase(Locale.getDefault())
+        datas.clear()
+        if (metropolitan.length == 0 && address.length == 0) {
+            datas.addAll(alldatas)
+            Log.e("asda","Asda");
+        } else {
+            Log.e("alldataCount",alldatas.count().toString());
+            for (item: ShopItem in alldatas) {
+                Log.e("item.name",item.name);
+                val name =item.address
+                if (name.toLowerCase().contains(metropolitan) &&name.toLowerCase().contains(address)) {
+                    datas.add(item)
+                }
+            }
+        }
+        notifyDataSetChanged()
+    }
+
 }

@@ -2,6 +2,7 @@ package com.corporation8793.mealkit.fragment.home
 
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -75,9 +76,9 @@ class LandFragment : Fragment() {
             GlobalScope.launch(Dispatchers.Main) {
                 datas.apply {
                     item.forEach {
-                        var pr = item.get(0)
-                        add(KitItem(pr.id,pr.images.first().src, pr.date_on_sale_from,pr.date_on_sale_to, "샐러드 가게",
-                                pr.name, pr.price, pr.stock_quantity, pr.acf.total_stock!!,"1"))
+                        Log.e("it",it.toString())
+                        add(KitItem(it.id,it.images.first().src, it.date_on_sale_from,it.date_on_sale_to, "샐러드 가게",
+                                it.name, it.price, it.stock_quantity, it.acf.total_stock!!,"1"))
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
 //                        println("별점 (5.00) : ${pr.average_rating}")

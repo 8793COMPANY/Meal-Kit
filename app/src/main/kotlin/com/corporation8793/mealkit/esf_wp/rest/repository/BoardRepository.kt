@@ -7,7 +7,10 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.Path
+import retrofit2.http.Query
 import java.io.File
 
 /**
@@ -36,6 +39,86 @@ class BoardRepository {
         val response = call.execute()
 
         return Pair(response.code().toString(), response.body())
+    }
+    fun productLikesEdit(product: Product, userId: String, action: String) : Pair<String, Product?> {
+        var response : Response<Product>? = null
+
+        return when (action) {
+            "ON" -> {
+                println("[좋아요 ON]")
+                when(product.acf.product_likes !is Boolean) {
+                    true -> {
+                        var pl = product.acf.product_likes as ArrayList<Int>
+                        for ((i, p) in pl.withIndex()) {
+                            pl[i] = p
+                        }
+                        pl.remove(userId.toInt())
+                        pl.add(userId.toInt())
+
+                        response = RestClient.boardService.productLikesEdit(id = product.id,
+                                likesBody = likesBody(
+                                arrayOf(
+                                    Meta_data(id = null, key = "product_likes",
+                                        value = pl )
+                                )
+                            )
+                        ).execute()
+                    }
+                    false -> {
+                        var pl = arrayListOf<Int>()
+                        pl.add(userId.toInt())
+
+                        response = RestClient.boardService.productLikesEdit(id = product.id,
+                            likesBody = likesBody(
+                                arrayOf(
+                                    Meta_data(id = null, key = "product_likes",
+                                        value = pl )
+                                )
+                            )
+                        ).execute()
+                    }
+                }
+                return Pair(response?.code().toString(), response?.body())
+            }
+            "OFF" -> {
+                println("[좋아요 OFF]")
+                when(product.acf.product_likes !is Boolean) {
+                    true -> {
+                        var pl = product.acf.product_likes as ArrayList<Int>
+                        for ((i, p) in pl.withIndex()) {
+                            pl[i] = p
+                        }
+                        pl.remove(userId.toInt())
+
+                        response = RestClient.boardService.productLikesEdit(id = product.id,
+                            likesBody = likesBody(
+                                arrayOf(
+                                    Meta_data(id = null, key = "product_likes",
+                                        value = pl )
+                                )
+                            )
+                        ).execute()
+                    }
+                    false -> {
+                        var pl = arrayListOf<Int>()
+                        pl.add(userId.toInt())
+
+                        response = RestClient.boardService.productLikesEdit(id = product.id,
+                            likesBody = likesBody(
+                                arrayOf(
+                                    Meta_data(id = null, key = "product_likes",
+                                        value = pl )
+                                )
+                            )
+                        ).execute()
+                    }
+                }
+                return Pair(response?.code().toString(), response?.body())
+            }
+            else -> {
+                return Pair("null", null)
+            }
+        }
     }
     /**
      * 전체 체인점을 검색합니다.

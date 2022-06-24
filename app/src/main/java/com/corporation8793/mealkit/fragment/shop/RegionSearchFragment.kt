@@ -1,12 +1,16 @@
 package com.corporation8793.mealkit.fragment.shop
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.DisplayMetrics
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -26,6 +30,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.Credentials
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,6 +47,7 @@ class RegionSearchFragment() : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     val datas = mutableListOf<ShopItem>()
+    val alldatas = mutableListOf<ShopItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +63,8 @@ class RegionSearchFragment() : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_search_region, container, false)
-
+        var metropolitan_input_box = view.findViewById<EditText>(R.id.metropolitan_input_box)
+        var city_input_box = view.findViewById<EditText>(R.id.city_input_box)
 
 
         val shop_list = view.findViewById<RecyclerView>(R.id.shop_list)
@@ -73,38 +80,95 @@ class RegionSearchFragment() : Fragment() {
         val lm = LinearLayoutManager(context)
         shop_list.layoutManager = lm
 
+        view.findViewById<Button>(R.id.search_btn).setOnClickListener {
+            Log.e("text",metropolitan_input_box.text.toString().toLowerCase(Locale.getDefault()))
+            shopAdapter.region_filter(metropolitan_input_box.text.toString().toLowerCase(Locale.getDefault()),city_input_box.text.toString().toLowerCase(Locale.getDefault()))
+        }
+
+        metropolitan_input_box.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(arg0: Editable) {
+                if (arg0.length ==0) {
+                    shopAdapter.region_filter(metropolitan_input_box.text.toString().toLowerCase(Locale.getDefault()),city_input_box.text.toString().toLowerCase(Locale.getDefault()))
+                }
+            }
+
+            override fun beforeTextChanged(
+                    arg0: CharSequence, arg1: Int,
+                    arg2: Int, arg3: Int
+            ) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun onTextChanged(
+                    arg0: CharSequence, arg1: Int, arg2: Int,
+                    arg3: Int
+            ) {
+                // TODO Auto-generated method stub
+            }
+        })
+
+        city_input_box.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(arg0: Editable) {
+                if (arg0.length ==0) {
+                    shopAdapter.region_filter(metropolitan_input_box.text.toString().toLowerCase(Locale.getDefault()),city_input_box.text.toString().toLowerCase(Locale.getDefault()))
+                }
+            }
+
+            override fun beforeTextChanged(
+                    arg0: CharSequence, arg1: Int,
+                    arg2: Int, arg3: Int
+            ) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun onTextChanged(
+                    arg0: CharSequence, arg1: Int, arg2: Int,
+                    arg3: Int
+            ) {
+                // TODO Auto-generated method stub
+            }
+        })
+
         shop_list.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))
 
-        datas.apply {
-            GlobalScope.launch(Dispatchers.Default) {
-                val testId = "test22"
-                val testPw = "1234"
-                val basicAuth = Credentials.basic(testId, testPw)
-                // 저장소 초기화
-                val boardRepository = BoardRepository()
+        shop_list.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))
 
-                println("====== storeList     ======")
+        GlobalScope.launch(Dispatchers.Default) {
+            datas.clear()
+            alldatas.clear()
+            val testId = "test22"
+            val testPw = "1234"
+            val basicAuth = Credentials.basic(testId, testPw)
+            // 저장소 초기화
+            val boardRepository = BoardRepository()
 
-                println("------ listAllStore() -----")
-                val listAllStoreResponse = boardRepository.listAllStore()
+            println("====== storeList     ======")
 
-                    GlobalScope.launch(Dispatchers.Main) {
-                        datas.apply {
-                            listAllStoreResponse.second!!.forEach {
+            println("------ listAllStore() -----")
+            val listAllStoreResponse = boardRepository.listAllStore()
 
-                                add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,it.acf.address!!))
-                            }
-                            shopAdapter.datas = datas
-                            shopAdapter.notifyDataSetChanged()
-                        }
+            listAllStoreResponse.second!!.forEach {
+                Log.e("it",it.toString())
 
-                }
+                datas.add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,it.acf.metropolitan+" "+it.acf.address!!))
+                alldatas.add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,it.acf.metropolitan+" "+it.acf.address!!))
+            }
 
 
+
+            GlobalScope.launch(Dispatchers.Main) {
+
+                shopAdapter.datas = datas
+                shopAdapter.alldatas = alldatas
+                shopAdapter.notifyDataSetChanged()
 
 
 
             }
+
+
+
+
         }
 
         return view
