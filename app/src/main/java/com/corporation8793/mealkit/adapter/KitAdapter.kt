@@ -81,13 +81,6 @@ class KitAdapter (private val context: Context?, val height : Int, val color : I
 
             likeBtn.isSelected = item.like;
 
-            likeBtn.setOnClickListener {
-                if (likeBtn.isSelected){
-                    likeBtn.isSelected = false
-                }else{
-                    likeBtn.isSelected = true
-                }
-            }
 
 
 //            Glide.with(itemView).load(item.img).into(imgProfile)

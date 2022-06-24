@@ -10,6 +10,7 @@ import android.os.Build
 import android.util.Log
 import com.corporation8793.mealkit.esf_wp.rest.data.Customer
 import com.corporation8793.mealkit.esf_wp.rest.repository.Board4BaRepository
+import com.corporation8793.mealkit.esf_wp.rest.repository.BoardRepository
 import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
 import com.corporation8793.mealkit.receiver.ResetPedometer
 import java.util.*
@@ -21,7 +22,8 @@ class MainApplication : Application() {
 
     var nonceRepository = NonceRepository()
 
-    lateinit var board4BaRepository : Board4BaRepository ;
+    lateinit var board4BaRepository : Board4BaRepository
+    lateinit var boardRepository: BoardRepository
     override fun onCreate() {
         super.onCreate()
         // initialize Rudder SDK here
@@ -49,6 +51,7 @@ class MainApplication : Application() {
     fun setAuth(auth: String?){
         if (auth != null) {
             board4BaRepository = Board4BaRepository(auth);
+            boardRepository = BoardRepository();
         };
     }
 

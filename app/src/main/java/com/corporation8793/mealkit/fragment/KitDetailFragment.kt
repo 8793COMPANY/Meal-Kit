@@ -77,22 +77,39 @@ class KitDetailFragment() : Fragment() {
         view.findViewById<TextView>(R.id.stock_count).setText(stock+"개")
         view.findViewById<ImageView>(R.id.kit_img)
 
-        like_btn.isSelected = like!!;
+
 
         view.findViewById<Button>(R.id.back_btn).setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_back_to_home)
         }
 
-        like_btn.setOnClickListener {
-            GlobalScope.launch(Dispatchers.Default) {
-//                val response = RestClient.boardService.productLikesEdit(id=id!!,likesBody = ).execute().body()!!
+        like_btn.isSelected = like!!;
 
-                GlobalScope.launch(Dispatchers.Main) {
 
-                }
-//                binding.checkText.visibility = View.VISIBLE
-            }
-        }
+//        like_btn.setOnClickListener {
+//            if (like_btn.isSelected){
+//
+//
+//                GlobalScope.launch(Dispatchers.Default) {
+//                    val resultOn = MainApplication.instance.boardRepository.productLikesEdit(id.toString(),MainApplication.instance.user.id,"OFF");
+//                    GlobalScope.launch(Dispatchers.Main) {
+//                        if(resultOn.first.equals("200")){
+//                            like_btn.isSelected = false
+//                        }
+//                    }
+//                }
+//            }else{
+//                GlobalScope.launch(Dispatchers.Default) {
+//                    val resultOn = MainApplication.instance.board4BaRepository.updatePostLikes(id.toString(),MainApplication.instance.user.id,"ON");
+//                    GlobalScope.launch(Dispatchers.Main) {
+//                        if(resultOn.first.equals("200")){
+//                            like_btn.isSelected = true
+//                        }
+//                    }
+//                }
+//
+//            }
+//        }
 
 
         payment_btn.setOnClickListener {

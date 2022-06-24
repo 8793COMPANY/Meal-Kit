@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.corporation8793.mealkit.MainApplication
 import com.corporation8793.mealkit.adapter.KitAdapter
 import com.corporation8793.mealkit.decoration.KitDecoration
 import com.corporation8793.mealkit.R
@@ -68,6 +69,7 @@ class SeaFragment : Fragment() {
 
         GlobalScope.launch(Dispatchers.Default) {
             val item : List<Product> = RestClient.boardService.listAllProduct(RestClient.PRODUCT_SEA).execute().body()!!
+            val id = MainApplication.instance.user.id;
 
             GlobalScope.launch(Dispatchers.Main) {
                 datas.apply {

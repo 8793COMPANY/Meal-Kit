@@ -114,7 +114,7 @@ class RecipeListFragment() : Fragment() {
         GlobalScope.launch(Dispatchers.Default) {
             recipelist_progress.visibility=View.VISIBLE;
             val item : List<Post> = RestClient.board4BaService.retrievePostInCategories(categories = RestClient.RECIPE_CUSTOMER).execute().body()!!
-
+            val id = MainApplication.instance.user.id;
 
 
 
