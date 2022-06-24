@@ -9,6 +9,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * [NonceService]의 구현 클래스
@@ -161,6 +162,11 @@ class NonceRepository {
                 Pair("510", null)
             }
         }
+    }
+
+    fun updateCustomer(id: String, first_name: String, signUpBody: SignUpBody) : Pair<String, Customer?> {
+        val response = RestClient.nonceService.updateCustomer(id = id ,first_name = first_name, signUpBody = signUpBody).execute()
+        return Pair(response.code().toString(), response.body())
     }
 
     // 포인트 제어 (+, -)

@@ -75,6 +75,15 @@ interface NonceService {
                   @Body signUpBody: SignUpBody
     ) : Call<Customer>
 
+    /**
+     * 입력받은 정보로 회원수정
+     * @author  두동근
+     */
+    @PUT("/wp-json/wc/v3/customers/{id}")
+    fun updateCustomer(@Path("id") id: String,
+                     @Query("first_name") first_name: String,
+                     @Body signUpBody: SignUpBody) : Call<Customer>
+
     // 포인트 제어 (+, -)
     @PUT("/wp-json/wc/v3/customers/{id}")
     fun editPoint(@Path("id") id: String,

@@ -69,7 +69,7 @@ class productLikes {
 
         println("------ 레시피 좋아요 리스트            ------")
         // 사용법 동일합니다 - RestClient.RECIPE_BEST, RestClient.RECIPE_CUSTOMER
-        val responseCode2 = board4BaRepository.retrievePostInCategories(categories = RestClient.RECIPE_CUSTOMER)
+        val responseCode2 = board4BaRepository.retrievePostInCategories(categories = RestClient.RECIPE_BEST)
         println("responseCode2 : ${responseCode2.second}\n")
 
         println("------ 레시피Result      -----")
@@ -84,32 +84,14 @@ class productLikes {
 //            println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
             //print("좋아요정보 : ♥ ")
 
-            board4BaRepository.updatePostLikes(pr, "14", "ON")
-
-            when(pr.acf.product_likes != null && pr.acf.product_likes !is Boolean) {
-                true -> {
-                    var pl = pr.acf.product_likes as ArrayList<Int>
-                    for ((i, p) in pl.withIndex()) {
-                        pl[i] = p
-                    }
-                    //println("${pl.size}")
-                    println("[ON] 좋아요 누른 사람들 (id) : $pl")
-                }
-                false -> println("0")
+            pr.id?.let {
+                val resultOn = board4BaRepository.updatePostLikes(it, "14", "ON")
             }
 
-            board4BaRepository.updatePostLikes(pr, "14", "OFF")
-
-            when(pr.acf.product_likes != null && pr.acf.product_likes !is Boolean) {
-                true -> {
-                    var pl = pr.acf.product_likes as ArrayList<Int>
-                    for ((i, p) in pl.withIndex()) {
-                        pl[i] = p
-                    }
-                    println("[OFF] 좋아요 누른 사람들 (id) : $pl")
-                }
-                false -> println("0")
+            pr.id?.let {
+                val resultOff = board4BaRepository.updatePostLikes(it, "14", "OFF")
             }
+
             println("-----------------------------")
         }
         println("-----------------------------\n")
