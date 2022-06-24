@@ -12,13 +12,13 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.R
-import com.corporation8793.mealkit.dto.BestItem
 import com.corporation8793.mealkit.dto.RecipeItem
-import com.corporation8793.mealkit.fragment.RecipeListFragmentDirections
+import java.util.*
 
 
 class RecipeAdapter (private val context: Context?, val height : Int, val color : Int, val controller : NavController) : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
     var datas = mutableListOf<RecipeItem>()
+    var alldatas = mutableListOf<RecipeItem>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.recipe_list_itemview,parent,false)
 //        view.layoutParams.height = height
@@ -75,4 +75,23 @@ class RecipeAdapter (private val context: Context?, val height : Int, val color 
         }
     }
 
+    fun filter(charText: String) {
+        var charText = charText
+        charText = charText.toLowerCase(Locale.getDefault())
+        datas.clear()
+        if (charText.length == 0) {
+            datas.addAll(alldatas)
+            Log.e("asda","Asda");
+        } else {
+            Log.e("alldataCount",alldatas.count().toString());
+            for (item: RecipeItem in alldatas) {
+                Log.e("item.name",item.name);
+                val name =item.name
+                if (name.toLowerCase().contains(charText)) {
+                    datas.add(item)
+                }
+            }
+        }
+        notifyDataSetChanged()
+    }
 }

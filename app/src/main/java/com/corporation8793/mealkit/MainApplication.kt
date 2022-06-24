@@ -9,6 +9,8 @@ import android.content.Intent
 import android.os.Build
 import android.util.Log
 import com.corporation8793.mealkit.esf_wp.rest.data.Customer
+import com.corporation8793.mealkit.esf_wp.rest.repository.Board4BaRepository
+import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
 import com.corporation8793.mealkit.receiver.ResetPedometer
 import java.util.*
 
@@ -16,6 +18,10 @@ class MainApplication : Application() {
 
 
     lateinit var user:Customer;
+
+    var nonceRepository = NonceRepository()
+
+    lateinit var board4BaRepository : Board4BaRepository ;
     override fun onCreate() {
         super.onCreate()
         // initialize Rudder SDK here
@@ -38,6 +44,34 @@ class MainApplication : Application() {
             user = customer
         };
     }
+
+
+    fun setAuth(auth: String?){
+        if (auth != null) {
+            board4BaRepository = Board4BaRepository(auth);
+        };
+    }
+
+
+
+    fun setPedometerSuccessCount(name: String?, type: Int?){
+        if (name != null && type != null) {
+            val sharedPreference = getSharedPreferences("other", 0)
+            val editor = sharedPreference.edit()
+            editor.putInt(name,type)
+            editor.apply()
+        };
+    }
+
+
+
+    fun getPedometerSuccessCount(name: String?):Int{
+        val sharedPreference = getSharedPreferences("other", 0)
+        return sharedPreference.getInt(name,0);
+    }
+
+
+
 
 
     fun resetPedometer() {

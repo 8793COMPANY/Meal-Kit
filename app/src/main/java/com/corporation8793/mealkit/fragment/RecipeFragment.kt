@@ -1,6 +1,7 @@
 package com.corporation8793.mealkit.fragment
 
 import android.os.Bundle
+import android.text.Html
 import android.util.DisplayMetrics
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -68,7 +69,7 @@ class RecipeFragment() : Fragment() {
              view.findViewById<TextView>(R.id.recipe_name).setText(item.title.rendered)
                 view.findViewById<TextView>(R.id.recipe_info).setText(replaceText(item.excerpt.rendered))
                 view.findViewById<TextView>(R.id.use_kit).setText("사용 밀키트:"+item.acf.product)
-                view.findViewById<TextView>(R.id.detailed_recipe).setText(replaceText(item.content.rendered))
+                view.findViewById<TextView>(R.id.detailed_recipe).setText(Html.fromHtml((item.content.rendered)))
 
             }
 
