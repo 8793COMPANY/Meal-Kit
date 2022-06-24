@@ -1,26 +1,23 @@
 package com.corporation8793.mealkit.fragment.shop
 
-import android.Manifest
-import android.app.Dialog
-import android.graphics.Point
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.DisplayMetrics
+import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
-import android.widget.Button
 import androidx.compose.ui.graphics.Color
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.Fragment
 import com.corporation8793.mealkit.*
-import com.corporation8793.mealkit.adapter.BestAdapter
-import com.corporation8793.mealkit.decoration.BestDecoration
+import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.dto.BestItem
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.naver.maps.map.NaverMap
-import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.*
+import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.PathOverlay
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,6 +34,7 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
     private var param1: String? = null
     private var param2: String? = null
     val datas = mutableListOf<BestItem>()
+    lateinit var naverMap: NaverMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,10 +52,65 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
         val bottomSheetView = layoutInflater.inflate(R.layout.dialog_shop_info, null)
         val bottomSheetDialog = BottomSheetDialog(context!!)
         bottomSheetDialog.setContentView(bottomSheetView)
+
+       val mapView = view.findViewById<MapView>(R.id.map_fragment)
+       mapView.getMapAsync(this)
+
+        val APIKEY_ID = "9l8w6ft1l8"
+        val APIKEY = "aTjzwzUWg7lzXcOmxTY9H7s3N8jZbF3OBUgUIuWR"
+        //레트로핏 객체 생성
+        val retrofit = Retrofit.Builder().
+        baseUrl("https://naveropenapi.apigw.ntruss.com/map-geocode/").
+        addConverterFactory(GsonConverterFactory.create()).
+        build()
+
+        val api = retrofit.create(NaverAPI::class.java)
+        //근처에서 길찾기
+        val callgetPath = api.getPath(APIKEY_ID, APIKEY,"광주광역시 동구 동계천로 150")
+
+
+        callgetPath.enqueue(object : Callback<ResultGeo> {
+            override fun onResponse(
+                    call: Call<ResultGeo>,
+                    response: Response<ResultGeo>
+            ) {
+                var status = response.body()?.status
+                var address = response.body()?.addresses!!
+                var x = address.get(0).x
+                var y = address.get(0).y
+                Log.e("x",address.get(0).x.toString())
+                Log.e("y",address.get(0).y.toString())
+                Log.e("status",status.toString())
+                Log.e("marker","in!")
+
+                val marker = Marker()
+                marker.position = LatLng(y, x)
+                marker.map = naverMap
+
+                //경로 시작점으로 화면 이동
+                if(marker!= null) {
+                    val cameraUpdate = CameraUpdate.scrollTo(marker.position)
+                            .animate(CameraAnimation.Fly, 3000)
+                    naverMap!!.moveCamera(cameraUpdate)
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<ResultGeo>, t: Throwable) {
+                Log.e("t",t.message.toString())
+            }
+
+        })
+
+
+
+
 //        bottomSheetDialog.show()
 
         return view
     }
+
 
 
 
@@ -82,6 +135,7 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
     }
 
     override fun onMapReady(p0: NaverMap) {
-        TODO("Not yet implemented")
+        Log.e("onMapReady","in!")
+        naverMap = p0
     }
 }

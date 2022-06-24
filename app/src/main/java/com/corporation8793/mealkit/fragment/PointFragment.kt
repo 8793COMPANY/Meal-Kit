@@ -2,21 +2,29 @@ package com.corporation8793.mealkit.fragment
 
 import android.graphics.Point
 import android.os.Bundle
+import android.text.Html
 import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.*
 import com.corporation8793.mealkit.adapter.BestAdapter
 import com.corporation8793.mealkit.adapter.PointAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
 import com.corporation8793.mealkit.dto.PointItem
+import com.corporation8793.mealkit.esf_wp.rest.RestClient
+import com.corporation8793.mealkit.esf_wp.rest.data.Post
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -67,13 +75,27 @@ class PointFragment() : Fragment() {
         var divider = BestDecoration(10)
         point_list.addItemDecoration(divider)
 
+
+        GlobalScope.launch(Dispatchers.Default) {
+            val item : PointItem = board4BaRe.retrieveOnePost(id).execute().body()!!
+
+            GlobalScope.launch(Dispatchers.Main) {
+
+
+            }
+
+        }
+
         datas.apply {
-            add(PointItem("샐러드가게","2022.05.26 03:26","-1093","1"))
-            add(PointItem("샐러드가게","2022.05.26 03:26","-1093","1"))
+            add(PointItem("샐러드가게", "2022.05.26 03:26", "-1093", "1"))
+            add(PointItem("샐러드가게", "2022.05.26 03:26", "-1093", "1"))
+
+        }
+
 
             pointAdapter.datas = datas
             pointAdapter.notifyDataSetChanged()
-        }
+
 
 
 
