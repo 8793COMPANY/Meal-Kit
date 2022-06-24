@@ -85,7 +85,7 @@ class RecipeListFragment() : Fragment() {
 
 
                 datas.apply {
-                    
+
                     datas.clear()
                     item.forEach {
 

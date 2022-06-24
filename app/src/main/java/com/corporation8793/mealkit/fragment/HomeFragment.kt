@@ -8,18 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.compose.ui.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.corporation8793.mealkit.*
+import com.corporation8793.mealkit.MainApplication
+import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.adapter.HomeViewAdapter
+import com.corporation8793.mealkit.service.PedometerService
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.fragment_home.view.*
-import org.w3c.dom.Text
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -55,6 +56,22 @@ class HomeFragment() : Fragment() {
         val address = view.findViewById<TextView>(R.id.address)
         val viewPager = view.findViewById<ViewPager2>(R.id.kit_list)
         val tabLayout = view.findViewById<TabLayout>(R.id.kit_category)
+
+
+        var pedometerHome=view.findViewById<View>(R.id.pedometer)
+        var currentTimeText=pedometerHome.findViewById<TextView>(R.id.current_date);
+        var total_stepText = pedometerHome.findViewById<TextView>(R.id.total_step);
+        val dt = Date()
+        val calendar = Calendar.getInstance()
+        calendar.setTime(dt);
+        val dayOfWeekNumber = calendar[Calendar.DAY_OF_WEEK]
+
+        val full_sdf = SimpleDateFormat("yyyy.MM.dd")
+        currentTimeText.setText(full_sdf.format(dt).toString()+getCurrentWeek(dayOfWeekNumber))
+
+
+        total_stepText.setText(PedometerService.getStep().toString())
+
 
         address.setText(MainApplication.instance.user.billing.address_1)
 
@@ -146,5 +163,19 @@ class HomeFragment() : Fragment() {
                         putString(ARG_PARAM2, param2)
                     }
                 }
+    }
+
+
+    fun getCurrentWeek(currentNumber: Int): String{
+        when(currentNumber){
+            1 -> return "(일)"
+            2 -> return "(월)"
+            3 -> return "(화)"
+            4 -> return "(수)"
+            5 -> return "(목)"
+            6 -> return "(금)"
+            7 -> return "(토)"
+        }
+        return "";
     }
 }
