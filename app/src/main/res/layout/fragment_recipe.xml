@@ -115,7 +115,7 @@
                     android:id="@+id/recipe_like_btn"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@drawable/like_btn_selector"
+                    android:background="@drawable/best_like_btn_selector"
                     android:elevation="40dp"
                     bind:layout_constraintDimensionRatio="1:1"
                     bind:layout_constraintWidth_percent="0.11"

@@ -21,7 +21,7 @@
 
 
     <EditText
-    android:id="@+id/region_input_box"
+    android:id="@+id/address_input_box"
     android:background="@drawable/stroke_round_corner_btn"
     android:backgroundTint="#f5f5f5"
     android:layout_width="0dp"
@@ -60,7 +60,7 @@
         bind:layout_constraintHorizontal_bias="0"
         bind:layout_constraintTop_toTopOf="parent"
         bind:layout_constraintBottom_toBottomOf="parent"
-        bind:layout_constraintLeft_toRightOf="@+id/region_input_box"
+        bind:layout_constraintLeft_toRightOf="@+id/address_input_box"
         bind:layout_constraintRight_toRightOf="@+id/guideline_right"
         bind:layout_constraintWidth_percent="0.19"
         bind:layout_constraintDimensionRatio="140:70"
@@ -71,7 +71,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
-        bind:layout_constraintTop_toBottomOf="@+id/region_input_box"
+        bind:layout_constraintTop_toBottomOf="@+id/address_input_box"
         bind:layout_constraintBottom_toBottomOf="parent"
         bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
         bind:layout_constraintRight_toRightOf="@id/guideline_right"></androidx.recyclerview.widget.RecyclerView>

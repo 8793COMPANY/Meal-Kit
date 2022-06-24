@@ -74,19 +74,13 @@ class KitAdapter (private val context: Context?, val height : Int, val color : I
                         "name" to item.name,
                         "price" to item.price,
                         "img" to item.img,
-                        "stock" to item.stock_quantity)
+                        "stock" to item.stock_quantity,
+                        "like" to item.like)
                 controller.navigate(R.id.action_home_to_kitDetailFragment3,bundle)
             }
 
-            likeBtn.setOnClickListener {
-                if (likeBtn.isSelected){
-                    likeBtn.isSelected = false
-                    likeBtn.setBackgroundResource(R.drawable.kit_like_btn_off)
-                }else{
-                    likeBtn.isSelected = true
-                    likeBtn.setBackgroundResource(R.drawable.kit_like_btn_on)
-                }
-            }
+            likeBtn.isSelected = item.like;
+
 
 
 //            Glide.with(itemView).load(item.img).into(imgProfile)

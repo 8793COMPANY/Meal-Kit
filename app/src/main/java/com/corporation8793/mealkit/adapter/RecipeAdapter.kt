@@ -13,6 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.dto.RecipeItem
+import com.corporation8793.mealkit.esf_wp.rest.RestClient
+import com.corporation8793.mealkit.esf_wp.rest.data.Post
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -49,13 +54,16 @@ class RecipeAdapter (private val context: Context?, val height : Int, val color 
             recipe_name.text = item.name
             recipe_introdution.text = item.introdution
 
+            recipe_like_btn.isSelected = item.like;
+
             recipe_like_btn.setOnClickListener {
-                if (recipe_like_btn.isSelected){
+                if (recipe_like_btn.isSelected) {
                     recipe_like_btn.isSelected = false
-                }else{
+                } else {
                     recipe_like_btn.isSelected = true
                 }
             }
+
 
 //            if (item.img == "0") {
 //                kitImg.setBackgroundResource(R.color.app_basic_color)
@@ -64,7 +72,7 @@ class RecipeAdapter (private val context: Context?, val height : Int, val color 
             Glide.with(context!!).load(item.user_img).into(userImg)
 
             itemView.setOnClickListener{
-                var bundle = bundleOf("id" to item.id)
+                var bundle = bundleOf("id" to item.id, "like" to item.like)
                 controller.navigate(R.id.action_recipe_list_to_recipeFragment,bundle)
             }
 

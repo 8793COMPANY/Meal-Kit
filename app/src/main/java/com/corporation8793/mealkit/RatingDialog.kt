@@ -14,7 +14,10 @@ import android.view.WindowManager
 
 import androidx.fragment.app.DialogFragment
 import com.corporation8793.mealkit.databinding.DialogKitScoreBinding
+import com.corporation8793.mealkit.esf_wp.rest.data.Review
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 
 class RatingDialog(val activity: Activity) : DialogFragment() {
     private var _binding: DialogKitScoreBinding? = null
@@ -33,12 +36,25 @@ class RatingDialog(val activity: Activity) : DialogFragment() {
             dismiss()
         }
         binding.confirm.setOnClickListener {
+            //        like_btn.setOnClickListener {
+
+//
+                GlobalScope.launch(Dispatchers.Default) {
+                    val resultOn = MainApplication.instance.boardRepository.makeReview(Review());
+                    GlobalScope.launch(Dispatchers.Main) {
+                        if(resultOn.first.equals("200")){
+                            like_btn.isSelected = false
+                        }
+                    }
+                }
+
+
             dismiss()
         }
 
         binding.rating.setOnRatingBarChangeListener { ratingBar, fl, b ->
-            binding.title.setText("별점 등록 ("+fl.toString()+"/5.0)")
-            Log.e("rating",fl.toString())
+            binding.title.setText("별점 등록 ("+fl.toInt().toString()+"/5)")
+            Log.e("rating",fl.toInt().toString())
         }
 //
 //        // 취소 버튼

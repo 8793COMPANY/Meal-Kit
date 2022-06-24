@@ -21,8 +21,14 @@ import com.corporation8793.mealkit.activity.FindActivity
 import com.corporation8793.mealkit.adapter.BestAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
+import com.corporation8793.mealkit.dto.KitItem
+import com.corporation8793.mealkit.esf_wp.rest.RestClient
+import com.corporation8793.mealkit.esf_wp.rest.data.Product
 import com.corporation8793.mealkit.payment.PayMentActivity
 import com.corporation8793.mealkit.payment.SelectProductActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.w3c.dom.Text
 
 // TODO: Rename parameter arguments, choose names that match
@@ -54,21 +60,56 @@ class KitDetailFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_kit_detail, container, false)
         val payment_btn = view.findViewById<ConstraintLayout>(R.id.payment_btn);
+        val like_btn = view.findViewById<ImageView>(R.id.like_btn);
         var id = arguments?.getString("id")
         var category = arguments?.getString("category")
         var name = arguments?.getString("name")
         var price = arguments?.getString("price")
         var stock = arguments?.getString("stock")
         var img = arguments?.getString("img")
+        var like = arguments?.getBoolean("like")
+
+
         Glide.with(this).load(img).into(view.findViewById<ImageView>(R.id.kit_img))
         view.findViewById<TextView>(R.id.kit_category).setText(category)
         view.findViewById<TextView>(R.id.kit_name).setText(name)
         view.findViewById<TextView>(R.id.price).setText(price)
         view.findViewById<TextView>(R.id.stock_count).setText(stock+"개")
         view.findViewById<ImageView>(R.id.kit_img)
+
+
+
         view.findViewById<Button>(R.id.back_btn).setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_back_to_home)
         }
+
+        like_btn.isSelected = like!!;
+
+
+//        like_btn.setOnClickListener {
+//            if (like_btn.isSelected){
+//
+//
+//                GlobalScope.launch(Dispatchers.Default) {
+//                    val resultOn = MainApplication.instance.boardRepository.productLikesEdit(id.toString(),MainApplication.instance.user.id,"OFF");
+//                    GlobalScope.launch(Dispatchers.Main) {
+//                        if(resultOn.first.equals("200")){
+//                            like_btn.isSelected = false
+//                        }
+//                    }
+//                }
+//            }else{
+//                GlobalScope.launch(Dispatchers.Default) {
+//                    val resultOn = MainApplication.instance.board4BaRepository.updatePostLikes(id.toString(),MainApplication.instance.user.id,"ON");
+//                    GlobalScope.launch(Dispatchers.Main) {
+//                        if(resultOn.first.equals("200")){
+//                            like_btn.isSelected = true
+//                        }
+//                    }
+//                }
+//
+//            }
+//        }
 
 
         payment_btn.setOnClickListener {

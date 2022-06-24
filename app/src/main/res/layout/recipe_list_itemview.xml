@@ -123,7 +123,7 @@
         android:id="@+id/recipe_like_btn"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/kit_like_btn_on"
+        android:background="@drawable/kit_like_btn_selector"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintWidth_percent="0.09"
         app:layout_constraintHorizontal_bias="0.97"
