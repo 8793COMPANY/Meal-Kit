@@ -48,12 +48,17 @@ class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val a
 
         fun bind(item: PurchaseItem) {
             Log.e("bind","in")
-//            eventImg.clipToOutline = true
+
+            purchasing_date.setText(item.date)
+            kit_shop_name.setText(item.shop_name)
+            kit_name.setText(item.kit_name)
+            kit_price.setText(item.kit_price)
+            shipping_status.setText(item.status)
+
 
 
             itemView.setOnClickListener{
-//                val action = BestFragmentDirections.actionBestToKitDetailFragment3()
-//                controller.navigate(action)
+
                 val dialog = RatingDialog(activity!!)
                 dialog.show(parentFragmentManager!!,"hello")
 

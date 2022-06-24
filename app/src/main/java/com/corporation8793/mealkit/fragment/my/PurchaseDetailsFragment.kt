@@ -2,6 +2,7 @@ package com.corporation8793.mealkit.fragment.my
 
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,12 @@ import com.corporation8793.mealkit.decoration.KitDecoration
 import com.corporation8793.mealkit.dto.KitItem
 import com.corporation8793.mealkit.dto.MyItem
 import com.corporation8793.mealkit.dto.PurchaseItem
+import com.corporation8793.mealkit.esf_wp.rest.RestClient
+import com.corporation8793.mealkit.esf_wp.rest.data.Order
+import com.corporation8793.mealkit.esf_wp.rest.data.Product
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,17 +66,38 @@ class PurchaseDetailsFragment : Fragment() {
         val lm = LinearLayoutManager(context)
         purchase_list.layoutManager = lm
 
+        val sharedPreference = context!!.getSharedPreferences("other", 0)
+        val id = sharedPreference.getString("id","test22")
 
+        GlobalScope.launch(Dispatchers.Default) {
+            var user_id = RestClient.nonceService.checkUsername(id!!).execute().body()!!.get(0).id
+            val item : List<Order> = RestClient.boardService.listAllOrder(user_id).execute().body()!!
 
-        datas.apply {
-            datas.clear()
-            add(PurchaseItem("2022.06.14 17:30","[요거트가게]","바질시금치스프","15,900","2","배송준비중"))
-            add(PurchaseItem("2022.06.14 17:30","[요거트가게]","바질시금치스프","15,900","2","배송준비중"))
-            add(PurchaseItem("2022.06.14 17:30","[요거트가게]","바질시금치스프","15,900","2","배송준비중"))
+            GlobalScope.launch(Dispatchers.Main) {
+                datas.apply {
+                    item.forEach {
+                        Log.e("item",it.toString())
+                        add(PurchaseItem(it.date_created!!.replace("T"," "),
+                               it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),it.line_items.get(0).total,it.line_items.get(0).quantity,"배송준비중"))
+//                        println("상품 카테고리 : ${pr.categories.first().name}")
+//                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
+//                        println("별점 (5.00) : ${pr.average_rating}")
+//                        println("상품 이미지 URL : ${pr.images.first().src}")
+//                        println("상품 세일 기간 : ${pr.date_on_sale_from} ~ ${pr.date_on_sale_to}")
+//                        println("상품가격 : ${pr.price}원")
+//                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
+//                        println("---------------")
 
-            adapter.datas = datas
-            adapter.notifyDataSetChanged()
+                    }
+
+                    adapter.datas = datas
+                    adapter.notifyDataSetChanged()
+                }
+            }
+//                binding.checkText.visibility = View.VISIBLE
         }
+
+
 
         var divider = KitDecoration(20)
         purchase_list.addItemDecoration(divider)
