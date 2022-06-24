@@ -163,11 +163,68 @@ class NonceRepository {
         }
     }
 
-
     // 포인트 제어 (+, -)
-    fun editPoint(id: String, editPointBody: editPointBody) : Pair<String, Customer?> {
-        val editPointResponse = RestClient.nonceService.editPoint(id, editPointBody).execute()
+    // 14번 유저의 100 포인트를 증가시킨다. (사유 : 샐러드가게) -> 14, 100, +, 샐러드가게
+    // 14번 유저의 500 포인트를 차감한다. (사유 : 스프가게) -> 14, 500, -, 스프가게
+    fun editPoint(b4ba : Board4BaRepository, id: String, point: Int, action: String, log: String) : Pair<String, Customer?> {
+        // title, excerpt, logContent
+        var logContent = ""
+        var logResult : Triple<String, String, String>
 
-        return Pair(editPointResponse.code().toString(), editPointResponse.body())
+        val validUserResponse = RestClient.nonceService.getValidUserInfo(id).execute()
+        val currentUserTotalPoint = validUserResponse.body()?.meta_data?.filter {
+                metaData -> metaData.key == "point" }?.first()?.value.toString().toInt()
+        println("Before 포인트 : $currentUserTotalPoint")
+        logContent += "Before 포인트 : $currentUserTotalPoint\n"
+
+        return when (action) {
+            "+" -> {
+                val editPointResponse = RestClient.nonceService.editPoint(id, editPointBody(
+                        arrayOf(
+                            Meta_data(id = null, key = "point",
+                                value = (currentUserTotalPoint + point) )
+                        )
+                    )
+                ).execute()
+                println("After 포인트 : ${editPointResponse.body()?.meta_data?.filter { 
+                        metaData -> metaData.key == "point" }?.first()?.value}")
+                logContent += "After 포인트 : ${editPointResponse.body()?.meta_data?.filter {
+                        metaData -> metaData.key == "point" }?.first()?.value}\n"
+                logResult = Triple(log, "$action$point", logContent)
+                val logResponse = b4ba.createPointLog(
+                    title = logResult.first,
+                    excerpt = logResult.second,
+                    content = logResult.third,
+                    categories = RestClient.POINT_LOG
+                )
+
+                Pair(editPointResponse.code().toString(), editPointResponse.body())
+            }
+            "-" -> {
+                val editPointResponse = RestClient.nonceService.editPoint(id, editPointBody(
+                        arrayOf(
+                            Meta_data(id = null, key = "point",
+                                value = (currentUserTotalPoint - point) )
+                        )
+                    )
+                ).execute()
+                println("After 포인트 : ${editPointResponse.body()?.meta_data?.filter {
+                        metaData -> metaData.key == "point" }?.first()?.value}")
+                logContent += "After 포인트 : ${editPointResponse.body()?.meta_data?.filter {
+                        metaData -> metaData.key == "point" }?.first()?.value}\n"
+                logResult = Triple(log, "$action$point", logContent)
+                val logResponse = b4ba.createPointLog(
+                    title = logResult.first,
+                    excerpt = logResult.second,
+                    content = logResult.third,
+                    categories = RestClient.POINT_LOG
+                )
+
+                Pair(editPointResponse.code().toString(), editPointResponse.body())
+            }
+            else -> {
+                Pair("null", null)
+            }
+        }
     }
 }

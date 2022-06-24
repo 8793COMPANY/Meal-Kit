@@ -33,7 +33,7 @@ data class PostTitle(val rendered : String)
 /**
  * [Post.excerpt]
  * @author  두동근
- * @param   rendered    사용 밀키트
+ * @param   rendered    레시피 요약
  */
 data class PostExcerpt(val rendered : String)
 /**
