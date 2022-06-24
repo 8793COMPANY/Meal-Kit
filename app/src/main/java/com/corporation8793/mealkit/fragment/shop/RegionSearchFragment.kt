@@ -2,6 +2,7 @@ package com.corporation8793.mealkit.fragment.shop
 
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,12 @@ import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
 import com.corporation8793.mealkit.dto.KitItem
 import com.corporation8793.mealkit.dto.ShopItem
+import com.corporation8793.mealkit.esf_wp.rest.data.DisableProduct
+import com.corporation8793.mealkit.esf_wp.rest.repository.BoardRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import okhttp3.Credentials
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,6 +49,8 @@ class RegionSearchFragment() : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -49,11 +58,14 @@ class RegionSearchFragment() : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_search_region, container, false)
 
+
+
         val shop_list = view.findViewById<RecyclerView>(R.id.shop_list)
 
         val display : DisplayMetrics = DisplayMetrics()
         activity?.windowManager?.defaultDisplay?.getMetrics(display)
         val height : Int =  (display.heightPixels / 8.5).toInt()
+
 
         val shopAdapter = ShopAdapter(context, height, resources.getColor(R.color.category_land_color),findNavController())
         shop_list.adapter =  shopAdapter
@@ -63,15 +75,38 @@ class RegionSearchFragment() : Fragment() {
 
         shop_list.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))
 
-
         datas.apply {
-            add(ShopItem("0","샐러드집","광주 동구 동계천로 150"))
-            add(ShopItem("0","샐러드집","광주 동구 동계천로 150"))
-            add(ShopItem("0","샐러드집","광주 동구 동계천로 150"))
+            GlobalScope.launch(Dispatchers.Default) {
+                val testId = "test22"
+                val testPw = "1234"
+                val basicAuth = Credentials.basic(testId, testPw)
+                // 저장소 초기화
+                val boardRepository = BoardRepository()
 
-            shopAdapter.datas = datas
-            shopAdapter.notifyDataSetChanged()
+                println("====== storeList     ======")
+
+                println("------ listAllStore() -----")
+                val listAllStoreResponse = boardRepository.listAllStore()
+
+                    GlobalScope.launch(Dispatchers.Main) {
+                        datas.apply {
+                            listAllStoreResponse.second!!.forEach {
+
+                                add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,it.acf.address!!))
+                            }
+                            shopAdapter.datas = datas
+                            shopAdapter.notifyDataSetChanged()
+                        }
+
+                }
+
+
+
+
+
+            }
         }
+
         return view
     }
 

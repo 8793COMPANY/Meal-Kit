@@ -42,7 +42,17 @@
     <fragment
         android:id="@+id/shop"
         android:name="com.corporation8793.mealkit.fragment.ShopFragment"
-        android:label="ShopFragment" />
+        android:label="ShopFragment" >
+        <action
+            android:id="@+id/action_shop_to_regionSearchFragment"
+            app:destination="@id/regionSearchFragment" />
+        <action
+            android:id="@+id/action_shop_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_shop_to_shopListFragment"
+            app:destination="@id/shopListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/my"
         android:name="com.corporation8793.mealkit.fragment.MyFragment"
@@ -77,6 +87,9 @@
     <action android:id="@+id/action_purchase_details_screen"
         app:destination="@id/purchaseDetailsFragment"></action>
 
+    <action android:id="@+id/action_map_screen"
+        app:destination="@id/mapFragment"></action>
+
     <fragment
         android:id="@+id/purchaseDetailsFragment"
         android:name="com.corporation8793.mealkit.fragment.my.PurchaseDetailsFragment"
@@ -87,6 +100,31 @@
         android:name="com.corporation8793.mealkit.fragment.ChallengeFragment"
         android:label="fragment_challenge"
         tools:layout="@layout/fragment_challenge" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.corporation8793.mealkit.fragment.shop.MapFragment"
+        android:label="MapFragment" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/shopListFragment"
+        android:name="com.corporation8793.mealkit.fragment.shop.ShopListFragment"
+        android:label="ShopListFragment" >
+        <action
+            android:id="@+id/action_shopListFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_shopListFragment_to_regionSearchFragment"
+            app:destination="@id/regionSearchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/regionSearchFragment"
+        android:name="com.corporation8793.mealkit.fragment.shop.RegionSearchFragment"
+        android:label="RegionSearchFragment" >
+        <action
+            android:id="@+id/action_regionSearchFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
 
 
 </navigation>

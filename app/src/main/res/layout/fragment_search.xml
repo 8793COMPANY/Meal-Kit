@@ -20,4 +20,60 @@
         bind:layout_constraintGuide_percent="0.92"></androidx.constraintlayout.widget.Guideline>
 
 
+    <EditText
+    android:id="@+id/region_input_box"
+    android:background="@drawable/stroke_round_corner_btn"
+    android:backgroundTint="#f5f5f5"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:paddingLeft="20dp"
+    android:hint="가게이름을 입력해주세요"
+    android:textSize="13dp"
+    android:fontFamily="@font/nskr_medium"
+    android:includeFontPadding="false"
+    bind:layout_constraintVertical_bias="0"
+    bind:layout_constraintHorizontal_bias="0"
+    android:textColorHint="#5c5c5c"
+    bind:layout_constraintTop_toTopOf="parent"
+    bind:layout_constraintBottom_toBottomOf="parent"
+    bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+    bind:layout_constraintRight_toLeftOf="@+id/search_btn"
+    bind:layout_constraintWidth_percent="0.6"
+    bind:layout_constraintDimensionRatio="490:70"
+    bind:layout_constraintHorizontal_chainStyle="spread_inside"
+    ></EditText>
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/search_btn"
+        android:background="@drawable/stroke_round_corner_btn"
+        android:backgroundTint="@color/app_basic_color"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="검색"
+        android:textColor="@color/white"
+        android:textSize="13dp"
+        android:fontFamily="@font/nskr_medium"
+        android:includeFontPadding="false"
+        bind:layout_constraintVertical_bias="0"
+        bind:layout_constraintHorizontal_bias="0"
+        bind:layout_constraintTop_toTopOf="parent"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toRightOf="@+id/region_input_box"
+        bind:layout_constraintRight_toRightOf="@+id/guideline_right"
+        bind:layout_constraintWidth_percent="0.19"
+        bind:layout_constraintDimensionRatio="140:70"
+        ></androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/shop_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        bind:layout_constraintTop_toBottomOf="@+id/region_input_box"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        bind:layout_constraintRight_toRightOf="@id/guideline_right"></androidx.recyclerview.widget.RecyclerView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

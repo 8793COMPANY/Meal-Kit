@@ -69,6 +69,8 @@ class RecipeFragment() : Fragment() {
              view.findViewById<TextView>(R.id.recipe_name).setText(item.title.rendered)
                 view.findViewById<TextView>(R.id.recipe_info).setText(replaceText(item.excerpt.rendered))
                 view.findViewById<TextView>(R.id.use_kit).setText("사용 밀키트:"+item.acf.product)
+                view.findViewById<TextView>(R.id.detailed_recipe).setText(replaceText(item.content.rendered))
+                Log.e("content",item.content.rendered)
                 view.findViewById<TextView>(R.id.detailed_recipe).setText(Html.fromHtml((item.content.rendered)))
 
             }
@@ -83,7 +85,7 @@ class RecipeFragment() : Fragment() {
 
 
     fun replaceText(text : String) : String{
-        val regex = Regex("&.*;")
+        val regex = Regex("<div id=\"modal-ready\">")
         val matchResult: MatchResult? = regex.find(text)
 //        println("match value: ${matchResult?.value}")
         var result = text
@@ -98,6 +100,7 @@ class RecipeFragment() : Fragment() {
                 .replace("<br>","").replace("<br />","")
                 .replace("<strong>","").replace("</strong>","")
                 .replace("<div>","").replace("</div>","")
+
 
     }
 
