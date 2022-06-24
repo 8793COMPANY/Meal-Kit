@@ -164,12 +164,14 @@ class PayMentActivity : AppCompatActivity() {
                     var intent = Intent(applicationContext, CompleteOrdersActivity::class.java)
                     var shop_name = makeOrderResponse.second?.meta_data?.get(0)!!.value.toString()
                     var order_point = makeOrderResponse.second?.meta_data?.get(1)!!.value.toString()
+                    intent.putExtra("type","payment")
                     intent.putExtra("id",makeOrderResponse.second?.id.toString())
                     intent.putExtra("shop_name",shop_name)
                     intent.putExtra("name",makeOrderResponse.second?.line_items?.first()?.name)
                     intent.putExtra("quantity",makeOrderResponse.second?.line_items?.first()?.quantity)
                     intent.putExtra("price",makeOrderResponse.second?.line_items?.first()?.total)
                     intent.putExtra("order_point",order_point)
+                    intent.putExtra("address",address_1+" "+address_2)
                     startActivity(intent);
 
 

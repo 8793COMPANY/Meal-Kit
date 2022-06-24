@@ -13,14 +13,17 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.activity.FindActivity
+import com.corporation8793.mealkit.dto.RecipeItem
 import com.corporation8793.mealkit.dto.ShopItem
 import com.corporation8793.mealkit.fragment.HomeFragmentDirections
 import com.corporation8793.mealkit.fragment.shop.RegionSearchFragmentDirections
 import com.corporation8793.mealkit.fragment.shop.ShopListFragmentDirections
+import java.util.*
 
 
 class ShopAdapter ( private val context: Context?, val height : Int, val color : Int, val controller : NavController) : RecyclerView.Adapter<ShopAdapter.ViewHolder>() {
     var datas = mutableListOf<ShopItem>()
+    var alldatas = mutableListOf<ShopItem>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.shop_list_itemview,parent,false)
         view.layoutParams.height = height
@@ -69,6 +72,49 @@ class ShopAdapter ( private val context: Context?, val height : Int, val color :
 //            Glide.with(itemView).load(item.img).into(imgProfile)
 
         }
+    }
+
+
+    fun filter(charText: String) {
+        var charText = charText
+        charText = charText.toLowerCase(Locale.getDefault())
+        datas.clear()
+        if (charText.length == 0) {
+            datas.addAll(alldatas)
+            Log.e("asda","Asda");
+        } else {
+            Log.e("alldataCount",alldatas.count().toString());
+            for (item: ShopItem in alldatas) {
+                Log.e("item.name",item.name);
+                val name =item.name
+                if (name.toLowerCase().contains(charText)) {
+                    datas.add(item)
+                }
+            }
+        }
+        notifyDataSetChanged()
+    }
+
+    fun region_filter(metropolitan: String, address:String) {
+        var metropolitan = metropolitan
+        var address = address
+        metropolitan = metropolitan.toLowerCase(Locale.getDefault())
+        address = address.toLowerCase(Locale.getDefault())
+        datas.clear()
+        if (metropolitan.length == 0 && address.length == 0) {
+            datas.addAll(alldatas)
+            Log.e("asda","Asda");
+        } else {
+            Log.e("alldataCount",alldatas.count().toString());
+            for (item: ShopItem in alldatas) {
+                Log.e("item.name",item.name);
+                val name =item.address
+                if (name.toLowerCase().contains(metropolitan) &&name.toLowerCase().contains(address)) {
+                    datas.add(item)
+                }
+            }
+        }
+        notifyDataSetChanged()
     }
 
 }

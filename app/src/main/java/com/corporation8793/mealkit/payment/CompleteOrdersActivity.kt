@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -20,12 +21,17 @@ class CompleteOrdersActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_complete_orders)
         binding.setActionBar("주문 완료")
 
+        var type = intent.getStringExtra("type")
         var order_id = intent.getStringExtra("id")
         var shop = intent.getStringExtra("shop_name")
         var name = intent.getStringExtra("name")
         var price = intent.getStringExtra("price")
         var quantity = intent.getStringExtra("quantity")
         var order_point = intent.getStringExtra("order_point")
+        var address = intent.getStringExtra("address")
+
+        if(type.equals("check"))
+            binding.completeOrdersOrderListBtn.visibility = View.GONE
 
         Log.e("order_id",order_id+"")
         binding.completeOrdersOrderNumberText.setText(order_id)
@@ -33,6 +39,7 @@ class CompleteOrdersActivity : AppCompatActivity() {
         binding.completeOrdersBuyListText.setText(name+"|"+quantity+"개")
         binding.completeOrdersBuyMoneyText.setText(price+"원")
         binding.completeOrdersPointText.setText(order_point+"원")
+        binding.completeOrdersDeliveryAddressText.setText(address)
 
 
         binding.paymentActionBar.backBtn.setOnClickListener {

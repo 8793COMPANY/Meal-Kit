@@ -20,6 +20,21 @@
             app:navermap_latitude="36.763695"
             app:navermap_longitude="127.281796"/>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:visibility="gone"
+        android:id="@+id/back_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/back_btn"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintWidth_percent="0.1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.04"
+        app:layout_constraintHorizontal_bias="0.05"></androidx.appcompat.widget.AppCompatButton>
+
 
 <!--    <LinearLayout-->
 <!--        android:id="@+id/bottom_sheet"-->

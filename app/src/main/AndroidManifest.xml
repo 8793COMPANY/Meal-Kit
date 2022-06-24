@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_main_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MealKit"
+        android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".activity.UserEditActivity"
@@ -108,7 +109,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
