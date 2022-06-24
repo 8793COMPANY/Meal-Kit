@@ -92,7 +92,6 @@
         android:id="@+id/kit_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:overScrollMode="never"
         app:layout_constraintTop_toBottomOf="@+id/action_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

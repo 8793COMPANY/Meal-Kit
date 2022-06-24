@@ -30,10 +30,12 @@ data class Content(val rendered : String)
  * [Store.acf]
  * @author  두동근
  * @param   metropolitan        체인점의 광역시/도
+ * @param   address             체인점의 상세주소
  * @param   feature_image_2     체인점의 추가 이미지 HTTP URL
  * @param   disable_product     체인점의 미취급 상품 목록
  */
 data class Acf(val metropolitan : String?,
+               val address : String?,
                val feature_image_2 : String?,
                val disable_product : Array<DisableProduct>)
 /**

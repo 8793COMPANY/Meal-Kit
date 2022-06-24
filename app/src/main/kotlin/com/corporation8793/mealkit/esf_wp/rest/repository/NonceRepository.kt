@@ -5,6 +5,10 @@ import com.corporation8793.mealkit.esf_wp.rest.data.*
 import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.PassResetLink
 import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.SignUpBody
 import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.ValidUserStatus
+import retrofit2.Call
+import retrofit2.http.Body
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 /**
  * [NonceService]의 구현 클래스
@@ -112,10 +116,6 @@ class NonceRepository {
         return Pair(response.code().toString(), response.body())
     }
 
-
-
-
-
     /**
      * 입력받은 정보로 회원가입합니다.
      * @author  두동근
@@ -161,5 +161,13 @@ class NonceRepository {
                 Pair("510", null)
             }
         }
+    }
+
+
+    // 포인트 제어 (+, -)
+    fun editPoint(id: String, editPointBody: editPointBody) : Pair<String, Customer?> {
+        val editPointResponse = RestClient.nonceService.editPoint(id, editPointBody).execute()
+
+        return Pair(editPointResponse.code().toString(), editPointResponse.body())
     }
 }
