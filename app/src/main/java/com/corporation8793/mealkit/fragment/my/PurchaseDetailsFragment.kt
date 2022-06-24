@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -62,6 +64,7 @@ class PurchaseDetailsFragment : Fragment() {
 
 
         val purchase_list = view.findViewById<RecyclerView>(R.id.purchase_list)
+        val purchase_progress = view.findViewById<RelativeLayout>(R.id.purchase_progress)
 
         val adapter = PurchaseAdapter(parentFragmentManager,activity,context,height,findNavController())
 
@@ -77,18 +80,21 @@ class PurchaseDetailsFragment : Fragment() {
         val sharedPreference = context!!.getSharedPreferences("other", 0)
         val id = sharedPreference.getString("id","test22")
 
+
         GlobalScope.launch(Dispatchers.Default) {
             var user_id = RestClient.nonceService.checkUsername(id!!).execute().body()!!.get(0).id
-            val item : List<Order> = RestClient.boardService.listAllOrder(user_id).execute().body()!!
+            val item : Triple<Order> = RestClient.boardService.listAllOrder(user_id).execute().body()!!
 
 
 
-            GlobalScope.launch(Dispatchers.Main) {
+
                 datas.apply {
-                    item.forEach {
+                    item..forEach {
                         Log.e("item",it.toString())
 
-                        add(PurchaseItem(it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
+                        var img = MainApplication.instance.boardRepository.retrieveOneProduct(it.line_items.get(0).product_id).second!!.images.get(0).src
+
+                        add(PurchaseItem(img,it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
                                it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),
                                 it.line_items.get(0).total,it.line_items.get(0).quantity,it.billing.address_1+" "+it.billing.address_2))
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
@@ -101,9 +107,10 @@ class PurchaseDetailsFragment : Fragment() {
 //                        println("---------------")
 
                     }
-
+                    GlobalScope.launch(Dispatchers.Main) {
                     adapter.datas = datas
                     adapter.notifyDataSetChanged()
+                        purchase_progress.visibility = View.GONE
                 }
             }
 //                binding.checkText.visibility = View.VISIBLE

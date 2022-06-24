@@ -73,6 +73,22 @@
             bind:layout_constraintLeft_toLeftOf="parent"
             bind:layout_constraintRight_toRightOf="parent"></androidx.recyclerview.widget.RecyclerView>
 
+
+        <RelativeLayout
+            android:id="@+id/purchase_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_80"
+            >
+            <ProgressBar
+                android:layout_centerInParent="true"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+
+                ></ProgressBar>
+
+
+        </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

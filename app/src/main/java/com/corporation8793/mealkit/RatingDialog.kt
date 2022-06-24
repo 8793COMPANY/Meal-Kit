@@ -16,6 +16,7 @@ import androidx.fragment.app.DialogFragment
 import com.corporation8793.mealkit.databinding.DialogKitScoreBinding
 import com.corporation8793.mealkit.esf_wp.rest.data.Review
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.fragment_kit_detail.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -63,7 +64,7 @@ class RatingDialog(val activity: Activity, val product_id :String) : DialogFragm
                             " ",
                             MainApplication.instance.user.first_name,
                             MainApplication.instance.user.email,
-                            rating.toString()));
+                            rating.toString()))
                     Log.e("resultOn",resultOn.first!!)
                 }
 

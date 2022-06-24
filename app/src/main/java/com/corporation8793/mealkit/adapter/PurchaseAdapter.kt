@@ -15,6 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.RatingDialog
 import com.corporation8793.mealkit.dto.BestItem
@@ -53,6 +54,8 @@ class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val a
 
         fun bind(item: PurchaseItem) {
             Log.e("bind","in")
+
+            Glide.with(context!!).load(item.img).into(kitImg)
 
             purchasing_date.setText(item.date)
             kit_shop_name.setText(item.shop_name)
