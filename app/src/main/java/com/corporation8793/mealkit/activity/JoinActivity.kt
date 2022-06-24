@@ -16,16 +16,20 @@ import androidx.databinding.DataBindingUtil
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.databinding.ActivityJoinBinding
 import com.corporation8793.mealkit.esf_wp.rest.data.Billing
+import com.corporation8793.mealkit.esf_wp.rest.data.Customer
 import com.corporation8793.mealkit.esf_wp.rest.data.Meta_data
 import com.corporation8793.mealkit.esf_wp.rest.data.Shipping
 import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.SignUpBody
+import com.corporation8793.mealkit.esf_wp.rest.repository.Board4BaRepository
 import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.Credentials
 
 class JoinActivity : AppCompatActivity() {
     lateinit var binding: ActivityJoinBinding
+    lateinit var recommenderId : String
     var isActiveJoinBtn : Boolean = false;
     var isOverlapCheck : Boolean = false;
     var passwordShowCheck : Boolean = false;
@@ -33,6 +37,8 @@ class JoinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val adminAuth = Credentials.basic("esffnb", "@esfadmin*0967")
+        val board4BaRepository = Board4BaRepository(adminAuth)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_join)
         binding.title = "회원가입"
@@ -86,6 +92,7 @@ class JoinActivity : AppCompatActivity() {
                 GlobalScope.launch(Dispatchers.Main) {
                     if(value.second!!.size > 0){
                         binding.recommenderErrorText.setText("추천인이 확인 되었습니다.")
+                        recommenderId = value.second!!.filter { customer -> customer.username == "${binding.recommenderCodeInputBox.text.toString().trim()}" }.first().id
                         binding.recommenderErrorText.setTextColor(resources.getColor(R.color.app_basic_color))
                         activeJoinBtn()
                        }else{
@@ -207,11 +214,9 @@ class JoinActivity : AppCompatActivity() {
                         arrayOf(Meta_data(id = null, key = "recommender", value = binding.recommenderCodeInputBox.text.toString()))
                         )
                 )
+
                println("value ==== "+value)
                 Log.e("value ==== ",value.first)
-
-//                println(value.first)
-//                println(value.second?.id)
 
                 GlobalScope.launch(Dispatchers.Main) {
                     binding.joinProgress.visibility=View.GONE
@@ -229,7 +234,25 @@ class JoinActivity : AppCompatActivity() {
 
                     if(value.first.toString().equals("201")){
                         Toast.makeText(this@JoinActivity, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-                        finish();
+
+                        GlobalScope.launch(Dispatchers.Default) {
+                            Log.e("JoinActivity", "recommender ID: $recommenderId")
+                            if (recommenderId != null) {
+                                NonceRepository().editPoint(
+                                    b4ba = board4BaRepository,
+                                    id = recommenderId,
+                                    point = 150,
+                                    action = "recommender",
+                                    log = "${binding.idInputBox.text.toString().trim()}님의 추천"
+                                )
+                            } else {
+                                Log.e("JoinActivity", "no recommender")
+                            }
+
+                            GlobalScope.launch(Dispatchers.Main) {
+                                finish()
+                            }
+                        }
                     }
 //                    binding.checkText.visibility = View.VISIBLE
 //                    if(value.second!!.size > 0){

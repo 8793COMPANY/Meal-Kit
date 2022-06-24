@@ -42,7 +42,7 @@ class MainApplication : Application() {
 
     fun resetPedometer() {
         val intent = Intent(this, ResetPedometer::class.java)
-        val alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
+        val alarmIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
         val calendar = Calendar.getInstance()
         if (calendar[Calendar.HOUR_OF_DAY] > 23) {
             calendar.add(Calendar.DATE, 1)

@@ -196,6 +196,37 @@ class Board4BaRepository(val basicAuth : String) {
         return call.execute().body()
     }
 
+
+    // createPointLogByOther
+    /**
+     * 포인트 로그를 생성합니다.
+     * @author  두동근
+     * @param   title               제목
+     * @param   content             내용
+     * @param   categories          [RestClient]의 카테고리값 (기본값 : [RestClient.POINT_LOG])
+     * * 포인트 로그 - [RestClient.POINT_LOG]
+     * @param   featured_media      [Media.id] (기본값 : 0)
+     * @param   author              [RestClient.POINT_LOG] 사용자 지정 옵션
+     * @return  responseCode (expected : "201")
+     */
+    fun createPointLogByOther(title : String, content : String, categories : String =
+        RestClient.POINT_LOG, featured_media : String? = "0", excerpt: String, author:String) : PointLog? {
+
+        val verifiedCategories = when (categories) {
+            RestClient.RECIPE_CUSTOMER -> categories
+            RestClient.RECIPE_BEST -> categories
+            RestClient.POINT_LOG -> categories
+            else -> {
+                RestClient.RECIPE_CUSTOMER
+            }
+        }
+
+        val call = RestClient.board4BaService.createPointLogByOther(basicAuth, title = title, content = content,
+            categories = verifiedCategories, featured_media = featured_media, excerpt = excerpt, author = author)
+
+        return call.execute().body()
+    }
+
     /**
      * 카테고리 내 전체 게시물을 검색합니다.
      * @author  두동근

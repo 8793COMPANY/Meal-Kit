@@ -19,6 +19,12 @@
         app:layout_constraintGuide_percent="0.92"
         android:orientation="horizontal"></androidx.constraintlayout.widget.Guideline>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_img_bottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.80"
+        android:orientation="horizontal"></androidx.constraintlayout.widget.Guideline>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
@@ -69,7 +75,7 @@
         android:layout_height="0dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="40dp"
         app:layout_constraintDimensionRatio="250:218"
         app:layout_constraintVertical_bias="0.15"
         app:layout_constraintHorizontal_bias="0"
@@ -116,7 +122,6 @@
         android:text="바질시금치스프"
         android:textSize="16dp"
         android:textColor="@color/black"
-        android:layout_marginTop="5dp"
         android:fontFamily="@font/nskr_medium"
         app:layout_constraintTop_toBottomOf="@+id/kit_shop_name"
         app:layout_constraintBottom_toTopOf="@+id/kit_price"
@@ -146,6 +151,45 @@
         app:layout_constraintHeight_percent="0.2"
         app:layout_constraintHorizontal_bias="0"></TextView>
 
+
+    <TextView
+        android:id="@+id/price_quantity_divider"
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="|"
+        android:textSize="13dp"
+        android:textColor="#d1d1d1"
+        android:layout_marginLeft="5dp"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintTop_toTopOf="@+id/kit_price"
+        app:layout_constraintBottom_toBottomOf="@+id/kit_price"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        app:layout_constraintLeft_toRightOf="@+id/kit_price"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintHorizontal_bias="0"></TextView>
+
+    <TextView
+        android:id="@+id/kit_quantity"
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="2개"
+        android:textSize="15dp"
+        android:textColor="#707070"
+        android:layout_marginLeft="5dp"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintTop_toTopOf="@+id/kit_price"
+        app:layout_constraintBottom_toBottomOf="@+id/kit_price"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        app:layout_constraintLeft_toRightOf="@+id/price_quantity_divider"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintHorizontal_bias="0"></TextView>
+
     <TextView
         android:id="@+id/shipping_status"
         android:layout_width="wrap_content"
@@ -169,11 +213,13 @@
         android:id="@+id/test"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintVertical_bias="0.5"
         android:background="@drawable/pedometer_background"
         app:layout_constraintDimensionRatio="640:72"
         app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
         app:layout_constraintRight_toRightOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@+id/kit_img_area"
+        android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/guideline_bottom">
 
 
@@ -181,16 +227,17 @@
             android:id="@+id/order_details_btn"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="주문상세"
-            android:gravity="center"
-            android:textColor="#4e4e4e"
             android:fontFamily="@font/nskr_medium"
+            android:gravity="center"
             android:includeFontPadding="false"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="주문상세"
+            android:textColor="#4e4e4e"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/kit_score_btn"
-            app:layout_constraintWidth_percent="0.5"></TextView>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"></TextView>
 
         <View
             android:layout_width="1dp"
@@ -214,8 +261,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/order_details_btn"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintWidth_percent="0.5"></TextView>
+            app:layout_constraintRight_toRightOf="parent"></TextView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

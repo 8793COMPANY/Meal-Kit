@@ -65,4 +65,19 @@ class BoardRepository {
 
         return Pair(response.code().toString(), response.body())
     }
+    /**
+     * 전체 주문내역을 검색합니다.
+     * @author  두동근
+     * @return  responseCode (expected : "200"), [List<Order>]
+     * @param   customer        고객 아이디
+     * @see     Order
+     * @see     Pair
+     */
+    fun listAllOrder(customer : String) : Pair<String, List<Order>?> {
+        val call = RestClient.boardService.listAllOrder(customer)
+
+        val response = call.execute()
+
+        return Pair(response.code().toString(), response.body())
+    }
 }
