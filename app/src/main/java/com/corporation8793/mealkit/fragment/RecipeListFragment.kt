@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.RelativeLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -59,7 +61,8 @@ class RecipeListFragment() : Fragment() {
 
         val recipe_list = view.findViewById<RecyclerView>(R.id.recipe_list)
         val go_recipe_write_btn = view.findViewById<FloatingActionButton>(R.id.go_recipe_write_btn)
-
+        var  recipelist_progress = view.findViewById<RelativeLayout>(R.id.recipelist_progress);
+        var comment_input_box = view.findViewById<EditText>(R.id.comment_input_box);
         go_recipe_write_btn.setOnClickListener {
             var intent = Intent(activity, WriteRecipeActivity::class.java)
             startActivity(intent)
@@ -80,7 +83,10 @@ class RecipeListFragment() : Fragment() {
         var divider = BestDecoration(20)
         recipe_list.addItemDecoration(divider)
 
+
+
         GlobalScope.launch(Dispatchers.Default) {
+            recipelist_progress.visibility=View.VISIBLE;
             val item : List<Post> = RestClient.board4BaService.retrievePostInCategories(categories = RestClient.RECIPE_CUSTOMER).execute().body()!!
 
 
@@ -113,6 +119,7 @@ class RecipeListFragment() : Fragment() {
                     GlobalScope.launch(Dispatchers.Main) {
                     recipeAdapter.datas = datas
                     recipeAdapter.notifyDataSetChanged()
+                        recipelist_progress.visibility=View.GONE;
                 }
             }
         }

@@ -61,6 +61,8 @@ class HomeFragment() : Fragment() {
         var pedometerHome=view.findViewById<View>(R.id.pedometer)
         var currentTimeText=pedometerHome.findViewById<TextView>(R.id.current_date);
         var total_stepText = pedometerHome.findViewById<TextView>(R.id.total_step);
+        var finish_step = pedometerHome.findViewById<TextView>(R.id.finish_step);
+
         val dt = Date()
         val calendar = Calendar.getInstance()
         calendar.setTime(dt);
@@ -71,6 +73,13 @@ class HomeFragment() : Fragment() {
 
 
         total_stepText.setText(PedometerService.getStep().toString())
+        if(PedometerService.getStep() <3000){
+            finish_step.setText("/3000보")
+        }else if(PedometerService.getStep() <5000){
+            finish_step.setText("/5000보")
+        }else{
+            finish_step.setText("/10000보")
+        }
 
 
         address.setText(MainApplication.instance.user.billing.address_1)
