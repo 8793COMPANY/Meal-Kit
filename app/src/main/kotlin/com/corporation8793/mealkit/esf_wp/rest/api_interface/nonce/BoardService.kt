@@ -47,4 +47,7 @@ interface BoardService {
      */
     @GET("wp-json/wc/v3/orders")
     fun listAllOrder(@Query("customer") customer : String) : Call<List<Order>>
+
+    @POST("wp-json/wc/v3/products/reviews")
+    fun makeReview(@Body review: Review) : Call<Review>
 }
