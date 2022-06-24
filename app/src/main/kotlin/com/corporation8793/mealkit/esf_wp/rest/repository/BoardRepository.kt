@@ -163,4 +163,13 @@ class BoardRepository {
 
         return Pair(response.code().toString(), response.body())
     }
+
+
+    fun makeReview(review: Review) : Pair<String, Review?> {
+        val call = RestClient.boardService.makeReview(review)
+
+        val response = call.execute()
+
+        return Pair(response.code().toString(), response.body())
+    }
 }
