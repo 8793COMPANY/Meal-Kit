@@ -367,4 +367,5 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.startup:startup-runtime:1.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.play:core:1.10.2@aar" level="project" />
   </component>
+  <component name="TestModuleProperties" production-module="MealKit.app.main" />
 </module>

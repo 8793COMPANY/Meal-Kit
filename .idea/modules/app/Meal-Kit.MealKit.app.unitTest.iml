@@ -340,4 +340,5 @@
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.play:core:1.10.2@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.getkeepsafe.relinker:relinker:1.4.3@aar" level="project" />
   </component>
+  <component name="TestModuleProperties" production-module="MealKit.app.main" />
 </module>
