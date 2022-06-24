@@ -58,8 +58,8 @@ class MyFragment() : Fragment() {
 
         datas.apply {
             datas.clear()
-            add(MyItem(R.drawable.my_event_icon,"이벤트","N",true))
-            add(MyItem(R.drawable.my_purchase_details_icon,"구매내역","3",true))
+            add(MyItem(R.drawable.my_event_icon,"이벤트","N",false))
+            add(MyItem(R.drawable.my_purchase_details_icon,"구매내역","3",false))
             add(MyItem(R.drawable.my_shop_list_icon,"매장 공유 등록","N",false))
             add(MyItem(R.drawable.my_point_icon,"포인트","N",false))
             add(MyItem(R.drawable.my_friend_icon,"친구초대","N",false))

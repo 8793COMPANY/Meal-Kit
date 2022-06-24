@@ -2,6 +2,7 @@ package com.corporation8793.mealkit.fragment
 
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,13 @@ import com.corporation8793.mealkit.*
 import com.corporation8793.mealkit.adapter.BestAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
+import com.corporation8793.mealkit.dto.KitItem
+import com.corporation8793.mealkit.esf_wp.rest.RestClient
+import com.corporation8793.mealkit.esf_wp.rest.data.Post
+import com.corporation8793.mealkit.esf_wp.rest.data.Product
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,8 +54,6 @@ class BestFragment() : Fragment() {
 
         val kit_list = view.findViewById<RecyclerView>(R.id.best_kit_list)
 
-
-
         val display : DisplayMetrics = DisplayMetrics()
         activity?.windowManager?.defaultDisplay?.getMetrics(display)
         val height : Int =  (display.heightPixels / 3.5).toInt()
@@ -60,17 +66,48 @@ class BestFragment() : Fragment() {
 
         var divider = BestDecoration(20)
         kit_list.addItemDecoration(divider)
+        var count =1
 
-        datas.apply {
-            datas.clear()
-            add(BestItem("0","유기농두부샐러드","12,000원","1","1"))
-            add(BestItem("0","과일그릭요거트보울","12,000원","1","2"))
-            add(BestItem("0","헤이","12,000원","1","3"))
+        GlobalScope.launch(Dispatchers.Default) {
+            val item : List<Post> = RestClient.board4BaService.retrievePostInCategories(categories = RestClient.RECIPE_BEST).execute().body()!!
 
+            GlobalScope.launch(Dispatchers.Main) {
+                datas.apply {
+                    datas.clear()
+                    item.forEach {
+                        var pr = item.get(0)
+                        Log.e("price",pr.acf.price)
+                        add(BestItem(pr.id!!,pr.featured_media_src_url,pr.title.rendered,pr.acf.price+"원",pr.acf.product_likes.toString(),count.toString()))
+//                        println("상품 카테고리 : ${pr.categories.first().name}")
+//                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
+//                        println("별점 (5.00) : ${pr.average_rating}")
+//                        println("상품 이미지 URL : ${pr.images.first().src}")
+//                        println("상품 세일 기간 : ${pr.date_on_sale_from} ~ ${pr.date_on_sale_to}")
+//                        println("상품가격 : ${pr.price}원")
+//                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
+//                        println("---------------")
+                        count++
+                    }
 
-            bestAdapter.datas = datas
-            bestAdapter.notifyDataSetChanged()
+                    bestAdapter.datas = datas
+                    bestAdapter.notifyDataSetChanged()
+                }
+            }
+//                binding.checkText.visibility = View.VISIBLE
         }
+
+
+
+//        datas.apply {
+//            datas.clear()
+//            add(BestItem("0","유기농두부샐러드","12,000원","1","1"))
+//            add(BestItem("0","과일그릭요거트보울","12,000원","1","2"))
+//            add(BestItem("0","헤이","12,000원","1","3"))
+//
+//
+//            bestAdapter.datas = datas
+//            bestAdapter.notifyDataSetChanged()
+//        }
 
 
 

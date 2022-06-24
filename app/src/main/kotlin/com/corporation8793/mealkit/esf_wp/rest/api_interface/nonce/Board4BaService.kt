@@ -28,7 +28,7 @@ interface Board4BaService {
                    @Field("excerpt") excerpt : String,
                    @Field("content") content : String,
                    @Field("categories") categories : String = "10",
-                   @Field("featured_media") featured_media : String? = "0") : Call<ResponseBody>
+                   @Field("featured_media") featured_media : String? = "0") : Call<Post>
     /**
      * id([postId])가 일치하는 게시물을 검색합니다.
      * * (id가 일치하는 게시물은 1개(One)입니다.)
@@ -93,4 +93,14 @@ interface Board4BaService {
      */
     @GET("wp-json/wp/v2/media/{id}")
     fun retrieveMedia(@Path("id") id : String?) : Call<Media>
+
+    // Acf
+    /**
+     * 레시피 메타 수정
+     * @author  두동근
+     */
+    @POST("/wp-json/acf/v3/posts/{id}")
+    fun updatePostAcf(@Header("Authorization") h1 : String,
+                      @Path("id") id : String?,
+                      @Query("fields[product]") product : String?) : Call<PostAcf>
 }

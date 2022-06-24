@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.dto.BestItem
 import com.corporation8793.mealkit.fragment.BestFragmentDirections
@@ -49,9 +51,7 @@ class BestAdapter (private val context: Context?, val height : Int, val color : 
             kit_price.text = item.price
 
 
-            kitImg.apply {
-                clipToOutline = true
-            }
+            Glide.with(context!!).load(item.img).into(kitImg)
 
             kit_like_btn.setOnClickListener {
                 if (kit_like_btn.isSelected){
@@ -62,8 +62,9 @@ class BestAdapter (private val context: Context?, val height : Int, val color : 
             }
 
             itemView.setOnClickListener{
-                val action = BestFragmentDirections.actionBestToKitDetailFragment3()
-                controller.navigate(action)
+                val action = BestFragmentDirections.actionBestToRecipeFragment()
+                var bundle =bundleOf("id" to item.id)
+                controller.navigate(R.id.action_best_to_recipeFragment,bundle)
             }
 
 //            if (item.img == "0") {

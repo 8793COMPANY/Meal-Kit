@@ -45,6 +45,19 @@ class WriteRecipeActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.registerBtn.setOnClickListener{
+            binding.recipeRegisterProgress.visibility = View.VISIBLE
+            val sharedPreference = getSharedPreferences("other", 0)
+            GlobalScope.launch(Dispatchers.Default) {
+                uploadRecipe(sharedPreference.getString("id","test22").toString(),sharedPreference.getString("pw","1234").toString())
+                GlobalScope.launch(Dispatchers.Main){
+                    binding.recipeRegisterProgress.visibility = View.GONE
+                    finish()
+                }
+            }
+
+        }
+
         binding.recipeIntrodution.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -81,7 +94,7 @@ class WriteRecipeActivity : AppCompatActivity() {
 
     }
 
-    fun uploadProfile(id : String, pw : String){
+    fun uploadRecipe(id : String, pw : String){
         try {
             val testId = id
             val testPw = pw
@@ -102,11 +115,17 @@ class WriteRecipeActivity : AppCompatActivity() {
             val responseCode = boardRepository.createPost(
             featured_media = responseMedia.second?.id,
             title = binding.recipeName.text.toString(),
-            excerpt = binding.userMealkit.text.toString(),
+            excerpt = binding.recipeIntrodution.text.toString(),
             content = binding.writeRecipe.text.toString(),
             )
 
-        println("response Code : $responseCode\n")
+            val addMeta = boardRepository.updatePostAcf(
+                    responseCode?.id,
+                    binding.useMealkit.text.toString()
+            )
+
+            println("response Code : $responseCode\n")
+            println("response Code : $addMeta\n")
 
 
 
