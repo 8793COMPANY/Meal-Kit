@@ -88,6 +88,8 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/48e1f6d432a963e0db660f40d9ba39c6/transformed/jetified-runtime-saveable-1.0.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/c859b9e891270125f0bcaee7662b0731/transformed/jetified-geometry-1.2.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/adf23f41c2c422aa0f1d21a88ee549bb/transformed/jetified-gifdecoder-4.9.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/1925e2e15d3b75b3224db62c5f226706/transformed/work-runtime-ktx-2.7.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/e743490ef22f31baca074dbdcbde6a29/transformed/work-runtime-2.7.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/11692ca2d2938276596a17feac5b2297/transformed/lifecycle-livedata-2.2.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/4845522bd4d0fc80b1f3aa2206832ad3/transformed/jetified-lifecycle-livedata-core-ktx-2.3.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ae7c2ab345f87c21bf0f7413f54346b9/transformed/lifecycle-livedata-core-2.3.1-api.jar</arg>
@@ -118,6 +120,7 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/14e9225d303e1b2a0a23ca3ec52f5496/transformed/jetified-kotlin-stdlib-common-1.6.20.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/75e4e8f29b86bdbaccf7bc4231bf3308/transformed/jetified-annotations-13.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/87fae2761d38993e6bec2349ddffa6b5/transformed/jetified-annotation-experimental-1.1.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/1f4b359bffbb0e2c982adf6725a7543a/transformed/jetified-listenablefuture-1.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ebf5055ff09235f031fccfb1f0a6b281/transformed/jetified-startup-runtime-1.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/58fb82966c972df21a6c9f34f9c159c7/transformed/constraintlayout-2.1.4-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/a8776bf5f830b6519b91ea6aaadbecb2/transformed/jetified-converter-gson-2.9.0.jar</arg>
@@ -228,6 +231,7 @@
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.6.20" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.20" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:listenablefuture:1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.retrofit2:converter-gson:2.9.0" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.retrofit2:retrofit:2.9.0" level="project" />
     <orderEntry type="library" name="Gradle: se.akerfeldt:okhttp-signpost:1.1.0" level="project" />
@@ -310,6 +314,8 @@
     <orderEntry type="library" name="Gradle: androidx.compose.runtime:runtime-saveable:1.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.naver.maps:geometry:1.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:gifdecoder:4.9.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.work:work-runtime-ktx:2.7.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.work:work-runtime:2.7.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata:2.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core:2.3.1@aar" level="project" />

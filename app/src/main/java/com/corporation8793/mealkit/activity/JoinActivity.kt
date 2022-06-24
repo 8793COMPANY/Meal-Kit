@@ -19,10 +19,12 @@ import com.corporation8793.mealkit.esf_wp.rest.data.Billing
 import com.corporation8793.mealkit.esf_wp.rest.data.Meta_data
 import com.corporation8793.mealkit.esf_wp.rest.data.Shipping
 import com.corporation8793.mealkit.esf_wp.rest.data.sign_up.SignUpBody
+import com.corporation8793.mealkit.esf_wp.rest.repository.Board4BaRepository
 import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.Credentials
 
 class JoinActivity : AppCompatActivity() {
     lateinit var binding: ActivityJoinBinding
@@ -229,7 +231,24 @@ class JoinActivity : AppCompatActivity() {
 
                     if(value.first.toString().equals("201")){
                         Toast.makeText(this@JoinActivity, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-                        finish();
+
+//                        val testId = binding.idInputBox.text.toString().trim()
+//                        val testPw = binding.pwInputBox.text.toString().trim()
+//                        val basicAuth = Credentials.basic(testId, testPw)
+//                        val board4BaRepository = Board4BaRepository(basicAuth)
+//                        val nonceRepository = NonceRepository()
+//
+//                        nonceRepository.checkUsername(binding.recommenderCodeInputBox.text.toString())
+//
+//                        nonceRepository.editPoint(
+//                            b4ba = board4BaRepository,
+//                            id = "14",
+//                            point = 100,
+//                            action = "+",
+//                            log = "왕맛있는 샐러드가게"
+//                        )
+
+                        finish()
                     }
 //                    binding.checkText.visibility = View.VISIBLE
 //                    if(value.second!!.size > 0){

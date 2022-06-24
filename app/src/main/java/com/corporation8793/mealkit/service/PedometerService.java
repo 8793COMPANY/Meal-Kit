@@ -87,7 +87,7 @@ public class PedometerService extends Service implements SensorEventListener {
             builder.setWhen(0);
             builder.setShowWhen(false);
             Intent notificationIntent = new Intent(this, LoginActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
             builder.setContentIntent(pendingIntent);
             NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
