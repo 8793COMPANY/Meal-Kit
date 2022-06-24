@@ -34,7 +34,7 @@ interface Board4BaService {
      * @see     Post
      */
     @GET("wp-json/wp/v2/posts/{id}")
-    fun retrieveOnePost(@Path("id") id : String) : Call<Post>
+    fun retrieveOnePost(@Path("id") id : String) : Call<Post?>
     /**
      * 카테고리 내 전체 게시물을 검색합니다.
      * @author  두동근
@@ -152,22 +152,4 @@ interface Board4BaService {
                         @Field("categories") categories : String = "10",
                         @Field("featured_media") featured_media : String? = "0",
                         @Query("author") author : String) : Call<PointLog>
-
-
-    // Likes
-    @FormUrlEncoded
-    @POST("wp-json/wp/v2/posts")
-    fun recipeLikes(@Header("Authorization") h1 : String,
-                              @Field("status") status : String = "publish",
-                              @Field("title") title : String,
-                              @Field("excerpt") excerpt : String,
-                              @Field("content") content : String,
-                              @Field("categories") categories : String = "10",
-                              @Field("featured_media") featured_media : String? = "0",
-                              @Query("author") author : String) : Call<PointLog>
-
-    @POST("/wp-json/acf/v3/posts/{id}")
-    fun recipeLikes(@Header("Authorization") h1 : String,
-                      @Path("id") id : String?,
-                      @Query("fields[product]") product : String?) : Call<PostAcf>
 }

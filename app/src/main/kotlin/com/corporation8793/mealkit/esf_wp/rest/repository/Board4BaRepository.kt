@@ -165,85 +165,91 @@ class Board4BaRepository(val basicAuth : String) {
         return Pair(response.code().toString(), response.body())
     }
 
-    fun updatePostLikes(post: Post, userId: String, action: String) : Pair<String, PostAcf?> {
+    fun updatePostLikes(postId: String, userId: String, action: String) : Pair<String, PostAcf?> {
+        val post = RestClient.board4BaService.retrieveOnePost(id = postId).execute().body()
+
         var response : Response<PostAcf>? = null
 
         return when (action) {
             "ON" -> {
                 println("[좋아요 ON]")
-                when(post.acf.product_likes != null && post.acf.product_likes !is Boolean) {
-                    true -> {
-                        var pl = post.acf.product_likes as ArrayList<Int>
-                        for ((i, p) in pl.withIndex()) {
-                            pl[i] = p
+                if (post != null) {
+                    when(post.acf.product_likes != null && post.acf.product_likes !is Boolean) {
+                        true -> {
+                            var pl = post.acf.product_likes as ArrayList<Int>
+                            for ((i, p) in pl.withIndex()) {
+                                pl[i] = p
+                            }
+                            pl.remove(userId.toInt())
+                            pl.add(userId.toInt())
+
+                            response = RestClient.board4BaService.updatePostLikes(basicAuth,
+                                id = post.id,
+                                postLikesBody = PostLikesBody(
+                                    PostAcf(
+                                        post.acf.product,
+                                        post.acf.price,
+                                        pl
+                                    )
+                                )
+                            ).execute()
                         }
-                        pl.remove(userId.toInt())
-                        pl.add(userId.toInt())
+                        false -> {
+                            var pl = arrayListOf<Int>()
+                            pl.add(userId.toInt())
 
-                        response = RestClient.board4BaService.updatePostLikes(basicAuth,
-                            id = post.id,
-                            postLikesBody = PostLikesBody(
-                                PostAcf(
-                                    post.acf.product,
-                                    post.acf.price,
-                                    pl
+                            response = RestClient.board4BaService.updatePostLikes(basicAuth,
+                                id = post.id,
+                                postLikesBody = PostLikesBody(
+                                    PostAcf(
+                                        post.acf.product,
+                                        post.acf.price,
+                                        pl
+                                    )
                                 )
-                            )
-                        ).execute()
-                    }
-                    false -> {
-                        var pl = arrayListOf<Int>()
-                        pl.add(userId.toInt())
-
-                        response = RestClient.board4BaService.updatePostLikes(basicAuth,
-                            id = post.id,
-                            postLikesBody = PostLikesBody(
-                                PostAcf(
-                                    post.acf.product,
-                                    post.acf.price,
-                                    pl
-                                )
-                            )
-                        ).execute()
+                            ).execute()
+                        }
                     }
                 }
                 return Pair(response?.code().toString(), response?.body())
             }
             "OFF" -> {
                 println("[좋아요 OFF]")
-                when(post.acf.product_likes != null && post.acf.product_likes !is Boolean) {
-                    true -> {
-                        var pl = post.acf.product_likes as ArrayList<Int>
-                        for ((i, p) in pl.withIndex()) {
-                            pl[i] = p
+                if (post != null) {
+                    when(post.acf.product_likes != null && post.acf.product_likes !is Boolean) {
+                        true -> {
+                            var pl = post.acf.product_likes as ArrayList<Int>
+                            for ((i, p) in pl.withIndex()) {
+                                pl[i] = p
+                            }
+                            pl.remove(userId.toInt())
+
+                            response = RestClient.board4BaService.updatePostLikes(basicAuth,
+                                id = post.id,
+                                postLikesBody = PostLikesBody(
+                                    PostAcf(
+                                        post.acf.product,
+                                        post.acf.price,
+                                        pl
+                                    )
+                                )
+                            ).execute()
                         }
-                        pl.remove(userId.toInt())
+                        false -> {
+                            var pl = arrayListOf<Int>()
+                            pl.add(userId.toInt())
 
-                        response = RestClient.board4BaService.updatePostLikes(basicAuth,
-                            id = post.id,
-                            postLikesBody = PostLikesBody(
-                                PostAcf(
-                                    post.acf.product,
-                                    post.acf.price,
-                                    pl
+                            response = RestClient.board4BaService.updatePostLikes(basicAuth,
+                                id = post.id,
+                                postLikesBody = PostLikesBody(
+                                    PostAcf(
+                                        post.acf.product,
+                                        post.acf.price,
+                                        pl
+                                    )
                                 )
-                            )
-                        ).execute()
-                    }
-                    false -> {
-                        var pl = arrayListOf<Int>()
-                        pl.add(userId.toInt())
-
-                        response = RestClient.board4BaService.updatePostLikes(basicAuth,
-                            id = post.id,
-                            postLikesBody = PostLikesBody(
-                                PostAcf(
-                                    post.acf.product,
-                                    post.acf.price,
-                                    pl
-                                )
-                            )
-                        ).execute()
+                            ).execute()
+                        }
                     }
                 }
                 return Pair(response?.code().toString(), response?.body())
