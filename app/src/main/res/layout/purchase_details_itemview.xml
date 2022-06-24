@@ -87,9 +87,9 @@
 
         <ImageView
             android:id="@+id/kit_img"
-            android:background="@drawable/test2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="fitXY"
             ></ImageView>
     </androidx.cardview.widget.CardView>
 
@@ -235,33 +235,34 @@
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/kit_score_btn"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"></TextView>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.5"
-            android:background="#808080"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"></View>
+<!--        <View-->
+<!--            android:layout_width="1dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            app:layout_constraintHeight_percent="0.5"-->
+<!--            android:background="#808080"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"></View>-->
 
-        <TextView
-            android:id="@+id/kit_score_btn"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="별점남기기"
-            android:gravity="center"
-            android:textColor="#4e4e4e"
-            android:fontFamily="@font/nskr_medium"
-            android:includeFontPadding="false"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/order_details_btn"
-            app:layout_constraintRight_toRightOf="parent"></TextView>
+<!--        <TextView-->
+<!--            android:enabled="false"-->
+<!--            android:id="@+id/kit_score_btn"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:text="별점남기기"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="#4e4e4e"-->
+<!--            android:fontFamily="@font/nskr_medium"-->
+<!--            android:includeFontPadding="false"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintLeft_toRightOf="@+id/order_details_btn"-->
+<!--            app:layout_constraintRight_toRightOf="parent"></TextView>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

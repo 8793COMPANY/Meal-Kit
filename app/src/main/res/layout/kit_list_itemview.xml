@@ -100,7 +100,7 @@
         app:layout_constraintWidth_percent="0.05"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintHorizontal_bias="0.9"
-        android:background="@drawable/kit_like_btn_off"
+        android:background="@drawable/kit_like_btn_selector"
         app:layout_constraintTop_toTopOf="@+id/kit_shop_name"
         app:layout_constraintLeft_toRightOf="@+id/kit_shop_name"
         app:layout_constraintRight_toRightOf="@+id/guideline_right"></ImageView>

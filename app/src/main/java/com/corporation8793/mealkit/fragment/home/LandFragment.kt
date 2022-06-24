@@ -109,6 +109,8 @@ class LandFragment : Fragment() {
 //                binding.checkText.visibility = View.VISIBLE
         }
 
+        
+
 
 //        datas.apply {
 //            datas.clear()
@@ -120,6 +122,11 @@ class LandFragment : Fragment() {
 //            kitAdapter.notifyDataSetChanged()
 //        }
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("in!","onresume!!")
     }
 
     companion object {

@@ -76,7 +76,7 @@ class BestFragment() : Fragment() {
                 datas.apply {
                     datas.clear()
                     item.forEach {
-
+                        Log.e("it",it.toString())
                         it.acf.price?.let { it1 -> Log.e("price", it1) }
                         var like = false;
                         if(it.acf.product_likes != false) {

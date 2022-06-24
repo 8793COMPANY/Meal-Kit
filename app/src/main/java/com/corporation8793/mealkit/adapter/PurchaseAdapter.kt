@@ -15,6 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.RatingDialog
 import com.corporation8793.mealkit.dto.BestItem
@@ -49,10 +50,12 @@ class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val a
         private val kit_price  = itemView.findViewById<TextView>(R.id.kit_price)
         private val shipping_status  = itemView.findViewById<TextView>(R.id.shipping_status)
         private val order_details_btn = itemView.findViewById<TextView>(R.id.order_details_btn)
-        private val kit_score_btn = itemView.findViewById<TextView>(R.id.kit_score_btn)
+//        private val kit_score_btn = itemView.findViewById<TextView>(R.id.kit_score_btn)
 
         fun bind(item: PurchaseItem) {
             Log.e("bind","in")
+
+            Glide.with(context!!).load(item.img).into(kitImg)
 
             purchasing_date.setText(item.date)
             kit_shop_name.setText(item.shop_name)
@@ -64,6 +67,7 @@ class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val a
                 var intent = Intent(activity, CompleteOrdersActivity::class.java)
                 intent.putExtra("type","check")
                 intent.putExtra("id",item.id)
+                intent.putExtra("product_id",item.product_id)
                 intent.putExtra("shop_name",item.shop_name)
                 intent.putExtra("name",item.kit_name)
                 intent.putExtra("quantity",item.count)
@@ -74,21 +78,21 @@ class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val a
                 activity!!.startActivity(intent)
             }
 
-            kit_score_btn.setOnClickListener{
-
-//                * @author  두동근
-//                * @param   product_id              리뷰할 제품의 id
-//                * @param   review                  리뷰 내용 (없으면 공백 한칸도 가능)
-//                * @param   reviewer                리뷰어 first_name
-//                * @param   reviewer_email          리뷰어 email
-//                * @param   rating                  별점 ([Int]값 - 1, 2, 3, 4, 5)
-//                * @param   verified                true - default
-
-                val dialog = RatingDialog(activity!!)
-                dialog.show(parentFragmentManager!!,"hello")
-
-
-            }
+//            kit_score_btn.setOnClickListener{
+//
+////                * @author  두동근
+////                * @param   product_id              리뷰할 제품의 id
+////                * @param   review                  리뷰 내용 (없으면 공백 한칸도 가능)
+////                * @param   reviewer                리뷰어 first_name
+////                * @param   reviewer_email          리뷰어 email
+////                * @param   rating                  별점 ([Int]값 - 1, 2, 3, 4, 5)
+////                * @param   verified                true - default
+//
+//                val dialog = RatingDialog(activity!!,item.product_id)
+//                dialog.show(parentFragmentManager!!,"hello")
+//
+//
+//            }
 
 
         }

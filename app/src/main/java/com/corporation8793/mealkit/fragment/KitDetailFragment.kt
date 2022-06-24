@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.Navigation
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
@@ -24,6 +25,7 @@ import com.corporation8793.mealkit.dto.BestItem
 import com.corporation8793.mealkit.dto.KitItem
 import com.corporation8793.mealkit.esf_wp.rest.RestClient
 import com.corporation8793.mealkit.esf_wp.rest.data.Product
+import com.corporation8793.mealkit.fragment.my.PurchaseDetailsFragment
 import com.corporation8793.mealkit.payment.PayMentActivity
 import com.corporation8793.mealkit.payment.SelectProductActivity
 import kotlinx.coroutines.Dispatchers
@@ -86,30 +88,30 @@ class KitDetailFragment() : Fragment() {
         like_btn.isSelected = like!!;
 
 
-//        like_btn.setOnClickListener {
-//            if (like_btn.isSelected){
-//
-//
-//                GlobalScope.launch(Dispatchers.Default) {
-//                    val resultOn = MainApplication.instance.boardRepository.productLikesEdit(id.toString(),MainApplication.instance.user.id,"OFF");
-//                    GlobalScope.launch(Dispatchers.Main) {
-//                        if(resultOn.first.equals("200")){
-//                            like_btn.isSelected = false
-//                        }
-//                    }
-//                }
-//            }else{
-//                GlobalScope.launch(Dispatchers.Default) {
-//                    val resultOn = MainApplication.instance.board4BaRepository.updatePostLikes(id.toString(),MainApplication.instance.user.id,"ON");
-//                    GlobalScope.launch(Dispatchers.Main) {
-//                        if(resultOn.first.equals("200")){
-//                            like_btn.isSelected = true
-//                        }
-//                    }
-//                }
-//
-//            }
-//        }
+        like_btn.setOnClickListener {
+            if (like_btn.isSelected){
+
+
+                GlobalScope.launch(Dispatchers.Default) {
+                    val resultOn = MainApplication.instance.boardRepository.productLikesEdit(id.toString(),MainApplication.instance.user.id,"OFF");
+                    GlobalScope.launch(Dispatchers.Main) {
+                        if(resultOn.first.equals("200")){
+                            like_btn.isSelected = false
+                        }
+                    }
+                }
+            }else{
+                GlobalScope.launch(Dispatchers.Default) {
+                    val resultOn = MainApplication.instance.boardRepository.productLikesEdit(id.toString(),MainApplication.instance.user.id,"ON");
+                    GlobalScope.launch(Dispatchers.Main) {
+                        if(resultOn.first.equals("200")){
+                            like_btn.isSelected = true
+                        }
+                    }
+                }
+
+            }
+        }
 
 
         payment_btn.setOnClickListener {
@@ -122,11 +124,24 @@ class KitDetailFragment() : Fragment() {
             startActivity(intent);
         }
 
+//        if (savedInstanceState == null || !savedInstanceState.getBoolean(PurchaseDetailsFragment.DONT_USE_BACK_BUTTON)) {
+//            activity?.onBackPressedDispatcher?.addCallback(backPressedDispatcher)
+//        }
+
 
         return view
     }
 
-    companion object {
+//    private val backPressedDispatcher = object : OnBackPressedCallback(true) {
+//        override fun handleOnBackPressed() {
+//            Navigation.findNavController(view).navigate(R.id.action_back_to_home)
+//        }
+//    }
+
+
+
+companion object {
+    const val DONT_USE_BACK_BUTTON = "dont_use_back_button"
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
