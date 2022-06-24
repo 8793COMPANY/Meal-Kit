@@ -110,7 +110,7 @@ class SelectStoreActivity : AppCompatActivity() {
                     GlobalScope.launch(Dispatchers.Main) {
                         datas.apply {
                         listAllStoreResponse.second!!.forEach {
-                            add(ShopItem(it.featured_media_src_url,it.title.rendered,"광주 동구 동계천로 150"))
+                            add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,"광주 동구 동계천로 150"))
                         }
                             shopAdapter.datas = datas
                             shopAdapter.notifyDataSetChanged()

@@ -3,15 +3,27 @@ package com.corporation8793.mealkit.fragment.shop
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.compose.ui.graphics.Color
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.*
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.dto.BestItem
+import com.corporation8793.mealkit.dto.ShopItem
+import com.corporation8793.mealkit.esf_wp.rest.RestClient
+import com.corporation8793.mealkit.esf_wp.rest.data.DisableProduct
+import com.corporation8793.mealkit.esf_wp.rest.repository.Board4BaRepository
+import com.corporation8793.mealkit.esf_wp.rest.repository.BoardRepository
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import okhttp3.Credentials
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,6 +46,8 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
     private var param2: String? = null
     val datas = mutableListOf<BestItem>()
     lateinit var naverMap: NaverMap
+    var argument_check = false
+    lateinit var bottomSheetDialog :BottomSheetDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,24 +62,41 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_map, container, false)
 
-        val bottomSheetView = layoutInflater.inflate(R.layout.dialog_shop_info, null)
-        val bottomSheetDialog = BottomSheetDialog(context!!)
-        bottomSheetDialog.setContentView(bottomSheetView)
+        if (arguments!=null)
+            argument_check = true
+
+
+
 
        val mapView = view.findViewById<MapView>(R.id.map_fragment)
        mapView.getMapAsync(this)
 
-        val APIKEY_ID = "9l8w6ft1l8"
-        val APIKEY = "aTjzwzUWg7lzXcOmxTY9H7s3N8jZbF3OBUgUIuWR"
+
         //레트로핏 객체 생성
         val retrofit = Retrofit.Builder().
         baseUrl("https://naveropenapi.apigw.ntruss.com/map-geocode/").
         addConverterFactory(GsonConverterFactory.create()).
         build()
 
+
+        if (argument_check){
+            setMarker(retrofit,arguments!!.getString("address")!!,arguments!!.getString("shop_name")!!)
+        }
+
+
+
+//        bottomSheetDialog.show()
+
+        return view
+    }
+
+    fun setMarker(retrofit:Retrofit, address : String, shop_name : String){
+        val APIKEY_ID = "9l8w6ft1l8"
+        val APIKEY = "aTjzwzUWg7lzXcOmxTY9H7s3N8jZbF3OBUgUIuWR"
+
         val api = retrofit.create(NaverAPI::class.java)
         //근처에서 길찾기
-        val callgetPath = api.getPath(APIKEY_ID, APIKEY,"광주광역시 동구 동계천로 150")
+        val callgetPath = api.getPath(APIKEY_ID, APIKEY,address)
 
 
         callgetPath.enqueue(object : Callback<ResultGeo> {
@@ -90,7 +121,7 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
                 val infoWindow = InfoWindow()
                 infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(context!!) {
                     override fun getText(infoWindow: InfoWindow): CharSequence {
-                        return "정보 창 내용"
+                        return shop_name
                     }
                 }
 
@@ -106,7 +137,16 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
 
                 val listener = Overlay.OnClickListener { overlay ->
                     val marker = overlay as Marker
+                    val bottomSheetView = layoutInflater.inflate(R.layout.dialog_shop_info, null)
+                    var shop_name_textview =bottomSheetView.findViewById<TextView>(R.id.shop_name)
+                    var shop_imageview =bottomSheetView.findViewById<ImageView>(R.id.shop_img)
+                    var shop_imageview2 =bottomSheetView.findViewById<ImageView>(R.id.shop_img2)
+                    var shop_info_textview =bottomSheetView.findViewById<TextView>(R.id.shop_info)
 
+                    dataSetting(shop_name,shop_name_textview,shop_imageview,shop_imageview2,shop_info_textview)
+
+                    bottomSheetDialog = BottomSheetDialog(context!!)
+                    bottomSheetDialog.setContentView(bottomSheetView)
                     bottomSheetDialog.show()
 
                     true
@@ -121,13 +161,71 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
             }
 
         })
+    }
+
+    fun replaceText(text : String) : String{
+        val regex = Regex("<div id=\"modal-ready\">")
+        val matchResult: MatchResult? = regex.find(text)
+//        println("match value: ${matchResult?.value}")
+        var result = text
+        matchResult?.groupValues?.forEach {
+            Log.e("match value", it)
+            result = result.replace(it,"")
+        }
 
 
+        return result.replace("<p>","").replace("</p>","")
+                .replace("<ul>","").replace("</ul>","")
+                .replace("<li>","").replace("</li>","")
+                .replace("<br>","").replace("<br />","")
+                .replace("<strong>","").replace("</strong>","")
+                .replace("<div>","").replace("</div>","")
 
 
-//        bottomSheetDialog.show()
+    }
 
-        return view
+    fun dataSetting(shop_name : String, shop_name_textview : TextView, shop_imgview : ImageView, shop_imgview2 : ImageView, shop_info_textview : TextView) {
+        var shop = ""
+        var img = ""
+        var img2 = ""
+        var info =""
+        GlobalScope.launch(Dispatchers.Default) {
+            val testId = "test22"
+            val testPw = "1234"
+            val basicAuth = Credentials.basic(testId, testPw)
+            // 저장소 초기화
+            val boardRepository = BoardRepository()
+
+            val listAllStoreResponse = boardRepository.listAllStore()
+            println("listAllStore : ${listAllStoreResponse.first}, ${listAllStoreResponse.second}")
+
+            // 물품 필터링
+            println("------ Filtering     -----")
+            val notSaleStore = listAllStoreResponse.second?.filter { it.title.rendered.equals(shop_name) }
+            println("가게: ")
+
+            if (notSaleStore != null) {
+                for ((i, ns) in notSaleStore.withIndex()) {
+                    println("${i+1}. ${ns.title.rendered}")
+                    shop = ns.title.rendered
+                    img = ns.featured_media_src_url
+                    img2 = ns.acf.feature_image_2!!
+                    info = replaceText(ns.content.rendered)
+                }
+            }
+
+            println("====== storeList     ======")
+
+            println("------ listAllStore() -----")
+
+            GlobalScope.launch(Dispatchers.Main) {
+                shop_name_textview.setText(shop)
+                shop_info_textview.setText(info)
+                Glide.with(context!!).load(img).into(shop_imgview)
+                Glide.with(context!!).load(img2).into(shop_imgview2)
+            }
+
+            }
     }
 
 
