@@ -6,6 +6,6 @@ data class RecipeItem(
        val name : String,
        val introdution : String,
        val user_img : String,
-       val like : String,
+       val like : Boolean,
        val like_count : String,
 )

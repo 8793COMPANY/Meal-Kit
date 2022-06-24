@@ -104,12 +104,13 @@ class SelectStoreActivity : AppCompatActivity() {
 
                 println("------ Filtering     -----")
                 println(listAllStoreResponse.second)
-                val notSaleStore = listAllStoreResponse.second?.filter { !it.acf.disable_product.contains(DisableProduct("바질시금치스프")) }
+                val notSaleStore = listAllStoreResponse.second?.filterNot { it.acf.disable_product.contains(DisableProduct(name!!)) }
                 println("유기농두부샐러드 안파는 가게들 : ")
                 if (notSaleStore != null) {
                     GlobalScope.launch(Dispatchers.Main) {
                         datas.apply {
-                        listAllStoreResponse.second!!.forEach {
+                            notSaleStore.forEach {
+                            Log.e("it",it.toString())
                             add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,"광주 동구 동계천로 150"))
                         }
                             shopAdapter.datas = datas

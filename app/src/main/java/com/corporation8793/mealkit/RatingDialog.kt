@@ -37,8 +37,8 @@ class RatingDialog(val activity: Activity) : DialogFragment() {
         }
 
         binding.rating.setOnRatingBarChangeListener { ratingBar, fl, b ->
-            binding.title.setText("별점 등록 ("+fl.toString()+"/5.0)")
-            Log.e("rating",fl.toString())
+            binding.title.setText("별점 등록 ("+fl.toInt().toString()+"/5)")
+            Log.e("rating",fl.toInt().toString())
         }
 //
 //        // 취소 버튼
