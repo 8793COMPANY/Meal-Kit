@@ -79,18 +79,22 @@ class PurchaseDetailsFragment : Fragment() {
 
         val sharedPreference = context!!.getSharedPreferences("other", 0)
         val id = sharedPreference.getString("id","test22")
+        var count = 0
 
 
         GlobalScope.launch(Dispatchers.Default) {
             var user_id = RestClient.nonceService.checkUsername(id!!).execute().body()!!.get(0).id
-            val item : Triple<Order> = RestClient.boardService.listAllOrder(user_id).execute().body()!!
-
-
-
-
+            Log.e("in","start")
+            val item = MainApplication.instance.boardRepository.listAllOrder(user_id)
+            Log.e("in","end")
+            val seconde = item.second!!
+            val third = item.third!!
+            Log.e("item",item.first)
                 datas.apply {
-                    item..forEach {
+                    seconde.forEach {
                         Log.e("item",it.toString())
+//                        Log.e("third",third.get(count).first)
+
 
                         var img = MainApplication.instance.boardRepository.retrieveOneProduct(it.line_items.get(0).product_id).second!!.images.get(0).src
 
@@ -105,7 +109,7 @@ class PurchaseDetailsFragment : Fragment() {
 //                        println("상품가격 : ${pr.price}원")
 //                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
 //                        println("---------------")
-
+                        count++
                     }
                     GlobalScope.launch(Dispatchers.Main) {
                     adapter.datas = datas
@@ -123,6 +127,8 @@ class PurchaseDetailsFragment : Fragment() {
 
         return view
     }
+
+
 
 
 

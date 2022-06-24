@@ -86,30 +86,30 @@ class KitDetailFragment() : Fragment() {
         like_btn.isSelected = like!!;
 
 
-//        like_btn.setOnClickListener {
-//            if (like_btn.isSelected){
-//
-//
-//                GlobalScope.launch(Dispatchers.Default) {
-//                    val resultOn = MainApplication.instance.boardRepository.productLikesEdit(id.toString(),MainApplication.instance.user.id,"OFF");
-//                    GlobalScope.launch(Dispatchers.Main) {
-//                        if(resultOn.first.equals("200")){
-//                            like_btn.isSelected = false
-//                        }
-//                    }
-//                }
-//            }else{
-//                GlobalScope.launch(Dispatchers.Default) {
-//                    val resultOn = MainApplication.instance.board4BaRepository.updatePostLikes(id.toString(),MainApplication.instance.user.id,"ON");
-//                    GlobalScope.launch(Dispatchers.Main) {
-//                        if(resultOn.first.equals("200")){
-//                            like_btn.isSelected = true
-//                        }
-//                    }
-//                }
-//
-//            }
-//        }
+        like_btn.setOnClickListener {
+            if (like_btn.isSelected){
+
+
+                GlobalScope.launch(Dispatchers.Default) {
+                    val resultOn = MainApplication.instance.boardRepository.productLikesEdit(id.toString(),MainApplication.instance.user.id,"OFF");
+                    GlobalScope.launch(Dispatchers.Main) {
+                        if(resultOn.first.equals("200")){
+                            like_btn.isSelected = false
+                        }
+                    }
+                }
+            }else{
+                GlobalScope.launch(Dispatchers.Default) {
+                    val resultOn = MainApplication.instance.boardRepository.productLikesEdit(id.toString(),MainApplication.instance.user.id,"ON");
+                    GlobalScope.launch(Dispatchers.Main) {
+                        if(resultOn.first.equals("200")){
+                            like_btn.isSelected = true
+                        }
+                    }
+                }
+
+            }
+        }
 
 
         payment_btn.setOnClickListener {
