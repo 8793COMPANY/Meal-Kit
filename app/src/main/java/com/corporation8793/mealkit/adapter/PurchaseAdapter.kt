@@ -50,7 +50,7 @@ class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val a
         private val kit_price  = itemView.findViewById<TextView>(R.id.kit_price)
         private val shipping_status  = itemView.findViewById<TextView>(R.id.shipping_status)
         private val order_details_btn = itemView.findViewById<TextView>(R.id.order_details_btn)
-        private val kit_score_btn = itemView.findViewById<TextView>(R.id.kit_score_btn)
+//        private val kit_score_btn = itemView.findViewById<TextView>(R.id.kit_score_btn)
 
         fun bind(item: PurchaseItem) {
             Log.e("bind","in")
@@ -78,21 +78,21 @@ class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val a
                 activity!!.startActivity(intent)
             }
 
-            kit_score_btn.setOnClickListener{
-
-//                * @author  두동근
-//                * @param   product_id              리뷰할 제품의 id
-//                * @param   review                  리뷰 내용 (없으면 공백 한칸도 가능)
-//                * @param   reviewer                리뷰어 first_name
-//                * @param   reviewer_email          리뷰어 email
-//                * @param   rating                  별점 ([Int]값 - 1, 2, 3, 4, 5)
-//                * @param   verified                true - default
-
-                val dialog = RatingDialog(activity!!,item.product_id)
-                dialog.show(parentFragmentManager!!,"hello")
-
-
-            }
+//            kit_score_btn.setOnClickListener{
+//
+////                * @author  두동근
+////                * @param   product_id              리뷰할 제품의 id
+////                * @param   review                  리뷰 내용 (없으면 공백 한칸도 가능)
+////                * @param   reviewer                리뷰어 first_name
+////                * @param   reviewer_email          리뷰어 email
+////                * @param   rating                  별점 ([Int]값 - 1, 2, 3, 4, 5)
+////                * @param   verified                true - default
+//
+//                val dialog = RatingDialog(activity!!,item.product_id)
+//                dialog.show(parentFragmentManager!!,"hello")
+//
+//
+//            }
 
 
         }
