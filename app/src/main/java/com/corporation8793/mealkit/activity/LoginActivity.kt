@@ -1,14 +1,24 @@
 package com.corporation8793.mealkit.activity
 
+import android.Manifest
+import android.content.ContentValues.TAG
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.opengl.Visibility
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import com.corporation8793.mealkit.MainApplication
 import com.corporation8793.mealkit.databinding.ActivityLoginBinding
 import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
+import com.corporation8793.mealkit.service.PedometerService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -20,6 +30,26 @@ class LoginActivity : AppCompatActivity() {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        if (checkSelfPermission(Manifest.permission.ACTIVITY_RECOGNITION)
+            == PackageManager.PERMISSION_GRANTED) {
+           // Toast.makeText(this@LoginActivity,"Permission granted",1000).show()
+            if(!PedometerService.isServiceRunning(this)){
+                Log.e("서비스중이 아님","서비스중이 아님");
+                val intent = Intent(this, PedometerService::class.java)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)  {
+                    startForegroundService(intent);
+                }else{
+                    startService(intent)
+                }
+
+
+            }
+        } else {
+            requestPermissions(arrayOf(Manifest.permission.ACTIVITY_RECOGNITION), // 1
+                1000) // 2
+        }
 
         val sharedPreference = getSharedPreferences("other", 0)
 
@@ -103,4 +133,63 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            1000 -> {  // 1
+                if (grantResults.isEmpty()) {  // 2
+                    throw RuntimeException("Empty permission result")
+                }
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {  // 3
+                   Toast.makeText(this@LoginActivity,"권한이 수락되었습니다.",1000).show()
+                    if(!PedometerService.isServiceRunning(this)){
+                        val intent = Intent(this, PedometerService::class.java)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)  {
+                            startForegroundService(intent);
+                        }else{
+                            startService(intent)
+                        }
+                    }
+                } else {
+                    if (shouldShowRequestPermissionRationale(
+                            Manifest.permission.ACTIVITY_RECOGNITION)) { // 4
+                        Log.d(TAG, "User declined, but i can still ask for more")
+                        requestPermissions(
+                            arrayOf(Manifest.permission.ACTIVITY_RECOGNITION),
+                            1000)
+                    } else {
+                        Log.d(TAG, "User declined and i can't ask")
+                        showDialogToGetPermission()   // 5
+                    }
+                }
+            }
+        }
+    }
+
+
+    private fun showDialogToGetPermission() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("권한 요청")
+            .setMessage("권한을 부여하려면 설정으로 이동해야 합니다.")
+
+        builder.setPositiveButton("이동") { dialogInterface, i ->
+            val intent = Intent(
+                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                Uri.fromParts("package", packageName, null))
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)   // 6
+        }
+        builder.setNegativeButton("나중에") { dialogInterface, i ->
+            // ignore
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+
+
+
 }
