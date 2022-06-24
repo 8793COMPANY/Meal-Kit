@@ -162,6 +162,7 @@ class RecipeListFragment() : Fragment() {
         return view
     }
 
+
     fun replaceText(text : String) : String{
         val regex = Regex("&.*;")
         val matchResult: MatchResult? = regex.find(text)

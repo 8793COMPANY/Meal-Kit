@@ -2,10 +2,13 @@ package com.corporation8793.mealkit.fragment.shop
 
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,12 +21,14 @@ import com.corporation8793.mealkit.adapter.ShopAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
 import com.corporation8793.mealkit.dto.BestItem
 import com.corporation8793.mealkit.dto.KitItem
+import com.corporation8793.mealkit.dto.RecipeItem
 import com.corporation8793.mealkit.dto.ShopItem
 import com.corporation8793.mealkit.esf_wp.rest.repository.BoardRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.Credentials
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,6 +45,7 @@ class SearchFragment() : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     val datas = mutableListOf<ShopItem>()
+    val alldatas = mutableListOf<ShopItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +61,8 @@ class SearchFragment() : Fragment() {
         var view = inflater.inflate(R.layout.fragment_search, container, false)
 
 
+        var address_input_box = view.findViewById<EditText>(R.id.address_input_box)
+
 
         val shop_list = view.findViewById<RecyclerView>(R.id.shop_list)
 
@@ -63,16 +71,23 @@ class SearchFragment() : Fragment() {
         val height : Int =  (display.heightPixels / 8.5).toInt()
 
 
+
         val shopAdapter = ShopAdapter(context, height, resources.getColor(R.color.category_land_color),findNavController())
         shop_list.adapter =  shopAdapter
 
         val lm = LinearLayoutManager(context)
         shop_list.layoutManager = lm
 
+        view.findViewById<Button>(R.id.search_btn).setOnClickListener {
+            Log.e("text",address_input_box.text.toString().toLowerCase(Locale.getDefault()))
+            shopAdapter.filter(address_input_box.text.toString().toLowerCase(Locale.getDefault()))
+        }
+
         shop_list.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))
 
-        datas.apply {
             GlobalScope.launch(Dispatchers.Default) {
+                datas.clear()
+                alldatas.clear()
                 val testId = "test22"
                 val testPw = "1234"
                 val basicAuth = Credentials.basic(testId, testPw)
@@ -84,23 +99,27 @@ class SearchFragment() : Fragment() {
                 println("------ listAllStore() -----")
                 val listAllStoreResponse = boardRepository.listAllStore()
 
-                GlobalScope.launch(Dispatchers.Main) {
-                    datas.apply {
-                        listAllStoreResponse.second!!.forEach {
+                listAllStoreResponse.second!!.forEach {
 
-                            add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,it.acf.address!!))
-                        }
+                    datas.add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,it.acf.address!!))
+                    alldatas.add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,it.acf.address!!))
+                }
+
+
+
+                GlobalScope.launch(Dispatchers.Main) {
+
                         shopAdapter.datas = datas
+                        shopAdapter.alldatas = alldatas
                         shopAdapter.notifyDataSetChanged()
-                    }
+
+
 
                 }
 
 
 
 
-
-            }
         }
 
         return view

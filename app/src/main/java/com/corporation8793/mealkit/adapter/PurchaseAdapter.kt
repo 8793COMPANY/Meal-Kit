@@ -3,6 +3,7 @@ package com.corporation8793.mealkit.adapter
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
@@ -20,6 +21,8 @@ import com.corporation8793.mealkit.dto.BestItem
 import com.corporation8793.mealkit.dto.PurchaseItem
 import com.corporation8793.mealkit.fragment.BestFragmentDirections
 import com.corporation8793.mealkit.fragment.HomeFragmentDirections
+import com.corporation8793.mealkit.payment.CompleteOrdersActivity
+import com.corporation8793.mealkit.payment.SelectProductActivity
 
 class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val activity: Activity?,private val context: Context?, val height : Int, val controller : NavController) : RecyclerView.Adapter<PurchaseAdapter.ViewHolder>() {
     var datas = mutableListOf<PurchaseItem>()
@@ -45,6 +48,8 @@ class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val a
         private val kit_name  = itemView.findViewById<TextView>(R.id.kit_name)
         private val kit_price  = itemView.findViewById<TextView>(R.id.kit_price)
         private val shipping_status  = itemView.findViewById<TextView>(R.id.shipping_status)
+        private val order_details_btn = itemView.findViewById<TextView>(R.id.order_details_btn)
+        private val kit_score_btn = itemView.findViewById<TextView>(R.id.kit_score_btn)
 
         fun bind(item: PurchaseItem) {
             Log.e("bind","in")
@@ -52,12 +57,24 @@ class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val a
             purchasing_date.setText(item.date)
             kit_shop_name.setText(item.shop_name)
             kit_name.setText(item.kit_name)
-            kit_price.setText(item.kit_price)
+            kit_price.setText(item.kit_price+"원")
             shipping_status.setText(item.status)
 
+            order_details_btn.setOnClickListener{
+                var intent = Intent(activity, CompleteOrdersActivity::class.java)
+                intent.putExtra("type","check")
+                intent.putExtra("id",item.id)
+                intent.putExtra("shop_name",item.shop_name)
+                intent.putExtra("name",item.kit_name)
+                intent.putExtra("quantity",item.count)
+                intent.putExtra("price",item.kit_price)
+                Log.e("point",item.kit_price.toInt().div(100).toString())
+                intent.putExtra("order_point",(item.kit_price.toInt()).div(100).toString())
+                intent.putExtra("address",item.status)
+                activity!!.startActivity(intent)
+            }
 
-
-            itemView.setOnClickListener{
+            kit_score_btn.setOnClickListener{
 
                 val dialog = RatingDialog(activity!!)
                 dialog.show(parentFragmentManager!!,"hello")

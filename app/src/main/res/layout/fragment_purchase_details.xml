@@ -17,9 +17,50 @@
         android:layout_height="match_parent"
         android:background="#f4f4f4">
 
-        <include android:id="@+id/action_bar"
-            layout="@layout/custom_actionbar"
-            bind:title="@{actionBar}"></include>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            bind:layout_constraintTop_toTopOf="parent"
+            bind:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintVertical_bias="0">
+
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|bottom"
+                android:text="구매내역"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                bind:layout_constraintVertical_bias="0.5"
+                android:fontFamily="@font/nskr_medium"
+                android:includeFontPadding="false"
+                bind:layout_constraintTop_toTopOf="@+id/back_btn"
+                bind:layout_constraintBottom_toBottomOf="@+id/back_btn"
+                bind:layout_constraintLeft_toLeftOf="parent"
+                bind:layout_constraintRight_toRightOf="parent"></TextView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/back_btn"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/back_btn"
+                bind:layout_constraintTop_toTopOf="parent"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintRight_toRightOf="parent"
+                bind:layout_constraintLeft_toLeftOf="parent"
+                bind:layout_constraintVertical_bias="0.5"
+                bind:layout_constraintHorizontal_bias="0.04"
+                bind:layout_constraintWidth_percent="0.08"
+                bind:layout_constraintDimensionRatio="1:1"></androidx.appcompat.widget.AppCompatButton>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/purchase_list"

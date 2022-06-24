@@ -3,10 +3,12 @@ package com.corporation8793.mealkit.fragment.shop
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.compose.ui.graphics.Color
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.*
 import com.corporation8793.mealkit.R
@@ -65,11 +67,15 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
         if (arguments!=null)
             argument_check = true
 
-
+        var back_btn = view.findViewById<Button>(R.id.back_btn)
 
 
        val mapView = view.findViewById<MapView>(R.id.map_fragment)
        mapView.getMapAsync(this)
+
+        back_btn.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
 
         //레트로핏 객체 생성
@@ -80,8 +86,46 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
 
 
         if (argument_check){
+            back_btn.visibility = View.VISIBLE
             setMarker(retrofit,arguments!!.getString("address")!!,arguments!!.getString("shop_name")!!)
-        }
+        }else{
+
+
+            GlobalScope.launch(Dispatchers.Default) {
+                val testId = "test22"
+                val testPw = "1234"
+                val basicAuth = Credentials.basic(testId, testPw)
+                // 저장소 초기화
+                val boardRepository = BoardRepository()
+
+                println("====== storeList     ======")
+
+                println("------ listAllStore() -----")
+                val listAllStoreResponse = boardRepository.listAllStore()
+                val path_container : MutableList<LatLng>? = mutableListOf(LatLng(0.1,0.1))
+
+                GlobalScope.launch(Dispatchers.Main) {
+
+                        listAllStoreResponse.second!!.forEach {
+                            setMarker(retrofit,it.acf.address!!,it.title.rendered)
+                            }
+
+
+                        }
+
+
+
+                }
+
+
+
+
+
+            }
+
+            //근처에서 길찾기
+
+
 
 
 

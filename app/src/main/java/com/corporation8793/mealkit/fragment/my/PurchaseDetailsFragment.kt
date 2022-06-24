@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -55,11 +57,16 @@ class PurchaseDetailsFragment : Fragment() {
 
         val display : DisplayMetrics = DisplayMetrics()
         activity?.windowManager?.defaultDisplay?.getMetrics(display)
-        val height : Int =  (display.heightPixels / 3.8).toInt()
+        val height : Int =  (display.heightPixels / 3).toInt()
+
 
         val purchase_list = view.findViewById<RecyclerView>(R.id.purchase_list)
 
         val adapter = PurchaseAdapter(parentFragmentManager,activity,context,height,findNavController())
+
+        view.findViewById<Button>(R.id.back_btn).setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_back_to_muy)
+        }
 
         purchase_list.adapter = adapter
 
@@ -77,8 +84,9 @@ class PurchaseDetailsFragment : Fragment() {
                 datas.apply {
                     item.forEach {
                         Log.e("item",it.toString())
-                        add(PurchaseItem(it.date_created!!.replace("T"," "),
-                               it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),it.line_items.get(0).total,it.line_items.get(0).quantity,"배송준비중"))
+                        add(PurchaseItem(it.id.toString(),it.date_created!!.replace("T"," "),
+                               it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),
+                                it.line_items.get(0).total,it.line_items.get(0).quantity,it.billing.address_1+" "+it.billing.address_2))
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
 //                        println("별점 (5.00) : ${pr.average_rating}")
@@ -104,6 +112,8 @@ class PurchaseDetailsFragment : Fragment() {
 
         return view
     }
+
+
 
     companion object {
         /**
