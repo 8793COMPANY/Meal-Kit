@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,7 +56,13 @@ class RecipeFragment() : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_recipe, container, false)
+        var recipe_like_btn = view.findViewById<ImageView>(R.id.recipe_like_btn);
         var id = arguments?.getString("id")
+        var like = arguments?.getBoolean("like")
+
+        recipe_like_btn.isSelected = like!!;
+
+
         Log.e("id",id!!)
         view.findViewById<Button>(R.id.back_btn).setOnClickListener {
             findNavController().popBackStack()

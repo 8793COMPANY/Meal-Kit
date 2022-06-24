@@ -21,6 +21,15 @@ interface BoardService {
     @GET("wp-json/wc/v3/products")
     fun listAllProduct(@Query("category") category : String? = "") : Call<List<Product>>
     /**
+     * 상품의 좋아요를 On/Off 합니다.
+     * @author  두동근
+     */
+    @PUT("wp-json/wc/v3/products/{id}")
+    fun productLikesEdit(@Path("id") id : String,
+                         @Query("_fields") _fields : String = "acf.product_likes",
+                         @Body likesBody: likesBody) : Call<Product>
+
+    /**
      * 전체 체인점을 검색합니다.
      * @author  두동근
      */

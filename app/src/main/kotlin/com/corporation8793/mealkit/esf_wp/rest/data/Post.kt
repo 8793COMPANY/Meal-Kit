@@ -47,4 +47,6 @@ data class PostContent(val rendered : String)
  * @author  두동근
  * @see     [Post.acf]
  */
-data class PostAcf(val product : String, val price : String, val product_likes : Any)
+data class PostAcf(val product : String?, val price : String?, val product_likes : Any)
+
+data class PostLikesBody(val fields : PostAcf)
