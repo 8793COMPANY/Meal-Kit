@@ -27,12 +27,6 @@ object RestClient {
      */
     private const val CONSUMER_SECRET = "cs_5668293b63987df1626bf652f408c1fec67498c2"
 
-
-    /**
-     * Some 카테고리
-     */
-    const val CATEGORY_RECOMMEND = "0"
-
     /**
      * 상품 카테고리(미분류)
      */
