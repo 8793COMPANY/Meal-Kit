@@ -11,15 +11,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MealKit"
         android:usesCleartextTraffic="true">
+
+
+        <receiver
+            android:name="com.corporation8793.mealkit.receiver.ResetPedometer"
+            android:exported="false" />
+
+
         <activity
             android:name=".activity.AddreesWebActivity"
             android:exported="false" />
+
         <activity
             android:name=".payment.CompleteOrdersActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".payment.SelectProductActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".payment.PayMentActivity"
             android:exported="true" />
@@ -27,9 +35,7 @@
             android:name=".activity.FindActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
-
         <activity android:name=".activity.ChangePwActivity" />
-
         <activity
             android:name=".activity.PointActivity"
             android:exported="false" />
@@ -67,10 +73,39 @@
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="9l8w6ft1l8" />
-    </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        <service
+            android:name=".service.PedometerService"
+            android:enabled="true"
+            android:exported="true"></service>
 
+
+        <receiver
+            android:name="com.corporation8793.mealkit.receiver.RebootReceiver"
+            android:directBootAware="true"
+            android:enabled="true"
+            android:exported="false"
+            android:label="BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:enabled="true" android:name=".receiver.ShutdownReceiver"
+            android:exported="true">
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.intent.action.ACTION_SHUTDOWN"/>
+
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
