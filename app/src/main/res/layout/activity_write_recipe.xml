@@ -21,6 +21,7 @@
             bind:title="@{actionBar}"></include>
 
         <TextView
+            android:id="@+id/register_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="등록"
@@ -93,6 +94,7 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:background="#f4f4f4"
+                        android:scaleType="fitCenter"
                         bind:layout_constraintBottom_toBottomOf="parent"
                         bind:layout_constraintDimensionRatio="720:600"
                         bind:layout_constraintHorizontal_bias="0.0"
@@ -117,6 +119,7 @@
                             bind:layout_constraintRight_toRightOf="@+id/recipe_img"></ImageView>
 
                     <TextView
+                        android:id="@+id/register_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="사진 등록"
@@ -131,15 +134,31 @@
                         bind:layout_constraintRight_toRightOf="@+id/recipe_img"></TextView>
 
 
+                    <TextView
+                        android:id="@+id/recipe_name_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="레시피 이름"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
+                        android:textSize="14dp"
+                        android:textColor="#2b2b2b"
+                        bind:layout_constraintHorizontal_bias="0"
+                        bind:layout_constraintTop_toTopOf="@+id/recipe_name"
+                        bind:layout_constraintBottom_toBottomOf="@+id/recipe_name"
+                        bind:layout_constraintLeft_toLeftOf="@id/guideline_left"
+                        bind:layout_constraintRight_toLeftOf="@+id/recipe_name"
+                        ></TextView>
                     <EditText
                         android:id="@+id/recipe_name"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         bind:layout_constraintHeight_percent="0.05"
-                        android:text="안녕"
                         android:textColor="#2b2b2b"
                         android:textSize="14dp"
                         android:background="@null"
+                        android:singleLine="true"
+                        android:layout_marginLeft="5dp"
                         android:drawableRight="@drawable/resize_write_icon"
                         bind:layout_constraintHorizontal_bias="0"
                         bind:layout_constraintVertical_bias="0"
@@ -147,7 +166,7 @@
                         android:fontFamily="@font/noto_sans_kr_regular"
                         bind:layout_constraintTop_toBottomOf="@+id/recipe_img"
                         bind:layout_constraintBottom_toBottomOf="parent"
-                        bind:layout_constraintLeft_toLeftOf="@id/guideline_left"
+                        bind:layout_constraintLeft_toRightOf="@+id/recipe_name_text"
                         bind:layout_constraintRight_toRightOf="@id/guideline_right"></EditText>
 
 
@@ -160,24 +179,40 @@
                         bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
                         bind:layout_constraintRight_toRightOf="@id/guideline_right"></View>
 
+                    <TextView
+                        android:id="@+id/use_mealkit_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="사용 밀키트"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
+                        android:textSize="14dp"
+                        android:textColor="#2b2b2b"
+                        bind:layout_constraintHorizontal_bias="0"
+                        bind:layout_constraintTop_toTopOf="@+id/use_mealkit"
+                        bind:layout_constraintBottom_toBottomOf="@+id/use_mealkit"
+                        bind:layout_constraintLeft_toLeftOf="@id/guideline_left"
+                        bind:layout_constraintRight_toLeftOf="@+id/use_mealkit"
+                        ></TextView>
 
 
                     <EditText
-                        android:id="@+id/user_mealkit"
+                        android:id="@+id/use_mealkit"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         bind:layout_constraintHeight_percent="0.05"
-                        android:text="사용 밀키트"
+                        android:text=""
                         android:textColor="#2b2b2b"
                         android:textSize="14dp"
                         android:background="@null"
+                        android:layout_marginLeft="5dp"
                         bind:layout_constraintHorizontal_bias="0"
                         bind:layout_constraintVertical_bias="0"
                         android:includeFontPadding="false"
                         android:fontFamily="@font/noto_sans_kr_regular"
                         bind:layout_constraintTop_toBottomOf="@+id/recipe_name_border"
                         bind:layout_constraintBottom_toBottomOf="parent"
-                        bind:layout_constraintLeft_toLeftOf="@id/guideline_left"
+                        bind:layout_constraintLeft_toRightOf="@+id/use_mealkit_text"
                         bind:layout_constraintRight_toRightOf="@id/guideline_right"></EditText>
 
 
@@ -186,7 +221,7 @@
                         android:layout_width="0dp"
                         android:layout_height="2dp"
                         android:background="#d6d6d6"
-                        bind:layout_constraintTop_toBottomOf="@+id/user_mealkit"
+                        bind:layout_constraintTop_toBottomOf="@+id/use_mealkit"
                         bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
                         bind:layout_constraintRight_toRightOf="@id/guideline_right"></View>
 
@@ -217,6 +252,8 @@
                         android:textSize="14dp"
                         android:background="@null"
                         android:gravity="top"
+                        android:maxLength="300"
+                        bind:layout_goneMarginTop="10dp"
                         bind:layout_constraintVertical_bias="0"
                         bind:layout_constraintHorizontal_bias="0"
                         android:layout_marginTop="5dp"
@@ -229,10 +266,10 @@
 
 
                     <TextView
-                        android:id="@+id/letter_limit_count"
+                        android:id="@+id/recipe_introdution_letter_limit_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0/1000"
+                        android:text="0/300"
                         bind:layout_constraintVertical_bias="0"
                         bind:layout_constraintTop_toBottomOf="@+id/recipe_introdution"
                         bind:layout_constraintBottom_toBottomOf="parent"
@@ -245,7 +282,7 @@
                         android:layout_width="0dp"
                         android:layout_height="2dp"
                         android:background="#d6d6d6"
-                        bind:layout_constraintTop_toBottomOf="@+id/letter_limit_count"
+                        bind:layout_constraintTop_toBottomOf="@+id/recipe_introdution_letter_limit_count"
                         bind:layout_constraintLeft_toLeftOf="@+id/guideline_left"
                         bind:layout_constraintRight_toRightOf="@id/guideline_right"></View>
 
@@ -277,7 +314,9 @@
                         android:textSize="14dp"
                         android:background="@null"
                         android:gravity="top"
+                        bind:layout_goneMarginTop="10dp"
                         bind:layout_constraintHorizontal_bias="0"
+                        bind:layout_constraintVertical_bias="0"
                         android:layout_marginTop="5dp"
                         android:includeFontPadding="false"
                         android:fontFamily="@font/nskr_medium"
@@ -287,6 +326,7 @@
                         bind:layout_constraintRight_toRightOf="@id/guideline_right"></EditText>
 
                     <TextView
+                        android:id="@+id/detailed_recipe_letter_limit_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0/1000"
@@ -305,6 +345,24 @@
 
 
         </androidx.core.widget.NestedScrollView>
+
+
+        <RelativeLayout
+            android:id="@+id/recipe_register_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_80"
+            android:visibility="gone"
+            >
+            <ProgressBar
+                android:layout_centerInParent="true"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+
+                ></ProgressBar>
+
+
+        </RelativeLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

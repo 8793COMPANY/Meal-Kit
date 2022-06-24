@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.dto.BestItem
 import com.corporation8793.mealkit.dto.RecipeItem
@@ -34,6 +36,7 @@ class RecipeAdapter (private val context: Context?, val height : Int, val color 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val recipeImg: ImageView = itemView.findViewById(R.id.recipe_img)
+        private val userImg: ImageView = itemView.findViewById(R.id.user_img)
         private val recipe_like_btn  = itemView.findViewById<ImageView>(R.id.recipe_like_btn)
         private val recipe_name: TextView = itemView.findViewById(R.id.recipe_name)
         private val recipe_introdution: TextView = itemView.findViewById(R.id.recipe_introdution)
@@ -57,11 +60,12 @@ class RecipeAdapter (private val context: Context?, val height : Int, val color 
 //            if (item.img == "0") {
 //                kitImg.setBackgroundResource(R.color.app_basic_color)
 //            }else
-//                Glide.with(context!!).load(item.img).into(kitImg)
+                Glide.with(context!!).load(item.img).into(recipeImg)
+            Glide.with(context!!).load(item.user_img).into(userImg)
 
             itemView.setOnClickListener{
-                val action = RecipeListFragmentDirections.actionRecipeListToRecipeFragment()
-                controller.navigate(action)
+                var bundle = bundleOf("id" to item.id)
+                controller.navigate(R.id.action_recipe_list_to_recipeFragment,bundle)
             }
 
 

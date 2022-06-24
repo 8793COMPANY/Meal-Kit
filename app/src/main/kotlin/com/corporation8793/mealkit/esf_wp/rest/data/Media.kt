@@ -7,7 +7,7 @@ package com.corporation8793.mealkit.esf_wp.rest.data
  * @param   guid                [Guid] 클래스
  * @param   media_type          타입 (expected : "image")
  */
-data class Media(val id : String,
+data class Media(val id : String?,
                  val date : String,
                  val guid : Guid,
                  val media_type : String)

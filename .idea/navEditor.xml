@@ -90,18 +90,9 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-810" />
-                            <option name="y" value="1242" />
+                            <option name="x" value="-851" />
+                            <option name="y" value="-166" />
                           </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_best_to_kitDetailFragment3">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
