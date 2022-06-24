@@ -55,7 +55,10 @@ class MyFragment() : Fragment() {
         var view = inflater.inflate(R.layout.fragment_my, container, false)
 
         val my_list = view.findViewById<GridView>(R.id.my_list)
+        val user_name = view.findViewById<TextView>(R.id.user_name)
         val go_user_info_edit_btn = view.findViewById<TextView>(R.id.go_user_info_edit_btn)
+
+        user_name.setText(MainApplication.instance.user.first_name)
 
         go_user_info_edit_btn.setOnClickListener {
            val intent = Intent(activity,UserEditActivity::class.java)

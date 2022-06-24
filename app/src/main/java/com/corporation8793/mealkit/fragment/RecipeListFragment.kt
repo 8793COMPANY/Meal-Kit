@@ -120,6 +120,7 @@ class RecipeListFragment() : Fragment() {
 
                     alldatas.clear()
                     datas.clear()
+            Log.e("item",item.size.toString())
                     item.forEach {
                         Log.e("it",it.toString())
                         Log.e("price",it.featured_media_src_url)

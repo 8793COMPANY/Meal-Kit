@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.corporation8793.mealkit.MainApplication
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.RatingDialog
 import com.corporation8793.mealkit.adapter.PurchaseAdapter
@@ -80,10 +81,13 @@ class PurchaseDetailsFragment : Fragment() {
             var user_id = RestClient.nonceService.checkUsername(id!!).execute().body()!!.get(0).id
             val item : List<Order> = RestClient.boardService.listAllOrder(user_id).execute().body()!!
 
+
+
             GlobalScope.launch(Dispatchers.Main) {
                 datas.apply {
                     item.forEach {
                         Log.e("item",it.toString())
+
                         add(PurchaseItem(it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
                                it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),
                                 it.line_items.get(0).total,it.line_items.get(0).quantity,it.billing.address_1+" "+it.billing.address_2))
