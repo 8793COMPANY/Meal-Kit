@@ -58,8 +58,9 @@ class RatingDialog(val activity: Activity, val product_id :String) : DialogFragm
 //
                 GlobalScope.launch(Dispatchers.Default) {
 
-                    val resultOn = MainApplication.instance.boardRepository.makeReview(Review(product_id,
-                            "",
+                    val resultOn = MainApplication.instance.boardRepository.makeReview(Review(
+                            product_id,
+                            " ",
                             MainApplication.instance.user.first_name,
                             MainApplication.instance.user.email,
                             rating.toString()));
