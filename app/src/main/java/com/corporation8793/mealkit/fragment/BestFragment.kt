@@ -76,7 +76,7 @@ class BestFragment() : Fragment() {
                     datas.clear()
                     item.forEach {
                         var pr = item.get(0)
-                        Log.e("price",pr.acf.price)
+                        pr.acf.price?.let { it1 -> Log.e("price", it1) }
                         add(BestItem(pr.id!!,pr.featured_media_src_url,pr.title.rendered,pr.acf.price+"원",pr.acf.product_likes.toString(),count.toString()))
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")

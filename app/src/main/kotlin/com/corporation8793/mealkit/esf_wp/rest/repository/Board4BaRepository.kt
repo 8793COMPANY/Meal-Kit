@@ -6,10 +6,8 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.Response
+import retrofit2.http.*
 import java.io.File
 
 class Board4BaRepository(val basicAuth : String) {
@@ -165,6 +163,95 @@ class Board4BaRepository(val basicAuth : String) {
         val response = RestClient.board4BaService.updatePostAcf(basicAuth, id, product).execute()
 
         return Pair(response.code().toString(), response.body())
+    }
+
+    fun updatePostLikes(post: Post, userId: String, action: String) : Pair<String, PostAcf?> {
+        var response : Response<PostAcf>? = null
+
+        return when (action) {
+            "ON" -> {
+                println("[좋아요 ON]")
+                when(post.acf.product_likes != null && post.acf.product_likes !is Boolean) {
+                    true -> {
+                        var pl = post.acf.product_likes as ArrayList<Int>
+                        for ((i, p) in pl.withIndex()) {
+                            pl[i] = p
+                        }
+                        pl.remove(userId.toInt())
+                        pl.add(userId.toInt())
+
+                        response = RestClient.board4BaService.updatePostLikes(basicAuth,
+                            id = post.id,
+                            postLikesBody = PostLikesBody(
+                                PostAcf(
+                                    post.acf.product,
+                                    post.acf.price,
+                                    pl
+                                )
+                            )
+                        ).execute()
+                    }
+                    false -> {
+                        var pl = arrayListOf<Int>()
+                        pl.add(userId.toInt())
+
+                        response = RestClient.board4BaService.updatePostLikes(basicAuth,
+                            id = post.id,
+                            postLikesBody = PostLikesBody(
+                                PostAcf(
+                                    post.acf.product,
+                                    post.acf.price,
+                                    pl
+                                )
+                            )
+                        ).execute()
+                    }
+                }
+                return Pair(response?.code().toString(), response?.body())
+            }
+            "OFF" -> {
+                println("[좋아요 OFF]")
+                when(post.acf.product_likes != null && post.acf.product_likes !is Boolean) {
+                    true -> {
+                        var pl = post.acf.product_likes as ArrayList<Int>
+                        for ((i, p) in pl.withIndex()) {
+                            pl[i] = p
+                        }
+                        pl.remove(userId.toInt())
+
+                        response = RestClient.board4BaService.updatePostLikes(basicAuth,
+                            id = post.id,
+                            postLikesBody = PostLikesBody(
+                                PostAcf(
+                                    post.acf.product,
+                                    post.acf.price,
+                                    pl
+                                )
+                            )
+                        ).execute()
+                    }
+                    false -> {
+                        var pl = arrayListOf<Int>()
+                        pl.add(userId.toInt())
+
+                        response = RestClient.board4BaService.updatePostLikes(basicAuth,
+                            id = post.id,
+                            postLikesBody = PostLikesBody(
+                                PostAcf(
+                                    post.acf.product,
+                                    post.acf.price,
+                                    pl
+                                )
+                            )
+                        ).execute()
+                    }
+                }
+                return Pair(response?.code().toString(), response?.body())
+            }
+            else -> {
+                return Pair("null", null)
+            }
+        }
     }
 
     // Point

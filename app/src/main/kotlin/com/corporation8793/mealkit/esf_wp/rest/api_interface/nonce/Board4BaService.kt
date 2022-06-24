@@ -1,9 +1,6 @@
 package com.corporation8793.mealkit.esf_wp.rest.api_interface.nonce
 
-import com.corporation8793.mealkit.esf_wp.rest.data.Media
-import com.corporation8793.mealkit.esf_wp.rest.data.PointLog
-import com.corporation8793.mealkit.esf_wp.rest.data.Post
-import com.corporation8793.mealkit.esf_wp.rest.data.PostAcf
+import com.corporation8793.mealkit.esf_wp.rest.data.*
 import okhttp3.Credentials
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
@@ -105,6 +102,14 @@ interface Board4BaService {
     fun updatePostAcf(@Header("Authorization") h1 : String,
                       @Path("id") id : String?,
                       @Query("fields[product]") product : String?) : Call<PostAcf>
+    /**
+     * 레시피 좋아요 메타 수정
+     * @author  두동근
+     */
+    @POST("/wp-json/acf/v3/posts/{id}")
+    fun updatePostLikes(@Header("Authorization") h1 : String,
+                        @Path("id") id : String?,
+                        @Body postLikesBody: PostLikesBody) : Call<PostAcf>
 
     // Point
     /**
@@ -160,4 +165,9 @@ interface Board4BaService {
                               @Field("categories") categories : String = "10",
                               @Field("featured_media") featured_media : String? = "0",
                               @Query("author") author : String) : Call<PointLog>
+
+    @POST("/wp-json/acf/v3/posts/{id}")
+    fun recipeLikes(@Header("Authorization") h1 : String,
+                      @Path("id") id : String?,
+                      @Query("fields[product]") product : String?) : Call<PostAcf>
 }
