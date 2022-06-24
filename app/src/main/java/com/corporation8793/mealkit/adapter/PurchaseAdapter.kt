@@ -64,6 +64,7 @@ class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val a
                 var intent = Intent(activity, CompleteOrdersActivity::class.java)
                 intent.putExtra("type","check")
                 intent.putExtra("id",item.id)
+                intent.putExtra("product_id",item.product_id)
                 intent.putExtra("shop_name",item.shop_name)
                 intent.putExtra("name",item.kit_name)
                 intent.putExtra("quantity",item.count)
@@ -84,7 +85,7 @@ class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val a
 //                * @param   rating                  별점 ([Int]값 - 1, 2, 3, 4, 5)
 //                * @param   verified                true - default
 
-                val dialog = RatingDialog(activity!!)
+                val dialog = RatingDialog(activity!!,item.product_id)
                 dialog.show(parentFragmentManager!!,"hello")
 
 

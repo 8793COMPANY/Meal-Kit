@@ -84,7 +84,7 @@ class PurchaseDetailsFragment : Fragment() {
                 datas.apply {
                     item.forEach {
                         Log.e("item",it.toString())
-                        add(PurchaseItem(it.id.toString(),it.date_created!!.replace("T"," "),
+                        add(PurchaseItem(it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
                                it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),
                                 it.line_items.get(0).total,it.line_items.get(0).quantity,it.billing.address_1+" "+it.billing.address_2))
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
