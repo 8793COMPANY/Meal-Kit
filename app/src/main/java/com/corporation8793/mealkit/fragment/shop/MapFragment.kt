@@ -54,6 +54,8 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
         val bottomSheetView = layoutInflater.inflate(R.layout.dialog_shop_info, null)
         val bottomSheetDialog = BottomSheetDialog(context!!)
         bottomSheetDialog.setContentView(bottomSheetView)
+       
+
 //        bottomSheetDialog.show()
 
         return view
