@@ -73,9 +73,18 @@ class SeaFragment : Fragment() {
                 datas.apply {
                     Log.e("item sizse",item.size.toString())
                     item.forEach {
-                        var pr = item.get(0)
-                        add(KitItem(pr.id,pr.images.first().src, pr.date_on_sale_from,pr.date_on_sale_to, "샐러드 가게",
-                                pr.name, pr.price, pr.stock_quantity, pr.acf.total_stock!!,"1"))
+                        var like = false;
+                        if(it.acf.product_likes != false) {
+                            var pl = it.acf.product_likes as ArrayList<Int>
+                            pl.forEach { i ->
+                                if(i == id.toInt()){
+                                    like = true;
+                                    return@forEach
+                                }
+                            }
+                        }
+                        add(KitItem(it.id,it.images.first().src, it.date_on_sale_from,it.date_on_sale_to, "샐러드 가게",
+                                it.name, it.price, it.stock_quantity, it.acf.total_stock!!,like))
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
 //                        println("별점 (5.00) : ${pr.average_rating}")

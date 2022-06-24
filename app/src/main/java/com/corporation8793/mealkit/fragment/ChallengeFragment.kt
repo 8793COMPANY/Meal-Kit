@@ -10,7 +10,12 @@ import android.widget.Button
 import android.widget.VideoView
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.corporation8793.mealkit.MainApplication
 import com.corporation8793.mealkit.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,8 +45,34 @@ class ChallengeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_challenge, container, false)
         val videoview = view.findViewById<VideoView>(R.id.videoview)
-
         var uri = Uri.parse("android.resource://"+requireActivity().packageName+"/"+R.raw.point_10)
+
+
+        val random = Random()
+        val num = random.nextInt(5)+1
+
+        when(num){
+            1-> {uri = Uri.parse("android.resource://"+requireActivity().packageName+"/"+R.raw.point_10)
+                insertPoint(10,"룰렛 포인트")
+
+            }
+            2->{uri = Uri.parse("android.resource://"+requireActivity().packageName+"/"+R.raw.point_30)
+                insertPoint(30,"룰렛 포인트")
+
+            }
+            3->{uri = Uri.parse("android.resource://"+requireActivity().packageName+"/"+R.raw.point_50)
+                insertPoint(50,"룰렛 포인트")
+            }
+            4->{uri = Uri.parse("android.resource://"+requireActivity().packageName+"/"+R.raw.point_70)
+                insertPoint(70,"룰렛 포인트")
+
+            }
+            5->{uri = Uri.parse("android.resource://"+requireActivity().packageName+"/"+R.raw.point_100)
+                insertPoint(100,"룰렛 포인트")
+
+            }
+        }
+
         videoview.setVideoURI(uri)
         videoview.seekTo(1)
 
@@ -49,6 +80,7 @@ class ChallengeFragment : Fragment() {
         view.findViewById<Button>(R.id.go_btn).setOnClickListener {
             videoview.start()
         }
+
 
         view.findViewById<Button>(R.id.back_btn).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_back_to_home)
@@ -76,5 +108,19 @@ class ChallengeFragment : Fragment() {
                         putString(ARG_PARAM2, param2)
                     }
                 }
+    }
+
+
+    fun insertPoint(point: Int, log:String){
+
+
+        GlobalScope.launch(Dispatchers.Default) {
+            val pointResult= MainApplication.instance.nonceRepository.editPoint(
+                MainApplication.instance.board4BaRepository,
+                MainApplication.instance.user.id,point,"+",log)
+            if(pointResult.first.equals("200")){
+                MainApplication.instance.setPedometerSuccessCount("point_roulette",2);
+            }
+        }
     }
 }

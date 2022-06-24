@@ -10,5 +10,5 @@ data class KitItem(
        val price : String,
        val stock_quantity : String,
         val total_stock : String,
-       val like : String,
+        val like : Boolean,
 )

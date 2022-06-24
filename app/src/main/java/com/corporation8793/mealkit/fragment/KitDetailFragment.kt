@@ -67,19 +67,25 @@ class KitDetailFragment() : Fragment() {
         var price = arguments?.getString("price")
         var stock = arguments?.getString("stock")
         var img = arguments?.getString("img")
+        var like = arguments?.getBoolean("like")
+
+
         Glide.with(this).load(img).into(view.findViewById<ImageView>(R.id.kit_img))
         view.findViewById<TextView>(R.id.kit_category).setText(category)
         view.findViewById<TextView>(R.id.kit_name).setText(name)
         view.findViewById<TextView>(R.id.price).setText(price)
         view.findViewById<TextView>(R.id.stock_count).setText(stock+"개")
         view.findViewById<ImageView>(R.id.kit_img)
+
+        like_btn.isSelected = like!!;
+
         view.findViewById<Button>(R.id.back_btn).setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_back_to_home)
         }
 
         like_btn.setOnClickListener {
             GlobalScope.launch(Dispatchers.Default) {
-                val response = RestClient.boardService.productLikesEdit(id=id!!,likesBody = ).execute().body()!!
+//                val response = RestClient.boardService.productLikesEdit(id=id!!,likesBody = ).execute().body()!!
 
                 GlobalScope.launch(Dispatchers.Main) {
 

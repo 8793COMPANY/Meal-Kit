@@ -70,13 +70,27 @@ class BestFragment() : Fragment() {
 
         GlobalScope.launch(Dispatchers.Default) {
             val item : List<Post> = RestClient.board4BaService.retrievePostInCategories(categories = RestClient.RECIPE_BEST).execute().body()!!
+            val id = MainApplication.instance.user.id;
 
             GlobalScope.launch(Dispatchers.Main) {
                 datas.apply {
                     datas.clear()
                     item.forEach {
+
                         it.acf.price?.let { it1 -> Log.e("price", it1) }
-                        add(BestItem(it.id!!,it.featured_media_src_url,it.title.rendered,it.acf.price+"원",it.acf.product_likes.toString(),count.toString()))
+                        var like = false;
+                        if(it.acf.product_likes != false) {
+                            var pl = it.acf.product_likes as ArrayList<Int>
+                            pl.forEach { i ->
+                               if(i == id.toInt()){
+                                   like = true;
+                                  return@forEach
+                               }
+                            }
+                        }
+
+                        add(BestItem(it.id!!,it.featured_media_src_url,it.title.rendered,it.acf.price+"원",like,count.toString()))
+
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
 //                        println("별점 (5.00) : ${pr.average_rating}")
@@ -84,7 +98,7 @@ class BestFragment() : Fragment() {
 //                        println("상품 세일 기간 : ${pr.date_on_sale_from} ~ ${pr.date_on_sale_to}")
 //                        println("상품가격 : ${pr.price}원")
 //                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
-//                        println("---------------")
+
                         count++
                     }
 

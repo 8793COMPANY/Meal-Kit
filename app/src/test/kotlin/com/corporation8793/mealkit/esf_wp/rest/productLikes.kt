@@ -69,7 +69,7 @@ class productLikes {
 
         println("------ 레시피 좋아요 리스트            ------")
         // 사용법 동일합니다 - RestClient.RECIPE_BEST, RestClient.RECIPE_CUSTOMER
-        val responseCode2 = board4BaRepository.retrievePostInCategories(categories = RestClient.RECIPE_CUSTOMER)
+        val responseCode2 = board4BaRepository.retrievePostInCategories(categories = RestClient.RECIPE_BEST)
         println("responseCode2 : ${responseCode2.second}\n")
 
         println("------ 레시피Result      -----")

@@ -52,6 +52,7 @@ class BestAdapter (private val context: Context?, val height : Int, val color : 
 
 
             Glide.with(context!!).load(item.img).into(kitImg)
+            kit_like_btn.isSelected = item.like;
 
             kit_like_btn.setOnClickListener {
                 if (kit_like_btn.isSelected){
@@ -63,7 +64,7 @@ class BestAdapter (private val context: Context?, val height : Int, val color : 
 
             itemView.setOnClickListener{
                 val action = BestFragmentDirections.actionBestToRecipeFragment()
-                var bundle =bundleOf("id" to item.id)
+                var bundle =bundleOf("id" to item.id,"like" to item.like)
                 controller.navigate(R.id.action_best_to_recipeFragment,bundle)
             }
 

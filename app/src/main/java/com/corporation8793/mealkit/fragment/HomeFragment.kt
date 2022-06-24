@@ -63,6 +63,8 @@ class HomeFragment() : Fragment() {
         var total_stepText = pedometerHome.findViewById<TextView>(R.id.total_step);
         var finish_step = pedometerHome.findViewById<TextView>(R.id.finish_step);
 
+
+
         val dt = Date()
         val calendar = Calendar.getInstance()
         calendar.setTime(dt);
@@ -129,9 +131,12 @@ class HomeFragment() : Fragment() {
 
         })
 
+        //여기용
         view.findViewById<View>(R.id.pedometer).setOnClickListener{
-            val action = HomeFragmentDirections.actionHomeToChallengeFragment()
-            findNavController().navigate(action)
+            if(MainApplication.instance.getPedometerSuccessCount("point_roulette") == 1) {
+                val action = HomeFragmentDirections.actionHomeToChallengeFragment()
+                findNavController().navigate(action)
+            }
         }
 
 
