@@ -40,77 +40,90 @@ class BoardRepository {
 
         return Pair(response.code().toString(), response.body())
     }
-    fun productLikesEdit(product: Product, userId: String, action: String) : Pair<String, Product?> {
+    fun retrieveOneProduct(productId : String) : Pair<String, Product?> {
+        val call = RestClient.boardService.retrieveOneProduct(id = productId)
+
+        val response = call.execute()
+
+        return Pair(response.code().toString(), response.body())
+    }
+    fun productLikesEdit(productId: String, userId: String, action: String) : Pair<String, Product?> {
+        val product = RestClient.boardService.retrieveOneProduct(id = productId).execute().body()
+
         var response : Response<Product>? = null
 
         return when (action) {
             "ON" -> {
                 println("[좋아요 ON]")
-                when(product.acf.product_likes !is Boolean) {
-                    true -> {
-                        var pl = product.acf.product_likes as ArrayList<Int>
-                        for ((i, p) in pl.withIndex()) {
-                            pl[i] = p
-                        }
-                        pl.remove(userId.toInt())
-                        pl.add(userId.toInt())
+                if (product != null) {
+                    when(product.acf.product_likes !is Boolean) {
+                        true -> {
+                            var pl = product.acf.product_likes as ArrayList<Int>
+                            for ((i, p) in pl.withIndex()) {
+                                pl[i] = p
+                            }
+                            pl.remove(userId.toInt())
+                            pl.add(userId.toInt())
 
-                        response = RestClient.boardService.productLikesEdit(id = product.id,
+                            response = RestClient.boardService.productLikesEdit(id = product.id,
                                 likesBody = likesBody(
-                                arrayOf(
-                                    Meta_data(id = null, key = "product_likes",
-                                        value = pl )
+                                    arrayOf(
+                                        Meta_data(id = null, key = "product_likes",
+                                            value = pl )
+                                    )
                                 )
-                            )
-                        ).execute()
-                    }
-                    false -> {
-                        var pl = arrayListOf<Int>()
-                        pl.add(userId.toInt())
+                            ).execute()
+                        }
+                        false -> {
+                            var pl = arrayListOf<Int>()
+                            pl.add(userId.toInt())
 
-                        response = RestClient.boardService.productLikesEdit(id = product.id,
-                            likesBody = likesBody(
-                                arrayOf(
-                                    Meta_data(id = null, key = "product_likes",
-                                        value = pl )
+                            response = RestClient.boardService.productLikesEdit(id = product.id,
+                                likesBody = likesBody(
+                                    arrayOf(
+                                        Meta_data(id = null, key = "product_likes",
+                                            value = pl )
+                                    )
                                 )
-                            )
-                        ).execute()
+                            ).execute()
+                        }
                     }
                 }
                 return Pair(response?.code().toString(), response?.body())
             }
             "OFF" -> {
                 println("[좋아요 OFF]")
-                when(product.acf.product_likes !is Boolean) {
-                    true -> {
-                        var pl = product.acf.product_likes as ArrayList<Int>
-                        for ((i, p) in pl.withIndex()) {
-                            pl[i] = p
+                if (product != null) {
+                    when(product.acf.product_likes !is Boolean) {
+                        true -> {
+                            var pl = product.acf.product_likes as ArrayList<Int>
+                            for ((i, p) in pl.withIndex()) {
+                                pl[i] = p
+                            }
+                            pl.remove(userId.toInt())
+
+                            response = RestClient.boardService.productLikesEdit(id = product.id,
+                                likesBody = likesBody(
+                                    arrayOf(
+                                        Meta_data(id = null, key = "product_likes",
+                                            value = pl )
+                                    )
+                                )
+                            ).execute()
                         }
-                        pl.remove(userId.toInt())
+                        false -> {
+                            var pl = arrayListOf<Int>()
+                            pl.add(userId.toInt())
 
-                        response = RestClient.boardService.productLikesEdit(id = product.id,
-                            likesBody = likesBody(
-                                arrayOf(
-                                    Meta_data(id = null, key = "product_likes",
-                                        value = pl )
+                            response = RestClient.boardService.productLikesEdit(id = product.id,
+                                likesBody = likesBody(
+                                    arrayOf(
+                                        Meta_data(id = null, key = "product_likes",
+                                            value = pl )
+                                    )
                                 )
-                            )
-                        ).execute()
-                    }
-                    false -> {
-                        var pl = arrayListOf<Int>()
-                        pl.add(userId.toInt())
-
-                        response = RestClient.boardService.productLikesEdit(id = product.id,
-                            likesBody = likesBody(
-                                arrayOf(
-                                    Meta_data(id = null, key = "product_likes",
-                                        value = pl )
-                                )
-                            )
-                        ).execute()
+                            ).execute()
+                        }
                     }
                 }
                 return Pair(response?.code().toString(), response?.body())

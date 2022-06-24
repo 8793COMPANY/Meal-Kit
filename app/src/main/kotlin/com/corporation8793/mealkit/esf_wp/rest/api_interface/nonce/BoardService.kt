@@ -20,6 +20,9 @@ interface BoardService {
      */
     @GET("wp-json/wc/v3/products")
     fun listAllProduct(@Query("category") category : String? = "") : Call<List<Product>>
+
+    @GET("wp-json/wc/v3/products/{id}")
+    fun retrieveOneProduct(@Path("id") id : String) : Call<Product?>
     /**
      * 상품의 좋아요를 On/Off 합니다.
      * @author  두동근
