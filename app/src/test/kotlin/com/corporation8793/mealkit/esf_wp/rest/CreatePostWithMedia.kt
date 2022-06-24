@@ -23,29 +23,29 @@ class CreatePostWithMedia {
 
 
 
-        println("------ 1. Upload              ------")
-        // test image (test_img.jpeg)
-        val file = File("src/test/kotlin/com/corporation8793/mealkit/esf_wp/rest/test_img.jpeg")
-        val responseMedia = board4BaRepository.uploadMedia(file)
+//        println("------ 1. Upload              ------")
+//        // test image (test_img.jpeg)
+//        val file = File("src/test/kotlin/com/corporation8793/mealkit/esf_wp/rest/test_img.jpeg")
+//        val responseMedia = board4BaRepository.uploadMedia(file)
+//
+//        println("response Media URL : ${responseMedia.second?.guid?.rendered}")
+//        println("response Media ID : ${responseMedia.second?.id}")
+//        //htmlContent += "<p><img src=\"${responseMedia.second?.guid?.rendered}\"></p>"
 
-        println("response Media URL : ${responseMedia.second?.guid?.rendered}")
-        println("response Media ID : ${responseMedia.second?.id}")
-        //htmlContent += "<p><img src=\"${responseMedia.second?.guid?.rendered}\"></p>"
-
-        println("------ 2. Create              ------")
-        val responseCode = board4BaRepository.createPost(
-            featured_media = responseMedia.second?.id,
-            title = "고든 RAM.J 가 전수한 유기농두부샐러드 레시피!!?!",
-            excerpt = "레시피 요약 부분 입니다.",
-            content = "레시피를 순서대로 작성하여 주세요. J는 JORDY 의 J 입니다!!?!",
-            )
-        println("------ 2-1. Add meta          ------")
-        val addMeta = board4BaRepository.updatePostAcf(
-            responseCode?.id,
-            "유기농두부샐러드"
-        )
-
-        println("response Code : $responseCode\n")
+//        println("------ 2. Create              ------")
+//        val responseCode = board4BaRepository.createPost(
+//            featured_media = responseMedia.second?.id,
+//            title = "고든 RAM.J 가 전수한 유기농두부샐러드 레시피!!?!",
+//            excerpt = "레시피 요약 부분 입니다.",
+//            content = "레시피를 순서대로 작성하여 주세요. J는 JORDY 의 J 입니다!!?!",
+//            )
+//        println("------ 2-1. Add meta          ------")
+//        val addMeta = board4BaRepository.updatePostAcf(
+//            responseCode?.id,
+//            "유기농두부샐러드"
+//        )
+//
+//        println("response Code : $responseCode\n")
 
 
         println("------ 3. Retrieve (리스트 불러오기)            ------")
@@ -53,8 +53,8 @@ class CreatePostWithMedia {
         // 베스트 레시피 카테고리는 featured_media_src_url, title, price 를 뿌려줍니다.
 
         // 카테고리 지정 필요 -> RestClient.RECIPE_CUSTOMER, RestClient.RECIPE_BEST
-        val responseCode2 = board4BaRepository.retrievePostInCategories(RestClient.RECIPE_CUSTOMER)
-        //val responseCode2 = board4BaRepository.retrievePostInCategories(RestClient.RECIPE_BEST)
+        //val responseCode2 = board4BaRepository.retrievePostInCategories(categories = RestClient.RECIPE_CUSTOMER)
+        val responseCode2 = board4BaRepository.retrievePostInCategories(categories = RestClient.RECIPE_BEST)
 
         println("response Code : ${responseCode2.second}\n")
 

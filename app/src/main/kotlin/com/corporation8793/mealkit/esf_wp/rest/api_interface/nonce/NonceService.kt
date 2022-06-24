@@ -74,4 +74,9 @@ interface NonceService {
                   @Query("first_name") first_name: String,
                   @Body signUpBody: SignUpBody
     ) : Call<Customer>
+
+    // 포인트 제어 (+, -)
+    @PUT("/wp-json/wc/v3/customers/{id}")
+    fun editPoint(@Path("id") id: String,
+                  @Body editPointBody: editPointBody) : Call<Customer>
 }

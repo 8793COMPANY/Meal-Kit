@@ -103,4 +103,17 @@ interface Board4BaService {
     fun updatePostAcf(@Header("Authorization") h1 : String,
                       @Path("id") id : String?,
                       @Query("fields[product]") product : String?) : Call<PostAcf>
+
+    // Point
+    /**
+     * 고객의 포인트 내역을 확인합니다.
+     * @author  두동근
+     * @see     Post
+     */
+    @GET("wp-json/wp/v2/posts")
+    fun retrievePointLog(@Query("per_page") per_page : String = "100",
+                         @Query("page") page : String = "1",
+                         @Query("order") order : String = "desc",
+                         @Query("author") author : String,
+                         @Query("categories") categories : String = "60") : Call<List<Post>>
 }
