@@ -136,7 +136,7 @@ class RecipeListFragment() : Fragment() {
 //                            like_count = pr.acf.product_likes.toString()
 
                         var like = false;
-                        if(it.acf.product_likes != false) {
+                        if(it.acf.product_likes != null && it.acf.product_likes !is Boolean) {
                             var pl = it.acf.product_likes as ArrayList<Int>
                             pl.forEach { i ->
                                 if(i == id.toInt()){
@@ -144,6 +144,8 @@ class RecipeListFragment() : Fragment() {
                                     return@forEach
                                 }
                             }
+                        } else {
+                            like = false
                         }
                         datas.add(RecipeItem(it.id!!,it.featured_media_src_url,it.title.rendered,replaceText(it.excerpt.rendered),authorImage.guid?.rendered!!,like,"0"))
 

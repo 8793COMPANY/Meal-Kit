@@ -88,7 +88,6 @@ class PurchaseDetailsFragment : Fragment() {
             val item = MainApplication.instance.boardRepository.listAllOrder(user_id)
             Log.e("in","end")
             val seconde = item.second!!
-            val third = item.third!!
             Log.e("item",item.first)
                 datas.apply {
                     seconde.forEach {
