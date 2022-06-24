@@ -16,8 +16,10 @@ import androidx.fragment.app.DialogFragment
 import com.corporation8793.mealkit.databinding.DialogKitScoreBinding
 import com.corporation8793.mealkit.esf_wp.rest.data.Review
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.fragment_kit_detail.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class RatingDialog(val activity: Activity) : DialogFragment() {
     private var _binding: DialogKitScoreBinding? = null
