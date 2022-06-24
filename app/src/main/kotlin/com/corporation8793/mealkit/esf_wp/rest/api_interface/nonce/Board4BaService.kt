@@ -132,4 +132,19 @@ interface Board4BaService {
                    @Field("content") content : String,
                    @Field("categories") categories : String = "10",
                    @Field("featured_media") featured_media : String? = "0") : Call<PointLog>
+
+    /**
+     * 게시물을 생성합니다.
+     * @author  두동근
+     */
+    @FormUrlEncoded
+    @POST("wp-json/wp/v2/posts")
+    fun createPointLogByOther(@Header("Authorization") h1 : String,
+                        @Field("status") status : String = "publish",
+                        @Field("title") title : String,
+                        @Field("excerpt") excerpt : String,
+                        @Field("content") content : String,
+                        @Field("categories") categories : String = "10",
+                        @Field("featured_media") featured_media : String? = "0",
+                        @Query("author") author : String) : Call<PointLog>
 }

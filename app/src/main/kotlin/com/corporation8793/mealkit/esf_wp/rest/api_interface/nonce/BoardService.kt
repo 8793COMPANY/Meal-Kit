@@ -32,4 +32,10 @@ interface BoardService {
      */
     @POST("wp-json/wc/v3/orders")
     fun makeOrder(@Body order: Order) : Call<Order>
+    /**
+     * 전체 주문내역을 검색합니다.
+     * @author  두동근
+     */
+    @GET("wp-json/wc/v3/orders")
+    fun listAllOrder(@Query("customer") customer : String) : Call<List<Order>>
 }

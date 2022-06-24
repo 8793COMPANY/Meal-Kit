@@ -190,7 +190,7 @@ class NonceRepository {
                         metaData -> metaData.key == "point" }?.first()?.value}")
                 logContent += "After 포인트 : ${editPointResponse.body()?.meta_data?.filter {
                         metaData -> metaData.key == "point" }?.first()?.value}\n"
-                logResult = Triple(log, "$action$point", logContent)
+                logResult = Triple(log, "$action $point", logContent)
                 val logResponse = b4ba.createPointLog(
                     title = logResult.first,
                     excerpt = logResult.second,
@@ -212,12 +212,35 @@ class NonceRepository {
                         metaData -> metaData.key == "point" }?.first()?.value}")
                 logContent += "After 포인트 : ${editPointResponse.body()?.meta_data?.filter {
                         metaData -> metaData.key == "point" }?.first()?.value}\n"
-                logResult = Triple(log, "$action$point", logContent)
+                logResult = Triple(log, "$action $point", logContent)
                 val logResponse = b4ba.createPointLog(
                     title = logResult.first,
                     excerpt = logResult.second,
                     content = logResult.third,
                     categories = RestClient.POINT_LOG
+                )
+
+                Pair(editPointResponse.code().toString(), editPointResponse.body())
+            }
+            "recommender" -> {
+                val editPointResponse = RestClient.nonceService.editPoint(id, editPointBody(
+                    arrayOf(
+                        Meta_data(id = null, key = "point",
+                            value = (currentUserTotalPoint + point) )
+                    )
+                )
+                ).execute()
+                println("After 포인트 : ${editPointResponse.body()?.meta_data?.filter {
+                        metaData -> metaData.key == "point" }?.first()?.value}")
+                logContent += "After 포인트 : ${editPointResponse.body()?.meta_data?.filter {
+                        metaData -> metaData.key == "point" }?.first()?.value}\n"
+                logResult = Triple(log, "+ $point", logContent)
+                val logResponse = b4ba.createPointLogByOther(
+                    title = logResult.first,
+                    excerpt = logResult.second,
+                    content = logResult.third,
+                    categories = RestClient.POINT_LOG,
+                    author = id
                 )
 
                 Pair(editPointResponse.code().toString(), editPointResponse.body())
