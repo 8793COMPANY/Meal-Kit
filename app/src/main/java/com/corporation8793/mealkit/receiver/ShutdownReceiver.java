@@ -13,8 +13,6 @@ import com.corporation8793.mealkit.service.PedometerService;
 public class ShutdownReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.e("test","Test");
-
      SharedPreferences preferences  = context.getSharedPreferences("other", 0);
      SharedPreferences.Editor edit=preferences.edit();
      edit.putInt("step", PedometerService.getStep());

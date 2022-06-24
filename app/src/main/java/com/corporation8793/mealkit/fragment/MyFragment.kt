@@ -1,5 +1,6 @@
 package com.corporation8793.mealkit.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
@@ -10,11 +11,15 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Button
 import android.widget.GridView
+import android.widget.TextView
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
+import com.corporation8793.mealkit.activity.JoinActivity
+import com.corporation8793.mealkit.activity.UserEditActivity
+
 import com.corporation8793.mealkit.adapter.MyAdapter
 import com.corporation8793.mealkit.decoration.KitDecoration
 import com.corporation8793.mealkit.dto.KitItem
@@ -50,6 +55,12 @@ class MyFragment() : Fragment() {
         var view = inflater.inflate(R.layout.fragment_my, container, false)
 
         val my_list = view.findViewById<GridView>(R.id.my_list)
+        val go_user_info_edit_btn = view.findViewById<TextView>(R.id.go_user_info_edit_btn)
+
+        go_user_info_edit_btn.setOnClickListener {
+           val intent = Intent(activity,UserEditActivity::class.java)
+            startActivity(intent);
+        }
 
 
         val display : DisplayMetrics = DisplayMetrics()
