@@ -11,8 +11,7 @@ import com.corporation8793.mealkit.dto.BestItem
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
-import com.naver.maps.map.overlay.Marker
-import com.naver.maps.map.overlay.PathOverlay
+import com.naver.maps.map.overlay.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -84,8 +83,18 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
                 Log.e("marker","in!")
 
                 val marker = Marker()
+                marker.icon = OverlayImage.fromResource( R.drawable.custom_marker)
                 marker.position = LatLng(y, x)
                 marker.map = naverMap
+
+                val infoWindow = InfoWindow()
+                infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(context!!) {
+                    override fun getText(infoWindow: InfoWindow): CharSequence {
+                        return "정보 창 내용"
+                    }
+                }
+
+                infoWindow.open(marker)
 
                 //경로 시작점으로 화면 이동
                 if(marker!= null) {
@@ -94,6 +103,16 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
                     naverMap!!.moveCamera(cameraUpdate)
 
                 }
+
+                val listener = Overlay.OnClickListener { overlay ->
+                    val marker = overlay as Marker
+
+                    bottomSheetDialog.show()
+
+                    true
+                }
+
+                marker.onClickListener = listener
 
             }
 
