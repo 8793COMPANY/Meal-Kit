@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.corporation8793.mealkit">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
-
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -15,17 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MealKit"
         android:usesCleartextTraffic="true">
-
-
-        <receiver
-            android:name="com.corporation8793.mealkit.receiver.ResetPedometer"
+        <activity
+            android:name=".activity.UserEditActivity"
             android:exported="false" />
-
-
+        <activity
+            android:name=".activity.UserEditPwActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.AddreesWebActivity"
             android:exported="false" />
-
         <activity
             android:name=".payment.CompleteOrdersActivity"
             android:exported="true" />
@@ -70,21 +64,19 @@
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.UserInfoActivity" />
-        <meta-data
-            android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="9l8w6ft1l8" />
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="9l8w6ft1l8" />
-        <service
-            android:name=".service.PedometerService"
-            android:enabled="true"
-            android:exported="true"></service>
-
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="9l8w6ft1l8" />
 
         <receiver
-            android:name="com.corporation8793.mealkit.receiver.RebootReceiver"
+            android:name=".receiver.ResetPedometer"
+            android:exported="false" />
+        <receiver
+            android:name=".receiver.RebootReceiver"
             android:directBootAware="true"
             android:enabled="true"
             android:exported="false"
@@ -94,22 +86,29 @@
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
-        <receiver android:enabled="true" android:name=".receiver.ShutdownReceiver"
+        <receiver
+            android:name=".receiver.ShutdownReceiver"
+            android:enabled="true"
             android:exported="true">
             <intent-filter android:priority="2147483647">
-                <action android:name="android.intent.action.ACTION_SHUTDOWN"/>
-
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
             </intent-filter>
         </receiver>
 
+        <service
+            android:name=".service.PedometerService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
