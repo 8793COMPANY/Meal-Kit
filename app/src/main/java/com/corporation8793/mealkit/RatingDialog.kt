@@ -64,7 +64,7 @@ class RatingDialog(val activity: Activity, val product_id :String) : DialogFragm
                             " ",
                             MainApplication.instance.user.first_name,
                             MainApplication.instance.user.email,
-                            rating.toString()));
+                            rating.toString()))
                     Log.e("resultOn",resultOn.first!!)
                 }
 

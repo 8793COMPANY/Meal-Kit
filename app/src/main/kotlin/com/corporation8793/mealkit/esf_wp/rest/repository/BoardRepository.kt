@@ -169,12 +169,22 @@ class BoardRepository {
      * @see     Order
      * @see     Pair
      */
-    fun listAllOrder(customer : String) : Pair<String, List<Order>?> {
-        val call = RestClient.boardService.listAllOrder(customer)
+    fun listAllOrder(customer : String) : Triple<String, List<Order>?, List<Pair<String, String>>> {
+        val listAllOrderResponse = RestClient.boardService.listAllOrder(customer).execute()
+        val listAllProductResponse = RestClient.boardService.listAllProduct().execute()
+        // Product-id, rating
+        var ratingList = mutableListOf<Pair<String, String>>()
 
-        val response = call.execute()
+        for (pr in listAllProductResponse.body()!!) {
+            for (or in listAllOrderResponse.body()!!) {
+                ratingList.add(Pair(
+                    or.line_items.filter { lineItems -> lineItems.product_id == pr.id }.first().product_id,
+                    RestClient.boardService.retrieveOneProduct(or.line_items.filter { lineItems -> lineItems.product_id == pr.id }.first().product_id).execute().body()!!.average_rating
+                ))
+            }
+        }
 
-        return Pair(response.code().toString(), response.body())
+        return Triple(listAllOrderResponse.code().toString(), listAllOrderResponse.body(), ratingList.toList())
     }
 
 
@@ -182,6 +192,7 @@ class BoardRepository {
         val call = RestClient.boardService.makeReview(review)
 
         val response = call.execute()
+        println(response.message())
 
         return Pair(response.code().toString(), response.body())
     }
