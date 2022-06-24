@@ -63,6 +63,8 @@ class HomeFragment() : Fragment() {
         var total_stepText = pedometerHome.findViewById<TextView>(R.id.total_step);
         var finish_step = pedometerHome.findViewById<TextView>(R.id.finish_step);
 
+
+
         val dt = Date()
         val calendar = Calendar.getInstance()
         calendar.setTime(dt);
