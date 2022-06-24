@@ -54,13 +54,7 @@ class BestAdapter (private val context: Context?, val height : Int, val color : 
             Glide.with(context!!).load(item.img).into(kitImg)
             kit_like_btn.isSelected = item.like;
 
-            kit_like_btn.setOnClickListener {
-                if (kit_like_btn.isSelected){
-                    kit_like_btn.isSelected = false
-                }else{
-                    kit_like_btn.isSelected = true
-                }
-            }
+
 
             itemView.setOnClickListener{
                 val action = BestFragmentDirections.actionBestToRecipeFragment()

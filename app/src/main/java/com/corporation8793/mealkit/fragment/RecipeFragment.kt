@@ -63,6 +63,32 @@ class RecipeFragment() : Fragment() {
         recipe_like_btn.isSelected = like!!;
 
 
+        recipe_like_btn.setOnClickListener {
+            if (recipe_like_btn.isSelected){
+
+
+                GlobalScope.launch(Dispatchers.Default) {
+                    val resultOn = MainApplication.instance.board4BaRepository.updatePostLikes(id.toString(),MainApplication.instance.user.id,"OFF");
+                    GlobalScope.launch(Dispatchers.Main) {
+                        if(resultOn.first.equals("200")){
+                            recipe_like_btn.isSelected = false
+                        }
+                    }
+                }
+            }else{
+                GlobalScope.launch(Dispatchers.Default) {
+                    val resultOn = MainApplication.instance.board4BaRepository.updatePostLikes(id.toString(),MainApplication.instance.user.id,"ON");
+                    GlobalScope.launch(Dispatchers.Main) {
+                        if(resultOn.first.equals("200")){
+                            recipe_like_btn.isSelected = true
+                        }
+                    }
+                }
+
+            }
+        }
+
+
         Log.e("id",id!!)
         view.findViewById<Button>(R.id.back_btn).setOnClickListener {
             findNavController().popBackStack()

@@ -58,9 +58,9 @@ public class PedometerService extends Service implements SensorEventListener {
        registerReceiver(receiver,intentFilter);
 
        //
-      //  SharedPreferences prefs=getApplicationContext().getSharedPreferences("other", 0);
-      //  mStepDetector=prefs.getInt("step",0);
-        mStepDetector =9999;
+        SharedPreferences prefs=getApplicationContext().getSharedPreferences("other", 0);
+        mStepDetector=prefs.getInt("step",0);
+      //  mStepDetector =9999;
         register_Manbogi();
 
         // return START_REDELIVER_INTENT;
