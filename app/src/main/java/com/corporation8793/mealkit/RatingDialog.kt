@@ -18,6 +18,7 @@ import com.corporation8793.mealkit.esf_wp.rest.data.Review
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class RatingDialog(val activity: Activity) : DialogFragment() {
     private var _binding: DialogKitScoreBinding? = null
@@ -38,15 +39,15 @@ class RatingDialog(val activity: Activity) : DialogFragment() {
         binding.confirm.setOnClickListener {
             //        like_btn.setOnClickListener {
 
-//
-                GlobalScope.launch(Dispatchers.Default) {
-                    val resultOn = MainApplication.instance.boardRepository.makeReview(Review());
-                    GlobalScope.launch(Dispatchers.Main) {
-                        if(resultOn.first.equals("200")){
-                            like_btn.isSelected = false
-                        }
-                    }
-                }
+////
+//                GlobalScope.launch(Dispatchers.Default) {
+//                    val resultOn = MainApplication.instance.boardRepository.makeReview(Review());
+//                    GlobalScope.launch(Dispatchers.Main) {
+//                        if(resultOn.first.equals("200")){
+//                            like_btn.isSelected = false
+//                        }
+//                    }
+//                }
 
 
             dismiss()
