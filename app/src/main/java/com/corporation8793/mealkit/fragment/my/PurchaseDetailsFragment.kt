@@ -81,37 +81,37 @@ class PurchaseDetailsFragment : Fragment() {
         val id = sharedPreference.getString("id","test22")
 
 
-        GlobalScope.launch(Dispatchers.Default) {
-            var user_id = RestClient.nonceService.checkUsername(id!!).execute().body()!!.get(0).id
-            val item = MainApplication.instance.boardRepository.listAllOrder(user_id)
-                datas.apply {
-                    item.forEach {
-                        Log.e("item",it.toString())
-
-
-                        var img = MainApplication.instance.boardRepository.retrieveOneProduct(it.line_items.get(0).product_id).second!!.images.get(0).src
-
-                        add(PurchaseItem(img,it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
-                               it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),
-                                it.line_items.get(0).total,it.line_items.get(0).quantity,it.billing.address_1+" "+it.billing.address_2))
-//                        println("상품 카테고리 : ${pr.categories.first().name}")
-//                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
-//                        println("별점 (5.00) : ${pr.average_rating}")
-//                        println("상품 이미지 URL : ${pr.images.first().src}")
-//                        println("상품 세일 기간 : ${pr.date_on_sale_from} ~ ${pr.date_on_sale_to}")
-//                        println("상품가격 : ${pr.price}원")
-//                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
-//                        println("---------------")
-
-                    }
-                    GlobalScope.launch(Dispatchers.Main) {
-                    adapter.datas = datas
-                    adapter.notifyDataSetChanged()
-                        purchase_progress.visibility = View.GONE
-                }
-            }
-//                binding.checkText.visibility = View.VISIBLE
-        }
+//        GlobalScope.launch(Dispatchers.Default) {
+//            var user_id = RestClient.nonceService.checkUsername(id!!).execute().body()!!.get(0).id
+//            val item = MainApplication.instance.boardRepository.listAllOrder(user_id)
+//                datas.apply {
+//                    item.forEach {
+//                        Log.e("item",it.toString())
+//
+//
+//                        var img = MainApplication.instance.boardRepository.retrieveOneProduct(it.line_items.get(0).product_id).second!!.images.get(0).src
+//
+//                        add(PurchaseItem(img,it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
+//                               it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),
+//                                it.line_items.get(0).total,it.line_items.get(0).quantity,it.billing.address_1+" "+it.billing.address_2))
+////                        println("상품 카테고리 : ${pr.categories.first().name}")
+////                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
+////                        println("별점 (5.00) : ${pr.average_rating}")
+////                        println("상품 이미지 URL : ${pr.images.first().src}")
+////                        println("상품 세일 기간 : ${pr.date_on_sale_from} ~ ${pr.date_on_sale_to}")
+////                        println("상품가격 : ${pr.price}원")
+////                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
+////                        println("---------------")
+//
+//                    }
+//                    GlobalScope.launch(Dispatchers.Main) {
+//                    adapter.datas = datas
+//                    adapter.notifyDataSetChanged()
+//                        purchase_progress.visibility = View.GONE
+//                }
+//            }
+////                binding.checkText.visibility = View.VISIBLE
+//        }
 
 
 
