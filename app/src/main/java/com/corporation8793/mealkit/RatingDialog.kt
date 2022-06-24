@@ -21,9 +21,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class RatingDialog(val activity: Activity) : DialogFragment() {
+class RatingDialog(val activity: Activity, val product_id :String) : DialogFragment() {
     private var _binding: DialogKitScoreBinding? = null
     private val binding get() = _binding!!
+    var rating : Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DialogKitScoreBinding.inflate(inflater, container, false)
@@ -37,17 +38,34 @@ class RatingDialog(val activity: Activity) : DialogFragment() {
         binding.cancel.setOnClickListener {
             dismiss()
         }
+
+
+
         binding.confirm.setOnClickListener {
+
+            Log.e("first_name",MainApplication.instance.user.first_name)
+            Log.e("first_name",MainApplication.instance.user.email)
+            Log.e("first_name",product_id)
             //        like_btn.setOnClickListener {
 
+
+            //                * @author  두동근
+//                * @param   product_id              리뷰할 제품의 id
+//                * @param   review                  리뷰 내용 (없으면 공백 한칸도 가능)
+//                * @param   reviewer                리뷰어 first_name
+//                * @param   reviewer_email          리뷰어 email
+//                * @param   rating                  별점 ([Int]값 - 1, 2, 3, 4, 5)
+//                * @param   verified                true - default
 //
                 GlobalScope.launch(Dispatchers.Default) {
-                    val resultOn = MainApplication.instance.boardRepository.makeReview(Review());
-                    GlobalScope.launch(Dispatchers.Main) {
-                        if(resultOn.first.equals("200")){
-                            like_btn.isSelected = false
-                        }
-                    }
+
+                    val resultOn = MainApplication.instance.boardRepository.makeReview(Review(
+                            product_id,
+                            " ",
+                            MainApplication.instance.user.first_name,
+                            MainApplication.instance.user.email,
+                            rating.toString()));
+                    Log.e("resultOn",resultOn.first!!)
                 }
 
 
@@ -55,6 +73,7 @@ class RatingDialog(val activity: Activity) : DialogFragment() {
         }
 
         binding.rating.setOnRatingBarChangeListener { ratingBar, fl, b ->
+            rating = fl.toInt()
             binding.title.setText("별점 등록 ("+fl.toInt().toString()+"/5)")
             Log.e("rating",fl.toInt().toString())
         }
