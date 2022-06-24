@@ -31,6 +31,7 @@ class pointManage {
             action = "+",
             log = "왕맛있는 샐러드가게"
         )
+        println("포인트 증가"+editPlusPointResponse)
 
         println("------ 2-2. 포인트 감소       ------")
         val editMinusPointResponse = nonceRepository.editPoint(

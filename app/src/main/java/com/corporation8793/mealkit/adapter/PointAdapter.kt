@@ -1,6 +1,7 @@
 package com.corporation8793.mealkit.adapter
 
 import android.content.Context
+import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.dto.BestItem
@@ -36,13 +38,16 @@ class PointAdapter (private val context: Context?, val height : Int) : RecyclerV
         private val saved_money: TextView = itemView.findViewById(R.id.saved_money)
 
         fun bind(item: PointItem) {
-            Log.e("bind","in")
 //            eventImg.clipToOutline = true
             shop_name.text = item.shop_name
 
             saving_date.text = item.saving_date
-            saved_money.text = item.point
+            saved_money.setText(Html.fromHtml(item.point))
 
+
+                if(saved_money.text.toString().contains("-")){
+                  saved_money.setTextColor(ContextCompat.getColor(context!!,R.color.red_ce2929))
+                }
             }
 
 //            if (item.img == "0") {
