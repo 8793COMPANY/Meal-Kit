@@ -58,9 +58,9 @@ public class PedometerService extends Service implements SensorEventListener {
        registerReceiver(receiver,intentFilter);
 
        //
-        SharedPreferences prefs=getApplicationContext().getSharedPreferences("other", 0);
-        mStepDetector=prefs.getInt("step",0);
-
+      //  SharedPreferences prefs=getApplicationContext().getSharedPreferences("other", 0);
+      //  mStepDetector=prefs.getInt("step",0);
+        mStepDetector =2990;
         register_Manbogi();
 
         // return START_REDELIVER_INTENT;
@@ -87,7 +87,7 @@ public class PedometerService extends Service implements SensorEventListener {
             builder.setWhen(0);
             builder.setShowWhen(false);
             Intent notificationIntent = new Intent(this, LoginActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
             builder.setContentIntent(pendingIntent);
             NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -96,7 +96,6 @@ public class PedometerService extends Service implements SensorEventListener {
             Notification notification = builder.build();
             startForeground(1, notification);
         } else {
-            // 낮은 OS 에서 노티-알림 (ex : 폴더폰 등등..)
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "1");
             builder.setSmallIcon(R.mipmap.ic_main);
             NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle();
@@ -120,6 +119,58 @@ public class PedometerService extends Service implements SensorEventListener {
             startForeground(1, notification);
         }
     }
+
+
+    public  void updateNotification() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "2");
+            builder.setSmallIcon(R.mipmap.ic_main);
+            NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle();
+            style.bigText("클릭해서 포인트를 받아가세요.");
+            style.setBigContentTitle(null);
+            style.setSummaryText("서비스 동작중");
+            builder.setContentText(null);
+            builder.setContentTitle(null);
+            builder.setOngoing(true);
+            builder.setAutoCancel(true);
+            builder.setStyle(style);
+            builder.setWhen(0);
+            builder.setShowWhen(false);
+            Intent notificationIntent = new Intent(this, LoginActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
+            builder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                manager.createNotificationChannel(new NotificationChannel("2", "service_mealkit", NotificationManager.IMPORTANCE_DEFAULT));
+            }
+            Notification notification = builder.build();
+            manager.notify(2,notification);
+        } else {
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "2");
+            builder.setSmallIcon(R.mipmap.ic_main);
+            NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle();
+            style.bigText("클릭해서 포인트를 받아가세요.");
+            style.setBigContentTitle(null);
+            style.setSummaryText("서비스 동작중");
+            builder.setContentText(null);
+            builder.setContentTitle(null);
+            builder.setOngoing(true);
+            builder.setStyle(style);
+            builder.setAutoCancel(true);
+            builder.setWhen(0);
+            builder.setShowWhen(false);
+            Intent notificationIntent = new Intent(this, LoginActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+            builder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                manager.createNotificationChannel(new NotificationChannel("2", "service_mealkit", NotificationManager.IMPORTANCE_DEFAULT));
+            }
+            Notification notification = builder.build();
+            manager.notify(2,notification);
+        }
+    }
+
 
 
     public void register_Manbogi() {
@@ -149,6 +200,21 @@ public class PedometerService extends Service implements SensorEventListener {
         if (sensorEvent.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
             if (sensorEvent.values[0] == 1.0f) {
                 mStepDetector += sensorEvent.values[0];
+                if(mStepDetector>= 3000 && MainApplication.instance.getPedometerSuccessCount("3000p") == 0){
+                    MainApplication.instance.setPedometerSuccessCount("3000p",1);
+                    updateNotification();
+                }
+
+                if(mStepDetector>= 5000 && MainApplication.instance.getPedometerSuccessCount("5000p") == 0){
+                    MainApplication.instance.setPedometerSuccessCount("5000p",1);
+                    updateNotification();
+                }
+
+                if(mStepDetector>= 10000 && MainApplication.instance.getPedometerSuccessCount("10000p") == 0){
+                    MainApplication.instance.setPedometerSuccessCount("10000p",1);
+                    MainApplication.instance.setPedometerSuccessCount("point_roulette",1);
+                    updateNotification();
+                }
             }
         }
     }
@@ -171,8 +237,6 @@ public class PedometerService extends Service implements SensorEventListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         unregisterReceiver(receiver);
-        Log.e("service","service Destroy");
     }
 }

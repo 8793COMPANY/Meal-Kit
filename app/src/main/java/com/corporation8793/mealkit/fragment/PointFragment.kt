@@ -22,9 +22,12 @@ import com.corporation8793.mealkit.dto.BestItem
 import com.corporation8793.mealkit.dto.PointItem
 import com.corporation8793.mealkit.esf_wp.rest.RestClient
 import com.corporation8793.mealkit.esf_wp.rest.data.Post
+import com.corporation8793.mealkit.esf_wp.rest.repository.Board4BaRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.text.NumberFormat
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,8 +60,8 @@ class PointFragment() : Fragment() {
 
 
         val point_list = view.findViewById<RecyclerView>(R.id.point_list)
-
-
+        var total_point_count = view.findViewById<TextView>(R.id.total_point_count)
+        var total_point_box = view.findViewById<TextView>(R.id.total_point_box)
 
         val display : DisplayMetrics = DisplayMetrics()
         activity?.windowManager?.defaultDisplay?.getMetrics(display)
@@ -76,29 +79,33 @@ class PointFragment() : Fragment() {
         point_list.addItemDecoration(divider)
 
 
+        total_point_box.setText(
+            NumberFormat.getInstance(Locale.getDefault()).format( MainApplication.instance.user.meta_data?.filter {
+                    metaData -> metaData.key =="point"}?.first()?.value.toString().toInt())
+           )
+
         GlobalScope.launch(Dispatchers.Default) {
-            val item : PointItem = board4BaRe.retrieveOnePost(id).execute().body()!!
+         val retrievePointLogResponse = MainApplication.instance.board4BaRepository.retrievePointLog(
+            author = MainApplication.instance.user.id,
+            categories = RestClient.POINT_LOG
+        )
 
-            GlobalScope.launch(Dispatchers.Main) {
+            val validUserResponse = MainApplication.instance.nonceRepository.getValidUserInfo(MainApplication.instance.user.id)
 
-
+            for ((i, post) in retrievePointLogResponse.second?.withIndex()!!) {
+                datas.add( PointItem(post.title.rendered,post.date.toString().replace("T"," "),post.excerpt.rendered,"1"))
             }
 
+            GlobalScope.launch(Dispatchers.Main) {
+                total_point_count.setText("${retrievePointLogResponse.second?.size}건")
+                total_point_box.setText(
+                    NumberFormat.getInstance(Locale.getDefault()).format( validUserResponse.second?.meta_data?.filter {
+                            metaData -> metaData.key =="point"}?.first()?.value.toString().toInt())
+                )
+                pointAdapter.datas = datas
+                pointAdapter.notifyDataSetChanged()
+            }
         }
-
-        datas.apply {
-            add(PointItem("샐러드가게", "2022.05.26 03:26", "-1093", "1"))
-            add(PointItem("샐러드가게", "2022.05.26 03:26", "-1093", "1"))
-
-        }
-
-
-            pointAdapter.datas = datas
-            pointAdapter.notifyDataSetChanged()
-
-
-
-
 
         return view
     }

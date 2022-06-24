@@ -1,6 +1,7 @@
 package com.corporation8793.mealkit.esf_wp.rest.api_interface.nonce
 
 import com.corporation8793.mealkit.esf_wp.rest.data.Media
+import com.corporation8793.mealkit.esf_wp.rest.data.PointLog
 import com.corporation8793.mealkit.esf_wp.rest.data.Post
 import com.corporation8793.mealkit.esf_wp.rest.data.PostAcf
 import okhttp3.Credentials
@@ -46,7 +47,8 @@ interface Board4BaService {
     fun retrievePostInCategories(@Query("per_page") per_page : String = "100",
                                  @Query("page") page : String = "1",
                                  @Query("order") order : String = "desc",
-                                 @Query("categories") categories : String) : Call<List<Post>>
+                                 @Query("categories") categories : String,
+                                 @Query("author") author : String? = "",) : Call<List<Post>>
     /**
      * 게시물을 수정합니다.
      * * id([postId])가 일치하는 게시물을 수정합니다.
@@ -115,5 +117,19 @@ interface Board4BaService {
                          @Query("page") page : String = "1",
                          @Query("order") order : String = "desc",
                          @Query("author") author : String,
-                         @Query("categories") categories : String = "60") : Call<List<Post>>
+                         @Query("categories") categories : String = "60") : Call<List<PointLog>>
+
+    /**
+     * 게시물을 생성합니다.
+     * @author  두동근
+     */
+    @FormUrlEncoded
+    @POST("wp-json/wp/v2/posts")
+    fun createPointLog(@Header("Authorization") h1 : String,
+                   @Field("status") status : String = "publish",
+                   @Field("title") title : String,
+                   @Field("excerpt") excerpt : String,
+                   @Field("content") content : String,
+                   @Field("categories") categories : String = "10",
+                   @Field("featured_media") featured_media : String? = "0") : Call<PointLog>
 }

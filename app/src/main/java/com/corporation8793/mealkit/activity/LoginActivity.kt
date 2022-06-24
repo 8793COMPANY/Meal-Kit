@@ -24,7 +24,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var binding : ActivityLoginBinding
+    lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,33 +33,36 @@ class LoginActivity : AppCompatActivity() {
 
 
         if (checkSelfPermission(Manifest.permission.ACTIVITY_RECOGNITION)
-            == PackageManager.PERMISSION_GRANTED) {
-           // Toast.makeText(this@LoginActivity,"Permission granted",1000).show()
-            if(!PedometerService.isServiceRunning(this)){
-                Log.e("서비스중이 아님","서비스중이 아님");
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            // Toast.makeText(this@LoginActivity,"Permission granted",1000).show()
+            if (!PedometerService.isServiceRunning(this)) {
+                Log.e("서비스중이 아님", "서비스중이 아님");
                 val intent = Intent(this, PedometerService::class.java)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)  {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     startForegroundService(intent);
-                }else{
+                } else {
                     startService(intent)
                 }
 
 
             }
         } else {
-            requestPermissions(arrayOf(Manifest.permission.ACTIVITY_RECOGNITION), // 1
-                1000) // 2
+            requestPermissions(
+                arrayOf(Manifest.permission.ACTIVITY_RECOGNITION), // 1
+                1000
+            ) // 2
         }
 
         val sharedPreference = getSharedPreferences("other", 0)
 
-        if(sharedPreference.getBoolean("autoLogin",false)){
+        if (sharedPreference.getBoolean("autoLogin", false)) {
             binding.idInputBox.setText(sharedPreference.getString("id","").toString())
             binding.pwInputBox.setText(sharedPreference.getString("pw","").toString())
 
             call_Login(sharedPreference.getString("id","").toString(),sharedPreference.getString("pw","").toString())
             binding.accessTermAgreeBtn.isChecked = true;
-        }else{
+        } else {
             binding.accessTermAgreeBtn.isChecked = false;
         }
 
@@ -69,18 +72,18 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.loginBtn.setOnClickListener {
-            call_Login(binding.idInputBox.text.toString(),binding.pwInputBox.text.toString());
+            call_Login(binding.idInputBox.text.toString(), binding.pwInputBox.text.toString());
         }
 
-        binding.findIdText.setOnClickListener{
+        binding.findIdText.setOnClickListener {
             var intent = Intent(this@LoginActivity, FindActivity::class.java)
-            intent.putExtra("title","아이디")
+            intent.putExtra("title", "아이디")
             startActivity(intent)
         }
 
-        binding.findPwText.setOnClickListener{
+        binding.findPwText.setOnClickListener {
             var intent = Intent(this@LoginActivity, FindActivity::class.java)
-            intent.putExtra("title","비밀번호")
+            intent.putExtra("title", "비밀번호")
             startActivity(intent)
         }
 
@@ -93,35 +96,36 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun call_Login(user:String,password:String){
-        binding.loginProgress.visibility= View.VISIBLE
+    fun call_Login(user: String, password: String) {
+        binding.loginProgress.visibility = View.VISIBLE
         GlobalScope.launch(Dispatchers.Default) {
             //여기서 라이브러리 작업  (여기서 레이아웃 작업 실행 못함)
-            val value = NonceRepository().Login(username = user, password =password)
+            val value = NonceRepository().Login(username = user, password = password)
 
             GlobalScope.launch(Dispatchers.Main) {
-                if(value.first.equals("ok")){
+                if (value.first.equals("ok")) {
                     MainApplication.instance.setCustomer(value.second)
+                    MainApplication.instance.setAuth(binding.pwInputBox.text.toString())
                     binding.loginProgress.visibility = View.GONE
-                }else{
-                    Toast.makeText(this@LoginActivity,"로그인이 실패하였습니다",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this@LoginActivity, "로그인이 실패하였습니다", Toast.LENGTH_LONG).show();
                     binding.loginProgress.visibility = View.GONE
                     return@launch
                 }
 
-                if(binding.accessTermAgreeBtn.isChecked){
+                if (binding.accessTermAgreeBtn.isChecked) {
                     val sharedPreference = getSharedPreferences("other", 0)
                     val editor = sharedPreference.edit()
                     editor.putString("id", binding.idInputBox.text.toString())
                     editor.putString("pw", binding.pwInputBox.text.toString())
-                    editor.putBoolean("autoLogin",true)
+                    editor.putBoolean("autoLogin", true)
                     editor.apply()
-                }else{
+                } else {
                     val sharedPreference = getSharedPreferences("other", 0)
                     val editor = sharedPreference.edit()
-                    editor.putString("id", binding.idInputBox.text.toString())
-                    editor.putString("pw", binding.pwInputBox.text.toString())
-                    editor.putBoolean("autoLogin",false)
+                    editor.putString("id", "")
+                    editor.putString("pw", "")
+                    editor.putBoolean("autoLogin", false)
                     editor.apply()
                 }
 
@@ -136,7 +140,8 @@ class LoginActivity : AppCompatActivity() {
 
 
     override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             1000 -> {  // 1
@@ -144,22 +149,25 @@ class LoginActivity : AppCompatActivity() {
                     throw RuntimeException("Empty permission result")
                 }
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {  // 3
-                   Toast.makeText(this@LoginActivity,"권한이 수락되었습니다.",1000).show()
-                    if(!PedometerService.isServiceRunning(this)){
+                    Toast.makeText(this@LoginActivity, "권한이 수락되었습니다.", 1000).show()
+                    if (!PedometerService.isServiceRunning(this)) {
                         val intent = Intent(this, PedometerService::class.java)
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)  {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             startForegroundService(intent);
-                        }else{
+                        } else {
                             startService(intent)
                         }
                     }
                 } else {
                     if (shouldShowRequestPermissionRationale(
-                            Manifest.permission.ACTIVITY_RECOGNITION)) { // 4
+                            Manifest.permission.ACTIVITY_RECOGNITION
+                        )
+                    ) { // 4
                         Log.d(TAG, "User declined, but i can still ask for more")
                         requestPermissions(
                             arrayOf(Manifest.permission.ACTIVITY_RECOGNITION),
-                            1000)
+                            1000
+                        )
                     } else {
                         Log.d(TAG, "User declined and i can't ask")
                         showDialogToGetPermission()   // 5
@@ -178,7 +186,8 @@ class LoginActivity : AppCompatActivity() {
         builder.setPositiveButton("이동") { dialogInterface, i ->
             val intent = Intent(
                 Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                Uri.fromParts("package", packageName, null))
+                Uri.fromParts("package", packageName, null)
+            )
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)   // 6
         }
@@ -188,8 +197,6 @@ class LoginActivity : AppCompatActivity() {
         val dialog = builder.create()
         dialog.show()
     }
-
-
 
 
 }

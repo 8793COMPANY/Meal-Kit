@@ -61,6 +61,10 @@ object RestClient {
      * 레시피 카테고리(베스트)
      */
     const val RECIPE_BEST = "59"
+    /**
+     * 포인트 카테고리(로그)
+     */
+    const val POINT_LOG = "60"
 
     /**
      * OAuth 1.0 Consumer
@@ -91,7 +95,7 @@ object RestClient {
     /**
      * [retrofit]의 [NonceService]
      */
-    val nonceService = retrofit.create(NonceService::class.java)!!
+    val nonceService = retrofit.create(NonceService::class.java)
     /**
      * [retrofit]의 [BoardService]
      */
