@@ -22,6 +22,7 @@ import com.corporation8793.mealkit.service.PedometerService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.Credentials
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
@@ -105,7 +106,10 @@ class LoginActivity : AppCompatActivity() {
             GlobalScope.launch(Dispatchers.Main) {
                 if (value.first.equals("ok")) {
                     MainApplication.instance.setCustomer(value.second)
-                    MainApplication.instance.setAuth(binding.pwInputBox.text.toString())
+                    val Id = binding.idInputBox.text.toString()
+                    val Pw = binding.pwInputBox.text.toString()
+                    val basicAuth = Credentials.basic(Id, Pw)
+                    MainApplication.instance.setAuth(basicAuth)
                     binding.loginProgress.visibility = View.GONE
                 } else {
                     Toast.makeText(this@LoginActivity, "로그인이 실패하였습니다", Toast.LENGTH_LONG).show();
