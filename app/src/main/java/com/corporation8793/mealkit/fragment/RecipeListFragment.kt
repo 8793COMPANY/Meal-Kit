@@ -3,6 +3,7 @@ package com.corporation8793.mealkit.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +18,15 @@ import com.corporation8793.mealkit.activity.JoinActivity
 import com.corporation8793.mealkit.activity.WriteRecipeActivity
 import com.corporation8793.mealkit.adapter.RecipeAdapter
 import com.corporation8793.mealkit.decoration.BestDecoration
+import com.corporation8793.mealkit.dto.BestItem
 import com.corporation8793.mealkit.dto.RecipeItem
+import com.corporation8793.mealkit.esf_wp.rest.RestClient
+import com.corporation8793.mealkit.esf_wp.rest.api_interface.nonce.NonceService
+import com.corporation8793.mealkit.esf_wp.rest.data.Post
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,23 +80,67 @@ class RecipeListFragment() : Fragment() {
         var divider = BestDecoration(20)
         recipe_list.addItemDecoration(divider)
 
-        datas.apply {
-            datas.clear()
-            add(RecipeItem("0","단호박스프","진한 맛의 단호박 스프","1","1","5"))
-            add(RecipeItem("0","단호박스프","진한 맛의 풍미를 느낄 수 있는\n" +
-                    "신선한 바질 시금치 스프를\n" +
-                    "집에서 간편히","1","1","5"))
-            add(RecipeItem("0","단호박스프","진한 맛의 단호박 스프","1","1","5"))
-            add(RecipeItem("0","단호박스프","진한 맛의 단호박 스프","1","1","5"))
+        GlobalScope.launch(Dispatchers.Default) {
+            val item : List<Post> = RestClient.board4BaService.retrievePostInCategories(categories = RestClient.RECIPE_CUSTOMER).execute().body()!!
 
 
-            recipeAdapter.datas = datas
-            recipeAdapter.notifyDataSetChanged()
+                datas.apply {
+                    datas.clear()
+                    item.forEach {
+                        var pr = item.get(0)
+
+                        Log.e("price",pr.featured_media_src_url)
+                        var like_count = "0"
+                        val authorData = RestClient.nonceService.getValidUserInfo(pr.author).execute().body()!!
+                        val filteredData = authorData.meta_data?.filter { metaData -> metaData.key == "profile_img" }
+
+                        var authorImage = RestClient.board4BaService.retrieveMedia(filteredData?.first()?.value.toString()).execute().body()!!
+                        println("Author Profile Image URL : ${authorImage.guid?.rendered}\n")
+//                        if (pr.acf.product_likes.toString()!! == null)
+//                            like_count = "0"
+//                        else
+//                            like_count = pr.acf.product_likes.toString()
+                        add(RecipeItem(pr.id!!,pr.featured_media_src_url,pr.title.rendered,replaceText(pr.excerpt.rendered),authorImage.guid?.rendered!!,"1","0"))
+//                        println("상품 카테고리 : ${pr.categories.first().name}")
+//                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
+//                        println("별점 (5.00) : ${pr.average_rating}")
+//                        println("상품 이미지 URL : ${pr.images.first().src}")
+//                        println("상품 세일 기간 : ${pr.date_on_sale_from} ~ ${pr.date_on_sale_to}")
+//                        println("상품가격 : ${pr.price}원")
+//                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
+//                        println("---------------")
+                    }
+                    GlobalScope.launch(Dispatchers.Main) {
+                    recipeAdapter.datas = datas
+                    recipeAdapter.notifyDataSetChanged()
+                }
+            }
         }
 
 
 
+
+
         return view
+    }
+
+    fun replaceText(text : String) : String{
+        val regex = Regex("&.*;")
+        val matchResult: MatchResult? = regex.find(text)
+//        println("match value: ${matchResult?.value}")
+        var result = text
+        matchResult?.groupValues?.forEach {
+            Log.e("match value", it)
+            result = result.replace(it,"")
+        }
+
+        return result.replace("<p>","").replace("</p>","")
+                .replace("<ul>","").replace("</ul>","")
+                .replace("<li>","").replace("</li>","")
+                .replace("<br>","").replace("<br />","")
+                .replace("<strong>","").replace("</strong>","")
+                .replace("<div>","").replace("</div>","")
+
     }
 
     companion object {

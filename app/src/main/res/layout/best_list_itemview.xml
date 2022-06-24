@@ -34,8 +34,6 @@
                 android:id="@+id/best_kit_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/test2"
-                android:src="@drawable/test2"
                 android:scaleType="fitXY"
 
                 ></ImageView>

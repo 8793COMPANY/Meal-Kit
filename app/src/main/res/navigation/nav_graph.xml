@@ -24,9 +24,10 @@
         android:name="com.corporation8793.mealkit.fragment.BestFragment"
         android:label="BestFragment"
         tools:layout="@layout/fragment_best">
+
         <action
-            android:id="@+id/action_best_to_kitDetailFragment3"
-            app:destination="@id/kitDetailFragment3" />
+            android:id="@+id/action_best_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
     </fragment>
     <fragment
         android:id="@+id/recipe_list"
@@ -70,6 +71,8 @@
     <action android:id="@+id/action_back_to_home"
         app:destination="@id/home"
         app:popUpTo="@id/home"></action>
+
+
 
     <action android:id="@+id/action_purchase_details_screen"
         app:destination="@id/purchaseDetailsFragment"></action>
