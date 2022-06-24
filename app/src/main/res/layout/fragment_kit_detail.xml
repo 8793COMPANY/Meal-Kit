@@ -109,6 +109,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/guideline_left"></TextView>
 
     <RatingBar
+        android:visibility="gone"
         android:id="@+id/kit_rating"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -126,6 +127,7 @@
         ></RatingBar>
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/rating_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
