@@ -85,13 +85,13 @@ class RecipeListFragment() : Fragment() {
 
 
                 datas.apply {
+
                     datas.clear()
                     item.forEach {
-                        var pr = item.get(0)
 
-                        Log.e("price",pr.featured_media_src_url)
+                        Log.e("price",it.featured_media_src_url)
                         var like_count = "0"
-                        val authorData = RestClient.nonceService.getValidUserInfo(pr.author).execute().body()!!
+                        val authorData = RestClient.nonceService.getValidUserInfo(it.author).execute().body()!!
                         val filteredData = authorData.meta_data?.filter { metaData -> metaData.key == "profile_img" }
 
                         var authorImage = RestClient.board4BaService.retrieveMedia(filteredData?.first()?.value.toString()).execute().body()!!
@@ -100,7 +100,7 @@ class RecipeListFragment() : Fragment() {
 //                            like_count = "0"
 //                        else
 //                            like_count = pr.acf.product_likes.toString()
-                        add(RecipeItem(pr.id!!,pr.featured_media_src_url,pr.title.rendered,replaceText(pr.excerpt.rendered),authorImage.guid?.rendered!!,"1","0"))
+                        add(RecipeItem(it.id!!,it.featured_media_src_url,it.title.rendered,replaceText(it.excerpt.rendered),authorImage.guid?.rendered!!,"1","0"))
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
 //                        println("별점 (5.00) : ${pr.average_rating}")
