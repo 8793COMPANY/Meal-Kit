@@ -25,7 +25,7 @@ import com.corporation8793.mealkit.fragment.HomeFragmentDirections
 import com.corporation8793.mealkit.payment.CompleteOrdersActivity
 import com.corporation8793.mealkit.payment.SelectProductActivity
 
-class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val activity: Activity?,private val context: Context?, val height : Int, val controller : NavController) : RecyclerView.Adapter<PurchaseAdapter.ViewHolder>() {
+class PurchaseAdapter (val activity: Activity?,private val context: Context?, val height : Int) : RecyclerView.Adapter<PurchaseAdapter.ViewHolder>() {
     var datas = mutableListOf<PurchaseItem>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.purchase_details_itemview,parent,false)
@@ -98,25 +98,6 @@ class PurchaseAdapter (private val parentFragmentManager: FragmentManager?,val a
         }
     }
 
-//    private fun showDialog(width :Float, height : Float) {
-//        val dialog = Dialog(context!!)
-////        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-////        dialog.setCancelable(false)
-//        dialog.window!!.setDimAmount(100f)
-//        dialog.setContentView(R.layout.dialog_kit_score)
-//        dialog.show()
-//
-//
-////        dialog.findViewById<Button>(R.id.ok_btn).setOnClickListener{
-////            dialog.dismiss()
-////        }
-//
-//
-//
-//        dialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
-////        dialog.getWindow()!!.clearFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
-//
-//
-//    }
+
 
 }

@@ -35,6 +35,9 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.ChangePwActivity" />
+
+        <activity android:name=".fragment.my.PurchaseDetailsActivity" />
+
         <activity
             android:name=".activity.PointActivity"
             android:exported="false" />

@@ -60,9 +60,7 @@
         <action
             android:id="@+id/action_my_to_pointFragment"
             app:destination="@id/pointFragment" />
-        <action
-            android:id="@+id/action_my_to_purchaseDetailsFragment"
-            app:destination="@id/purchaseDetailsFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/recipeFragment"
@@ -89,10 +87,7 @@
 
 
 
-    <action android:id="@+id/action_purchase_details_screen"
-        app:destination="@id/purchaseDetailsFragment"
-        app:popUpTo="@id/purchaseDetailsFragment"
-        app:popUpToInclusive="false"></action>
+
 
     <action android:id="@+id/action_map_screen"
         app:destination="@id/mapFragment"></action>
@@ -102,11 +97,7 @@
         app:popUpTo="@id/mapFragment"
         app:popUpToInclusive="false"></action>
 
-    <fragment
-        android:id="@+id/purchaseDetailsFragment"
-        android:name="com.corporation8793.mealkit.fragment.my.PurchaseDetailsFragment"
-        android:label="fragment_purchase_details"
-        tools:layout="@layout/fragment_purchase_details" />
+
     <fragment
         android:id="@+id/challengeFragment"
         android:name="com.corporation8793.mealkit.fragment.ChallengeFragment"

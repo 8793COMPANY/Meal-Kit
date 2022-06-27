@@ -25,7 +25,6 @@ import com.corporation8793.mealkit.dto.BestItem
 import com.corporation8793.mealkit.dto.KitItem
 import com.corporation8793.mealkit.esf_wp.rest.RestClient
 import com.corporation8793.mealkit.esf_wp.rest.data.Product
-import com.corporation8793.mealkit.fragment.my.PurchaseDetailsFragment
 import com.corporation8793.mealkit.payment.PayMentActivity
 import com.corporation8793.mealkit.payment.SelectProductActivity
 import kotlinx.coroutines.Dispatchers

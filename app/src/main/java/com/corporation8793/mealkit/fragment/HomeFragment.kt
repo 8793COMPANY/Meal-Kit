@@ -158,6 +158,11 @@ class HomeFragment() : Fragment() {
         return tabView
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.e("onresume","in!!")
+    }
+
 
     companion object {
         /**

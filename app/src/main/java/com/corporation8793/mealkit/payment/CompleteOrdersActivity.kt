@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -12,16 +13,19 @@ import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.activity.JoinActivity
 import com.corporation8793.mealkit.activity.MainActivity
 import com.corporation8793.mealkit.databinding.ActivityCompleteOrdersBinding
+import com.corporation8793.mealkit.fragment.BestFragmentDirections
+import com.corporation8793.mealkit.fragment.my.PurchaseDetailsActivity
 
 
 class CompleteOrdersActivity : AppCompatActivity() {
     lateinit var binding : ActivityCompleteOrdersBinding
+    var type : String? = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_complete_orders)
         binding.setActionBar("주문 완료")
 
-        var type = intent.getStringExtra("type")
+        type = intent.getStringExtra("type")
         var order_id = intent.getStringExtra("id")
         var shop = intent.getStringExtra("shop_name")
         var name = intent.getStringExtra("name")
@@ -43,8 +47,18 @@ class CompleteOrdersActivity : AppCompatActivity() {
 
 
         binding.paymentActionBar.backBtn.setOnClickListener {
-            var intent = Intent(this@CompleteOrdersActivity, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            if (type.equals("check"))
+                finish()
+            else{
+                var intent = Intent(this@CompleteOrdersActivity, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+            }
+        }
+
+        binding.completeOrdersOrderListBtn.setOnClickListener {
+            var intent = Intent(this@CompleteOrdersActivity, PurchaseDetailsActivity::class.java)
+            intent.putExtra("type","purchase")
             startActivity(intent)
         }
 
@@ -55,8 +69,12 @@ class CompleteOrdersActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        var intent = Intent(this@CompleteOrdersActivity, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(intent)
+        if (type.equals("check"))
+            finish()
+        else{
+            var intent = Intent(this@CompleteOrdersActivity, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
     }
 }

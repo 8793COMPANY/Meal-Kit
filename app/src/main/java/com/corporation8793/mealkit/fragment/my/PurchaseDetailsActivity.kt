@@ -1,96 +1,76 @@
 package com.corporation8793.mealkit.fragment.my
 
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.MainApplication
 import com.corporation8793.mealkit.R
-import com.corporation8793.mealkit.RatingDialog
+import com.corporation8793.mealkit.activity.MainActivity
 import com.corporation8793.mealkit.adapter.PurchaseAdapter
+import com.corporation8793.mealkit.databinding.ActivityPurchaseDetailsBinding
 import com.corporation8793.mealkit.decoration.KitDecoration
-import com.corporation8793.mealkit.dto.KitItem
-import com.corporation8793.mealkit.dto.MyItem
 import com.corporation8793.mealkit.dto.PurchaseItem
 import com.corporation8793.mealkit.esf_wp.rest.RestClient
-import com.corporation8793.mealkit.esf_wp.rest.data.Order
-import com.corporation8793.mealkit.esf_wp.rest.data.Product
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PurchaseDetailsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class PurchaseDetailsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    val datas = mutableListOf<PurchaseItem>()
-
+class PurchaseDetailsActivity : AppCompatActivity() {
+    lateinit var binding : ActivityPurchaseDetailsBinding
+    var datas = mutableListOf<PurchaseItem>()
+    var type : String? = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_purchase_details)
+        binding.setActionBar("비밀번호 변경")
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_purchase_details, container, false)
+        type = intent.getStringExtra("type")
 
         val display : DisplayMetrics = DisplayMetrics()
-        activity?.windowManager?.defaultDisplay?.getMetrics(display)
+        windowManager?.defaultDisplay?.getMetrics(display)
         val height : Int =  (display.heightPixels / 3).toInt()
 
 
-        val purchase_list = view.findViewById<RecyclerView>(R.id.purchase_list)
-        val purchase_progress = view.findViewById<RelativeLayout>(R.id.purchase_progress)
+//        val purchase_list = view.findViewById<RecyclerView>(R.id.purchase_list)
+//        val purchase_progress = view.findViewById<RelativeLayout>(R.id.purchase_progress)
 
-        val adapter = PurchaseAdapter(parentFragmentManager,activity,context,height,findNavController())
+        val adapter = PurchaseAdapter(this,this,height)
 
-        view.findViewById<Button>(R.id.back_btn).setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_back_to_muy)
+        binding.backBtn.setOnClickListener {
+            if (type.equals("purchase")) {
+                var intent = Intent(this@PurchaseDetailsActivity, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+            }else
+                finish()
+
         }
 
-        purchase_list.adapter = adapter
+        binding.purchaseList.adapter = adapter
 
-        val lm = LinearLayoutManager(context)
-        purchase_list.layoutManager = lm
+        val lm = LinearLayoutManager(this)
+        binding.purchaseList.layoutManager = lm
 
 
         GlobalScope.launch(Dispatchers.Default) {
-      //      var user_id = RestClient.nonceService.checkUsername(MainApplication.instance.user.).execute().body()!!.get(0).id
+            //      var user_id = RestClient.nonceService.checkUsername(MainApplication.instance.user.).execute().body()!!.get(0).id
             val item = RestClient.boardService.listAllOrder(MainApplication.instance.user.id).execute().body()!!
-                datas.apply {
-                    item.forEach {
-                        Log.e("item",it.toString())
+            datas.apply {
+                item.forEach {
+                    Log.e("item",it.toString())
 
 
-                        var img = MainApplication.instance.boardRepository.retrieveOneProduct(it.line_items.get(0).product_id).second!!.images.get(0).src
+                    var img = MainApplication.instance.boardRepository.retrieveOneProduct(it.line_items.get(0).product_id).second!!.images.get(0).src
 
-                        add(PurchaseItem(img,it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
-                               it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),
-                                it.line_items.get(0).total,it.line_items.get(0).quantity,it.billing.address_1+" "+it.billing.address_2))
+                    add(PurchaseItem(img,it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
+                            it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),
+                            it.line_items.get(0).total,it.line_items.get(0).quantity,it.billing.address_1+" "+it.billing.address_2))
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
 //                        println("별점 (5.00) : ${pr.average_rating}")
@@ -100,11 +80,11 @@ class PurchaseDetailsFragment : Fragment() {
 //                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
 //                        println("---------------")
 
-                    }
-                    GlobalScope.launch(Dispatchers.Main) {
+                }
+                GlobalScope.launch(Dispatchers.Main) {
                     adapter.datas = datas
                     adapter.notifyDataSetChanged()
-                        purchase_progress.visibility = View.GONE
+                    binding.purchaseProgress.visibility = View.GONE
                 }
             }
 //                binding.checkText.visibility = View.VISIBLE
@@ -154,32 +134,17 @@ class PurchaseDetailsFragment : Fragment() {
 
 
         var divider = KitDecoration(20)
-        purchase_list.addItemDecoration(divider)
+        binding.purchaseList.addItemDecoration(divider)
 
-        return view
     }
 
-
-
-
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PurchaseDetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                PurchaseDetailsFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (type.equals("purchase")) {
+            var intent = Intent(this@PurchaseDetailsActivity, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }else
+            finish()
     }
 }

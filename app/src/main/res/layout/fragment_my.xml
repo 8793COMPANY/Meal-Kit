@@ -17,9 +17,40 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include android:id="@+id/action_bar"
-            layout="@layout/custom_actionbar"
-            bind:title="@{actionBar}"></include>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        bind:layout_constraintTop_toTopOf="parent"
+        bind:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        bind:layout_constraintVertical_bias="0">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|bottom"
+            android:text="마이페이지"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            bind:layout_constraintVertical_bias="0.5"
+            android:fontFamily="@font/nskr_medium"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintLeft_toLeftOf="parent"
+            bind:layout_constraintRight_toRightOf="parent"></TextView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -61,6 +92,7 @@
             ></ImageView>
 
         <ImageView
+            android:outlineProvider="paddedBounds"
             android:id="@+id/register_btn"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -68,7 +100,7 @@
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintWidth_percent="0.069"
             app:layout_constraintVertical_bias="0.95"
-            android:elevation="10dp"
+            android:elevation="20dp"
             app:layout_constraintHorizontal_bias="0.97"
             app:layout_constraintTop_toBottomOf="@+id/action_bar"
             app:layout_constraintBottom_toBottomOf="@+id/user_img"

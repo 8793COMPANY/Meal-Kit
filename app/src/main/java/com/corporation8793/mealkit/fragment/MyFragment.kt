@@ -18,12 +18,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
 import com.corporation8793.mealkit.activity.JoinActivity
+import com.corporation8793.mealkit.activity.LoginActivity
 import com.corporation8793.mealkit.activity.UserEditActivity
 
 import com.corporation8793.mealkit.adapter.MyAdapter
 import com.corporation8793.mealkit.decoration.KitDecoration
 import com.corporation8793.mealkit.dto.KitItem
 import com.corporation8793.mealkit.dto.MyItem
+import com.corporation8793.mealkit.fragment.my.PurchaseDetailsActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,8 +90,9 @@ class MyFragment() : Fragment() {
         my_list.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
             Log.e("check",i.toString())
             if (i==1){
-                val action = MyFragmentDirections.actionPurchaseDetailsScreen()
-                findNavController().navigate(action)
+                var intent = Intent(context, PurchaseDetailsActivity::class.java)
+                intent.putExtra("type","my")
+                startActivity(intent)
             } else if (i == 3){
                 val action = MyFragmentDirections.actionMyToPointFragment()
                 findNavController().navigate(action)
