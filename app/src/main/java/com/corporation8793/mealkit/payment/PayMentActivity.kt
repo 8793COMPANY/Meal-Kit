@@ -9,6 +9,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.corporation8793.mealkit.MainApplication
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.activity.AddreesWebActivity
 
@@ -100,22 +101,20 @@ class PayMentActivity : AppCompatActivity() {
             val sharedPreference = getSharedPreferences("other", 0)
             val id = sharedPreference.getString("id","test22")
             Log.e("id",id!!)
-            val value = NonceRepository().checkUsername(id!!)
+            val value = MainApplication.instance.user
 
-            println(value.first)
-            println(value.second?.get(0))
-            user_id = value.second?.get(0)!!.id
-            address_1 = value.second?.get(0)!!.billing.address_1
-            address_2 = value.second?.get(0)!!.billing.address_2
-            post_code = value.second?.get(0)!!.billing.postcode
-            phone = value.second?.get(0)!!.billing.phone
+            user_id = value.id
+            address_1 = value.billing.address_1
+            address_2 = value.billing.address_2
+            post_code = value.billing.postcode
+            phone = value.billing.phone
 
 
             GlobalScope.launch(Dispatchers.Main) {
-                binding.paymentOrdererNameInput.setText(value.second?.get(0)?.first_name)
+                binding.paymentOrdererNameInput.setText(value.first_name)
                 binding.paymentOrdererContactInput.setText(phone)
-                binding.paymentAddress.setText(value.second?.get(0)?.billing?.address_1+",\n")
-                binding.paymentAddressDetail.setText(value.second?.get(0)?.billing?.address_2)
+                binding.paymentAddress.setText(value.billing?.address_1+",\n")
+                binding.paymentAddressDetail.setText(value.billing?.address_2)
 
             }
 //                binding.checkText.visibility = View.VISIBLE
@@ -151,6 +150,7 @@ class PayMentActivity : AppCompatActivity() {
                                 OrderMeta(id = null, key = "order_point", value = "189"),
                         )
                 )
+                Log.e("PayMentActivity", "Order data: $myOrder")
                 // 주문 시작
                 val makeOrderResponse = boardRepository.makeOrder(myOrder)
                 println("주문번호 : ${makeOrderResponse.second?.id}")
