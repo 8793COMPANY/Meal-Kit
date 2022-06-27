@@ -213,7 +213,8 @@ class JoinActivity : AppCompatActivity() {
                         Shipping(binding.addressInputBox.text.toString(), binding.addressDetailInputBox.text.toString(),  binding.postCodeInputBox.text.toString(), binding.phoneNumberInputBox.text.toString()),
                         arrayOf(
                             Meta_data(id = null, key = "recommender", value = binding.recommenderCodeInputBox.text.toString()),
-                            Meta_data(id = null, key = "point", value = 0)
+                            Meta_data(id = null, key = "point", value = 0),
+                            Meta_data(id = null, key = "profile_img", value = 1499)
                             )
                         )
                 )
