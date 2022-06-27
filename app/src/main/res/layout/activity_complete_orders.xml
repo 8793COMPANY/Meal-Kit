@@ -231,20 +231,26 @@
 
         <TextView
             android:id="@+id/completeOrders_DeliveryAddressText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="189원"
             android:textSize="15sp"
+            android:gravity="right"
             android:textColor="@color/black_1f1f1f"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
+            android:layout_marginLeft="10dp"
+            android:singleLine="false"
             app:layout_constraintTop_toBottomOf="@+id/completeOrders_PointText"
             app:layout_constraintRight_toRightOf="@+id/right_line"
+            app:layout_constraintLeft_toRightOf="@+id/completeOrders_ShopAddress"
             app:layout_constraintBottom_toBottomOf="parent"
+            ems="5"
             app:layout_constraintVertical_bias="0.05"
             ></TextView>
 
         <TextView
+            android:id="@+id/completeOrders_ShopAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="포장 주소"

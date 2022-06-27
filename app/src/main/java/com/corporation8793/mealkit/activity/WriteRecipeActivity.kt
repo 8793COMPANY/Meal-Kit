@@ -35,6 +35,8 @@ class WriteRecipeActivity : AppCompatActivity() {
     val PERMISSION_Album = 101
     val REQUEST_STORAGE = 100
 
+    var img_check : Boolean = false
+
     lateinit var img_uri : Uri
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,16 +48,28 @@ class WriteRecipeActivity : AppCompatActivity() {
         }
 
         binding.registerBtn.setOnClickListener{
-            binding.recipeRegisterProgress.visibility = View.VISIBLE
-            val sharedPreference = getSharedPreferences("other", 0)
-            GlobalScope.launch(Dispatchers.Default) {
-                uploadRecipe(sharedPreference.getString("id","test22").toString(),sharedPreference.getString("pw","1234").toString())
-                GlobalScope.launch(Dispatchers.Main){
-                    binding.recipeRegisterProgress.visibility = View.GONE
-                   val intent = Intent(this@WriteRecipeActivity,MainActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    startActivity(intent)
-                    finish()
+            if (!img_check){
+                Toast.makeText(this, "이미지를 등록해주세요", Toast.LENGTH_SHORT).show()
+            }else if (binding.recipeName.text.toString().trim().equals("")){
+                Toast.makeText(this, "레시피 이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
+            }else if (binding.useMealkit.text.toString().trim().equals("")){
+                Toast.makeText(this, "사용한 밀키트를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            }else if (binding.recipeIntrodution.text.toString().trim().equals("")){
+                Toast.makeText(this, "레시피 소개글을 작성해주세요.", Toast.LENGTH_SHORT).show()
+            }else if (binding.writeRecipe.text.toString().trim().equals("")){
+                Toast.makeText(this, "레시피 작성해주세요.", Toast.LENGTH_SHORT).show()
+            }else {
+                binding.recipeRegisterProgress.visibility = View.VISIBLE
+                val sharedPreference = getSharedPreferences("other", 0)
+                GlobalScope.launch(Dispatchers.Default) {
+                    uploadRecipe(sharedPreference.getString("id", "test22").toString(), sharedPreference.getString("pw", "1234").toString())
+                    GlobalScope.launch(Dispatchers.Main) {
+                        binding.recipeRegisterProgress.visibility = View.GONE
+                        val intent = Intent(this@WriteRecipeActivity, MainActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
+                        finish()
+                    }
                 }
             }
 
@@ -229,7 +243,7 @@ class WriteRecipeActivity : AppCompatActivity() {
                         }
                         img_uri = uri
                         binding.recipeImg.setImageURI(uri)
-//                        img_check = true
+                        img_check = true
                     }
                 }
             }

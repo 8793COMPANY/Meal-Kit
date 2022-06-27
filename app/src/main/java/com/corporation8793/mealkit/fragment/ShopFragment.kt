@@ -19,6 +19,7 @@ import com.corporation8793.mealkit.dto.KitItem
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.fragment_find_main.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,6 +54,7 @@ class ShopFragment() : Fragment() {
 
 //
         val viewPager = view.findViewById<ViewPager2>(R.id.kit_list)
+        viewPager.isUserInputEnabled = false
         viewPager.adapter = ShopViewAdapter(this)
         val imageResId = intArrayOf(
                 R.drawable.shop_map_icon,
@@ -81,6 +83,8 @@ class ShopFragment() : Fragment() {
         })
 
         viewPager.setCurrentItem(1,false)
+
+
 
 
 

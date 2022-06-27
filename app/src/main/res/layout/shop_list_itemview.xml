@@ -67,10 +67,9 @@
 
         <ImageView
             android:id="@+id/shop_img"
-            android:scaleType="fitXY"
-            android:background="@drawable/test2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></ImageView>
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"></ImageView>
 
     </androidx.cardview.widget.CardView>
 

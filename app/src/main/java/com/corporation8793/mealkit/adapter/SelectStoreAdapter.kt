@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.activity.WriteRecipeActivity
 import com.corporation8793.mealkit.dto.ShopItem
@@ -56,6 +57,8 @@ class SelectStoreAdapter (private val activity: Activity?,private val context: C
 //            itemView.setOnClickListener{
 //
 //            }
+
+            Glide.with(context!!).load(item.img).into(shopImg)
 
             val pos = adapterPosition
             if(pos!= RecyclerView.NO_POSITION)

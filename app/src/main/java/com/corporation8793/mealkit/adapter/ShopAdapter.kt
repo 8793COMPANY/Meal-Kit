@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.activity.FindActivity
 import com.corporation8793.mealkit.dto.RecipeItem
@@ -52,10 +53,12 @@ class ShopAdapter ( private val context: Context?, val height : Int, val color :
             shopName.text = item.name
             shopAddress.text = item.address
 
+
+
 //            if (item.img == "0") {
 //                kitImg.setBackgroundResource(R.color.app_basic_color)
 //            }else
-//                Glide.with(context!!).load(item.img).into(kitImg)
+                Glide.with(context!!).load(item.img).into(shopImg)
 
 
 

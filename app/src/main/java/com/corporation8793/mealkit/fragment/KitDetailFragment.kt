@@ -1,5 +1,6 @@
 package com.corporation8793.mealkit.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -138,6 +139,23 @@ class KitDetailFragment() : Fragment() {
 //    }
 
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback =
+                object : OnBackPressedCallback(true)
+                {
+                    override fun handleOnBackPressed() {
+                        // Leave empty do disable back press or
+                        // write your code which you want
+                        Log.e("hi","in!!")
+                        Navigation.findNavController(view!!).navigate(R.id.action_back_to_home)
+                    }
+                }
+        requireActivity().onBackPressedDispatcher.addCallback(
+                this,
+                callback
+        )
+    }
 
 companion object {
     const val DONT_USE_BACK_BUTTON = "dont_use_back_button"

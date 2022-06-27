@@ -16,6 +16,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.corporation8793.mealkit.MainApplication
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.adapter.HomeViewAdapter
+import com.corporation8793.mealkit.fragment.home.LandFragment
 import com.corporation8793.mealkit.service.PedometerService
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -138,6 +139,7 @@ class HomeFragment() : Fragment() {
                 findNavController().navigate(action)
             }
         }
+
 
 
 

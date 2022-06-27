@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,6 +41,9 @@ class LandFragment : Fragment() {
     private var param2: String? = null
 
     val datas = mutableListOf<KitItem>()
+    lateinit var kitAdapter : KitAdapter
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +66,7 @@ class LandFragment : Fragment() {
         activity?.windowManager?.defaultDisplay?.getMetrics(display)
         val height : Int =  (display.heightPixels / 6.5).toInt()
 
-        var kitAdapter = KitAdapter(context, height, resources.getColor(R.color.category_land_color),findNavController())
+        kitAdapter = KitAdapter(context, height, resources.getColor(R.color.category_land_color),findNavController())
         kit_list.adapter = kitAdapter
 
         val lm = LinearLayoutManager(context)
@@ -91,22 +95,12 @@ class LandFragment : Fragment() {
                         }
                         add(KitItem(it.id,it.images.first().src, it.date_on_sale_from,it.date_on_sale_to, "샐러드 가게",
                                 it.name, it.price, it.stock_quantity, it.acf.total_stock!!,like))
-//                        println("상품 카테고리 : ${pr.categories.first().name}")
-//                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
-//                        println("별점 (5.00) : ${pr.average_rating}")
-//                        println("상품 이미지 URL : ${pr.images.first().src}")
-//                        println("상품 세일 기간 : ${pr.date_on_sale_from} ~ ${pr.date_on_sale_to}")
-//                        println("상품가격 : ${pr.price}원")
-//                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
-//                        println("---------------")
-
                     }
 
                     kitAdapter.datas = datas
                     kitAdapter.notifyDataSetChanged()
                 }
             }
-//                binding.checkText.visibility = View.VISIBLE
         }
 
         
@@ -124,10 +118,41 @@ class LandFragment : Fragment() {
         return view
     }
 
+
     override fun onResume() {
         super.onResume()
-        Log.e("in!","onresume!!")
+//        if (datas != null && kitAdapter != null){
+//            Log.e("in!","!!")
+//            GlobalScope.launch(Dispatchers.Default) {
+//                val item : List<Product> = RestClient.boardService.listAllProduct(RestClient.PRODUCT_LAND).execute().body()!!
+//                val id = MainApplication.instance.user.id;
+//
+//                GlobalScope.launch(Dispatchers.Main) {
+//                    datas.apply {
+//                        item.forEach {
+//                            Log.e("it",it.toString())
+//                            var like = false;
+//                            if(it.acf.product_likes != false) {
+//                                var pl = it.acf.product_likes as ArrayList<Int>
+//                                pl.forEach { i ->
+//                                    if(i == id.toInt()){
+//                                        like = true;
+//                                        return@forEach
+//                                    }
+//                                }
+//                            }
+//                            add(KitItem(it.id,it.images.first().src, it.date_on_sale_from,it.date_on_sale_to, "샐러드 가게",
+//                                    it.name, it.price, it.stock_quantity, it.acf.total_stock!!,like))
+//                        }
+//
+//                        kitAdapter.datas = datas
+//                        kitAdapter.notifyDataSetChanged()
+//                    }
+//                }
+//            }
+//        }
     }
+
 
     companion object {
         /**
