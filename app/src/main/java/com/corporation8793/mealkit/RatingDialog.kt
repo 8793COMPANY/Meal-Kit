@@ -49,6 +49,7 @@ class RatingDialog(val activity: Activity, val product_id :String) : DialogFragm
             //        like_btn.setOnClickListener {
 
 
+
             //                * @author  두동근
 //                * @param   product_id              리뷰할 제품의 id
 //                * @param   review                  리뷰 내용 (없으면 공백 한칸도 가능)
@@ -67,6 +68,7 @@ class RatingDialog(val activity: Activity, val product_id :String) : DialogFragm
                             rating.toString()))
                     Log.e("resultOn",resultOn.first!!)
                 }
+
 
 
             dismiss()
