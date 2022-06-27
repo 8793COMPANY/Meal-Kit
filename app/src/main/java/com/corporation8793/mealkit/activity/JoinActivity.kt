@@ -211,7 +211,10 @@ class JoinActivity : AppCompatActivity() {
                         SignUpBody(
                         Billing(binding.addressInputBox.text.toString(), binding.addressDetailInputBox.text.toString(), binding.postCodeInputBox.text.toString(), binding.phoneNumberInputBox.text.toString()),
                         Shipping(binding.addressInputBox.text.toString(), binding.addressDetailInputBox.text.toString(),  binding.postCodeInputBox.text.toString(), binding.phoneNumberInputBox.text.toString()),
-                        arrayOf(Meta_data(id = null, key = "recommender", value = binding.recommenderCodeInputBox.text.toString()))
+                        arrayOf(
+                            Meta_data(id = null, key = "recommender", value = binding.recommenderCodeInputBox.text.toString()),
+                            Meta_data(id = null, key = "point", value = 0)
+                            )
                         )
                 )
 

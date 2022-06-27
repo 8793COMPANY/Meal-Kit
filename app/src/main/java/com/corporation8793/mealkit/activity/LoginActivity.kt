@@ -106,6 +106,7 @@ class LoginActivity : AppCompatActivity() {
             GlobalScope.launch(Dispatchers.Main) {
                 if (value.first.equals("ok")) {
                     MainApplication.instance.setCustomer(value.second)
+                    Log.e("call_Login - current user data : ", "${value.second}")
                     val Id = binding.idInputBox.text.toString()
                     val Pw = binding.pwInputBox.text.toString()
                     val basicAuth = Credentials.basic(Id, Pw)
