@@ -26,7 +26,8 @@ data class Customer(val id : String,
  * @param   postcode        우편번호
  * @param   phone           연락처
  */
-data class Billing(val address_1 : String,
+data class Billing(val first_name : String,
+                   val address_1 : String,
                    val address_2 : String,
                    val postcode : String,
                    val phone : String)
@@ -38,7 +39,8 @@ data class Billing(val address_1 : String,
  * @param   postcode        우편번호
  * @param   phone           연락처
  */
-data class Shipping(val address_1 : String,
+data class Shipping(val first_name : String,
+                    val address_1 : String,
                     val address_2 : String,
                     val postcode : String,
                     val phone : String)

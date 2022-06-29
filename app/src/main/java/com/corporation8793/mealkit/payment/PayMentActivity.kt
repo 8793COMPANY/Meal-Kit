@@ -140,8 +140,8 @@ class PayMentActivity : AppCompatActivity() {
                         id = null,
                         date_created = null,
                         customer_id = user_id,
-                        billing = Billing(address_1, binding.paymentAddressDetail.text.toString(), post_code, post_code),
-                        shipping = Shipping(address_1, binding.paymentAddressDetail.text.toString(), post_code, post_code),
+                        billing = Billing(MainApplication.instance.user.first_name, address_1, binding.paymentAddressDetail.text.toString(), post_code, post_code),
+                        shipping = Shipping(MainApplication.instance.user.first_name, address_1, binding.paymentAddressDetail.text.toString(), post_code, post_code),
                         line_items = listOf(
                                 LineItems(name = name, product_id = product_id!!, quantity = quantity!!, total = final_money.toString())
                         ),

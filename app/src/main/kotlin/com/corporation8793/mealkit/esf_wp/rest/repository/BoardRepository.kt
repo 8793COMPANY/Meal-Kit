@@ -159,6 +159,8 @@ class BoardRepository {
 
         val response = call.execute()
 
+        println(response.message())
+
         return Pair(response.code().toString(), response.body())
     }
     /**
