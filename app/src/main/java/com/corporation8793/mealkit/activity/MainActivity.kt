@@ -68,4 +68,22 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("main","onresume")
+        MainApplication.instance.registerNetworkCallback()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.e("main","onstop")
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("main","ondestory")
+                MainApplication.instance.unregisterNetworkCallback()
+    }
 }

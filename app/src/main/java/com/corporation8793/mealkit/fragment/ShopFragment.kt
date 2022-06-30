@@ -67,6 +67,7 @@ class ShopFragment() : Fragment() {
         tabLayout.tabRippleColor = null
 
         //탭이 선택되었을 때, 뷰페이저가 같이 변경되도록
+
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                tab!!.icon!!.setTint(resources.getColor(R.color.white))

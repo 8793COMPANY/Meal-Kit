@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import com.corporation8793.mealkit.MainApplication
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.databinding.ActivityChangePwBinding
 import com.corporation8793.mealkit.databinding.ActivityWriteRecipeBinding
@@ -248,5 +249,15 @@ class WriteRecipeActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        MainApplication.instance.registerNetworkCallback()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        MainApplication.instance.unregisterNetworkCallback()
     }
 }

@@ -173,14 +173,37 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
 
                 //경로 시작점으로 화면 이동
                 if(marker!= null) {
+                    val cameraPosition = CameraPosition(
+                            LatLng(y, x), // 대상 지점
+                            17.0, // 줌 레벨
+                            0.0, // 기울임 각도
+                            0.0 // 베어링 각도
+                    )
+
                     val cameraUpdate = CameraUpdate.scrollTo(marker.position)
                             .animate(CameraAnimation.Fly, 3000)
                     naverMap!!.moveCamera(cameraUpdate)
+                    naverMap!!.cameraPosition = cameraPosition
 
                 }
 
+                infoWindow.setOnClickListener {
+                    val bottomSheetView = layoutInflater.inflate(R.layout.dialog_shop_info, null)
+                    var shop_name_textview =bottomSheetView.findViewById<TextView>(R.id.shop_name)
+                    var shop_imageview =bottomSheetView.findViewById<ImageView>(R.id.shop_img)
+                    var shop_imageview2 =bottomSheetView.findViewById<ImageView>(R.id.shop_img2)
+                    var shop_info_textview =bottomSheetView.findViewById<TextView>(R.id.shop_info)
+
+                    dataSetting(shop_name,shop_name_textview,shop_imageview,shop_imageview2,shop_info_textview)
+
+                    bottomSheetDialog = BottomSheetDialog(context!!)
+                    bottomSheetDialog.setContentView(bottomSheetView)
+                    bottomSheetDialog.show()
+
+                    true
+                }
+
                 val listener = Overlay.OnClickListener { overlay ->
-                    val marker = overlay as Marker
                     val bottomSheetView = layoutInflater.inflate(R.layout.dialog_shop_info, null)
                     var shop_name_textview =bottomSheetView.findViewById<TextView>(R.id.shop_name)
                     var shop_imageview =bottomSheetView.findViewById<ImageView>(R.id.shop_img)
@@ -263,6 +286,7 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
             println("------ listAllStore() -----")
 
             GlobalScope.launch(Dispatchers.Main) {
+                Log.e("info",info)
                 shop_name_textview.setText(shop)
                 shop_info_textview.setText(info)
                 Glide.with(context!!).load(img).into(shop_imgview)

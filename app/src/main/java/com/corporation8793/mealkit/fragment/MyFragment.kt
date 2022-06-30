@@ -1,31 +1,22 @@
 package com.corporation8793.mealkit.fragment
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.Button
-import android.widget.GridView
-import android.widget.TextView
-import androidx.compose.runtime.rememberUpdatedState
+import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.corporation8793.mealkit.*
-import com.corporation8793.mealkit.activity.JoinActivity
-import com.corporation8793.mealkit.activity.LoginActivity
 import com.corporation8793.mealkit.activity.UserEditActivity
-
 import com.corporation8793.mealkit.adapter.MyAdapter
-import com.corporation8793.mealkit.decoration.KitDecoration
-import com.corporation8793.mealkit.dto.KitItem
 import com.corporation8793.mealkit.dto.MyItem
 import com.corporation8793.mealkit.fragment.my.PurchaseDetailsActivity
+import com.corporation8793.mealkit.service.PedometerService
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,6 +33,7 @@ class MyFragment() : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     val datas = ArrayList<MyItem>()
+    lateinit var sharedPreference : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +59,10 @@ class MyFragment() : Fragment() {
             startActivity(intent);
         }
 
+        sharedPreference = context!!.getSharedPreferences("other", 0)
+        var auto_login_check = sharedPreference.getBoolean("autoLogin", false)
+
+
 
         val display : DisplayMetrics = DisplayMetrics()
         activity?.windowManager?.defaultDisplay?.getMetrics(display)
@@ -74,12 +70,13 @@ class MyFragment() : Fragment() {
 
         datas.apply {
             datas.clear()
-            add(MyItem(R.drawable.my_event_icon,"이벤트","N",false))
+//            add(MyItem(R.drawable.my_event_icon,"이벤트","N",false))
             add(MyItem(R.drawable.my_purchase_details_icon,"구매내역","3",false))
-            add(MyItem(R.drawable.my_shop_list_icon,"매장 공유 등록","N",false))
+//            add(MyItem(R.drawable.my_shop_list_icon,"매장 공유 등록","N",false))
             add(MyItem(R.drawable.my_point_icon,"포인트","N",false))
-            add(MyItem(R.drawable.my_friend_icon,"친구초대","N",false))
-            add(MyItem(R.drawable.my_kakao_icon,"카카오톡 연동","N",false))
+            add(MyItem(R.drawable.my_auto_login_btn_selector,"자동로그인","",auto_login_check))
+//            add(MyItem(R.drawable.my_friend_icon,"친구초대","N",false))
+//            add(MyItem(R.drawable.my_kakao_icon,"카카오톡 연동","N",false))
 
         }
 
@@ -87,21 +84,39 @@ class MyFragment() : Fragment() {
 
         my_list.adapter = myAdapter
 
+
         my_list.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
             Log.e("check",i.toString())
-            if (i==1){
+            if (i==0){
                 var intent = Intent(context, PurchaseDetailsActivity::class.java)
                 intent.putExtra("type","my")
                 startActivity(intent)
-            } else if (i == 3){
+            } else if (i == 1){
                 val action = MyFragmentDirections.actionMyToPointFragment()
                 findNavController().navigate(action)
+            }else if (i == 2){
+                var auto_login = view.findViewById<ImageView>(R.id.about_my_list_img)
+
+                if (auto_login.isSelected){
+                    auto_login.isSelected = false
+                    auto_login_update(false)
+                }else{
+                    auto_login.isSelected = true
+                    auto_login_update(true)
+                }
+
             }
 
         })
 
 
         return view
+    }
+
+    fun auto_login_update(check : Boolean){
+        val edit: SharedPreferences.Editor = sharedPreference.edit()
+        edit.putBoolean("autoLogin", check)
+        edit.commit()
     }
 
     companion object {

@@ -54,42 +54,43 @@ class BestFragment() : Fragment() {
 
         val kit_list = view.findViewById<RecyclerView>(R.id.best_kit_list)
 
-        val display : DisplayMetrics = DisplayMetrics()
+        val display: DisplayMetrics = DisplayMetrics()
         activity?.windowManager?.defaultDisplay?.getMetrics(display)
-        val height : Int =  (display.heightPixels / 3.5).toInt()
+        val height: Int = (display.heightPixels / 3.5).toInt()
 
-        var bestAdapter = BestAdapter(context, height, resources.getColor(R.color.category_land_color),findNavController())
+        var bestAdapter = BestAdapter(context, height, resources.getColor(R.color.category_land_color), findNavController())
         kit_list.adapter = bestAdapter
 
-        val lm = GridLayoutManager(context,2)
+        val lm = GridLayoutManager(context, 2)
         kit_list.layoutManager = lm
 
         var divider = BestDecoration(20)
         kit_list.addItemDecoration(divider)
-        var count =1
+        var count = 1
 
-        GlobalScope.launch(Dispatchers.Default) {
-            val item : List<Post> = RestClient.board4BaService.retrievePostInCategories(categories = RestClient.RECIPE_BEST).execute().body()!!
-            val id = MainApplication.instance.user.id;
+        if (MainApplication.instance.isWIFIConnected(context!!)){
+            GlobalScope.launch(Dispatchers.Default) {
+                val item: List<Post> = RestClient.board4BaService.retrievePostInCategories(categories = RestClient.RECIPE_BEST).execute().body()!!
+                val id = MainApplication.instance.user.id;
 
-            GlobalScope.launch(Dispatchers.Main) {
-                datas.apply {
-                    datas.clear()
-                    item.forEach {
-                        Log.e("it",it.toString())
-                        it.acf.price?.let { it1 -> Log.e("price", it1) }
-                        var like = false;
-                        if(it.acf.product_likes != false) {
-                            var pl = it.acf.product_likes as ArrayList<Int>
-                            pl.forEach { i ->
-                               if(i == id.toInt()){
-                                   like = true;
-                                  return@forEach
-                               }
+                GlobalScope.launch(Dispatchers.Main) {
+                    datas.apply {
+                        datas.clear()
+                        item.forEach {
+                            Log.e("it", it.toString())
+                            it.acf.price?.let { it1 -> Log.e("price", it1) }
+                            var like = false;
+                            if (it.acf.product_likes != false) {
+                                var pl = it.acf.product_likes as ArrayList<Int>
+                                pl.forEach { i ->
+                                    if (i == id.toInt()) {
+                                        like = true;
+                                        return@forEach
+                                    }
+                                }
                             }
-                        }
 
-                        add(BestItem(it.id!!,it.featured_media_src_url,it.title.rendered,it.acf.price+"원",like,count.toString()))
+                            add(BestItem(it.id!!, it.featured_media_src_url, it.title.rendered, it.acf.price + "원", like, count.toString()))
 
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
@@ -99,16 +100,16 @@ class BestFragment() : Fragment() {
 //                        println("상품가격 : ${pr.price}원")
 //                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
 
-                        count++
+                            count++
+                        }
+
+                        bestAdapter.datas = datas
+                        bestAdapter.notifyDataSetChanged()
                     }
-
-                    bestAdapter.datas = datas
-                    bestAdapter.notifyDataSetChanged()
                 }
-            }
 //                binding.checkText.visibility = View.VISIBLE
-        }
-
+            }
+    }
 
 
 //        datas.apply {

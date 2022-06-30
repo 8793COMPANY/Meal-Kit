@@ -75,30 +75,33 @@ class LandFragment : Fragment() {
         var divider = KitDecoration(20)
         kit_list.addItemDecoration(divider)
 
-        GlobalScope.launch(Dispatchers.Default) {
-            val item : List<Product> = RestClient.boardService.listAllProduct(RestClient.PRODUCT_LAND).execute().body()!!
-            val id = MainApplication.instance.user.id;
+        if(MainApplication.instance.isWIFIConnected(context!!)) {
 
-            GlobalScope.launch(Dispatchers.Main) {
-                datas.apply {
-                    item.forEach {
-                        Log.e("it",it.toString())
-                        var like = false;
-                        if(it.acf.product_likes != false) {
-                            var pl = it.acf.product_likes as ArrayList<Int>
-                            pl.forEach { i ->
-                                if(i == id.toInt()){
-                                    like = true;
-                                    return@forEach
+            GlobalScope.launch(Dispatchers.Default) {
+                val item: List<Product> = RestClient.boardService.listAllProduct(RestClient.PRODUCT_LAND).execute().body()!!
+                val id = MainApplication.instance.user.id;
+
+                GlobalScope.launch(Dispatchers.Main) {
+                    datas.apply {
+                        item.forEach {
+                            Log.e("it", it.toString())
+                            var like = false;
+                            if (it.acf.product_likes != false) {
+                                var pl = it.acf.product_likes as ArrayList<Int>
+                                pl.forEach { i ->
+                                    if (i == id.toInt()) {
+                                        like = true;
+                                        return@forEach
+                                    }
                                 }
                             }
+                            add(KitItem(it.id, it.images.first().src, it.date_on_sale_from, it.date_on_sale_to, "샐러드 가게",
+                                    it.name, it.price, it.stock_quantity, it.acf.total_stock!!, like))
                         }
-                        add(KitItem(it.id,it.images.first().src, it.date_on_sale_from,it.date_on_sale_to, "샐러드 가게",
-                                it.name, it.price, it.stock_quantity, it.acf.total_stock!!,like))
-                    }
 
-                    kitAdapter.datas = datas
-                    kitAdapter.notifyDataSetChanged()
+                        kitAdapter.datas = datas
+                        kitAdapter.notifyDataSetChanged()
+                    }
                 }
             }
         }

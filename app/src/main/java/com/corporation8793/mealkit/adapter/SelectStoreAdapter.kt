@@ -20,7 +20,7 @@ import com.corporation8793.mealkit.payment.PayMentActivity
 class SelectStoreAdapter (private val activity: Activity?,private val context: Context?, val height : Int) : RecyclerView.Adapter<SelectStoreAdapter.ViewHolder>() {
     var datas = mutableListOf<ShopItem>()
     interface OnItemClickListener{
-        fun onItemClick(v:View,  pos : Int)
+        fun onItemClick(v:View,  pos : Int, item : ShopItem)
     }
     private var listener : OnItemClickListener? = null
     fun setOnItemClickListener(listener : OnItemClickListener) {
@@ -64,7 +64,7 @@ class SelectStoreAdapter (private val activity: Activity?,private val context: C
             if(pos!= RecyclerView.NO_POSITION)
             {
                 itemView.setOnClickListener {
-                    listener?.onItemClick(itemView,pos)
+                    listener?.onItemClick(itemView,pos,item)
                 }
             }
 

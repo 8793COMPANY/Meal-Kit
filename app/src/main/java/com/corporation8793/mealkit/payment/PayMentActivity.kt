@@ -44,8 +44,10 @@ class PayMentActivity : AppCompatActivity() {
         _paymentActivity = this
 
         var product_id = intent.getStringExtra("id")
+        var store_address = intent.getStringExtra("store_address")
         var shop = intent.getStringExtra("category")
         var name = intent.getStringExtra("name")
+        var type = intent.getStringExtra("type")
         var price = intent.getStringExtra("price")
         var quantity = intent.getStringExtra("quantity")
         var product_amount = intent.getIntExtra("product_amount",0)
@@ -61,6 +63,12 @@ class PayMentActivity : AppCompatActivity() {
 
         binding.paymentProductPrice.setText(product_amount.toString()+"원")
         binding.paymentFinalPrice.setText(final_money.toString()+"원")
+        binding.paymentAddress.setText(store_address)
+
+        if (type =="1")
+            binding.paymentDeliveryInfoext.setText("배송지 주소")
+        else
+            binding.paymentDeliveryInfoext.setText("포장 주소")
 
         binding.paymentActionBar.backBtn.setOnClickListener {
             finish()
@@ -82,20 +90,6 @@ class PayMentActivity : AppCompatActivity() {
             startActivityForResult(intent,1000)
         }
 
-//        binding.paymentUsepointEdit.addTextChangedListener(object: TextWatcher {
-//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//
-//            }
-//
-//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//
-//            }
-//
-//            override fun afterTextChanged(p0: Editable?) {
-//
-//            }
-//
-//        })
 
         GlobalScope.launch(Dispatchers.Default) {
             val sharedPreference = getSharedPreferences("other", 0)
@@ -113,7 +107,7 @@ class PayMentActivity : AppCompatActivity() {
             GlobalScope.launch(Dispatchers.Main) {
                 binding.paymentOrdererNameInput.setText(value.first_name)
                 binding.paymentOrdererContactInput.setText(phone)
-                binding.paymentAddress.setText(value.billing?.address_1+",\n")
+//                binding.paymentAddress.setText(value.billing?.address_1+",\n")
                 binding.paymentAddressDetail.setText(value.billing?.address_2)
 
             }
@@ -124,11 +118,11 @@ class PayMentActivity : AppCompatActivity() {
             binding.paymentProgress.visibility = View.VISIBLE
 
             GlobalScope.launch(Dispatchers.Default) {
-                val sharedPreference = getSharedPreferences("other", 0)
-                val id = sharedPreference.getString("id","test22")
-                val pw = sharedPreference.getString("pw","1234")
-
-                val basicAuth = Credentials.basic(id, pw)
+//                val sharedPreference = getSharedPreferences("other", 0)
+//                val id = sharedPreference.getString("id","test22")
+//                val pw = sharedPreference.getString("pw","1234")
+//
+//                val basicAuth = Credentials.basic(id, pw)
                 // 저장소 초기화
                 val boardRepository = BoardRepository()
 
@@ -165,6 +159,7 @@ class PayMentActivity : AppCompatActivity() {
                     var shop_name = makeOrderResponse.second?.meta_data?.get(0)!!.value.toString()
                     var order_point = makeOrderResponse.second?.meta_data?.get(1)!!.value.toString()
                     intent.putExtra("type","payment")
+                    intent.putExtra("store_address",store_address)
                     intent.putExtra("id",makeOrderResponse.second?.id.toString())
                     intent.putExtra("shop_name",shop_name)
                     intent.putExtra("name",makeOrderResponse.second?.line_items?.first()?.name)
