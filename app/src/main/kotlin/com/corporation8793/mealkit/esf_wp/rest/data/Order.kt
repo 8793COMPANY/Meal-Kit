@@ -5,23 +5,29 @@ package com.corporation8793.mealkit.esf_wp.rest.data
  * @author  두동근
  * @param   id                  주문번호
  * @param   date_created        주문 일자
- * status - on-hold
+ * status - pending
  * currency - KRW
  * @param   customer_id         주문 고객의 id
  * @param   billing             [Billing] 클래스
  * @param   shipping            [Shipping] 클래스
  * @param   line_items          [LineItems] 클래스
+ *
+ * @param   payment_url         Payment gateways URL
  */
 data class Order(val id : Int?,
                  val date_created : String?,
-                 val status : String = "on-hold",
+                 val payment_method : String? = "kcp_card",
+                 val payment_method_title : String? = "NHN KCP",
+                 val status : String = "pending",
                  val currency : String = "KRW",
                  val customer_id : String,
                  val billing : Billing,
                  val shipping : Shipping,
                  val line_items : List<LineItems>,
                  val shipping_lines : List<ShippingLines>? = null,
-                 val meta_data : List<OrderMeta>)
+                 val meta_data : List<OrderMeta>,
+                 val payment_url : String?
+                 )
 /**
  * [Order.line_items]
  * @author  두동근
