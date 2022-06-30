@@ -65,7 +65,6 @@ class KitAdapter (private val context: Context?, val height : Int, val color : I
 //            }else
 //                Glide.with(context!!).load(item.img).into(kitImg)
 
-
             itemView.setOnClickListener{
                 val action = HomeFragmentDirections.actionHomeToKitDetailFragment3()
                 val bundle = bundleOf(
@@ -75,7 +74,8 @@ class KitAdapter (private val context: Context?, val height : Int, val color : I
                         "price" to item.price,
                         "img" to item.img,
                         "stock" to item.stock_quantity,
-                        "like" to item.like)
+                        "like" to item.like,
+                        "short_description" to item.short_description)
                 controller.navigate(R.id.action_home_to_kitDetailFragment3,bundle)
             }
 

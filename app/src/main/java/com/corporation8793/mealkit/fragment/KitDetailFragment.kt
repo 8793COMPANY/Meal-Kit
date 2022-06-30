@@ -3,6 +3,7 @@ package com.corporation8793.mealkit.fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import android.util.DisplayMetrics
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -70,6 +71,7 @@ class KitDetailFragment() : Fragment() {
         var stock = arguments?.getString("stock")
         var img = arguments?.getString("img")
         var like = arguments?.getBoolean("like")
+        val short_description = arguments?.getString("short_description")
 
 
         Glide.with(this).load(img).into(view.findViewById<ImageView>(R.id.kit_img))
@@ -78,7 +80,7 @@ class KitDetailFragment() : Fragment() {
         view.findViewById<TextView>(R.id.price).setText(price)
         view.findViewById<TextView>(R.id.stock_count).setText(stock+"개")
         view.findViewById<ImageView>(R.id.kit_img)
-
+        view.findViewById<TextView>(R.id.kit_explain).text = Html.fromHtml(short_description, Html.FROM_HTML_MODE_COMPACT)
 
 
         view.findViewById<Button>(R.id.back_btn).setOnClickListener{

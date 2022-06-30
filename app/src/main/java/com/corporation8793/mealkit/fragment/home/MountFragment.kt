@@ -84,7 +84,8 @@ class MountFragment : Fragment() {
                             }
                         }
                         add(KitItem(it.id,it.images.first().src, it.date_on_sale_from,it.date_on_sale_to, "샐러드 가게",
-                                it.name, it.price, it.stock_quantity, it.acf.total_stock!!,like))
+                            it.name, it.price, it.stock_quantity, it.acf.total_stock!!,like,
+                            it.short_description))
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
 //                        println("별점 (5.00) : ${pr.average_rating}")

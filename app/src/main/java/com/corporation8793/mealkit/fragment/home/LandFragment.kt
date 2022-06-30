@@ -94,7 +94,8 @@ class LandFragment : Fragment() {
                             }
                         }
                         add(KitItem(it.id,it.images.first().src, it.date_on_sale_from,it.date_on_sale_to, "샐러드 가게",
-                                it.name, it.price, it.stock_quantity, it.acf.total_stock!!,like))
+                                it.name, it.price, it.stock_quantity, it.acf.total_stock!!,like,
+                                it.short_description))
                     }
 
                     kitAdapter.datas = datas
