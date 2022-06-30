@@ -45,6 +45,7 @@ class SelectStoreActivity : AppCompatActivity() {
 
         var product_id = intent.getStringExtra("id")
         var shop = intent.getStringExtra("category")
+        var type = intent.getStringExtra("type")
         var name = intent.getStringExtra("name")
         var price = intent.getStringExtra("price")
         var quantity = intent.getStringExtra("quantity")
@@ -74,16 +75,19 @@ class SelectStoreActivity : AppCompatActivity() {
         binding.shopList.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
         shopAdapter.setOnItemClickListener(object : SelectStoreAdapter.OnItemClickListener{
-            override fun onItemClick(v: View,  pos : Int) {
+            override fun onItemClick(v: View,  pos : Int, item: ShopItem) {
                 var intent = Intent(this@SelectStoreActivity, PayMentActivity::class.java)
+                Log.e("address",item.address)
                 intent.putExtra("id",product_id)
                 intent.putExtra("category",shop)
                 intent.putExtra("img",img)
+                intent.putExtra("type",type)
                 intent.putExtra("name",name)
                 intent.putExtra("price",price)
                 intent.putExtra("quantity",quantity)
                 intent.putExtra("product_amount",product_amount)
                 intent.putExtra("final_money",final_money)
+                intent.putExtra("address",item.address)
                 startActivity(intent)
             }
         })
@@ -111,7 +115,7 @@ class SelectStoreActivity : AppCompatActivity() {
                         datas.apply {
                             notSaleStore.forEach {
                             Log.e("it",it.toString())
-                            add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,"광주 동구 동계천로 150"))
+                            add(ShopItem(it.id,it.featured_media_src_url,it.title.rendered,it.acf.metropolitan+" "+it.acf.address))
                         }
                             shopAdapter.datas = datas
                             shopAdapter.notifyDataSetChanged()

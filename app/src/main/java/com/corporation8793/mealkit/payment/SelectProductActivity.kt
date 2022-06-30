@@ -20,6 +20,7 @@ class SelectProductActivity : AppCompatActivity() {
     var productAmount = 0
     var finalMoney = 0
     var count = 1
+    var type = "1"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_product)
@@ -76,6 +77,7 @@ class SelectProductActivity : AppCompatActivity() {
         binding.selectProductOrderBtn.setOnClickListener {
             var intent = Intent(this, SelectStoreActivity::class.java)
             intent.putExtra("id",id)
+            intent.putExtra("type",type)
             intent.putExtra("category",category)
             intent.putExtra("img",img)
             intent.putExtra("name",name)
@@ -83,15 +85,24 @@ class SelectProductActivity : AppCompatActivity() {
             intent.putExtra("quantity",binding.selectProductCountText.text.toString())
             intent.putExtra("product_amount",productAmount)
             intent.putExtra("final_money",finalMoney)
+
+
             startActivity(intent);
         }
 
 
+        binding.selectProductDeliveryRadioBtn.setOnClickListener {
+            type = "1"
+            binding.selectProductDeliveryRadioBtn.isChecked= true
+            binding.selectProductPickupRadioBtn.isChecked= false
 
-//        binding.selectProductDeliveryRadioBtn.setOnClickListener {
-//            Log.e("checked",binding.selectProductDeliveryRadioBtn.isChecked.toString())
-//            if ()
-//        }
+        }
+
+        binding.selectProductPickupRadioBtn.setOnClickListener {
+            type = "0"
+            binding.selectProductDeliveryRadioBtn.isChecked= false
+            binding.selectProductPickupRadioBtn.isChecked= true
+        }
 
 
     }

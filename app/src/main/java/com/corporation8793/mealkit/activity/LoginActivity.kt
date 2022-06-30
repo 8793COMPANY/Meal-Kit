@@ -2,8 +2,11 @@ package com.corporation8793.mealkit.activity
 
 import android.Manifest
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.Uri
 import android.opengl.Visibility
 import android.os.Build
@@ -16,6 +19,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.corporation8793.mealkit.MainApplication
+import com.corporation8793.mealkit.NetworkManager
 import com.corporation8793.mealkit.databinding.ActivityLoginBinding
 import com.corporation8793.mealkit.esf_wp.rest.repository.NonceRepository
 import com.corporation8793.mealkit.service.PedometerService
@@ -31,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
 
         if (checkSelfPermission(Manifest.permission.ACTIVITY_RECOGNITION)
@@ -61,7 +66,9 @@ class LoginActivity : AppCompatActivity() {
             binding.idInputBox.setText(sharedPreference.getString("id","").toString())
             binding.pwInputBox.setText(sharedPreference.getString("pw","").toString())
 
-            call_Login(sharedPreference.getString("id","").toString(),sharedPreference.getString("pw","").toString())
+            if(MainApplication.instance.isWIFIConnected(this))
+                call_Login(binding.idInputBox.text.toString(), binding.pwInputBox.text.toString());
+
             binding.accessTermAgreeBtn.isChecked = true;
         } else {
             binding.accessTermAgreeBtn.isChecked = false;
@@ -73,7 +80,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.loginBtn.setOnClickListener {
-            call_Login(binding.idInputBox.text.toString(), binding.pwInputBox.text.toString());
+            if(MainApplication.instance.isWIFIConnected(this))
+                call_Login(binding.idInputBox.text.toString(), binding.pwInputBox.text.toString());
+            else
+                Toast.makeText(applicationContext,"네트워크를 확인해주세요.",Toast.LENGTH_SHORT).show()
         }
 
         binding.findIdText.setOnClickListener {
@@ -95,6 +105,8 @@ class LoginActivity : AppCompatActivity() {
                 binding.accessTermAgreeBtn.isChecked = true
 
         }
+
+
     }
 
     fun call_Login(user: String, password: String) {
@@ -202,6 +214,10 @@ class LoginActivity : AppCompatActivity() {
         val dialog = builder.create()
         dialog.show()
     }
+
+
+
+
 
 
 }

@@ -49,7 +49,7 @@ class KitAdapter (private val context: Context?, val height : Int, val color : I
         private val total_stock : TextView = itemView.findViewById(R.id.total)
 
         fun bind(item: KitItem) {
-            Log.e("bind","in")
+//            Log.e("bind","in")
 //            eventImg.clipToOutline = true
             Glide.with(context!!).load(item.img).into(kitImg)
             date.text = item.date_on_sale_from.split("T")[0]+"~"+item.date_on_sale_to.split("T")[0]

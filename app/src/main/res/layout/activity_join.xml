@@ -531,6 +531,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/go_personal_info_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/go_access_term_details"

@@ -107,6 +107,7 @@ class HomeFragment() : Fragment() {
                 R.color.category_overseas_color)
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            Log.e("hello","tab in")
             tab.text = tabName[position].toString()
             tab.setCustomView(createTab(tabName[position],imageResId[position]))
         }.attach()
@@ -116,6 +117,7 @@ class HomeFragment() : Fragment() {
         //탭이 선택되었을 때, 뷰페이저가 같이 변경되도록
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
+
                 viewPager.currentItem = tab!!.position
                 tab.customView!!.findViewById<TextView>(R.id.tabName).setTextColor(resources.getColor(textColor[tab!!.position]))
                 val drawable = tabLayout.tabSelectedIndicator as GradientDrawable
@@ -160,11 +162,6 @@ class HomeFragment() : Fragment() {
         return tabView
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.e("onresume","in!!")
-    }
-
 
     companion object {
         /**
@@ -199,4 +196,5 @@ class HomeFragment() : Fragment() {
         }
         return "";
     }
+
 }

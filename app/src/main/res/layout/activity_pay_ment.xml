@@ -322,56 +322,104 @@
                     android:orientation="vertical"
                     app:layout_constraintGuide_begin="395dp"
                     bind:layout_constraintGuide_percent="0.95"></androidx.constraintlayout.widget.Guideline>
-
-
                 <TextView
-                    android:id="@+id/payment_DeliveryInfoext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nskr_medium"
-                    android:includeFontPadding="false"
-                    android:text="배송지 주소"
-                    android:textColor="@color/black"
-                    android:textSize="17sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="@+id/payment_left_line2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.1"></TextView>
+                android:id="@+id/payment_DeliveryInfoext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nskr_medium"
+                android:includeFontPadding="false"
+                android:text="포장 주소"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="@+id/payment_left_line2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1"></TextView>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/payment_AddressChange"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@drawable/payment_btn_style"
-                    android:text="변경"
-                    app:layout_constraintBottom_toBottomOf="@+id/payment_DeliveryInfoext"
-                    app:layout_constraintHeight_percent="0.22"
-                    app:layout_constraintHorizontal_bias="1"
-                    app:layout_constraintLeft_toRightOf="@+id/payment_DeliveryInfoext"
-                    app:layout_constraintRight_toRightOf="@+id/payment_right_line2"
-                    app:layout_constraintTop_toTopOf="@+id/payment_DeliveryInfoext"
-                    app:layout_constraintWidth_percent="0.15"
-                    ></androidx.appcompat.widget.AppCompatButton>
+    <androidx.appcompat.widget.AppCompatButton
+        android:visibility="gone"
+        android:id="@+id/payment_AddressChange"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/payment_btn_style"
+        android:text="변경"
+        app:layout_constraintBottom_toBottomOf="@+id/payment_DeliveryInfoext"
+        app:layout_constraintHeight_percent="0.22"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toRightOf="@+id/payment_DeliveryInfoext"
+        app:layout_constraintRight_toRightOf="@+id/payment_right_line2"
+        app:layout_constraintTop_toTopOf="@+id/payment_DeliveryInfoext"
+        app:layout_constraintWidth_percent="0.15"
+        ></androidx.appcompat.widget.AppCompatButton>
 
-                <TextView
-                    android:id="@+id/payment_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="광주광역시 북구 동구 동계천로150,"
-                    android:lineHeight="23sp"
-                    android:textSize="13sp"
-                    android:fontFamily="@font/noto_sans_kr_regular"
-                    android:includeFontPadding="false"
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"
-                    app:layout_constraintVertical_bias="0.3"
-                    app:layout_constraintLeft_toLeftOf="@+id/payment_left_line2"
-                    app:layout_constraintTop_toBottomOf="@+id/payment_DeliveryInfoext"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    ></TextView>
+    <TextView
+        android:id="@+id/payment_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="광주광역시 북구 동구 동계천로150,"
+        android:lineHeight="23sp"
+        android:textSize="13sp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:includeFontPadding="false"
+        android:textColor="@color/black"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintLeft_toLeftOf="@+id/payment_left_line2"
+        app:layout_constraintTop_toBottomOf="@+id/payment_DeliveryInfoext"
+        app:layout_constraintBottom_toBottomOf="parent"
+        ></TextView>
+
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/payment_DeliveryInfoext"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/nskr_medium"-->
+<!--                    android:includeFontPadding="false"-->
+<!--                    android:text="배송지 주소"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="17sp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintLeft_toLeftOf="@+id/payment_left_line2"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.1"></TextView>-->
+
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    android:id="@+id/payment_AddressChange"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="0dp"-->
+<!--                    android:background="@drawable/payment_btn_style"-->
+<!--                    android:text="변경"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/payment_DeliveryInfoext"-->
+<!--                    app:layout_constraintHeight_percent="0.22"-->
+<!--                    app:layout_constraintHorizontal_bias="1"-->
+<!--                    app:layout_constraintLeft_toRightOf="@+id/payment_DeliveryInfoext"-->
+<!--                    app:layout_constraintRight_toRightOf="@+id/payment_right_line2"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/payment_DeliveryInfoext"-->
+<!--                    app:layout_constraintWidth_percent="0.15"-->
+<!--                    ></androidx.appcompat.widget.AppCompatButton>-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/payment_address"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="광주광역시 북구 동구 동계천로150,"-->
+<!--                    android:lineHeight="23sp"-->
+<!--                    android:textSize="13sp"-->
+<!--                    android:fontFamily="@font/noto_sans_kr_regular"-->
+<!--                    android:includeFontPadding="false"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    app:layout_constraintVertical_bias="0.3"-->
+<!--                    app:layout_constraintLeft_toLeftOf="@+id/payment_left_line2"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/payment_DeliveryInfoext"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    ></TextView>-->
 
 
                 <EditText
+                    android:visibility="gone"
                     android:id="@+id/payment_address_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

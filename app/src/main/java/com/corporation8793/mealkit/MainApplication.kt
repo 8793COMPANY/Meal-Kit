@@ -6,8 +6,17 @@ import android.app.Application
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkCapabilities
+import android.net.NetworkRequest
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
+import com.corporation8793.mealkit.activity.MainActivity
+import com.corporation8793.mealkit.activity.NetworkCheckActivity
+import com.corporation8793.mealkit.activity.WriteRecipeActivity
 import com.corporation8793.mealkit.esf_wp.rest.data.Customer
 import com.corporation8793.mealkit.esf_wp.rest.repository.Board4BaRepository
 import com.corporation8793.mealkit.esf_wp.rest.repository.BoardRepository
@@ -26,8 +35,17 @@ class MainApplication : Application() {
     lateinit var boardRepository: BoardRepository
     override fun onCreate() {
         super.onCreate()
+//        registerNetworkCallback()
         // initialize Rudder SDK here
     }
+
+    override fun onTerminate() {
+        super.onTerminate()
+    }
+
+
+
+
 
     init{
         instance = this
@@ -104,6 +122,49 @@ class MainApplication : Application() {
                 alarmManager[AlarmManager.RTC_WAKEUP, calendar.timeInMillis] = alarmIntent
             }
         }
+    }
+
+     val networkCallback = object : ConnectivityManager.NetworkCallback() {
+        override fun onAvailable(network: Network) {
+            Log.e("Test", "wifi available")
+//            Toast.makeText(applicationContext,"on available",Toast.LENGTH_SHORT).show()
+        }
+
+        override fun onLost(network: Network) {
+            Log.e("Test", "wifi onlost")
+//            Toast.makeText(applicationContext,"on lost",Toast.LENGTH_SHORT).show()
+            var intent = Intent(applicationContext, NetworkCheckActivity::class.java)
+            startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK))
+
+        }
+    }
+
+     fun registerNetworkCallback() {
+        val cm = getSystemService(ConnectivityManager::class.java)
+        val wifiNetworkRequest = NetworkRequest.Builder()
+                .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                .build()
+        cm.registerNetworkCallback(wifiNetworkRequest, networkCallback)
+    }
+
+     fun unregisterNetworkCallback() {
+        val cm = getSystemService(ConnectivityManager::class.java)
+        cm.unregisterNetworkCallback(networkCallback)
+    }
+
+    fun isWIFIConnected(context: Context): Boolean {
+        var result = false
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE)
+                as ConnectivityManager
+        val capabilities = cm.getNetworkCapabilities(cm.activeNetwork)
+        if (capabilities != null) {
+            if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                result = true
+            } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                result = false
+            }
+        }
+        return result
     }
 
 

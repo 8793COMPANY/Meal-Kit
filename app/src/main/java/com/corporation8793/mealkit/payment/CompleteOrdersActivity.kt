@@ -27,7 +27,9 @@ class CompleteOrdersActivity : AppCompatActivity() {
 
         type = intent.getStringExtra("type")
         var order_id = intent.getStringExtra("id")
+        var address_type = intent.getStringExtra("address_type")
         var shop = intent.getStringExtra("shop_name")
+//        var store_address = intent.getStringExtra("store_address")
         var name = intent.getStringExtra("name")
         var price = intent.getStringExtra("price")
         var quantity = intent.getStringExtra("quantity")
@@ -37,13 +39,21 @@ class CompleteOrdersActivity : AppCompatActivity() {
         if(type.equals("check"))
             binding.completeOrdersOrderListBtn.visibility = View.GONE
 
+        if(address_type.equals("1")) {
+            binding.completeOrdersDeliveryAddressText.setText(address)
+            binding.completeOrdersShopAddress.setText("주소")
+        }else
+            binding.completeOrdersDeliveryAddressText.setText(address)
+
+
         Log.e("order_id",order_id+"")
+        Log.e("quantity",quantity+"")
         binding.completeOrdersOrderNumberText.setText(order_id)
         binding.completeOrdersShopNameText.setText(shop)
         binding.completeOrdersBuyListText.setText(name+"|"+quantity+"개")
         binding.completeOrdersBuyMoneyText.setText(price+"원")
         binding.completeOrdersPointText.setText(order_point+"원")
-        binding.completeOrdersDeliveryAddressText.setText(address)
+
 
 
         binding.paymentActionBar.backBtn.setOnClickListener {

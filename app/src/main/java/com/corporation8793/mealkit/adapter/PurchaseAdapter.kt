@@ -50,6 +50,7 @@ class PurchaseAdapter (val activity: Activity?,private val context: Context?, va
         private val kit_price  = itemView.findViewById<TextView>(R.id.kit_price)
         private val shipping_status  = itemView.findViewById<TextView>(R.id.shipping_status)
         private val order_details_btn = itemView.findViewById<TextView>(R.id.order_details_btn)
+        private val kit_quantity = itemView.findViewById<TextView>(R.id.kit_quantity)
 //        private val kit_score_btn = itemView.findViewById<TextView>(R.id.kit_score_btn)
 
         fun bind(item: PurchaseItem) {
@@ -62,10 +63,12 @@ class PurchaseAdapter (val activity: Activity?,private val context: Context?, va
             kit_name.setText(item.kit_name)
             kit_price.setText(item.kit_price+"원")
             shipping_status.setText(item.status)
+            kit_quantity.setText(item.count+"개")
 
             order_details_btn.setOnClickListener{
                 var intent = Intent(activity, CompleteOrdersActivity::class.java)
                 intent.putExtra("type","check")
+                intent.putExtra("address_type",item.address_type)
                 intent.putExtra("id",item.id)
                 intent.putExtra("product_id",item.product_id)
                 intent.putExtra("shop_name",item.shop_name)

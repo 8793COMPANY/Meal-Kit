@@ -67,27 +67,34 @@ class SeaFragment : Fragment() {
         var divider = KitDecoration(20)
         kit_list.addItemDecoration(divider)
 
-        GlobalScope.launch(Dispatchers.Default) {
-            val item : List<Product> = RestClient.boardService.listAllProduct(RestClient.PRODUCT_SEA).execute().body()!!
-            val id = MainApplication.instance.user.id;
+        if(MainApplication.instance.isWIFIConnected(context!!)) {
 
-            GlobalScope.launch(Dispatchers.Main) {
-                datas.apply {
-                    Log.e("item sizse",item.size.toString())
-                    item.forEach {
-                        var like = false;
-                        if(it.acf.product_likes != false) {
-                            var pl = it.acf.product_likes as ArrayList<Int>
-                            pl.forEach { i ->
-                                if(i == id.toInt()){
-                                    like = true;
-                                    return@forEach
+            GlobalScope.launch(Dispatchers.Default) {
+                val item: List<Product> = RestClient.boardService.listAllProduct(RestClient.PRODUCT_SEA).execute().body()!!
+                val id = MainApplication.instance.user.id;
+
+                GlobalScope.launch(Dispatchers.Main) {
+                    datas.apply {
+                        item.forEach {
+                            Log.e("it", it.toString())
+                            var like = false;
+                            if (it.acf.product_likes != false) {
+                                var pl = it.acf.product_likes as ArrayList<Int>
+                                pl.forEach { i ->
+                                    if (i == id.toInt()) {
+                                        like = true;
+                                        return@forEach
+                                    }
                                 }
                             }
+                            add(KitItem(it.id,it.images.first().src, it.date_on_sale_from,it.date_on_sale_to, "샐러드 가게",
+                                    it.name, it.price, it.stock_quantity, it.acf.total_stock!!,like,
+                                    it.short_description))
+//                            add(KitItem(it.id, it.images.first().src, it.date_on_sale_from, it.date_on_sale_to, "샐러드 가게",
+//                                    it.name, it.price, it.stock_quantity, it.acf.total_stock!!, like))
                         }
-                        add(KitItem(it.id,it.images.first().src, it.date_on_sale_from,it.date_on_sale_to, "샐러드 가게",
-                            it.name, it.price, it.stock_quantity, it.acf.total_stock!!,like,
-                            it.short_description))
+
+
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
 //                        println("별점 (5.00) : ${pr.average_rating}")
@@ -97,13 +104,12 @@ class SeaFragment : Fragment() {
 //                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
 //                        println("---------------")
 
-                    }
 
-                    kitAdapter.datas = datas
-                    kitAdapter.notifyDataSetChanged()
+                        kitAdapter.datas = datas
+                        kitAdapter.notifyDataSetChanged()
+                    }
                 }
             }
-//                binding.checkText.visibility = View.VISIBLE
         }
         return view
     }

@@ -38,11 +38,18 @@ class MyAdapter (private val context: Context?, private var myList : ArrayList<M
         val noti: TextView = view.findViewById(R.id.about_my_list_noti)
         val category: TextView = view.findViewById(R.id.about_my_list_type)
 
-        if (!my.check) {
+        if (my.name.equals("자동로그인")){
+            img.isSelected = my.check
             noti.visibility = View.INVISIBLE
         }else{
-            noti.text = my.noti
+            if (!my.check) {
+                noti.visibility = View.INVISIBLE
+            }else{
+                noti.text = my.noti
+            }
         }
+
+
         category.text = my.name
 
 

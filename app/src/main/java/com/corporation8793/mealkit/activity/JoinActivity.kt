@@ -49,6 +49,12 @@ class JoinActivity : AppCompatActivity() {
             startActivityForResult(intent,1000)
         }
 
+        binding.goPersonalInfoView.setOnClickListener {
+            var intent = Intent(this, AccessTermsActivity::class.java)
+            intent.putExtra("type","개인정보처리방침")
+            startActivity(intent)
+        }
+
 
         binding.actionBar.backBtn.setOnClickListener {
             finish()
