@@ -68,6 +68,7 @@ class PurchaseAdapter (val activity: Activity?,private val context: Context?, va
             order_details_btn.setOnClickListener{
                 var intent = Intent(activity, CompleteOrdersActivity::class.java)
                 intent.putExtra("type","check")
+                intent.putExtra("address_type",item.address_type)
                 intent.putExtra("id",item.id)
                 intent.putExtra("product_id",item.product_id)
                 intent.putExtra("shop_name",item.shop_name)

@@ -9,9 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.contentValuesOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.corporation8793.mealkit.*
+import com.corporation8793.mealkit.activity.AccessTermsActivity
+import com.corporation8793.mealkit.activity.NetworkCheckActivity
 import com.corporation8793.mealkit.activity.UserEditActivity
 import com.corporation8793.mealkit.adapter.MyAdapter
 import com.corporation8793.mealkit.dto.MyItem
@@ -35,6 +38,7 @@ class MyFragment() : Fragment() {
     val datas = ArrayList<MyItem>()
     lateinit var sharedPreference : SharedPreferences
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -51,6 +55,10 @@ class MyFragment() : Fragment() {
         val my_list = view.findViewById<GridView>(R.id.my_list)
         val user_name = view.findViewById<TextView>(R.id.user_name)
         val go_user_info_edit_btn = view.findViewById<TextView>(R.id.go_user_info_edit_btn)
+
+        val personal_information_processing_policy = view.findViewById<TextView>(R.id.personal_information_processing_policy)
+        val terms_and_conditions = view.findViewById<TextView>(R.id.terms_and_conditions)
+        val refund_and_return_policy = view.findViewById<TextView>(R.id.refund_and_return_policy)
 
         user_name.setText(MainApplication.instance.user.first_name)
 
@@ -75,8 +83,8 @@ class MyFragment() : Fragment() {
 //            add(MyItem(R.drawable.my_shop_list_icon,"매장 공유 등록","N",false))
             add(MyItem(R.drawable.my_point_icon,"포인트","N",false))
             add(MyItem(R.drawable.my_auto_login_btn_selector,"자동로그인","",auto_login_check))
-//            add(MyItem(R.drawable.my_friend_icon,"친구초대","N",false))
-//            add(MyItem(R.drawable.my_kakao_icon,"카카오톡 연동","N",false))
+            add(MyItem(R.drawable.my_friend_icon,"친구초대","N",false))
+            add(MyItem(R.drawable.my_kakao_icon,"카카오톡 연동","N",false))
 
         }
 
@@ -108,6 +116,26 @@ class MyFragment() : Fragment() {
             }
 
         })
+
+        personal_information_processing_policy.setOnClickListener {
+            var intent = Intent(context, AccessTermsActivity::class.java)
+            intent.putExtra("type","개인정보처리방침")
+            startActivity(intent)
+        }
+
+        terms_and_conditions.setOnClickListener {
+            var intent = Intent(context, AccessTermsActivity::class.java)
+            intent.putExtra("type","쇼핑몰 이용약관")
+            startActivity(intent)
+        }
+
+
+        refund_and_return_policy.setOnClickListener {
+            var intent = Intent(context, AccessTermsActivity::class.java)
+            intent.putExtra("type","환불 및 반품 정책")
+            startActivity(intent)
+        }
+
 
 
         return view

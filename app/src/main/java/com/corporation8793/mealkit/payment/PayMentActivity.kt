@@ -44,7 +44,7 @@ class PayMentActivity : AppCompatActivity() {
         _paymentActivity = this
 
         var product_id = intent.getStringExtra("id")
-        var store_address = intent.getStringExtra("store_address")
+        var address = intent.getStringExtra("address")
         var shop = intent.getStringExtra("category")
         var name = intent.getStringExtra("name")
         var type = intent.getStringExtra("type")
@@ -63,12 +63,16 @@ class PayMentActivity : AppCompatActivity() {
 
         binding.paymentProductPrice.setText(product_amount.toString()+"원")
         binding.paymentFinalPrice.setText(final_money.toString()+"원")
-        binding.paymentAddress.setText(store_address)
 
-        if (type =="1")
+
+        if (type =="1") {
             binding.paymentDeliveryInfoext.setText("배송지 주소")
-        else
+            binding.paymentAddressDetail.visibility = View.VISIBLE
+            binding.paymentAddressChange.visibility = View.VISIBLE
+        }else {
             binding.paymentDeliveryInfoext.setText("포장 주소")
+            binding.paymentAddress.setText(address)
+        }
 
         binding.paymentActionBar.backBtn.setOnClickListener {
             finish()
@@ -107,9 +111,10 @@ class PayMentActivity : AppCompatActivity() {
             GlobalScope.launch(Dispatchers.Main) {
                 binding.paymentOrdererNameInput.setText(value.first_name)
                 binding.paymentOrdererContactInput.setText(phone)
-//                binding.paymentAddress.setText(value.billing?.address_1+",\n")
-                binding.paymentAddressDetail.setText(value.billing?.address_2)
-
+                if(type.equals("1")) {
+                    binding.paymentAddress.setText(value.billing?.address_1 + ",\n")
+                    binding.paymentAddressDetail.setText(value.billing?.address_2)
+                }
             }
 //                binding.checkText.visibility = View.VISIBLE
         }
@@ -130,20 +135,40 @@ class PayMentActivity : AppCompatActivity() {
 
                 println("------ makeOrder()      -----")
                 // 주문 템플릿 생성
-                val myOrder = Order(
-                        id = null,
-                        date_created = null,
-                        customer_id = user_id,
-                        billing = Billing(address_1, binding.paymentAddressDetail.text.toString(), post_code, post_code),
-                        shipping = Shipping(address_1, binding.paymentAddressDetail.text.toString(), post_code, post_code),
-                        line_items = listOf(
-                                LineItems(name = name, product_id = product_id!!, quantity = quantity!!, total = final_money.toString())
-                        ),
-                        meta_data = listOf(
-                                OrderMeta(id = null, key = "store_name", value = shop!!),
-                                OrderMeta(id = null, key = "order_point", value = "189"),
-                        )
-                )
+                var myOrder : Order
+                if (type.equals("1")) {
+                    myOrder = Order(
+                            id = null,
+                            date_created = null,
+                            customer_id = user_id,
+                            billing = Billing(MainApplication.instance.user.first_name, address_1, binding.paymentAddressDetail.text.toString(), post_code, post_code),
+                            shipping = Shipping(MainApplication.instance.user.first_name, address_1, binding.paymentAddressDetail.text.toString(), post_code, post_code),
+                            line_items = listOf(
+                                    LineItems(name = name, product_id = product_id!!, quantity = quantity!!, total = final_money.toString())
+                            ),
+                            meta_data = listOf(
+                                    OrderMeta(id = null, key = "store_name", value = shop!!),
+                                    OrderMeta(id = null, key = "order_point", value = final_money.div(100).toString()),
+                                    OrderMeta(id = null, key = "is_parcel", value = "1"),
+                            )
+                    )
+                }else{
+                    myOrder = Order(
+                            id = null,
+                            date_created = null,
+                            customer_id = user_id,
+                            billing = Billing(MainApplication.instance.user.first_name, address!!, "", post_code, post_code),
+                            shipping = Shipping(MainApplication.instance.user.first_name, address!!, "", post_code, post_code),
+                            line_items = listOf(
+                                    LineItems(name = name, product_id = product_id!!, quantity = quantity!!, total = final_money.toString())
+                            ),
+                            meta_data = listOf(
+                                    OrderMeta(id = null, key = "store_name", value = shop!!),
+                                    OrderMeta(id = null, key = "order_point", value = final_money.div(100).toString()),
+                                    OrderMeta(id = null, key = "is_parcel", value = "0"),
+                            )
+                    )
+                }
                 Log.e("PayMentActivity", "Order data: $myOrder")
                 // 주문 시작
                 val makeOrderResponse = boardRepository.makeOrder(myOrder)
@@ -158,15 +183,17 @@ class PayMentActivity : AppCompatActivity() {
                     var intent = Intent(applicationContext, CompleteOrdersActivity::class.java)
                     var shop_name = makeOrderResponse.second?.meta_data?.get(0)!!.value.toString()
                     var order_point = makeOrderResponse.second?.meta_data?.get(1)!!.value.toString()
+                    if (type.equals("1"))
+                        address = address_1+" "+address_2
                     intent.putExtra("type","payment")
-                    intent.putExtra("store_address",store_address)
+                    intent.putExtra("address_type",type)
                     intent.putExtra("id",makeOrderResponse.second?.id.toString())
                     intent.putExtra("shop_name",shop_name)
                     intent.putExtra("name",makeOrderResponse.second?.line_items?.first()?.name)
                     intent.putExtra("quantity",makeOrderResponse.second?.line_items?.first()?.quantity)
                     intent.putExtra("price",makeOrderResponse.second?.line_items?.first()?.total)
                     intent.putExtra("order_point",order_point)
-                    intent.putExtra("address",address_1+" "+address_2)
+                    intent.putExtra("address",address)
                     startActivity(intent);
 
 

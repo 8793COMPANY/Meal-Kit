@@ -171,11 +171,13 @@
             android:id="@+id/my_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="0dp"
             android:verticalSpacing="24dp"
-            android:layout_margin="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="40dp"
+            android:paddingTop="10dp"
             app:layout_constraintVertical_bias="0"
-            app:layout_constraintHeight_percent="0.26"
+            app:layout_constraintHeight_percent="0.3"
             app:layout_constraintTop_toBottomOf="@+id/start_border"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -193,6 +195,138 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"></View>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/app_terms_area"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintHeight_percent="0.07"
+            app:layout_constraintTop_toBottomOf="@+id/end_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/left_line"
+            app:layout_constraintRight_toRightOf="@+id/right_line">
+
+            <TextView
+                android:id="@+id/personal_information_processing_policy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="개인정보처리방침"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/nskr_medium"
+                android:textSize="11dp"
+                android:textColor="@color/gray_797979"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/divider1"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"></TextView>
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="#707070"
+                app:layout_constraintTop_toTopOf="@+id/personal_information_processing_policy"
+                app:layout_constraintBottom_toBottomOf="@+id/personal_information_processing_policy"
+                app:layout_constraintLeft_toRightOf="@+id/personal_information_processing_policy"
+                app:layout_constraintRight_toLeftOf="@+id/terms_and_conditions"></View>
+
+
+            <TextView
+                android:id="@+id/terms_and_conditions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="쇼핑몰 이용약관"
+                android:fontFamily="@font/nskr_medium"
+                android:textSize="11dp"
+                android:includeFontPadding="false"
+                android:textColor="@color/gray_797979"
+                android:gravity="center"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/divider1"
+                app:layout_constraintRight_toLeftOf="@+id/divider2"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"></TextView>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="#707070"
+                app:layout_constraintTop_toTopOf="@+id/personal_information_processing_policy"
+                app:layout_constraintBottom_toBottomOf="@+id/personal_information_processing_policy"
+                app:layout_constraintLeft_toRightOf="@+id/terms_and_conditions"
+                app:layout_constraintRight_toLeftOf="@+id/refund_and_return_policy"></View>
+
+            <TextView
+                android:id="@+id/refund_and_return_policy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="환불 및 반품정책"
+                android:fontFamily="@font/nskr_medium"
+                android:textSize="11dp"
+                android:layout_marginRight="20dp"
+                android:includeFontPadding="false"
+                android:textColor="@color/gray_797979"
+                android:gravity="center"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/divider2"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"></TextView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#f4f4f4"
+            app:layout_constraintTop_toBottomOf="@+id/app_terms_area"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_bias="1">
+
+            <TextView
+                android:id="@+id/one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="ESF F&amp;B 이에스에프 에프앤비"
+                android:textSize="10dp"
+                android:fontFamily="@font/nskr_medium"
+                android:textColor="#707070"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/two"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"></TextView>
+
+
+            <TextView
+                android:id="@+id/two"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="대표자 : 박정웅   |   사업자번호 : 307-23-65126
+                \n주소 : 광주광역시 서구 상무중앙로 57, 4층 402호 SA02 (치평동)\n
+이메일 : esffnb@naver.com   |    고객센터 : 1661-0967\n
+(운영시간 : 평일 10:00~18:00, 점심 12:00~13:00, 주말/공휴일 휴무)\n
+\n
+Copyright (C) ESF F&amp;B All Rights Reserved."
+                android:textSize="10dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                app:layout_constraintTop_toBottomOf="@+id/one"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"></TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

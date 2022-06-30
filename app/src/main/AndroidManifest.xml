@@ -24,6 +24,12 @@
         android:theme="@style/Theme.MealKit"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.AccessTermsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".payment.WebPaymentActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.NetworkCheckActivity"
             android:exported="false" />
         <activity
@@ -77,7 +83,7 @@
         <activity
             android:name=".activity.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"

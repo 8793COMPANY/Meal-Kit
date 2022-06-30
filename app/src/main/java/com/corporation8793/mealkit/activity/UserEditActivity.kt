@@ -67,8 +67,8 @@ class UserEditActivity : AppCompatActivity() {
         binding.userEditBtn.setOnClickListener {
 
             val signUpBody =  SignUpBody(
-                Billing( binding.addressInputBox.text.toString(),    binding.addressDetailInputBox.text.toString(),   binding.postCodeInputBox.text.toString(), binding.phoneNumberInputBox.text.toString()),
-                Shipping(binding.addressInputBox.text.toString(),    binding.addressDetailInputBox.text.toString(),   binding.postCodeInputBox.text.toString(), binding.phoneNumberInputBox.text.toString()),
+                Billing(binding.nameInputBox.text.toString().trim(),  binding.addressInputBox.text.toString(),    binding.addressDetailInputBox.text.toString(),   binding.postCodeInputBox.text.toString(), binding.phoneNumberInputBox.text.toString()),
+                Shipping(binding.nameInputBox.text.toString().trim(), binding.addressInputBox.text.toString(),    binding.addressDetailInputBox.text.toString(),   binding.postCodeInputBox.text.toString(), binding.phoneNumberInputBox.text.toString()),
                 arrayOf(Meta_data(id = null, key = "recommender", value =  binding.recommenderCodeInputBox.text.toString()))
             )
 

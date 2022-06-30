@@ -19,22 +19,46 @@ class productOrder {
 
         println("------ makeOrder()      -----")
         // 주문 템플릿 생성
+        // 배달(택배)주문은 shipping_lines 추가, is_parcel 값 1
+        // 방문포장주문은 shipping_lines 추가없이 is_parcel 값 0
         val myOrder = Order(
             id = null,
             date_created = null,
             customer_id = "14",
-            billing = Billing("광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", "010-8793-8793"),
-            shipping = Shipping("광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", "010-8793-8793"),
+            billing = Billing("김팔칠","광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", "010-8793-8793"),
+            shipping = Shipping("김팔칠","광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", "010-8793-8793"),
+            line_items = listOf(
+                LineItems(name = null, product_id = "1513", quantity = "2", total = "18900")
+            ),
+            shipping_lines = listOf(
+                ShippingLines()
+            ),
+            meta_data = listOf(
+                OrderMeta(id = null, key = "store_name", value = "AST스토어"),
+                OrderMeta(id = null, key = "store_address", value = "광주광역시 남구 북계천로 95"),
+                OrderMeta(id = null, key = "order_point", value = "189"),
+                OrderMeta(id = null, key = "is_parcel", value = 1)
+            )
+        )
+        val myOrder2 = Order(
+            id = null,
+            date_created = null,
+            customer_id = "14",
+            billing = Billing("김팔칠","광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", "010-8793-8793"),
+            shipping = Shipping("김팔칠","광주광역시 동구 동계천로 150", "502호, 팔칠구삼", "143-78", "010-8793-8793"),
             line_items = listOf(
                 LineItems(name = null, product_id = "1513", quantity = "2", total = "18900")
             ),
             meta_data = listOf(
                 OrderMeta(id = null, key = "store_name", value = "AST스토어"),
+                OrderMeta(id = null, key = "store_address", value = "광주광역시 남구 북계천로 95"),
                 OrderMeta(id = null, key = "order_point", value = "189"),
+                OrderMeta(id = null, key = "is_parcel", value = 0)
             )
         )
         // 주문 시작
-        val makeOrderResponse = boardRepository.makeOrder(myOrder)
+        //val makeOrderResponse = boardRepository.makeOrder(myOrder)
+        val makeOrderResponse = boardRepository.makeOrder(myOrder2)
         // 주문 응답
         println("productOrder : ${makeOrderResponse.first}, ${makeOrderResponse.second}\n")
 

@@ -20,7 +20,7 @@ class SelectProductActivity : AppCompatActivity() {
     var productAmount = 0
     var finalMoney = 0
     var count = 1
-    var type = ""
+    var type = "1"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_product)
@@ -85,6 +85,8 @@ class SelectProductActivity : AppCompatActivity() {
             intent.putExtra("quantity",binding.selectProductCountText.text.toString())
             intent.putExtra("product_amount",productAmount)
             intent.putExtra("final_money",finalMoney)
+
+
             startActivity(intent);
         }
 

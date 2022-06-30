@@ -87,7 +87,7 @@ class SelectStoreActivity : AppCompatActivity() {
                 intent.putExtra("quantity",quantity)
                 intent.putExtra("product_amount",product_amount)
                 intent.putExtra("final_money",final_money)
-                intent.putExtra("store_address",item.address)
+                intent.putExtra("address",item.address)
                 startActivity(intent)
             }
         })

@@ -87,8 +87,18 @@ class MountFragment : Fragment() {
                                     }
                                 }
                             }
+
                             add(KitItem(it.id, it.images.first().src, it.date_on_sale_from, it.date_on_sale_to, "샐러드 가게",
-                                    it.name, it.price, it.stock_quantity, it.acf.total_stock!!, like))
+                                    it.name, it.price, it.stock_quantity, it.acf.total_stock!!, like,
+                                    it.short_description))
+//                        println("상품 카테고리 : ${pr.categories.first().name}")
+//                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
+//                        println("별점 (5.00) : ${pr.average_rating}")
+//                        println("상품 이미지 URL : ${pr.images.first().src}")
+//                        println("상품 세일 기간 : ${pr.date_on_sale_from} ~ ${pr.date_on_sale_to}")
+//                        println("상품가격 : ${pr.price}원")
+//                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
+//                        println("---------------")
                         }
 
                         kitAdapter.datas = datas

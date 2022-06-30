@@ -20,6 +20,7 @@ data class Order(val id : Int?,
                  val billing : Billing,
                  val shipping : Shipping,
                  val line_items : List<LineItems>,
+                 val shipping_lines : List<ShippingLines>? = null,
                  val meta_data : List<OrderMeta>)
 /**
  * [Order.line_items]
@@ -34,10 +35,19 @@ data class LineItems(val name : String?,
                      val quantity : String,
                      val total : String)
 /**
+ * [Order.shipping_lines]
+ * @author  두동근
+ * parcel
+ * @param   method_id       주문 배송 클래스 슬러그값
+ * @param   method_title    주문 배송 클래스 이름
+ * @param   total           배송료
+ */
+data class ShippingLines(val method_id : String = "parcel", val method_title : String = "배송", val total : String = "3000")
+/**
  * 주문 Meta data
  * @author  두동근
  * @param   id          id
- * @param   key         key ("store_name(상호명)", "order_point(적립금)")
+ * @param   key         key ("store_name(상호명)", "store_address(상호주소)", "order_point(적립금)", "is_parcel(플래그)")
  * @param   value       value
  * @see     [Order.meta_data]
  */

@@ -49,6 +49,12 @@ class JoinActivity : AppCompatActivity() {
             startActivityForResult(intent,1000)
         }
 
+        binding.goPersonalInfoView.setOnClickListener {
+            var intent = Intent(this, AccessTermsActivity::class.java)
+            intent.putExtra("type","개인정보처리방침")
+            startActivity(intent)
+        }
+
 
         binding.actionBar.backBtn.setOnClickListener {
             finish()
@@ -209,8 +215,8 @@ class JoinActivity : AppCompatActivity() {
                         binding.pwInputBox.text.toString().trim(),
                         binding.nameInputBox.text.toString().trim(),
                         SignUpBody(
-                        Billing(binding.addressInputBox.text.toString(), binding.addressDetailInputBox.text.toString(), binding.postCodeInputBox.text.toString(), binding.phoneNumberInputBox.text.toString()),
-                        Shipping(binding.addressInputBox.text.toString(), binding.addressDetailInputBox.text.toString(),  binding.postCodeInputBox.text.toString(), binding.phoneNumberInputBox.text.toString()),
+                        Billing(binding.nameInputBox.text.toString().trim(), binding.addressInputBox.text.toString(), binding.addressDetailInputBox.text.toString(), binding.postCodeInputBox.text.toString(), binding.phoneNumberInputBox.text.toString()),
+                        Shipping(binding.nameInputBox.text.toString().trim(), binding.addressInputBox.text.toString(), binding.addressDetailInputBox.text.toString(),  binding.postCodeInputBox.text.toString(), binding.phoneNumberInputBox.text.toString()),
                         arrayOf(
                             Meta_data(id = null, key = "recommender", value = binding.recommenderCodeInputBox.text.toString()),
                             Meta_data(id = null, key = "point", value = 0),
