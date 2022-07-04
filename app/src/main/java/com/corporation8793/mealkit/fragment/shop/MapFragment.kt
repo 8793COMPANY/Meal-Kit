@@ -230,6 +230,8 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
         })
     }
 
+
+
     fun replaceText(text : String) : String{
         val regex = Regex("<div id=\"modal-ready\">")
         val matchResult: MatchResult? = regex.find(text)

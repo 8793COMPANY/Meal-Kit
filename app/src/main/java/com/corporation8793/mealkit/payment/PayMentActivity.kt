@@ -64,6 +64,8 @@ class PayMentActivity : AppCompatActivity() {
         binding.paymentProductPrice.setText(product_amount.toString()+"원")
         binding.paymentFinalPrice.setText(final_money.toString()+"원")
 
+        binding.paymentWhenBuyingPointText.setText("구매시 "+final_money.div(100).toString()+"원")
+
 
         if (type =="1") {
             binding.paymentDeliveryInfoext.setText("배송지 주소")
