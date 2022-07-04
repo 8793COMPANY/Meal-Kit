@@ -86,10 +86,11 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
 
 
         if (argument_check){
+            Log.e("in","true")
             back_btn.visibility = View.VISIBLE
             setMarker(retrofit,arguments!!.getString("address")!!,arguments!!.getString("shop_name")!!)
         }else{
-
+            Log.e("in","false")
 
             GlobalScope.launch(Dispatchers.Default) {
                 val testId = "test22"
