@@ -125,7 +125,7 @@ class LoginActivity : AppCompatActivity() {
                     MainApplication.instance.setAuth(basicAuth)
                     binding.loginProgress.visibility = View.GONE
                 } else {
-                    Toast.makeText(this@LoginActivity, "로그인이 실패하였습니다", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this@LoginActivity, "로그인에 실패하였습니다", Toast.LENGTH_LONG).show();
                     binding.loginProgress.visibility = View.GONE
                     return@launch
                 }

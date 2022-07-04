@@ -216,7 +216,8 @@ class AccessTermsActivity : AppCompatActivity() {
                     "부칙\n" +
                     "\n" +
                     "1. 이 약관은 년 월 일부터 적용됩니다.")
-        }else if(title.equals("환불 및 반품 정책")){
+        }
+        else if(title.equals("환불 및 반품 정책")){
             binding.contents.visibility = View.GONE
             binding.refundArea.visibility = View.VISIBLE
             binding.termsBackground.setBackgroundColor(resources.getColor(R.color.gray_f4f4f4))
@@ -225,7 +226,8 @@ class AccessTermsActivity : AppCompatActivity() {
                     "2. 택배과정에서 발생하는 파손, 오배송, 배송지연(예외 : 제주 및 도서산간지역의 경우 최대 3일정도 소요될 수 있습니다.) 의 경우에는 재발송, 환불, 반품이 가능합니다.\n" +
                     "\n" +
                     "3. 고객의 단순 변심에 의한 반품의 경우 반품배송비가 차감된 금액으로 환불처리 됩니다")
-        }else{
+        }
+    else{
             binding.contents.setText("이에스에프에프앤비(ESF F&B Co.,Ltd)은(는) 이용자들의 개인정보보호를 매우 중요시하며, 이용자가 회사의 서비스를\n" +
                     "이용함과 동시에 온라인상에서 회사에 제공한 개인정보가 보호 받을 수 있도록 최선을 다하고 있습니다. 이에 이에스에프에프앤비(ESF F&B Co.,Ltd)(주)는 통신비밀보호법, 전기통신사업법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등 정보통신서비스제공자가 준수하여야 할 관련 법규상의 개인정보보호 규정 및 정보통신부가 제정한 개인정보보호지침을 준수하고 있습니다. 이에스에프에프앤비(ESF F&B Co.,Ltd)(주)는 개인정보 처리방침을 통하여 이용자들이 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려 드립니다\n" +
                     "\n" +

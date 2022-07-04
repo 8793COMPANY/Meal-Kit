@@ -3,6 +3,7 @@ package com.corporation8793.mealkit.fragment
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,8 @@ class ShopFragment() : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     val datas = mutableListOf<KitItem>()
+    lateinit var tabLayout : TabLayout
+    var tabIndex = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,14 +46,19 @@ class ShopFragment() : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        if (savedInstanceState != null)
+            tabIndex = savedInstanceState.getInt("tabIndex")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        Log.e("oncreateview","in")
+        Log.e("tabIndex",tabIndex.toString())
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_shop, container, false)
 
-        val tabLayout = view.findViewById<TabLayout>(R.id.select_shop_view_way)
+        tabLayout = view.findViewById<TabLayout>(R.id.select_shop_view_way)
 
 //
         val viewPager = view.findViewById<ViewPager2>(R.id.kit_list)
@@ -62,6 +70,8 @@ class ShopFragment() : Fragment() {
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.setIcon(imageResId[position])
+            if(position == tabIndex)
+                tab.icon!!.setTint(resources.getColor(R.color.white))
         }.attach()
 
         tabLayout.tabRippleColor = null
@@ -83,14 +93,25 @@ class ShopFragment() : Fragment() {
 
         })
 
-        viewPager.setCurrentItem(1,false)
-
-
+        viewPager.setCurrentItem(tabIndex,false)
 
 
 
         return view
     }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("tabIndex",tabLayout.selectedTabPosition)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("shop","re in !")
+        if(tabLayout != null)
+            Log.e("position", tabLayout.selectedTabPosition.toString())
+
+    }
+
 
 
 
