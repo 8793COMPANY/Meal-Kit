@@ -1,15 +1,6 @@
 <component name="libraryTable">
   <library name="Gradle: com.naver.maps:geometry:1.2.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/0a1ce721a9809ab15148fbfdfe16ff71/transformed/jetified-geometry-1.2.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0a1ce721a9809ab15148fbfdfe16ff71/transformed/jetified-geometry-1.2.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0a1ce721a9809ab15148fbfdfe16ff71/transformed/jetified-geometry-1.2.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cc94f0a5b194f77b8b728627857cb1e6/transformed/jetified-geometry-1.2.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cc94f0a5b194f77b8b728627857cb1e6/transformed/jetified-geometry-1.2.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/cc94f0a5b194f77b8b728627857cb1e6/transformed/jetified-geometry-1.2.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b5b8047756a642f8b036453d9ee5edc9/transformed/jetified-geometry-1.2.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b5b8047756a642f8b036453d9ee5edc9/transformed/jetified-geometry-1.2.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b5b8047756a642f8b036453d9ee5edc9/transformed/jetified-geometry-1.2.0/jars/classes.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a581c3c0ab2521cd2c0f8325af6ce610/transformed/jetified-geometry-1.2.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a581c3c0ab2521cd2c0f8325af6ce610/transformed/jetified-geometry-1.2.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a581c3c0ab2521cd2c0f8325af6ce610/transformed/jetified-geometry-1.2.0/AndroidManifest.xml" />
