@@ -38,7 +38,8 @@ class productOrder {
                 OrderMeta(id = null, key = "store_address", value = "광주광역시 남구 북계천로 95"),
                 OrderMeta(id = null, key = "order_point", value = "189"),
                 OrderMeta(id = null, key = "is_parcel", value = 1)
-            )
+            ),
+            payment_url = null
         )
         val myOrder2 = Order(
             id = null,
@@ -54,7 +55,8 @@ class productOrder {
                 OrderMeta(id = null, key = "store_address", value = "광주광역시 남구 북계천로 95"),
                 OrderMeta(id = null, key = "order_point", value = "189"),
                 OrderMeta(id = null, key = "is_parcel", value = 0)
-            )
+            ),
+            payment_url = null
         )
         // 주문 시작
         //val makeOrderResponse = boardRepository.makeOrder(myOrder)
