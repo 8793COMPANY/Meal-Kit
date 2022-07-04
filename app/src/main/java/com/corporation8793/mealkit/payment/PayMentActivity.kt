@@ -150,7 +150,8 @@ class PayMentActivity : AppCompatActivity() {
                                     OrderMeta(id = null, key = "store_name", value = shop!!),
                                     OrderMeta(id = null, key = "order_point", value = final_money.div(100).toString()),
                                     OrderMeta(id = null, key = "is_parcel", value = "1"),
-                            )
+                            ),
+                            payment_url = null
                     )
                 }else{
                     myOrder = Order(
@@ -166,7 +167,8 @@ class PayMentActivity : AppCompatActivity() {
                                     OrderMeta(id = null, key = "store_name", value = shop!!),
                                     OrderMeta(id = null, key = "order_point", value = final_money.div(100).toString()),
                                     OrderMeta(id = null, key = "is_parcel", value = "0"),
-                            )
+                            ),
+                            payment_url = null
                     )
                 }
                 Log.e("PayMentActivity", "Order data: $myOrder")
