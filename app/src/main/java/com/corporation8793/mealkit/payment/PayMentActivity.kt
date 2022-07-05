@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.corporation8793.mealkit.MainApplication
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.activity.AddreesWebActivity
+import com.corporation8793.mealkit.activity.MainActivity
 
 import com.corporation8793.mealkit.databinding.ActivityPayMentBinding
 import com.corporation8793.mealkit.esf_wp.rest.data.*
@@ -42,6 +43,8 @@ class PayMentActivity : AppCompatActivity() {
         binding.setActionBar("주문/결제")
 
         _paymentActivity = this
+
+
 
         var product_id = intent.getStringExtra("id")
         var address = intent.getStringExtra("address")
@@ -122,6 +125,11 @@ class PayMentActivity : AppCompatActivity() {
         }
 
         binding.paymentPaymentBtn.setOnClickListener {
+            var intent = Intent(this, WebPaymentActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.paymentPaymentBtn.setOnClickListener {
             binding.paymentProgress.visibility = View.VISIBLE
 
             GlobalScope.launch(Dispatchers.Default) {
@@ -173,7 +181,7 @@ class PayMentActivity : AppCompatActivity() {
                             payment_url = null
                     )
                 }
-                Log.e("PayMentActivity", "Order data: $myOrder")
+
                 // 주문 시작
                 val makeOrderResponse = boardRepository.makeOrder(myOrder)
                 println("주문번호 : ${makeOrderResponse.second?.id}")
@@ -181,15 +189,18 @@ class PayMentActivity : AppCompatActivity() {
                 println("주문내역 : ${makeOrderResponse.second?.line_items?.first()?.name}|${makeOrderResponse.second?.line_items?.first()?.quantity}개")
                 println("결제금액 : ${makeOrderResponse.second?.line_items?.first()?.total}")
                 println("적립금 : ${makeOrderResponse.second?.meta_data?.filter { orderMeta -> orderMeta.key == "order_point" }?.first()?.value}")
+                println("적립금 : ${makeOrderResponse.second?.meta_data?.filter { orderMeta -> orderMeta.key == "order_point" }?.first()?.value}")
 
+                Log.e("PayMentActivity", "Order data: $makeOrderResponse")
                 GlobalScope.launch(Dispatchers.Main) {
                     binding.paymentProgress.visibility = View.GONE
-                    var intent = Intent(applicationContext, CompleteOrdersActivity::class.java)
+                    var intent = Intent(applicationContext, WebPaymentActivity::class.java)
                     var shop_name = makeOrderResponse.second?.meta_data?.get(0)!!.value.toString()
                     var order_point = makeOrderResponse.second?.meta_data?.get(1)!!.value.toString()
                     if (type.equals("1"))
                         address = address_1+" "+address_2
                     intent.putExtra("type","payment")
+                    intent.putExtra("payment_url",makeOrderResponse.second?.payment_url)
                     intent.putExtra("address_type",type)
                     intent.putExtra("id",makeOrderResponse.second?.id.toString())
                     intent.putExtra("shop_name",shop_name)

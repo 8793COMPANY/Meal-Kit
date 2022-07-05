@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -77,6 +78,9 @@ class PointFragment() : Fragment() {
 
         var divider = BestDecoration(10)
         point_list.addItemDecoration(divider)
+
+        view.findViewById<View>(R.id.action_bar).findViewById<TextView>(R.id.title).text = "포인트"
+        view.findViewById<View>(R.id.action_bar).findViewById<Button>(R.id.back_btn).visibility = View.INVISIBLE
 
 
         total_point_box.setText(

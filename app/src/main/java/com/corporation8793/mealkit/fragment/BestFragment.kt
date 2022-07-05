@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -53,6 +54,7 @@ class BestFragment() : Fragment() {
 
 
         val kit_list = view.findViewById<RecyclerView>(R.id.best_kit_list)
+        val best_progress = view.findViewById<RelativeLayout>(R.id.best_progress)
 
         val display: DisplayMetrics = DisplayMetrics()
         activity?.windowManager?.defaultDisplay?.getMetrics(display)
@@ -105,6 +107,7 @@ class BestFragment() : Fragment() {
 
                         bestAdapter.datas = datas
                         bestAdapter.notifyDataSetChanged()
+                        best_progress.visibility = View.GONE
                     }
                 }
 //                binding.checkText.visibility = View.VISIBLE

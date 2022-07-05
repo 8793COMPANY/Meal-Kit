@@ -565,10 +565,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.1"></TextView>
 
-
-
                 <RadioButton
-                    android:id="@+id/selectPayment_WithoutBankbookRadio_btn"
+                    android:id="@+id/selectPayment_GeneralPaymentRadio_btn"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintWidth_percent="0.05"
@@ -588,12 +586,42 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="무통장입금"
+                    android:text="일반결제"
                     android:textSize="17sp"
                     android:textColor="@color/black_2b2b2b"
-                    bind:layout_constraintBottom_toBottomOf="@+id/selectPayment_WithoutBankbookRadio_btn"
-                    bind:layout_constraintLeft_toRightOf="@+id/selectPayment_WithoutBankbookRadio_btn"
-                    bind:layout_constraintTop_toTopOf="@+id/selectPayment_WithoutBankbookRadio_btn"></TextView>
+                    bind:layout_constraintBottom_toBottomOf="@+id/selectPayment_GeneralPaymentRadio_btn"
+                    bind:layout_constraintLeft_toRightOf="@+id/selectPayment_GeneralPaymentRadio_btn"
+                    bind:layout_constraintTop_toTopOf="@+id/selectPayment_GeneralPaymentRadio_btn"></TextView>
+
+
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/selectPayment_WithoutBankbookRadio_btn"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="0dp"-->
+<!--                    app:layout_constraintWidth_percent="0.05"-->
+<!--                    android:background="@drawable/radio_btn_selector"-->
+<!--                    android:button="@null"-->
+<!--                    android:checked="true"-->
+<!--                    bind:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    bind:layout_constraintDimensionRatio="1:1"-->
+<!--                    bind:layout_constraintHorizontal_bias="0"-->
+<!--                    bind:layout_constraintLeft_toLeftOf="@+id/payment_left_line6"-->
+<!--                    app:layout_constraintVertical_bias="0.5"-->
+<!--                    bind:layout_constraintRight_toRightOf="@+id/payment_right_line6"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/payment_PaymentWayText"></RadioButton>-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/selectPayment_WithoutBankbookRadio_text"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:text="무통장입금"-->
+<!--                    android:textSize="17sp"-->
+<!--                    android:textColor="@color/black_2b2b2b"-->
+<!--                    bind:layout_constraintBottom_toBottomOf="@+id/selectPayment_WithoutBankbookRadio_btn"-->
+<!--                    bind:layout_constraintLeft_toRightOf="@+id/selectPayment_WithoutBankbookRadio_btn"-->
+<!--                    bind:layout_constraintTop_toTopOf="@+id/selectPayment_WithoutBankbookRadio_btn"></TextView>-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

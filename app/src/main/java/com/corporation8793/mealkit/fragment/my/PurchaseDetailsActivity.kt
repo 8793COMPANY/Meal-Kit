@@ -26,7 +26,7 @@ class PurchaseDetailsActivity : AppCompatActivity() {
     lateinit var binding : ActivityPurchaseDetailsBinding
     var datas = mutableListOf<PurchaseItem>()
     var type : String? = ""
-    val kit_status = mapOf("on-hold" to "결제 확인 중", "processing" to "처리중",
+    val kit_status = mapOf("on-hold" to "결제 확인 중","pending" to "결제 확인 전", "processing" to "처리중",
             "shipping" to "결제 확인 중", "shipped" to "처리중",
             "cancelled" to "취소됨", "cancel-request" to "주문취소요청",
             "completed" to "완료됨")
@@ -70,15 +70,21 @@ class PurchaseDetailsActivity : AppCompatActivity() {
                 item.forEach {
                     Log.e("item",it.toString())
                     var address_type = "0"
+                    var status = it.status.toString()
                     if (it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.size != 0)
                         address_type = it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.get(0).value.toString()
 //                        Log.e("in!",it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.get(0).value.toString())
+
+                    if (it.status.equals("failed"))
+                        status = "조회 실패"
+                    else
+                        status = kit_status[it.status]!!
 
                     var img = MainApplication.instance.boardRepository.retrieveOneProduct(it.line_items.get(0).product_id).second!!.images.get(0).src
 
                     add(PurchaseItem(address_type,img,it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
                             it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),
-                            it.line_items.get(0).total,it.line_items.get(0).quantity,it.billing.address_1+" "+it.billing.address_2))
+                            it.line_items.get(0).total,it.line_items.get(0).quantity,status,it.billing.address_1+"\n"+it.billing.address_2))
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
 //                        println("별점 (5.00) : ${pr.average_rating}")

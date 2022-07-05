@@ -31,6 +31,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.NullPointerException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -136,6 +137,7 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
     }
 
     fun setMarker(retrofit:Retrofit, address : String, shop_name : String){
+
         val APIKEY_ID = "9l8w6ft1l8"
         val APIKEY = "aTjzwzUWg7lzXcOmxTY9H7s3N8jZbF3OBUgUIuWR"
 
@@ -149,6 +151,7 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
                     call: Call<ResultGeo>,
                     response: Response<ResultGeo>
             ) {
+                Log.e("shop_name",shop_name)
                 var status = response.body()?.status
                 var address = response.body()?.addresses!!
                 var x = address.get(0).x
@@ -164,27 +167,34 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
                 marker.map = naverMap
 
                 val infoWindow = InfoWindow()
-                infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(context!!) {
-                    override fun getText(infoWindow: InfoWindow): CharSequence {
-                        return shop_name
+                try {
+                    infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(context!!) {
+                        override fun getText(infoWindow: InfoWindow): CharSequence {
+                            return shop_name
+                        }
                     }
+
+                    infoWindow.open(marker)
+                }catch (e : NullPointerException){
+                    Log.e("null","in")
                 }
 
-                infoWindow.open(marker)
 
                 //경로 시작점으로 화면 이동
                 if(marker!= null) {
-                    val cameraPosition = CameraPosition(
+                    if (shop_name.equals("잇쏘프레시 광주 선운점")) {
+                        val cameraPosition = CameraPosition(
                             LatLng(y, x), // 대상 지점
                             17.0, // 줌 레벨
                             0.0, // 기울임 각도
                             0.0 // 베어링 각도
-                    )
+                        )
 
-                    val cameraUpdate = CameraUpdate.scrollTo(marker.position)
+                        val cameraUpdate = CameraUpdate.scrollTo(marker.position)
                             .animate(CameraAnimation.Fly, 3000)
-                    naverMap!!.moveCamera(cameraUpdate)
-                    naverMap!!.cameraPosition = cameraPosition
+                        naverMap!!.moveCamera(cameraUpdate)
+                        naverMap!!.cameraPosition = cameraPosition
+                    }
 
                 }
 

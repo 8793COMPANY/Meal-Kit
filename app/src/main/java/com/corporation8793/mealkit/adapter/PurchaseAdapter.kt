@@ -77,7 +77,7 @@ class PurchaseAdapter (val activity: Activity?,private val context: Context?, va
                 intent.putExtra("price",item.kit_price)
                 Log.e("point",item.kit_price.toInt().div(100).toString())
                 intent.putExtra("order_point",(item.kit_price.toInt()).div(100).toString())
-                intent.putExtra("address",item.status)
+                intent.putExtra("address",item.address)
                 activity!!.startActivity(intent)
             }
 
