@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.corporation8793.mealkit.MainApplication
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.databinding.ActivitySelectProductBinding
 
@@ -75,16 +76,24 @@ class SelectProductActivity : AppCompatActivity() {
 
 
         binding.selectProductOrderBtn.setOnClickListener {
-            var intent = Intent(this, SelectStoreActivity::class.java)
-            intent.putExtra("id",id)
-            intent.putExtra("type",type)
-            intent.putExtra("category",category)
-            intent.putExtra("img",img)
-            intent.putExtra("name",name)
-            intent.putExtra("price",price)
-            intent.putExtra("quantity",binding.selectProductCountText.text.toString())
-            intent.putExtra("product_amount",productAmount)
-            intent.putExtra("final_money",finalMoney)
+            var intent : Intent
+            if (type == "0") {
+                intent = Intent(this, SelectStoreActivity::class.java)
+
+            }else{
+                intent = Intent(this, PayMentActivity::class.java)
+            }
+
+            intent.putExtra("id", id)
+            intent.putExtra("type", type)
+            intent.putExtra("category", category)
+            intent.putExtra("img", img)
+            intent.putExtra("name", name)
+            intent.putExtra("price", price)
+            intent.putExtra("quantity", binding.selectProductCountText.text.toString())
+            intent.putExtra("product_amount", productAmount)
+            intent.putExtra("final_money", finalMoney)
+            intent.putExtra("address", "")
 
 
             startActivity(intent);

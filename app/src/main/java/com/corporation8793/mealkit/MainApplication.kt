@@ -161,7 +161,7 @@ class MainApplication : Application() {
             if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                 result = true
             } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-                result = false
+                result = true
             }
         }
         return result

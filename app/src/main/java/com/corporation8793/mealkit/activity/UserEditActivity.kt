@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.corporation8793.mealkit.MainApplication
@@ -65,6 +66,7 @@ class UserEditActivity : AppCompatActivity() {
         }
 
         binding.userEditBtn.setOnClickListener {
+            binding.joinProgress.visibility = View.VISIBLE
 
             val signUpBody =  SignUpBody(
                 Billing(binding.nameInputBox.text.toString().trim(),  binding.addressInputBox.text.toString(),    binding.addressDetailInputBox.text.toString(),   binding.postCodeInputBox.text.toString(), binding.phoneNumberInputBox.text.toString()),
@@ -77,8 +79,10 @@ class UserEditActivity : AppCompatActivity() {
 
                 GlobalScope.launch(Dispatchers.Main) {
                     if(result.first.equals("200")){
+                        binding.joinProgress.visibility = View.GONE
                         MainApplication.instance.setCustomer(result.second)
                         Toast.makeText(this@UserEditActivity,"수정 되었습니다.",1000).show();
+
                         finish()
                     }
                 }

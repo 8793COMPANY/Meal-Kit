@@ -11,4 +11,5 @@ data class PurchaseItem(
        val kit_price : String,
        val count :  String,
        val status:  String,
+        val address:  String,
 )

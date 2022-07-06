@@ -56,6 +56,7 @@ class MyFragment() : Fragment() {
         val user_name = view.findViewById<TextView>(R.id.user_name)
         val go_user_info_edit_btn = view.findViewById<TextView>(R.id.go_user_info_edit_btn)
 
+
         val personal_information_processing_policy = view.findViewById<TextView>(R.id.personal_information_processing_policy)
         val terms_and_conditions = view.findViewById<TextView>(R.id.terms_and_conditions)
         val refund_and_return_policy = view.findViewById<TextView>(R.id.refund_and_return_policy)
