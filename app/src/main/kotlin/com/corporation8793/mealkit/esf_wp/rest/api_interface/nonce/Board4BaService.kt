@@ -101,7 +101,8 @@ interface Board4BaService {
     @POST("/wp-json/acf/v3/posts/{id}")
     fun updatePostAcf(@Header("Authorization") h1 : String,
                       @Path("id") id : String?,
-                      @Query("fields[product]") product : String?) : Call<PostAcf>
+                      @Query("fields[product]") product : String?,
+                      @Query("fields[profile_img]") profile_img : String?) : Call<PostAcf>
     /**
      * 레시피 좋아요 메타 수정
      * @author  두동근

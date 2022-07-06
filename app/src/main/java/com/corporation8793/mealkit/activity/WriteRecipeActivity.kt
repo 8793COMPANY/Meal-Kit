@@ -139,7 +139,8 @@ class WriteRecipeActivity : AppCompatActivity() {
 
             val addMeta = boardRepository.updatePostAcf(
                     responseCode?.id,
-                    binding.useMealkit.text.toString()
+                    binding.useMealkit.text.toString(),
+                    MainApplication.instance.user.meta_data.filter { metaData -> metaData.key == "profile_img" }.first().value.toString()
             )
 
             println("response Code : $responseCode\n")

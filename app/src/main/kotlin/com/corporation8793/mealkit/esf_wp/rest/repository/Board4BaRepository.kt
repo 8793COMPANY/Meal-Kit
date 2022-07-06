@@ -159,8 +159,8 @@ class Board4BaRepository(val basicAuth : String) {
      * 레시피 메타 수정
      * @author  두동근
      */
-    fun updatePostAcf(id : String?, product : String?) : Pair<String, PostAcf?> {
-        val response = RestClient.board4BaService.updatePostAcf(basicAuth, id, product).execute()
+    fun updatePostAcf(id : String?, product : String?, profile_img : String) : Pair<String, PostAcf?> {
+        val response = RestClient.board4BaService.updatePostAcf(basicAuth, id, product, profile_img).execute()
 
         return Pair(response.code().toString(), response.body())
     }
@@ -189,7 +189,8 @@ class Board4BaRepository(val basicAuth : String) {
                                     PostAcf(
                                         post.acf.product,
                                         post.acf.price,
-                                        pl
+                                        pl,
+                                        post.acf.profile_img
                                     )
                                 )
                             ).execute()
@@ -204,7 +205,8 @@ class Board4BaRepository(val basicAuth : String) {
                                     PostAcf(
                                         post.acf.product,
                                         post.acf.price,
-                                        pl
+                                        pl,
+                                        post.acf.profile_img
                                     )
                                 )
                             ).execute()
@@ -230,7 +232,8 @@ class Board4BaRepository(val basicAuth : String) {
                                     PostAcf(
                                         post.acf.product,
                                         post.acf.price,
-                                        pl
+                                        pl,
+                                        post.acf.profile_img
                                     )
                                 )
                             ).execute()
@@ -245,7 +248,8 @@ class Board4BaRepository(val basicAuth : String) {
                                     PostAcf(
                                         post.acf.product,
                                         post.acf.price,
-                                        pl
+                                        pl,
+                                        post.acf.profile_img
                                     )
                                 )
                             ).execute()
