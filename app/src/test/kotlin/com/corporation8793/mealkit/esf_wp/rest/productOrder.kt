@@ -59,8 +59,8 @@ class productOrder {
             payment_url = null
         )
         // 주문 시작
-        //val makeOrderResponse = boardRepository.makeOrder(myOrder)
-        val makeOrderResponse = boardRepository.makeOrder(myOrder2)
+        val makeOrderResponse = boardRepository.makeOrder(myOrder)
+        //val makeOrderResponse = boardRepository.makeOrder(myOrder2)
         // 주문 응답
         println("productOrder : ${makeOrderResponse.first}, ${makeOrderResponse.second}\n")
 
@@ -72,6 +72,7 @@ class productOrder {
         println("주문내역 : ${makeOrderResponse.second?.line_items?.first()?.name}|${makeOrderResponse.second?.line_items?.first()?.quantity}개")
         println("결제금액 : ${makeOrderResponse.second?.line_items?.first()?.total}")
         println("적립금 : ${makeOrderResponse.second?.meta_data?.filter { orderMeta -> orderMeta.key == "order_point" }?.first()?.value}")
+        println("payment_url : ${makeOrderResponse.second?.payment_url}")
         println("-----------------------------\n")
 
         println("====== EndTest         ======")
