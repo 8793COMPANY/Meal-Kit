@@ -220,7 +220,7 @@ class JoinActivity : AppCompatActivity() {
                         arrayOf(
                             Meta_data(id = null, key = "recommender", value = binding.recommenderCodeInputBox.text.toString()),
                             Meta_data(id = null, key = "point", value = 0),
-                            Meta_data(id = null, key = "profile_img", value = 1499)
+                            Meta_data(id = null, key = "profile_img", value = "http://eatsofresh.co.kr/wp-content/uploads/woocommerce-placeholder.png")
                             )
                         )
                 )

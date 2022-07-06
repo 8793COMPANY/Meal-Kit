@@ -65,7 +65,7 @@ class RecipeFragment() : Fragment() {
 
         recipe_like_btn.setOnClickListener {
             if (recipe_like_btn.isSelected){
-
+//                recipe_like_btn.isSelected = false
 
                 GlobalScope.launch(Dispatchers.Default) {
                     val resultOn = MainApplication.instance.board4BaRepository.updatePostLikes(id.toString(),MainApplication.instance.user.id,"OFF");
@@ -76,6 +76,7 @@ class RecipeFragment() : Fragment() {
                     }
                 }
             }else{
+//                recipe_like_btn.isSelected = true
                 GlobalScope.launch(Dispatchers.Default) {
                     val resultOn = MainApplication.instance.board4BaRepository.updatePostLikes(id.toString(),MainApplication.instance.user.id,"ON");
                     GlobalScope.launch(Dispatchers.Main) {

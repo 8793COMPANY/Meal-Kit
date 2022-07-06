@@ -70,9 +70,9 @@ class RecipeAdapter (private val context: Context?, val height : Int, val color 
 //                kitImg.setBackgroundResource(R.color.app_basic_color)
 //            }else
             Log.e("img",item.img)
-//                Glide.with(context!!).load(item.img).diskCacheStrategy(DiskCacheStrategy.ALL).into(recipeImg)
-            Glide.with(context!!).load(item.user_img).into(userImg)
-            Glide.with(context!!).load(R.drawable.recipe_img_test).diskCacheStrategy(DiskCacheStrategy.ALL).into(recipeImg)
+                Glide.with(context!!).load(item.img).diskCacheStrategy(DiskCacheStrategy.ALL).into(recipeImg)
+//            Glide.with(context!!).load(item.user_img).into(userImg)
+//            Glide.with(context!!).load(R.drawable.recipe_img_test).diskCacheStrategy(DiskCacheStrategy.ALL).into(recipeImg)
 
             itemView.setOnClickListener{
                 var bundle = bundleOf("id" to item.id, "like" to item.like)

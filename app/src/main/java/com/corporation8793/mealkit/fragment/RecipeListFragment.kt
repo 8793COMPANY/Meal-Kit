@@ -115,21 +115,30 @@ class RecipeListFragment() : Fragment() {
             recipelist_progress.visibility=View.VISIBLE;
             val item : List<Post> = RestClient.board4BaService.retrievePostInCategories(categories = RestClient.RECIPE_CUSTOMER).execute().body()!!
             val id = MainApplication.instance.user.id;
+            item.asSequence()
 
 
 
                     alldatas.clear()
                     datas.clear()
             Log.e("item",item.size.toString())
+
                     item.forEach {
                         Log.e("it",it.toString())
-                        Log.e("price",it.featured_media_src_url)
+                        //Log.e("price",it.featured_media_src_url)
                         var like_count = "0"
-                        val authorData = RestClient.nonceService.getValidUserInfo(it.author).execute().body()!!
-                        val filteredData = authorData.meta_data?.filter { metaData -> metaData.key == "profile_img" }
+//                        val authorData = RestClient.nonceService.getValidUserInfo(it.author).execute().body()!!
+                        Log.e("hi","in")
+                        //val filteredData = authorData.meta_data?.filter { metaData -> metaData.key == "profile_img" }
 
+//<<<<<<< HEAD
 //                        var authorImage = RestClient.board4BaService.retrieveMedia(filteredData?.first()?.value.toString()).execute().body()!!
 //                        println("Author Profile Image URL : ${authorImage.guid?.rendered}\n")
+//=======
+                        //var authorImage = RestClient.board4BaService.retrieveMedia(filteredData?.first()?.value.toString()).execute().body()!!
+//                        var authorImage = authorData.meta_data?.filter { metaData -> metaData.key == "profile_img" }!!.first().value.toString()
+//                        println("Author Profile Image URL : ${authorImage}\n")
+
 //                        if (pr.acf.product_likes.toString()!! == null)
 //                            like_count = "0"
 //                        else
@@ -148,14 +157,20 @@ class RecipeListFragment() : Fragment() {
                             like = false
                         }
 
-                        datas.add(RecipeItem(it.id!!,"",it.title.rendered,replaceText(it.excerpt.rendered),"",like,"0"))
-
-                        alldatas.add(RecipeItem(it.id!!,"",it.title.rendered,replaceText(it.excerpt.rendered),"",like,"0"))
+//
+//                        datas.add(RecipeItem(it.id!!,"",it.title.rendered,replaceText(it.excerpt.rendered),"",like,"0"))
+//
+//                        alldatas.add(RecipeItem(it.id!!,"",it.title.rendered,replaceText(it.excerpt.rendered),"",like,"0"))
 
 
 //                        datas.add(RecipeItem(it.id!!,it.featured_media_src_url,it.title.rendered,replaceText(it.excerpt.rendered),authorImage.guid?.rendered!!,like,"0"))
 //
 //                        alldatas.add(RecipeItem(it.id!!,it.featured_media_src_url,it.title.rendered,replaceText(it.excerpt.rendered),authorImage.guid?.rendered!!,like,"0"))
+
+                        datas.add(RecipeItem(it.id!!,it.featured_media_src_url,it.title.rendered,replaceText(it.excerpt.rendered),"",like,"0"))
+
+                        alldatas.add(RecipeItem(it.id!!,it.featured_media_src_url,it.title.rendered,replaceText(it.excerpt.rendered),"",like,"0"))
+
 
                     //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
