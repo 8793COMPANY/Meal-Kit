@@ -63,11 +63,14 @@ class CreatePostWithMedia {
         // 3번 리스트 불러오기에서 조그만 글쓴이 프로필 사진 가져올때 사용합니다.
 
         val authorData = nonceRepository.getValidUserInfo(responseCode2.second?.first()?.author)
-        val filteredData = authorData.second?.meta_data?.filter { metaData -> metaData.key == "profile_img" }
+        //val filteredData = authorData.second?.meta_data?.filter { metaData -> metaData.key == "profile_img" }
+        //    ?.first()?.value.toString()
 
-        var authorImage = board4BaRepository.retrieveMedia(filteredData?.first()?.value.toString())
+        //var authorImage = board4BaRepository.retrieveMedia(filteredData?.first()?.value.toString())
+        var authorImage = authorData.second?.meta_data?.filter { metaData -> metaData.key == "profile_img" }
+            ?.first()?.value.toString()
 
-        println("Author Profile Image URL : ${authorImage.second?.guid?.rendered}\n")
+        println("Author Profile Image URL : ${authorImage}\n")
 
 
         println("------ 5. Retrieve One (단일 게시물 보기)   ------")
