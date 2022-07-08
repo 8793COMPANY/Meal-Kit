@@ -112,30 +112,33 @@ class RecipeListFragment() : Fragment() {
 
 
         GlobalScope.launch(Dispatchers.Default) {
-            recipelist_progress.visibility=View.VISIBLE;
-            val item : List<Post> = RestClient.board4BaService.retrievePostInCategories(categories = RestClient.RECIPE_CUSTOMER).execute().body()!!
-            val id = MainApplication.instance.user.id;
-            item.asSequence()
+            recipelist_progress.visibility = View.VISIBLE
+            val item: List<Post> =
+                RestClient.board4BaService.retrievePostInCategories(categories = RestClient.RECIPE_CUSTOMER)
+                    .execute().body()!!
+            val id = MainApplication.instance.user.id
+
+            Log.e("item total log !!", item.toString())
+
+            alldatas.clear()
+            datas.clear()
+
+            Log.e("item", item.size.toString())
 
 
-
-                    alldatas.clear()
-                    datas.clear()
-            Log.e("item",item.size.toString())
-
-                    item.forEach {
-                        Log.e("it",it.toString())
-                        //Log.e("price",it.featured_media_src_url)
-                        var like_count = "0"
+            item.forEach {
+                Log.e("it", it.toString())
+                //Log.e("price",it.featured_media_src_url)
+                var like_count = "0"
 //                        val authorData = RestClient.nonceService.getValidUserInfo(it.author).execute().body()!!
-                        Log.e("hi","in")
-                        //val filteredData = authorData.meta_data?.filter { metaData -> metaData.key == "profile_img" }
+                Log.e("hi", "in")
+                //val filteredData = authorData.meta_data?.filter { metaData -> metaData.key == "profile_img" }
 
 //<<<<<<< HEAD
 //                        var authorImage = RestClient.board4BaService.retrieveMedia(filteredData?.first()?.value.toString()).execute().body()!!
 //                        println("Author Profile Image URL : ${authorImage.guid?.rendered}\n")
 //=======
-                        //var authorImage = RestClient.board4BaService.retrieveMedia(filteredData?.first()?.value.toString()).execute().body()!!
+                //var authorImage = RestClient.board4BaService.retrieveMedia(filteredData?.first()?.value.toString()).execute().body()!!
 //                        var authorImage = authorData.meta_data?.filter { metaData -> metaData.key == "profile_img" }!!.first().value.toString()
 //                        println("Author Profile Image URL : ${authorImage}\n")
 
@@ -144,18 +147,32 @@ class RecipeListFragment() : Fragment() {
 //                        else
 //                            like_count = pr.acf.product_likes.toString()
 
-                        var like = false;
-                        if(it.acf.product_likes != null && it.acf.product_likes !is Boolean) {
+//                        var like = false;
+//                        if(it.acf.product_likes != null && it.acf.product_likes !is Boolean) {
+//                            var pl = it.acf.product_likes as ArrayList<Int>
+//                            pl.forEach { i ->
+//                                if(i == id.toInt()){
+//                                    like = true;
+//                                    return@forEach
+//                                }
+                GlobalScope.launch(Dispatchers.Main) {
+
+                    item.forEach {
+                        Log.e("it", it.toString())
+
+                        var like_count = "0"
+                        val profile_img = it.acf.profile_img
+
+                        var like = false
+                        if (it.acf.product_likes != null && it.acf.product_likes !is Boolean) {
                             var pl = it.acf.product_likes as ArrayList<Int>
                             pl.forEach { i ->
-                                if(i == id.toInt()){
+                                if (i == id.toInt()) {
                                     like = true;
                                     return@forEach
                                 }
                             }
-                        } else {
-                            like = false
-                        }
+
 
 //
 //                        datas.add(RecipeItem(it.id!!,"",it.title.rendered,replaceText(it.excerpt.rendered),"",like,"0"))
@@ -167,12 +184,12 @@ class RecipeListFragment() : Fragment() {
 //
 //                        alldatas.add(RecipeItem(it.id!!,it.featured_media_src_url,it.title.rendered,replaceText(it.excerpt.rendered),authorImage.guid?.rendered!!,like,"0"))
 
-                        datas.add(RecipeItem(it.id!!,it.featured_media_src_url,it.title.rendered,replaceText(it.excerpt.rendered),"",like,"0"))
+//                        datas.add(RecipeItem(it.id!!,it.featured_media_src_url,it.title.rendered,replaceText(it.excerpt.rendered),"",like,"0"))
+//
+//                        alldatas.add(RecipeItem(it.id!!,it.featured_media_src_url,it.title.rendered,replaceText(it.excerpt.rendered),"",like,"0"))
 
-                        alldatas.add(RecipeItem(it.id!!,it.featured_media_src_url,it.title.rendered,replaceText(it.excerpt.rendered),"",like,"0"))
 
-
-                    //                        println("상품 카테고리 : ${pr.categories.first().name}")
+                            //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
 //                        println("별점 (5.00) : ${pr.average_rating}")
 //                        println("상품 이미지 URL : ${pr.images.first().src}")
@@ -180,15 +197,45 @@ class RecipeListFragment() : Fragment() {
 //                        println("상품가격 : ${pr.price}원")
 //                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
 //                        println("---------------")
+
+                        } else {
+                            like = false
+
+                        }
+                        Log.e("랄라",profile_img)
+                        datas.add(
+                            RecipeItem(
+                                it.id!!,
+                                it.featured_media_src_url,
+                                it.title.rendered,
+                                replaceText(it.excerpt.rendered),
+                                profile_img,
+                                like,
+                                "0"
+                            )
+                        )
+
+                        alldatas.add(
+                            RecipeItem(
+                                it.id!!,
+                                it.featured_media_src_url,
+                                it.title.rendered,
+                                replaceText(it.excerpt.rendered),
+                                profile_img,
+                                like,
+                                "0"
+                            )
+                        )
+
                     }
 
-            GlobalScope.launch(Dispatchers.Main) {
                     recipeAdapter.datas = datas
-                        recipeAdapter.alldatas=alldatas
+                    recipeAdapter.alldatas = alldatas
                     recipeAdapter.notifyDataSetChanged()
-                        recipelist_progress.visibility=View.GONE;
+                    recipelist_progress.visibility = View.GONE;
                 }
 
+            }
         }
 
 

@@ -54,9 +54,9 @@ class PurchaseAdapter (val activity: Activity?,private val context: Context?, va
 //        private val kit_score_btn = itemView.findViewById<TextView>(R.id.kit_score_btn)
 
         fun bind(item: PurchaseItem) {
-            Log.e("bind","in")
-
-            Glide.with(context!!).load(item.img).into(kitImg)
+            Log.e("item img",item.img)
+            if (item.img != "0")
+                Glide.with(context!!).load(item.img).into(kitImg)
 
             purchasing_date.setText(item.date)
             kit_shop_name.setText(item.shop_name)
@@ -79,6 +79,10 @@ class PurchaseAdapter (val activity: Activity?,private val context: Context?, va
                 intent.putExtra("order_point",(item.kit_price.toInt()).div(100).toString())
                 intent.putExtra("address",item.address)
                 activity!!.startActivity(intent)
+            }
+
+            itemView.setOnClickListener {
+                Log.e("position",adapterPosition.toString())
             }
 
 //            kit_score_btn.setOnClickListener{

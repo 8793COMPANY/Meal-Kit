@@ -94,17 +94,21 @@ class HomeFragment() : Fragment() {
         }
 
 //
-        val tabName = arrayOf<String>("육지","바다"," 산","해외")
+        val tabName = arrayOf<String>("육지","바다"," 산","해외","테스트","테스트2")
         val imageResId = intArrayOf(
                 R.drawable.land_icon,
                 R.drawable.sea_icon,
                 R.drawable.mount_icon,
-                R.drawable.overseas_icon)
+                R.drawable.overseas_icon,
+            R.drawable.mount_icon,
+            R.drawable.overseas_icon)
         val textColor = intArrayOf(
                 R.color.category_land_color,
                 R.color.category_sea_color,
                 R.color.category_mount_color,
-                R.color.category_overseas_color)
+                R.color.category_overseas_color,
+            R.color.category_sea_color,
+            R.color.category_mount_color)
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             Log.e("hello","tab in")

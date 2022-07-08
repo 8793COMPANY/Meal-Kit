@@ -84,56 +84,128 @@
             app:layout_constraintTop_toBottomOf="@+id/total_point_box"
             app:layout_constraintBottom_toBottomOf="parent"></View>
 
-      <androidx.appcompat.widget.AppCompatButton
-          android:id="@+id/newest_sort_btn"
-          android:layout_width="0dp"
-          android:layout_height="0dp"
-          android:background="@drawable/completeorder_orderlist_btn"
-          android:text="최신순"
-          android:textSize="12dp"
-          android:textColor="@color/app_basic_color"
-          android:gravity="center"
-          android:fontFamily="@font/nskr_medium"
-          android:includeFontPadding="false"
-          app:layout_constraintDimensionRatio="122:50"
-          app:layout_constraintWidth_percent="0.16"
-          app:layout_constraintVertical_bias="0.05"
-          app:layout_constraintHorizontal_bias="0"
-          app:layout_constraintTop_toBottomOf="@+id/border"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintLeft_toLeftOf="@id/left_line"
-          app:layout_constraintRight_toRightOf="@+id/right_line"></androidx.appcompat.widget.AppCompatButton>
-
-
-
         <TextView
-            android:id="@+id/total_point_count"
+            android:id="@+id/purchase_list_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="13건"
+            android:text="최근 이용 내역"
+            android:textColor="@color/black"
             android:textSize="14dp"
-            android:textColor="@color/text_color"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/nskr_medium"
             android:includeFontPadding="false"
-            android:gravity="center"
-            app:layout_constraintVertical_bias="0.5"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintTop_toTopOf="@+id/newest_sort_btn"
-            app:layout_constraintBottom_toBottomOf="@+id/newest_sort_btn"
-            app:layout_constraintLeft_toLeftOf="@+id/left_line"
-            app:layout_constraintRight_toRightOf="@+id/right_line"></TextView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/point_list"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="15dp"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintTop_toBottomOf="@+id/border"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/left_line"
-            app:layout_constraintRight_toRightOf="@+id/right_line"
-            app:layout_constraintTop_toBottomOf="@+id/newest_sort_btn"></androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintRight_toRightOf="@id/right_line"
+            app:layout_constraintHorizontal_bias="0"></TextView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        <Spinner-->
+<!--            android:id="@+id/spinner"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintWidth_percent="0.1"-->
+<!--            android:spinnerMode="dropdown"-->
+
+<!--            app:layout_constraintTop_toTopOf="@+id/total_point_count"-->
+<!--            app:layout_constraintLeft_toLeftOf="@+id/left_line"-->
+<!--            app:layout_constraintRight_toRightOf="@+id/right_line"></Spinner>-->
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/purchase_list_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/left_line"
+            app:layout_constraintRight_toRightOf="@id/right_line"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintHorizontal_bias="1"
+            >
+
+            <TextView
+                android:id="@+id/total_point_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0건"
+                android:textSize="14dp"
+                android:textColor="@color/text_color"
+                android:fontFamily="sans-serif"
+                android:includeFontPadding="false"
+                android:gravity="center"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/down_icon"></TextView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/down_icon"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintWidth_percent="0.05"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintTop_toTopOf="@id/total_point_count"
+                app:layout_constraintLeft_toRightOf="@+id/total_point_count"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@drawable/down_icon"></androidx.appcompat.widget.AppCompatButton>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/point_list_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/purchase_list_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/left_line"
+            app:layout_constraintRight_toRightOf="@+id/right_line">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/newest_sort_btn"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/completeorder_orderlist_btn"
+                android:text="최신순"
+                android:textSize="12dp"
+                android:textColor="@color/app_basic_color"
+                android:gravity="center"
+                android:fontFamily="@font/nskr_medium"
+                android:includeFontPadding="false"
+                app:layout_constraintDimensionRatio="122:50"
+                app:layout_constraintWidth_percent="0.16"
+                android:layout_marginTop="10dp"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"></androidx.appcompat.widget.AppCompatButton>
+
+
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/point_list"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="15dp"
+                android:overScrollMode="never"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/newest_sort_btn"></androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 
