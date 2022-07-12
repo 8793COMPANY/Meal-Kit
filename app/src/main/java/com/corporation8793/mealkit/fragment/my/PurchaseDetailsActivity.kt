@@ -61,6 +61,7 @@ class PurchaseDetailsActivity : AppCompatActivity() {
 
         val lm = LinearLayoutManager(this)
         binding.purchaseList.layoutManager = lm
+        var pos =0
 
 
         GlobalScope.launch(Dispatchers.Default) {
@@ -68,23 +69,46 @@ class PurchaseDetailsActivity : AppCompatActivity() {
             val item = RestClient.boardService.listAllOrder(MainApplication.instance.user.id).execute().body()!!
             datas.apply {
                 item.forEach {
+                    var img_pos =0
                     Log.e("item",it.toString())
                     var address_type = "0"
                     var status = it.status.toString()
+                    Log.e("meta_data","start")
                     if (it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.size != 0)
                         address_type = it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.get(0).value.toString()
 //                        Log.e("in!",it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.get(0).value.toString())
-
+                    Log.e("meta_data","end")
                     if (it.status.equals("failed"))
                         status = "조회 실패"
                     else
                         status = kit_status[it.status]!!
 
-                    var img = MainApplication.instance.boardRepository.retrieveOneProduct(it.line_items.get(0).product_id).second!!.images.get(0).src
+                    Log.e("img ","start")
 
-                    add(PurchaseItem(address_type,img,it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
+
+                    Log.e("img","end")
+                    add(PurchaseItem(pos,address_type,"0",it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
                             it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),
                             it.line_items.get(0).total,it.line_items.get(0).quantity,status,it.billing.address_1+"\n"+it.billing.address_2))
+
+                    img_pos = pos
+                    GlobalScope.launch(Dispatchers.Default) {
+                        var img = MainApplication.instance.boardRepository.retrieveOneProduct(it.line_items.get(0).product_id).second!!.images.get(0).src
+                        if (item.size > img_pos)
+                        datas.get(img_pos).img= img
+//                        datas.get(pos).img= img
+                        GlobalScope.launch(Dispatchers.Main) {
+                            adapter.notifyDataSetChanged()
+                        }
+                    }
+
+                    pos++
+
+                    GlobalScope.launch(Dispatchers.Main) {
+                        adapter.datas = datas
+                        adapter.notifyDataSetChanged()
+                        binding.purchaseProgress.visibility = View.GONE
+                    }
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
 //                        println("별점 (5.00) : ${pr.average_rating}")
@@ -95,11 +119,13 @@ class PurchaseDetailsActivity : AppCompatActivity() {
 //                        println("---------------")
 
                 }
-                GlobalScope.launch(Dispatchers.Main) {
-                    adapter.datas = datas
-                    adapter.notifyDataSetChanged()
-                    binding.purchaseProgress.visibility = View.GONE
-                }
+
+//                GlobalScope.launch(Dispatchers.Main) {
+//                    adapter.datas = datas
+//                    adapter.notifyDataSetChanged()
+//                    binding.purchaseProgress.visibility = View.GONE
+//                }
+
             }
 //                binding.checkText.visibility = View.VISIBLE
         }

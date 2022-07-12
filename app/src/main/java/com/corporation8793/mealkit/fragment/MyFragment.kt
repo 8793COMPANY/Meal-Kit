@@ -37,6 +37,7 @@ class MyFragment() : Fragment() {
     private var param2: String? = null
     val datas = ArrayList<MyItem>()
     lateinit var sharedPreference : SharedPreferences
+    lateinit var user_name : TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +54,7 @@ class MyFragment() : Fragment() {
         var view = inflater.inflate(R.layout.fragment_my, container, false)
 
         val my_list = view.findViewById<GridView>(R.id.my_list)
-        val user_name = view.findViewById<TextView>(R.id.user_name)
+        user_name = view.findViewById<TextView>(R.id.user_name)
         val go_user_info_edit_btn = view.findViewById<TextView>(R.id.go_user_info_edit_btn)
 
 
@@ -166,5 +167,11 @@ class MyFragment() : Fragment() {
                         putString(ARG_PARAM2, param2)
                     }
                 }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (user_name != null)
+            user_name.text = MainApplication.instance.user.first_name
     }
 }

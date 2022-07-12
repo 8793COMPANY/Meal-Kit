@@ -11,6 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.corporation8793.mealkit.R
 import com.corporation8793.mealkit.dto.RecipeItem
 import com.corporation8793.mealkit.esf_wp.rest.RestClient
@@ -68,8 +69,10 @@ class RecipeAdapter (private val context: Context?, val height : Int, val color 
 //            if (item.img == "0") {
 //                kitImg.setBackgroundResource(R.color.app_basic_color)
 //            }else
-                Glide.with(context!!).load(item.img).into(recipeImg)
+            Log.e("img",item.img)
+                Glide.with(context!!).load(item.img).diskCacheStrategy(DiskCacheStrategy.ALL).into(recipeImg)
             Glide.with(context!!).load(item.user_img).into(userImg)
+//            Glide.with(context!!).load(R.drawable.recipe_img_test).diskCacheStrategy(DiskCacheStrategy.ALL).into(recipeImg)
 
             itemView.setOnClickListener{
                 var bundle = bundleOf("id" to item.id, "like" to item.like)
