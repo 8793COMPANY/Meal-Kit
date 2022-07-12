@@ -4,6 +4,7 @@ package com.corporation8793.mealkit.esf_wp.rest.data
  * 레시피 data class
  * @author  두동근
  * @param   id                          게시물의 고유 번호(Post ID)
+ * @param   status                      게시물의 상태
  * @param   date                        게시물의 작성 일자
  * @param   author                      게시물을 작성한 회원
  * @param   categories                  게시물이 속한 카테고리
@@ -15,6 +16,7 @@ package com.corporation8793.mealkit.esf_wp.rest.data
  * @param   acf                         [Acf] 클래스
  */
 data class Post(val id : String?,
+                val status : String?,
                 val date : String?,
                 val author : String?,
                 val categories : Array<String>,
