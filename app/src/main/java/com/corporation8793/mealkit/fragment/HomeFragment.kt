@@ -94,7 +94,7 @@ class HomeFragment() : Fragment() {
         }
 
 //
-        val tabName = arrayOf<String>("육지","바다"," 산","해외","테스트","테스트2")
+        val tabName = arrayOf<String>("육지","바다"," 산","해외")
         val imageResId = intArrayOf(
                 R.drawable.land_icon,
                 R.drawable.sea_icon,

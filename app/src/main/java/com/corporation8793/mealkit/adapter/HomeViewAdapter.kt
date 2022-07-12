@@ -10,7 +10,7 @@ import com.corporation8793.mealkit.fragment.home.MountFragment
 import com.corporation8793.mealkit.fragment.home.OverseasFragment
 import com.corporation8793.mealkit.fragment.home.SeaFragment
 
-private const val NUM_TABS = 6
+private const val NUM_TABS = 4
 
 class HomeViewAdapter (fragment : Fragment) :
         FragmentStateAdapter(fragment) {
@@ -25,8 +25,8 @@ class HomeViewAdapter (fragment : Fragment) :
             1 -> return SeaFragment()
             2 -> return MountFragment()
             3 -> return OverseasFragment()
-            4 -> return MountFragment()
-            5 -> return OverseasFragment()
+//            4 -> return MountFragment()
+//            5 -> return OverseasFragment()
         }
         return LandFragment()
     }
