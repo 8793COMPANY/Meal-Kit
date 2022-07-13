@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.corporation8793.mealkit.fragment.HomeFragment"
+        android:name="com.corporation8793.itsofresh.fragment.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
 
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/best"
-        android:name="com.corporation8793.mealkit.fragment.BestFragment"
+        android:name="com.corporation8793.itsofresh.fragment.BestFragment"
         android:label="BestFragment"
         tools:layout="@layout/fragment_best">
 
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/recipe_list"
-        android:name="com.corporation8793.mealkit.fragment.RecipeListFragment"
+        android:name="com.corporation8793.itsofresh.fragment.RecipeListFragment"
         android:label="RecipeListFragment" >
 
 
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/shop"
-        android:name="com.corporation8793.mealkit.fragment.ShopFragment"
+        android:name="com.corporation8793.itsofresh.fragment.ShopFragment"
         android:label="ShopFragment" >
         <action
             android:id="@+id/action_shop_to_regionSearchFragment"
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/my"
-        android:name="com.corporation8793.mealkit.fragment.MyFragment"
+        android:name="com.corporation8793.itsofresh.fragment.MyFragment"
         android:label="MyFragment" >
         <action
             android:id="@+id/action_my_to_pointFragment"
@@ -64,15 +64,15 @@
     </fragment>
     <fragment
         android:id="@+id/recipeFragment"
-        android:name="com.corporation8793.mealkit.fragment.RecipeFragment"
+        android:name="com.corporation8793.itsofresh.fragment.RecipeFragment"
         android:label="RecipeFragment" />
     <fragment
         android:id="@+id/kitDetailFragment3"
-        android:name="com.corporation8793.mealkit.fragment.KitDetailFragment"
+        android:name="com.corporation8793.itsofresh.fragment.KitDetailFragment"
         android:label="KitDetailFragment" />
     <fragment
         android:id="@+id/pointFragment"
-        android:name="com.corporation8793.mealkit.fragment.PointFragment"
+        android:name="com.corporation8793.itsofresh.fragment.PointFragment"
         android:label="PointFragment" />
 
 
@@ -100,18 +100,18 @@
 
     <fragment
         android:id="@+id/challengeFragment"
-        android:name="com.corporation8793.mealkit.fragment.ChallengeFragment"
+        android:name="com.corporation8793.itsofresh.fragment.ChallengeFragment"
         android:label="fragment_challenge"
         tools:layout="@layout/fragment_challenge" />
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.corporation8793.mealkit.fragment.shop.MapFragment"
+        android:name="com.corporation8793.itsofresh.fragment.shop.MapFragment"
         android:label="MapFragment" >
 
     </fragment>
     <fragment
         android:id="@+id/shopListFragment"
-        android:name="com.corporation8793.mealkit.fragment.shop.ShopListFragment"
+        android:name="com.corporation8793.itsofresh.fragment.shop.ShopListFragment"
         android:label="ShopListFragment" >
         <action
             android:id="@+id/action_shopListFragment_to_mapFragment"
@@ -122,7 +122,7 @@
     </fragment>
     <fragment
         android:id="@+id/regionSearchFragment"
-        android:name="com.corporation8793.mealkit.fragment.shop.RegionSearchFragment"
+        android:name="com.corporation8793.itsofresh.fragment.shop.RegionSearchFragment"
         android:label="RegionSearchFragment" >
         <action
             android:id="@+id/action_regionSearchFragment_to_mapFragment"
