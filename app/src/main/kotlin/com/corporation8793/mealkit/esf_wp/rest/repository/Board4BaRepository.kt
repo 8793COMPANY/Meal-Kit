@@ -95,12 +95,10 @@ class Board4BaRepository(val basicAuth : String) {
      * * id([postId])가 일치하는 게시물을 수정합니다.
      * @author  두동근
      * @param   postId  게시물 id
-     * @param   title   제목
-     * @param   content 내용
      * @return  responseCode (expected : "200")
      */
-    fun updatePost(postId : String, title : String, content : String) : String {
-        val call = RestClient.board4BaService.updatePost(basicAuth, id = postId, title = title, content = content)
+    fun updatePost(postId : String) : String {
+        val call = RestClient.board4BaService.updatePost(basicAuth, id = postId)
 
         return call.execute().code().toString()
     }

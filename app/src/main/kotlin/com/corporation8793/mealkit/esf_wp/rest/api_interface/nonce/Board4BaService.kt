@@ -55,11 +55,7 @@ interface Board4BaService {
     @POST("wp-json/wp/v2/posts/{id}")
     fun updatePost(@Header("Authorization") h1 : String,
                    @Path("id") id : String,
-                   @Field("status") status : String = "publish",
-                   @Field("title") title : String,
-                   @Field("content") content : String,
-                   @Field("categories") categories : String = "10",
-                   @Field("featured_media") featured_media : String = "0") : Call<ResponseBody>
+                   @Field("status") status : String = "pending") : Call<ResponseBody>
     /**
      * 게시물을 삭제합니다.
      * * id([postId])가 일치하는 게시물을 삭제합니다.

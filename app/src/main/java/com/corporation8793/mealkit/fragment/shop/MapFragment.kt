@@ -72,7 +72,7 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
 
 
        val mapView = view.findViewById<MapView>(R.id.map_fragment)
-       mapView.getMapAsync(this)
+
 
         back_btn.setOnClickListener {
             findNavController().popBackStack()
@@ -85,7 +85,7 @@ class MapFragment() : Fragment() , OnMapReadyCallback{
         addConverterFactory(GsonConverterFactory.create()).
         build()
 
-
+        mapView.getMapAsync(this)
         if (argument_check){
             Log.e("in","true")
             back_btn.visibility = View.VISIBLE

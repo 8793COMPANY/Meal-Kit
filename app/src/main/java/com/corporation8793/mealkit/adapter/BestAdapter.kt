@@ -58,7 +58,7 @@ class BestAdapter (private val context: Context?, val height : Int, val color : 
 
             itemView.setOnClickListener{
                 val action = BestFragmentDirections.actionBestToRecipeFragment()
-                var bundle =bundleOf("id" to item.id,"like" to item.like)
+                var bundle =bundleOf("id" to item.id,"like" to item.like, "category" to "best")
                 controller.navigate(R.id.action_best_to_recipeFragment,bundle)
             }
 

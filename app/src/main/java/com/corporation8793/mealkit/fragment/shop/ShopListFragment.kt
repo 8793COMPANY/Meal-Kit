@@ -40,6 +40,9 @@ class ShopListFragment() : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     val datas = mutableListOf<ShopItem>()
+    lateinit var kindOfSearch : TabLayout
+    var tabIndex = 1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +50,9 @@ class ShopListFragment() : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        if (savedInstanceState != null)
+            tabIndex = savedInstanceState.getInt("tabIndex")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +61,7 @@ class ShopListFragment() : Fragment() {
         var view = inflater.inflate(R.layout.fragment_shop_list, container, false)
 
 
-        var kindOfSearch = view.findViewById<TabLayout>(R.id.kind_of_search)
+        kindOfSearch = view.findViewById<TabLayout>(R.id.kind_of_search)
         var viewpager = view.findViewById<ViewPager2>(R.id.viewpager)
         viewpager.adapter = SearchAdapter(activity!!)
         viewpager.apply {
@@ -89,12 +95,17 @@ class ShopListFragment() : Fragment() {
 
         })
 
-        viewpager.setCurrentItem(1,false)
+        viewpager.setCurrentItem(tabIndex,false)
 
 
 
 
         return view
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("tabIndex",kindOfSearch.selectedTabPosition)
     }
 
 

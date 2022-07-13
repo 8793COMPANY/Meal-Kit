@@ -75,7 +75,7 @@ class RecipeAdapter (private val context: Context?, val height : Int, val color 
 //            Glide.with(context!!).load(R.drawable.recipe_img_test).diskCacheStrategy(DiskCacheStrategy.ALL).into(recipeImg)
 
             itemView.setOnClickListener{
-                var bundle = bundleOf("id" to item.id, "like" to item.like)
+                var bundle = bundleOf("id" to item.id, "like" to item.like, "category" to "recipe")
                 controller.navigate(R.id.action_recipe_list_to_recipeFragment,bundle)
             }
 

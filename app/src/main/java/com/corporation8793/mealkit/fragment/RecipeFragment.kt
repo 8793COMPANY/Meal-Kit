@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_write_recipe.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.lang.IllegalStateException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,8 +60,15 @@ class RecipeFragment() : Fragment() {
         var recipe_like_btn = view.findViewById<ImageView>(R.id.recipe_like_btn);
         var id = arguments?.getString("id")
         var like = arguments?.getBoolean("like")
+        var category = arguments?.getString("category")
+
+        var report_text  = view.findViewById<TextView>(R.id.report_text)
 
         recipe_like_btn.isSelected = like!!;
+
+
+        if (category!!.equals("best"))
+            report_text.visibility = View.GONE
 
 
         recipe_like_btn.setOnClickListener {
@@ -89,6 +97,11 @@ class RecipeFragment() : Fragment() {
             }
         }
 
+        report_text.setOnClickListener {
+            val dialog = ReportDialog(requireActivity(),id!!)
+            dialog.show(parentFragmentManager!!,"hello")
+        }
+
 
         Log.e("id",id!!)
         view.findViewById<Button>(R.id.back_btn).setOnClickListener {
@@ -99,13 +112,21 @@ class RecipeFragment() : Fragment() {
             val item : Post = RestClient.board4BaService.retrieveOnePost(id).execute().body()!!
 
             GlobalScope.launch(Dispatchers.Main) {
-                Glide.with(requireActivity()).load(item.featured_media_src_url).into(view.findViewById(R.id.recipe_img))
-             view.findViewById<TextView>(R.id.recipe_name).setText(item.title.rendered)
-                view.findViewById<TextView>(R.id.recipe_info).setText(replaceText(item.excerpt.rendered))
-                view.findViewById<TextView>(R.id.use_kit).setText("사용 밀키트:"+item.acf.product)
-                view.findViewById<TextView>(R.id.detailed_recipe).setText(replaceText(item.content.rendered))
-                Log.e("content",item.content.rendered)
-                view.findViewById<TextView>(R.id.detailed_recipe).setText(Html.fromHtml((item.content.rendered)))
+                try {
+                    Glide.with(requireActivity()).load(item.featured_media_src_url)
+                        .into(view.findViewById(R.id.recipe_img))
+                    view.findViewById<TextView>(R.id.recipe_name).setText(item.title.rendered)
+                    view.findViewById<TextView>(R.id.recipe_info)
+                        .setText(replaceText(item.excerpt.rendered))
+                    view.findViewById<TextView>(R.id.use_kit).setText("사용 밀키트:" + item.acf.product)
+                    view.findViewById<TextView>(R.id.detailed_recipe)
+                        .setText(replaceText(item.content.rendered))
+                    Log.e("content", item.content.rendered)
+                    view.findViewById<TextView>(R.id.detailed_recipe)
+                        .setText(Html.fromHtml((item.content.rendered)))
+                }catch (e : IllegalStateException){
+                    Log.e("e","error~")
+                }
 
             }
 

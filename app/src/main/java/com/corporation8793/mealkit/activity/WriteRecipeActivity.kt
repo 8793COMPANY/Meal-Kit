@@ -66,9 +66,9 @@ class WriteRecipeActivity : AppCompatActivity() {
                     uploadRecipe(sharedPreference.getString("id", "test22").toString(), sharedPreference.getString("pw", "1234").toString())
                     GlobalScope.launch(Dispatchers.Main) {
                         binding.recipeRegisterProgress.visibility = View.GONE
-                        val intent = Intent(this@WriteRecipeActivity, MainActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        startActivity(intent)
+//                        val intent = Intent(this@WriteRecipeActivity, MainActivity::class.java)
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        startActivity(intent)
                         finish()
                     }
                 }
