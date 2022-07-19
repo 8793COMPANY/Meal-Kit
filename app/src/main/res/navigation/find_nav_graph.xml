@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/findIdFragment"
-        android:name="com.corporation8793.mealkit.fragment.find.FindIdFragment"
+        android:name="com.corporation8793.itsofresh.fragment.find.FindIdFragment"
         android:label="FindIdFragment" >
         <action
             android:id="@+id/action_findIdFragment_to_afterFindFragment"
@@ -14,15 +14,15 @@
     </fragment>
     <fragment
         android:id="@+id/findPwFragment"
-        android:name="com.corporation8793.mealkit.fragment.find.FindPwFragment"
+        android:name="com.corporation8793.itsofresh.fragment.find.FindPwFragment"
         android:label="FindPwFragment" />
     <fragment
         android:id="@+id/afterFindFragment"
-        android:name="com.corporation8793.mealkit.fragment.find.AfterFindFragment"
+        android:name="com.corporation8793.itsofresh.fragment.find.AfterFindFragment"
         android:label="AfterFindFragment" />
     <fragment
         android:id="@+id/findMainFragment"
-        android:name="com.corporation8793.mealkit.fragment.find.FindMainFragment"
+        android:name="com.corporation8793.itsofresh.fragment.find.FindMainFragment"
         android:label="FindMainFragment" />
 
     <action android:id="@+id/action_find_id_screen"

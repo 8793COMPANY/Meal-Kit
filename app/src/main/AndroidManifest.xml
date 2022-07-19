@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.corporation8793.mealkit">
+    package="com.corporation8793.itsofresh">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".MainApplication"
+        android:name="com.corporation8793.itsofresh.MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_main"
         android:label="@string/app_name"
@@ -24,16 +24,16 @@
         android:theme="@style/Theme.MealKit"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activity.AccessTermsActivity"
+            android:name="com.corporation8793.itsofresh.activity.AccessTermsActivity"
             android:exported="false" />
         <activity
-            android:name=".payment.WebPaymentActivity"
+            android:name="com.corporation8793.itsofresh.payment.WebPaymentActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.NetworkCheckActivity"
+            android:name="com.corporation8793.itsofresh.activity.NetworkCheckActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.IntroActivity"
+            android:name="com.corporation8793.itsofresh.activity.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,53 +42,53 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.UserEditActivity"
+            android:name="com.corporation8793.itsofresh.activity.UserEditActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.UserEditPwActivity"
+            android:name="com.corporation8793.itsofresh.activity.UserEditPwActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.AddreesWebActivity"
+            android:name="com.corporation8793.itsofresh.activity.AddreesWebActivity"
             android:exported="false" />
         <activity
-            android:name=".payment.CompleteOrdersActivity"
+            android:name="com.corporation8793.itsofresh.payment.CompleteOrdersActivity"
             android:exported="true" />
         <activity
-            android:name=".payment.SelectProductActivity"
+            android:name="com.corporation8793.itsofresh.payment.SelectProductActivity"
             android:exported="true" />
         <activity
-            android:name=".payment.PayMentActivity"
+            android:name="com.corporation8793.itsofresh.payment.PayMentActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.FindActivity"
+            android:name="com.corporation8793.itsofresh.activity.FindActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activity.ChangePwActivity" />
-        <activity android:name=".fragment.my.PurchaseDetailsActivity" />
+        <activity android:name="com.corporation8793.itsofresh.activity.ChangePwActivity" />
+        <activity android:name="com.corporation8793.itsofresh.fragment.my.PurchaseDetailsActivity" />
         <activity
-            android:name=".activity.PointActivity"
+            android:name="com.corporation8793.itsofresh.activity.PointActivity"
             android:exported="false" />
         <activity
-            android:name=".payment.SelectStoreActivity"
+            android:name="com.corporation8793.itsofresh.payment.SelectStoreActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activity.JoinActivity"
+            android:name="com.corporation8793.itsofresh.activity.JoinActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activity.WriteRecipeActivity"
+            android:name="com.corporation8793.itsofresh.activity.WriteRecipeActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.corporation8793.itsofresh.activity.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.corporation8793.itsofresh.activity.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activity.UserInfoActivity" />
+        <activity android:name="com.corporation8793.itsofresh.activity.UserInfoActivity" />
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
@@ -98,10 +98,10 @@
             android:value="9l8w6ft1l8" />
 
         <receiver
-            android:name=".receiver.ResetPedometer"
+            android:name="com.corporation8793.itsofresh.receiver.ResetPedometer"
             android:exported="false" />
         <receiver
-            android:name=".receiver.RebootReceiver"
+            android:name="com.corporation8793.itsofresh.receiver.RebootReceiver"
             android:directBootAware="true"
             android:enabled="true"
             android:exported="false"
@@ -112,7 +112,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".receiver.ShutdownReceiver"
+            android:name="com.corporation8793.itsofresh.receiver.ShutdownReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter android:priority="2147483647">
@@ -121,7 +121,7 @@
         </receiver>
 
         <service
-            android:name=".service.PedometerService"
+            android:name="com.corporation8793.itsofresh.service.PedometerService"
             android:enabled="true"
             android:exported="true" />
     </application>
