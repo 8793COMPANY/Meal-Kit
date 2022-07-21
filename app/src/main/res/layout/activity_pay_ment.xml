@@ -493,6 +493,7 @@
 
 
                 <EditText
+                    android:inputType="number"
                     android:id="@+id/payment_UsepointEdit"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -512,19 +513,51 @@
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck"></EditText>
 
                 <TextView
-
+                    android:id="@+id/payment_serviceablePointText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/payment_UsepointEdit"
                     app:layout_constraintLeft_toLeftOf="@id/payment_left_line3"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:text="사용가능 적립금 0원"
-                    android:textSize="14sp"
+                    android:text="사용가능 적립금"
+                    android:textSize="14dp"
                     android:textColor="@color/gray_797979"
-                    android:fontFamily="@font/nskr_medium"
+                    android:fontFamily="@font/noto_sans_kr_regular"
                     android:includeFontPadding="false"
                     app:layout_constraintRight_toRightOf="@+id/payment_right_line3"
-                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintHorizontal_bias="0.01"
+                    ></TextView>
+
+                <TextView
+                    android:id="@+id/payment_serviceablePoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/payment_UsepointEdit"
+                    app:layout_constraintLeft_toRightOf="@+id/payment_serviceablePointText"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="2208"
+                    android:textSize="14dp"
+                    android:textColor="@color/gray_797979"
+                    android:fontFamily="@font/noto_sans_kr_bold"
+                    android:includeFontPadding="false"
+                    app:layout_constraintRight_toRightOf="@+id/payment_right_line3"
+                    app:layout_constraintHorizontal_bias="0.01"
+                    ></TextView>
+
+                <TextView
+                    android:id="@+id/payment_serviceablePointWon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/payment_UsepointEdit"
+                    app:layout_constraintLeft_toRightOf="@+id/payment_serviceablePoint"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="원"
+                    android:textSize="14dp"
+                    android:textColor="@color/gray_797979"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:includeFontPadding="false"
+                    app:layout_constraintRight_toRightOf="@+id/payment_right_line3"
+                    app:layout_constraintHorizontal_bias="0"
                     ></TextView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -740,6 +773,7 @@
                     ></TextView>
 
                 <TextView
+                    android:id="@+id/payment_UsePoint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintRight_toRightOf="@+id/payment_right_line4"

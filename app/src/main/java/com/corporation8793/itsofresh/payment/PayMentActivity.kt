@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -34,6 +36,7 @@ class PayMentActivity : AppCompatActivity() {
     var address_2 = ""
     var post_code = ""
     var phone = ""
+    var my_point = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pay_ment)
@@ -96,6 +99,37 @@ class PayMentActivity : AppCompatActivity() {
             startActivityForResult(intent,1000)
         }
 
+        binding.paymentUsePointBtn.setOnClickListener {
+            binding.paymentUsepointEdit.setText(my_point)
+        }
+        var before_text = ""
+        binding.paymentUsepointEdit.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                before_text = p0.toString()
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if (p0!!.length != 0){
+                    if (p0.toString().length >= my_point.length){
+                        if (p0.toString().toInt() > my_point.toInt()) {
+                            binding.paymentUsepointEdit.setText(before_text)
+                            binding.paymentUsepointEdit.setSelection(binding.paymentUsepointEdit.text.length)
+
+                        }
+                    }
+                }else{
+//                    binding.paymentUsepointEdit.setText("")
+                }
+                binding.paymentUsePoint.setText(binding.paymentUsepointEdit.text.toString()+"원")
+                binding.paymentFinalPrice.setText((final_money - (binding.paymentUsepointEdit.text.toString().toInt())).toString()+"원")
+            }
+
+        })
+
 
         GlobalScope.launch(Dispatchers.Default) {
             val sharedPreference = getSharedPreferences("other", 0)
@@ -109,10 +143,17 @@ class PayMentActivity : AppCompatActivity() {
             post_code = value.billing.postcode
             phone = value.billing.phone
 
+            val validUserResponse = MainApplication.instance.nonceRepository.getValidUserInfo(user_id)
+            val currentUserTotalPoint = validUserResponse.second?.meta_data?.filter {
+                    metaData -> metaData.key == "point" }?.first()?.value.toString().toInt()
+            println(currentUserTotalPoint)
+            my_point = currentUserTotalPoint.toString()
+
 
             GlobalScope.launch(Dispatchers.Main) {
                 binding.paymentOrdererNameInput.setText(value.first_name)
                 binding.paymentOrdererContactInput.setText(phone)
+                binding.paymentServiceablePoint.setText(my_point)
                 if(type.equals("1")) {
                     binding.paymentAddress.setText(value.billing?.address_1 + ",\n")
                     binding.paymentAddressDetail.setText(value.billing?.address_2)
@@ -195,7 +236,7 @@ class PayMentActivity : AppCompatActivity() {
                     var shop_name = makeOrderResponse.second?.meta_data?.get(0)!!.value.toString()
                     var order_point = makeOrderResponse.second?.meta_data?.get(1)!!.value.toString()
                     if (type.equals("1"))
-                        address = address_1+" "+address_2
+                        address = address_1+"\n"+address_2
                     intent.putExtra("type","payment")
                     intent.putExtra("payment_url",makeOrderResponse.second?.payment_url)
                     intent.putExtra("address_type",type)
@@ -204,6 +245,7 @@ class PayMentActivity : AppCompatActivity() {
                     intent.putExtra("name",makeOrderResponse.second?.line_items?.first()?.name)
                     intent.putExtra("quantity",makeOrderResponse.second?.line_items?.first()?.quantity)
                     intent.putExtra("price",makeOrderResponse.second?.line_items?.first()?.total)
+                    intent.putExtra("order_point",order_point)
                     intent.putExtra("order_point",order_point)
                     intent.putExtra("address",address)
                     startActivity(intent);

@@ -53,7 +53,14 @@ data class ShippingLines(val method_id : String = "parcel", val method_title : S
  * 주문 Meta data
  * @author  두동근
  * @param   id          id
- * @param   key         key ("store_name(상호명)", "store_address(상호주소)", "order_point(적립금)", "is_parcel(플래그)")
+ * @param   key         key
+ *  * store_name(상호명)
+ *  * store_address(상호주소)
+ *  * order_point(적립금)
+ *  * is_parcel(플래그)
+ *  * _pafw_vacc_bank_name(무통장입금 은행명)
+ *  * _pafw_vacc_num(무통장입금 계좌번호)
+ *  * _pafw_vacc_depositor(무통장입금 예금주)
  * @param   value       value
  * @see     [Order.meta_data]
  */

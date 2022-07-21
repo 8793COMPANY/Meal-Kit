@@ -3,18 +3,25 @@ package com.corporation8793.itsofresh.payment
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.View
+import androidx.compose.runtime.key
 import androidx.databinding.DataBindingUtil
+import com.corporation8793.itsofresh.MainApplication
 import com.corporation8793.itsofresh.R
 import com.corporation8793.itsofresh.activity.MainActivity
 import com.corporation8793.itsofresh.databinding.ActivityCompleteOrdersBinding
 import com.corporation8793.itsofresh.fragment.my.PurchaseDetailsActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class CompleteOrdersActivity : AppCompatActivity() {
     lateinit var binding : ActivityCompleteOrdersBinding
     var type : String? = ""
+    var payment_check = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_complete_orders)
@@ -30,6 +37,33 @@ class CompleteOrdersActivity : AppCompatActivity() {
         var quantity = intent.getStringExtra("quantity")
         var order_point = intent.getStringExtra("order_point")
         var address = intent.getStringExtra("address")
+
+        GlobalScope.launch(Dispatchers.Default) {
+            var data =
+                MainApplication.instance.boardRepository.listAllOrder(MainApplication.instance.user.id).second?.filter { order -> order.id.toString() == order_id }
+            if (data!!.get(0).payment_method == "kcp_vbank")
+                payment_check = true
+            GlobalScope.launch(Dispatchers.Main) {
+                if (payment_check) {
+                    binding.completeOrdersPaymentWay.visibility = View.VISIBLE
+                    binding.completeOrdersPaymentWayText.visibility = View.VISIBLE
+                    var where =
+                        data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_bank_name" }
+                            .first().value
+                    var account_num =
+                        data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_num" }
+                            .first().value
+                    binding.completeOrdersPaymentWayText.setText(where.toString() + " | " + account_num)
+                }
+//                println(data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_bank_name" }
+//                    .first().value)
+//                println(data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_num" }
+//                    .first().value)
+//                println(data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_depositor" }
+//                    .first().value)
+            }
+        }
+
 
         if(type.equals("check"))
             binding.completeOrdersOrderListBtn.visibility = View.GONE
