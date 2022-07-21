@@ -57,6 +57,7 @@ data class ShippingLines(val method_id : String = "parcel", val method_title : S
  *  * store_name(상호명)
  *  * store_address(상호주소)
  *  * order_point(적립금)
+ *  * paid_point(사용한 포인트)
  *  * is_parcel(플래그)
  *  * _pafw_vacc_bank_name(무통장입금 은행명)
  *  * _pafw_vacc_num(무통장입금 계좌번호)
