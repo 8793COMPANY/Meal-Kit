@@ -2,6 +2,7 @@ package com.corporation8793.itsofresh.adapter
 
 import android.content.Context
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,9 +41,12 @@ class PointAdapter (private val context: Context?, val height : Int) : RecyclerV
             saving_date.text = item.saving_date
             saved_money.setText(Html.fromHtml(item.point))
 
-
-                if(saved_money.text.toString().contains("-")){
+            Log.e("item.point",saved_money.text.toString())
+                if(saved_money.text.toString().trim().contains("–")){
+                    Log.e("red","in")
                   saved_money.setTextColor(ContextCompat.getColor(context!!,R.color.red_ce2929))
+                }else{
+                    saved_money.setTextColor(ContextCompat.getColor(context!!,R.color.black))
                 }
             }
 

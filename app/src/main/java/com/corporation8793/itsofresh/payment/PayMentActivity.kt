@@ -121,11 +121,13 @@ class PayMentActivity : AppCompatActivity() {
 
                         }
                     }
+                    binding.paymentUsePoint.setText(binding.paymentUsepointEdit.text.toString()+"원")
+                    binding.paymentFinalPrice.setText((final_money - (binding.paymentUsepointEdit.text.toString().toInt())).toString()+"원")
                 }else{
-//                    binding.paymentUsepointEdit.setText("")
+                    binding.paymentUsePoint.setText("0"+"원")
+                    binding.paymentFinalPrice.setText(final_money.toString() +"원")
                 }
-                binding.paymentUsePoint.setText(binding.paymentUsepointEdit.text.toString()+"원")
-                binding.paymentFinalPrice.setText((final_money - (binding.paymentUsepointEdit.text.toString().toInt())).toString()+"원")
+
             }
 
         })
@@ -198,6 +200,7 @@ class PayMentActivity : AppCompatActivity() {
                                     OrderMeta(id = null, key = "store_name", value = shop!!),
                                     OrderMeta(id = null, key = "order_point", value = final_money.div(100).toString()),
                                     OrderMeta(id = null, key = "is_parcel", value = "1"),
+                                    OrderMeta(id = null, key = "paid_point", value = binding.paymentUsepointEdit.text.toString()),
                             ),
                             payment_url = null
                     )
@@ -215,6 +218,7 @@ class PayMentActivity : AppCompatActivity() {
                                     OrderMeta(id = null, key = "store_name", value = shop!!),
                                     OrderMeta(id = null, key = "order_point", value = final_money.div(100).toString()),
                                     OrderMeta(id = null, key = "is_parcel", value = "0"),
+                                    OrderMeta(id = null, key = "paid_point", value = binding.paymentUsepointEdit.text.toString()),
                             ),
                             payment_url = null
                     )
@@ -246,7 +250,7 @@ class PayMentActivity : AppCompatActivity() {
                     intent.putExtra("quantity",makeOrderResponse.second?.line_items?.first()?.quantity)
                     intent.putExtra("price",makeOrderResponse.second?.line_items?.first()?.total)
                     intent.putExtra("order_point",order_point)
-                    intent.putExtra("order_point",order_point)
+                    intent.putExtra("paid_point",binding.paymentUsepointEdit.text.toString())
                     intent.putExtra("address",address)
                     startActivity(intent);
 

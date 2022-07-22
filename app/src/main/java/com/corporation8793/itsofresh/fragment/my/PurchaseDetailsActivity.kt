@@ -76,6 +76,8 @@ class PurchaseDetailsActivity : AppCompatActivity() {
                     if (it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.size != 0)
                         address_type = it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.get(0).value.toString()
 //                        Log.e("in!",it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.get(0).value.toString())
+                    var paid_point = it.meta_data.filter { orderMeta ->  orderMeta.key == "paid_point"}.first().value.toString()
+                    Log.e("paid_point",paid_point)
                     Log.e("meta_data","end")
                     if (it.status.equals("failed"))
                         status = "조회 실패"
@@ -84,11 +86,23 @@ class PurchaseDetailsActivity : AppCompatActivity() {
 
                     Log.e("img ","start")
 
+                    var payment_way = "none"
+                    if(it.payment_method == "kcp_vbank") {
+                        var where =
+                            it.meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_bank_name" }
+                                .first().value.toString()
+                        var account_num =
+                            it.meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_num" }
+                                .first().value.toString()
+                        payment_way = where +" | "+account_num
+                    }
+
 
                     Log.e("img","end")
                     add(PurchaseItem(pos,address_type,"0",it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
                             it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),
-                            it.line_items.get(0).total,it.line_items.get(0).quantity,status,it.billing.address_1+"\n"+it.billing.address_2))
+                            it.line_items.get(0).total,it.line_items.get(0).quantity,status,it.billing.address_1+"\n"+it.billing.address_2
+                            ,paid_point,payment_way))
 
                     img_pos = pos
                     GlobalScope.launch(Dispatchers.Default) {

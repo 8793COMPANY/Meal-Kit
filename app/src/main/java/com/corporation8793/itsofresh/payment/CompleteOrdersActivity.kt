@@ -36,32 +36,53 @@ class CompleteOrdersActivity : AppCompatActivity() {
         var price = intent.getStringExtra("price")
         var quantity = intent.getStringExtra("quantity")
         var order_point = intent.getStringExtra("order_point")
+        var paid_point = intent.getStringExtra("paid_point")
         var address = intent.getStringExtra("address")
+        var payment_way = intent.getStringExtra("payment_way")
+
+        if (paid_point != "0"){
+            binding.completeOrdersHoldPoint.visibility = View.VISIBLE
+            binding.completeOrdersHoldPointText.visibility = View.VISIBLE
+            binding.completeOrdersHoldPointText.text = paid_point+"원"
+        }
+        if (payment_way != "none"){
+            binding.completeOrdersPaymentWay.visibility = View.VISIBLE
+            binding.completeOrdersPaymentWayText.visibility = View.VISIBLE
+            binding.completeOrdersPaymentWayText.setText(payment_way)
+        }
+
+//        GlobalScope.launch(Dispatchers.Default) {
+//            var data =
+//                MainApplication.instance.boardRepository.listAllOrder(MainApplication.instance.user.id).second?.filter { order -> order.id.toString() == order_id }
+//
+//            if (data!!.get(0).payment_method == "kcp_vbank")
+//                payment_check = true
+//            GlobalScope.launch(Dispatchers.Main) {
+//                if (payment_check) {
+//                    binding.completeOrdersPaymentWay.visibility = View.VISIBLE
+//                    binding.completeOrdersPaymentWayText.visibility = View.VISIBLE
+//                    var where =
+//                        data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_bank_name" }
+//                            .first().value
+//                    var account_num =
+//                        data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_num" }
+//                            .first().value
+//                    binding.completeOrdersPaymentWayText.setText(where.toString() + " | " + account_num)
+//                }
+////                println(data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_bank_name" }
+////                    .first().value)
+////                println(data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_num" }
+////                    .first().value)
+////                println(data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_depositor" }
+////                    .first().value)
+//            }
+//        }
+
+
 
         GlobalScope.launch(Dispatchers.Default) {
-            var data =
-                MainApplication.instance.boardRepository.listAllOrder(MainApplication.instance.user.id).second?.filter { order -> order.id.toString() == order_id }
-            if (data!!.get(0).payment_method == "kcp_vbank")
-                payment_check = true
-            GlobalScope.launch(Dispatchers.Main) {
-                if (payment_check) {
-                    binding.completeOrdersPaymentWay.visibility = View.VISIBLE
-                    binding.completeOrdersPaymentWayText.visibility = View.VISIBLE
-                    var where =
-                        data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_bank_name" }
-                            .first().value
-                    var account_num =
-                        data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_num" }
-                            .first().value
-                    binding.completeOrdersPaymentWayText.setText(where.toString() + " | " + account_num)
-                }
-//                println(data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_bank_name" }
-//                    .first().value)
-//                println(data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_num" }
-//                    .first().value)
-//                println(data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_depositor" }
-//                    .first().value)
-            }
+            MainApplication.instance.nonceRepository.editPoint(MainApplication.instance.board4BaRepository,MainApplication.instance.user.id,
+                paid_point!!.toInt(),"-",order_id+"("+name+"|"+quantity+"개)")
         }
 
 

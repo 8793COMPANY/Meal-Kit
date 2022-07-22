@@ -201,6 +201,39 @@
 
 
         <TextView
+            android:visibility="gone"
+            android:id="@+id/completeOrders_HoldPointText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18,900원"
+            android:textSize="15sp"
+            android:textColor="@color/black_1f1f1f"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toBottomOf="@+id/completeOrders_BuyMoneyText"
+            app:layout_constraintRight_toRightOf="@+id/right_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            ></TextView>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/completeOrders_HoldPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="보유 적립금 사용"
+            android:textSize="15sp"
+            android:textColor="@color/black_1f1f1f"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toTopOf="@+id/completeOrders_HoldPointText"
+            app:layout_constraintLeft_toLeftOf="@+id/left_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            ></TextView>
+
+
+        <TextView
             android:id="@+id/completeOrders_PointText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -209,7 +242,7 @@
             android:textColor="@color/black_1f1f1f"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"
-            app:layout_constraintTop_toBottomOf="@+id/completeOrders_BuyMoneyText"
+            app:layout_constraintTop_toBottomOf="@+id/completeOrders_HoldPointText"
             app:layout_constraintRight_toRightOf="@+id/right_line"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.05"

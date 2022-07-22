@@ -13,4 +13,6 @@ data class PurchaseItem(
     val count :  String,
     val status:  String,
     val address:  String,
+    val paid_point:  String,
+    val payment_way:  String,
 )
