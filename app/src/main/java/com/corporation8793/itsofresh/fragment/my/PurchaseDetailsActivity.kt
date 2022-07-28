@@ -66,62 +66,64 @@ class PurchaseDetailsActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.Default) {
             //      var user_id = RestClient.nonceService.checkUsername(MainApplication.instance.user.).execute().body()!!.get(0).id
             val item = RestClient.boardService.listAllOrder(MainApplication.instance.user.id).execute().body()!!
-            datas.apply {
-                item.forEach {
-                    var img_pos =0
-                    Log.e("item",it.toString())
-                    var address_type = "0"
-                    var status = it.status.toString()
-                    Log.e("meta_data","start")
-                    if (it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.size != 0)
-                        address_type = it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.get(0).value.toString()
+            Log.e("listAllOrder", "PDA isEmpty : ${item.isEmpty()}")
+            if (item.isNotEmpty()) {
+                datas.apply {
+                    item.forEach {
+                        var img_pos =0
+                        Log.e("item",it.toString())
+                        var address_type = "0"
+                        var status = it.status.toString()
+                        Log.e("meta_data","start")
+                        if (it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.size != 0)
+                            address_type = it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.get(0).value.toString()
 //                        Log.e("in!",it.meta_data.filter { orderMeta ->  orderMeta.key == "is_parcel"}.get(0).value.toString())
-                    var paid_point = it.meta_data.filter { orderMeta ->  orderMeta.key == "paid_point"}.first().value.toString()
-                    Log.e("paid_point",paid_point)
-                    Log.e("meta_data","end")
-                    if (it.status.equals("failed"))
-                        status = "조회 실패"
-                    else
-                        status = kit_status[it.status]!!
+                        var paid_point = it.meta_data.filter { orderMeta ->  orderMeta.key == "paid_point"}.first().value.toString()
+                        Log.e("paid_point",paid_point)
+                        Log.e("meta_data","end")
+                        if (it.status.equals("failed"))
+                            status = "조회 실패"
+                        else
+                            status = kit_status[it.status]!!
 
-                    Log.e("img ","start")
+                        Log.e("img ","start")
 
-                    var payment_way = "none"
-                    if(it.payment_method == "kcp_vbank") {
-                        var where =
-                            it.meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_bank_name" }
-                                .first().value.toString()
-                        var account_num =
-                            it.meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_num" }
-                                .first().value.toString()
-                        payment_way = where +" | "+account_num
-                    }
+                        var payment_way = "none"
+                        if(it.payment_method == "kcp_vbank") {
+                            var where =
+                                it.meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_bank_name" }
+                                    .first().value.toString()
+                            var account_num =
+                                it.meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_num" }
+                                    .first().value.toString()
+                            payment_way = where +" | "+account_num
+                        }
 
 
-                    Log.e("img","end")
-                    add(PurchaseItem(pos,address_type,"0",it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
+                        Log.e("img","end")
+                        add(PurchaseItem(pos,address_type,"0",it.id.toString(),it.line_items.get(0).product_id,it.date_created!!.replace("T"," "),
                             it.meta_data.get(0).value.toString() ,it.line_items.get(0).name.toString(),
                             it.line_items.get(0).total,it.line_items.get(0).quantity,status,it.billing.address_1+"\n"+it.billing.address_2
                             ,paid_point,payment_way))
 
-                    img_pos = pos
-                    GlobalScope.launch(Dispatchers.Default) {
-                        var img = MainApplication.instance.boardRepository.retrieveOneProduct(it.line_items.get(0).product_id).second!!.images.get(0).src
-                        if (item.size > img_pos)
-                        datas.get(img_pos).img= img
+                        img_pos = pos
+                        GlobalScope.launch(Dispatchers.Default) {
+                            var img = MainApplication.instance.boardRepository.retrieveOneProduct(it.line_items.get(0).product_id).second!!.images.get(0).src
+                            if (item.size > img_pos)
+                                datas.get(img_pos).img= img
 //                        datas.get(pos).img= img
-                        GlobalScope.launch(Dispatchers.Main) {
-                            adapter.notifyDataSetChanged()
+                            GlobalScope.launch(Dispatchers.Main) {
+                                adapter.notifyDataSetChanged()
+                            }
                         }
-                    }
 
-                    pos++
+                        pos++
 
-                    GlobalScope.launch(Dispatchers.Main) {
-                        adapter.datas = datas
-                        adapter.notifyDataSetChanged()
-                        binding.purchaseProgress.visibility = View.GONE
-                    }
+                        GlobalScope.launch(Dispatchers.Main) {
+                            adapter.datas = datas
+                            adapter.notifyDataSetChanged()
+                            binding.purchaseProgress.visibility = View.GONE
+                        }
 //                        println("상품 카테고리 : ${pr.categories.first().name}")
 //                        println("상품명 : ${pr.name} | (주문 id : ${pr.id})")
 //                        println("별점 (5.00) : ${pr.average_rating}")
@@ -131,7 +133,7 @@ class PurchaseDetailsActivity : AppCompatActivity() {
 //                        println("재고정보 : ${pr.stock_quantity} / ${pr.acf.total_stock}개")
 //                        println("---------------")
 
-                }
+                    }
 
 //                GlobalScope.launch(Dispatchers.Main) {
 //                    adapter.datas = datas
@@ -139,6 +141,13 @@ class PurchaseDetailsActivity : AppCompatActivity() {
 //                    binding.purchaseProgress.visibility = View.GONE
 //                }
 
+                }
+            } else {
+                GlobalScope.launch(Dispatchers.Main) {
+                    adapter.datas = datas
+                    adapter.notifyDataSetChanged()
+                    binding.purchaseProgress.visibility = View.GONE
+                }
             }
 //                binding.checkText.visibility = View.VISIBLE
         }

@@ -22,18 +22,6 @@ T.idea/libraries/Gradle__com_google_android_gms_play_services_location_16_0_0_aa
 z
 J.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_9_0_aar.xml,3\2\328838a432aa5dd1c7e04c7147fb73386abde8df
 @
-local.properties,0\7\0712df971a99ac4d2fccb8e0fb19f377f3374cca
-I
-.idea/modules/MealKit.iml,e\c\ec45b863af6d2aeb45c9abd15097efba15d338b4
-]
--.idea/modules/app/MealKit.app.androidTest.iml,4\a\4a9ca4ea1beef1390da1bd6ff29930163e69cf6f
-Z
-*.idea/modules/app/MealKit.app.unitTest.iml,e\7\e7e0e957d7aed8f1fc048cfffc462eb0a34102f2
-V
-&.idea/modules/app/MealKit.app.main.iml,e\7\e74096952f0eaa6b4d5d0aa1e2ec15a1914a7d6f
-@
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-Q
-!.idea/modules/app/MealKit.app.iml,5\0\5084f411fd8a46a876f2ed7992e35a6c41d19984
