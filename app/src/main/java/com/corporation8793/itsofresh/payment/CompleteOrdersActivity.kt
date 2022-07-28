@@ -3,18 +3,25 @@ package com.corporation8793.itsofresh.payment
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.View
+import androidx.compose.runtime.key
 import androidx.databinding.DataBindingUtil
+import com.corporation8793.itsofresh.MainApplication
 import com.corporation8793.itsofresh.R
 import com.corporation8793.itsofresh.activity.MainActivity
 import com.corporation8793.itsofresh.databinding.ActivityCompleteOrdersBinding
 import com.corporation8793.itsofresh.fragment.my.PurchaseDetailsActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class CompleteOrdersActivity : AppCompatActivity() {
     lateinit var binding : ActivityCompleteOrdersBinding
     var type : String? = ""
+    var payment_check = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_complete_orders)
@@ -29,7 +36,55 @@ class CompleteOrdersActivity : AppCompatActivity() {
         var price = intent.getStringExtra("price")
         var quantity = intent.getStringExtra("quantity")
         var order_point = intent.getStringExtra("order_point")
+        var paid_point = intent.getStringExtra("paid_point")
         var address = intent.getStringExtra("address")
+        var payment_way = intent.getStringExtra("payment_way")
+
+        if (paid_point != "0"){
+            binding.completeOrdersHoldPoint.visibility = View.VISIBLE
+            binding.completeOrdersHoldPointText.visibility = View.VISIBLE
+            binding.completeOrdersHoldPointText.text = paid_point+"원"
+        }
+        if (payment_way != "none"){
+            binding.completeOrdersPaymentWay.visibility = View.VISIBLE
+            binding.completeOrdersPaymentWayText.visibility = View.VISIBLE
+            binding.completeOrdersPaymentWayText.setText(payment_way)
+        }
+
+//        GlobalScope.launch(Dispatchers.Default) {
+//            var data =
+//                MainApplication.instance.boardRepository.listAllOrder(MainApplication.instance.user.id).second?.filter { order -> order.id.toString() == order_id }
+//
+//            if (data!!.get(0).payment_method == "kcp_vbank")
+//                payment_check = true
+//            GlobalScope.launch(Dispatchers.Main) {
+//                if (payment_check) {
+//                    binding.completeOrdersPaymentWay.visibility = View.VISIBLE
+//                    binding.completeOrdersPaymentWayText.visibility = View.VISIBLE
+//                    var where =
+//                        data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_bank_name" }
+//                            .first().value
+//                    var account_num =
+//                        data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_num" }
+//                            .first().value
+//                    binding.completeOrdersPaymentWayText.setText(where.toString() + " | " + account_num)
+//                }
+////                println(data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_bank_name" }
+////                    .first().value)
+////                println(data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_num" }
+////                    .first().value)
+////                println(data!!.get(0).meta_data.filter { orderMeta -> orderMeta.key == "_pafw_vacc_depositor" }
+////                    .first().value)
+//            }
+//        }
+
+
+
+        GlobalScope.launch(Dispatchers.Default) {
+            MainApplication.instance.nonceRepository.editPoint(MainApplication.instance.board4BaRepository,MainApplication.instance.user.id,
+                paid_point!!.toInt(),"-",order_id+"("+name+"|"+quantity+"개)")
+        }
+
 
         if(type.equals("check"))
             binding.completeOrdersOrderListBtn.visibility = View.GONE

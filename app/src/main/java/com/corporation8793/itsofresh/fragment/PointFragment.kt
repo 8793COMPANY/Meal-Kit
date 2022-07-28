@@ -1,6 +1,7 @@
 package com.corporation8793.itsofresh.fragment
 
 import android.os.Bundle
+import android.text.Html
 import android.util.DisplayMetrics
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -40,6 +41,7 @@ class PointFragment() : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     val datas = mutableListOf<PointItem>()
+    var point_list_count =0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,24 +109,38 @@ class PointFragment() : Fragment() {
         GlobalScope.launch(Dispatchers.Default) {
 
             Log.e("list","start")
+
          val retrievePointLogResponse = MainApplication.instance.board4BaRepository.retrievePointLog(
             author = MainApplication.instance.user.id,
             categories = RestClient.POINT_LOG
         )
-            GlobalScope.launch(Dispatchers.Main) {
-                total_point_count.setText(retrievePointLogResponse.second?.size.toString()+"건")
-            }
+//            GlobalScope.launch(Dispatchers.Main) {
+//                total_point_count.setText(retrievePointLogResponse.second?.size.toString()+"건")
+//            }
 //            Log.e("retrievePointLogResponse",retrievePointLogResponse.second?.size.toString())
 
             val validUserResponse = MainApplication.instance.nonceRepository.getValidUserInfo(MainApplication.instance.user.id)
             Log.e("validUserResponse","end")
 
             for ((i, post) in retrievePointLogResponse.second?.withIndex()!!) {
-                datas.add( PointItem(post.title.rendered,post.date.toString().replace("T"," "),post.excerpt.rendered,"1"))
+                var point = Html.fromHtml(post.excerpt.rendered).toString().replace(" ","").replace("-","")
+                    .replace("+","").replace("–","")
+                    .replace("+","").replace("–","")
+                if(point.length != 3 && point.contains("0")) {
+                    datas.add(
+                        PointItem(
+                            post.title.rendered,
+                            post.date.toString().replace("T", " "),
+                            post.excerpt.rendered,
+                            "1"
+                        )
+                    )
+                    point_list_count++
+                }
             }
 
             GlobalScope.launch(Dispatchers.Main) {
-                total_point_count.setText("${retrievePointLogResponse.second?.size}건")
+                total_point_count.setText(point_list_count.toString()+"건")
                 var data =         NumberFormat.getInstance(Locale.getDefault()).format( validUserResponse.second?.meta_data?.filter {
                         metaData -> metaData.key =="point"}?.first()?.value.toString().toInt())
                 Log.e("data",data)

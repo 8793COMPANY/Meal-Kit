@@ -139,7 +139,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/down_icon"></TextView>
+                app:layout_constraintRight_toLeftOf="@+id/down_icon"
+                app:layout_constraintHorizontal_chainStyle="packed"></TextView>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/down_icon"
@@ -151,6 +152,7 @@
                 app:layout_constraintTop_toTopOf="@id/total_point_count"
                 app:layout_constraintLeft_toRightOf="@+id/total_point_count"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:background="@drawable/down_icon"></androidx.appcompat.widget.AppCompatButton>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
