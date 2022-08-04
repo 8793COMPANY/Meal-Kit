@@ -251,4 +251,9 @@ class NonceRepository {
             }
         }
     }
+
+    fun updateOrder(id: String, updateOrderBody: updateOrderBody) : Pair<String, Order?> {
+        val response = RestClient.nonceService.updateOrder(id = id , updateOrderBody = updateOrderBody).execute()
+        return Pair(response.code().toString(), response.body())
+    }
 }

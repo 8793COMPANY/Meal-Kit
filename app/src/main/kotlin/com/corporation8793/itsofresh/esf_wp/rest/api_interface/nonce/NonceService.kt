@@ -87,4 +87,8 @@ interface NonceService {
     @PUT("/wp-json/wc/v3/customers/{id}")
     fun editPoint(@Path("id") id: String,
                   @Body editPointBody: editPointBody) : Call<Customer>
+
+    @PUT("/wp-json/wc/v3/orders/{id}")
+    fun updateOrder(@Path("id") id: String,
+                    @Body updateOrderBody: updateOrderBody) : Call<Order>
 }

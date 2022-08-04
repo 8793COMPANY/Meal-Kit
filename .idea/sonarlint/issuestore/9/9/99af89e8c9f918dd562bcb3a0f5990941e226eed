@@ -1,0 +1,20 @@
+
+mkotlin:S6306ˆ"TUsing "GlobalScope" here leads to the breaking of structured concurrency principles.(‘Â¿¹
+rkotlin:S6306›"TUsing "GlobalScope" here leads to the breaking of structured concurrency principles.(äÕ”øÿÿÿÿ
+mkotlin:S6306¯"TUsing "GlobalScope" here leads to the breaking of structured concurrency principles.(‘Â¿¹
+rkotlin:S6306í"TUsing "GlobalScope" here leads to the breaking of structured concurrency principles.(äÕ”øÿÿÿÿ
+@kotlin:S1874c"#Deprecated code should not be used.(Î»¿õûÿÿÿÿ
+<kotlin:S1874‰"#Deprecated code should not be used.(‚´Ã¬
+okotlin:S3776("RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(¶Á»¬şÿÿÿÿ
+okotlin:S1171"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¹¯”úÿÿÿÿ
+jkotlin:S1178"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ÉÇ÷
+jkotlin:S1179"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(Ùüîë
+ikotlin:S117i"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ôşˆp
+pkotlin:S117ğ"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(÷ô¢‰ûÿÿÿÿ
+kkotlin:S117ñ"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ÿáÕ
+5kotlin:S6310ˆ"Avoid hardcoded dispatchers.(‘Â¿¹
+:kotlin:S6310›"Avoid hardcoded dispatchers.(äÕ”øÿÿÿÿ
+5kotlin:S6310¯"Avoid hardcoded dispatchers.(‘Â¿¹
+:kotlin:S6310í"Avoid hardcoded dispatchers.(äÕ”øÿÿÿÿ
+wkotlin:S1186o"ZAdd a nested comment explaining why this function is empty or complete the implementation.(£ÖÁÌıÿÿÿÿ
+Fkotlin:S1066u".Merge this "if" statement with the nested one.(”Ø´Ç
