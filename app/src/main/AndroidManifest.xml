@@ -15,7 +15,7 @@
 
     <application
         android:name="com.corporation8793.itsofresh.MainApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_main"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"

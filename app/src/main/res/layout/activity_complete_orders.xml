@@ -54,6 +54,7 @@
             ></ImageView>
 
         <TextView
+            android:id="@+id/payment_complete_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="결제가 완료되었습니다!"

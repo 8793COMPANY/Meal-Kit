@@ -49,9 +49,11 @@
             app:layout_constraintDimensionRatio="1:1"></androidx.appcompat.widget.AppCompatButton>
 
         <TextView
+            android:id="@+id/user_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="광주 동구 동계천로 150"
+            android:textSize="14dp"
             android:gravity="center"
             android:textColor="@color/black"
             android:fontFamily="@font/nskr_medium"

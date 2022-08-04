@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pedometer_bg"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2022.04.22(금)"
-        android:textSize="13dp"
+        android:textSize="15dp"
         android:fontFamily="@font/nskr_medium"
         android:includeFontPadding="false"
         app:layout_constraintHorizontal_bias="0.1"
@@ -21,6 +23,7 @@
         app:layout_constraintRight_toRightOf="parent"></TextView>
 
     <ImageView
+        android:id="@+id/pedometer_img"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/pedometer_icon"
@@ -54,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="/10000보"
-        android:textSize="12dp"
+        android:textSize="14dp"
         android:fontFamily="@font/nskr_medium"
         android:includeFontPadding="false"
         app:layout_constraintHorizontal_bias="0.92"

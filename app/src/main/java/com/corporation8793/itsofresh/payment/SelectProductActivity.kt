@@ -19,6 +19,7 @@ class SelectProductActivity : AppCompatActivity() {
     var finalMoney = 0
     var count = 1
     var type = "1"
+    var deliveryMoney = 3000
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_product)
@@ -37,7 +38,7 @@ class SelectProductActivity : AppCompatActivity() {
         var img = intent.getStringExtra("img")
 
         productAmount = (price!!.toInt() * count)
-        finalMoney = (productAmount+3000)
+        finalMoney = (productAmount+deliveryMoney)
 
         Glide.with(this).load(img).into(binding.selectProductProductImg)
 
@@ -46,14 +47,14 @@ class SelectProductActivity : AppCompatActivity() {
         binding.selectProductAmountText.setText(price+"원")
 //        binding.selectProductAmountText.setText(productAmount.toString())
         binding.selectProductProductMoneyText.setText(productAmount.toString()+"원")
-        binding.selectProductFinalMoneyText.setText((productAmount+3000).toString()+"원")
+        binding.selectProductFinalMoneyText.setText((productAmount+deliveryMoney).toString()+"원")
         binding.selectProductOrderBtn.setText(finalMoney.toString()+"원 주문하기")
 
         binding.selectProductMinusBtn.setOnClickListener {
             if (count != 1) {
                 count--
                 productAmount = (price!!.toInt() * count)
-                finalMoney = (productAmount+3000)
+                finalMoney = (productAmount+deliveryMoney)
                 binding.selectProductCountText.setText(count.toString())
                 binding.selectProductProductMoneyText.setText(productAmount.toString()+"원")
                 binding.selectProductFinalMoneyText.setText(finalMoney.toString()+"원")
@@ -64,7 +65,7 @@ class SelectProductActivity : AppCompatActivity() {
         binding.selectProductPlusBtn.setOnClickListener {
             count++
             productAmount = (price!!.toInt() * count)
-            finalMoney = (productAmount+3000)
+            finalMoney = (productAmount+deliveryMoney)
             binding.selectProductCountText.setText(count.toString())
             binding.selectProductProductMoneyText.setText(productAmount.toString()+"원")
             binding.selectProductFinalMoneyText.setText(finalMoney.toString()+"원")
@@ -99,15 +100,24 @@ class SelectProductActivity : AppCompatActivity() {
 
         binding.selectProductDeliveryRadioBtn.setOnClickListener {
             type = "1"
+            deliveryMoney = 3000
+            finalMoney = productAmount+deliveryMoney
             binding.selectProductDeliveryRadioBtn.isChecked= true
             binding.selectProductPickupRadioBtn.isChecked= false
+            binding.selectProductDeliveryMoneyText.setText("3000원")
+            binding.selectProductFinalMoneyText.setText(finalMoney.toString()+"원")
 
         }
 
         binding.selectProductPickupRadioBtn.setOnClickListener {
             type = "0"
+            deliveryMoney = 0
+            finalMoney = productAmount+deliveryMoney
             binding.selectProductDeliveryRadioBtn.isChecked= false
             binding.selectProductPickupRadioBtn.isChecked= true
+            binding.selectProductDeliveryMoneyText.setText("0원")
+            binding.selectProductFinalMoneyText.setText(finalMoney.toString()+"원")
+
         }
 
 

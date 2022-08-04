@@ -2,6 +2,7 @@ package com.corporation8793.itsofresh.fragment
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +31,7 @@ class ChallengeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    var video_ending_check = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,12 +79,19 @@ class ChallengeFragment : Fragment() {
 
 
         view.findViewById<Button>(R.id.go_btn).setOnClickListener {
-            videoview.start()
+            if (video_ending_check) {
+                video_ending_check = false
+                videoview.start()
+            }
         }
 
 
         view.findViewById<Button>(R.id.back_btn).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_back_to_home)
+        }
+
+        videoview.setOnCompletionListener {
+            video_ending_check = true
         }
 
         return view

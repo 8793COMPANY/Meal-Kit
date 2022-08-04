@@ -15,9 +15,12 @@ public class ResetPedometer  extends BroadcastReceiver {
         SharedPreferences.Editor edit=preferences.edit();
         edit.putInt("step", PedometerService.getStep());
         edit.apply();
-        MainApplication.instance.setPedometerSuccessCount("3000p",0);
-        MainApplication.instance.setPedometerSuccessCount("5000p",0);
-        MainApplication.instance.setPedometerSuccessCount("10000p",0);
+//        MainApplication.instance.setPedometerSuccessCount("3000p",0);
+//        MainApplication.instance.setPedometerSuccessCount("5000p",0);
+//        MainApplication.instance.setPedometerSuccessCount("10000p",0);
+        MainApplication.instance.setPedometerSuccessCount("100p",0);
+        MainApplication.instance.setPedometerSuccessCount("200p",0);
+        MainApplication.instance.setPedometerSuccessCount("300p",0);
         MainApplication.instance.setPedometerSuccessCount("point_roulette",0);
         PedometerService.resetStep();
         MainApplication.instance.resetPedometer();

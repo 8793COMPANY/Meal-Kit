@@ -16,7 +16,7 @@ class PointActivity : AppCompatActivity() {
 
         video = findViewById<VideoView>(R.id.videoview)
 
-        val uri = Uri.parse("http://13.209.29.68/wp-content/uploads/2022/05/slot_test_file.mp4")
+        val uri = Uri.parse("https://eatsofresh.co.kr/wp-content/uploads/2022/05/slot_test_file.mp4")
         video.setMediaController(MediaController(this))
 
         video.setVideoURI(uri)

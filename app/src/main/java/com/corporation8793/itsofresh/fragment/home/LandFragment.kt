@@ -62,7 +62,8 @@ class LandFragment : Fragment() {
         activity?.windowManager?.defaultDisplay?.getMetrics(display)
         val height : Int =  (display.heightPixels / 6.5).toInt()
 
-        kitAdapter = KitAdapter(context, height, resources.getColor(R.color.category_land_color),findNavController())
+        //여기 색상도 변경해주세요
+        kitAdapter = KitAdapter(context, height, resources.getColor(R.color.category_overseas_color),findNavController())
         kit_list.adapter = kitAdapter
 
         val lm = LinearLayoutManager(context)

@@ -2,10 +2,10 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@drawable/kit_like_btn_on"
+        android:drawable="@drawable/like_btn_on"
         android:state_selected="true"  />
 
     <item
-        android:drawable="@drawable/kit_like_btn_off"
+        android:drawable="@drawable/like_btn_off"
         android:state_selected="false"/>
 </selector>

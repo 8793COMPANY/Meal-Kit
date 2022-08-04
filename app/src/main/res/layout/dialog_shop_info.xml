@@ -126,7 +126,7 @@
             android:text="쫄깃한 구운 버섯과 튀긴 연두부의
     부드럽고 담백한 맛이 일품인 비건 샐러드를 파는
     동명동 대표 맛집"
-            android:textSize="15dp"
+            android:textSize="14dp"
             android:textColor="@color/text_color"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:includeFontPadding="false"

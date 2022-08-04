@@ -57,7 +57,7 @@
             android:layout_height="0dp"
             android:singleLine="true"
             android:textColor="#c1c1c1"
-            android:textSize="13dp"
+            android:textSize="14dp"
             android:paddingLeft="15dp"
             android:hint="검색어를 입력해주세요."
             android:textColorHint="#b1b1b1"

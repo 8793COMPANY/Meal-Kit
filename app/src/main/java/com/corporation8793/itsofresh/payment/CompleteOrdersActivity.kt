@@ -46,6 +46,7 @@ class CompleteOrdersActivity : AppCompatActivity() {
             binding.completeOrdersHoldPointText.text = paid_point+"원"
         }
         if (payment_way != "none"){
+            binding.paymentCompleteText.setText("결제 확인 전입니다.")
             binding.completeOrdersPaymentWay.visibility = View.VISIBLE
             binding.completeOrdersPaymentWayText.visibility = View.VISIBLE
             binding.completeOrdersPaymentWayText.setText(payment_way)

@@ -7,7 +7,7 @@ import com.corporation8793.itsofresh.fragment.home.MountFragment
 import com.corporation8793.itsofresh.fragment.home.OverseasFragment
 import com.corporation8793.itsofresh.fragment.home.SeaFragment
 
-private const val NUM_TABS = 4
+private const val NUM_TABS = 3
 
 class HomeViewAdapter (fragment : Fragment) :
         FragmentStateAdapter(fragment) {

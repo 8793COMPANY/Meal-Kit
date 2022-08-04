@@ -28,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="광주 동구 동계천로 150 "
-        android:textSize="13dp"
+        android:textSize="16dp"
         android:includeFontPadding="false"
         android:fontFamily="@font/nskr_medium"
         android:textColor="@color/black2"

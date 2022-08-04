@@ -37,6 +37,8 @@ class PayMentActivity : AppCompatActivity() {
     var post_code = ""
     var phone = ""
     var my_point = ""
+    var use_point_final_price = 0
+    var use_point = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pay_ment)
@@ -56,6 +58,7 @@ class PayMentActivity : AppCompatActivity() {
         var product_amount = intent.getIntExtra("product_amount",0)
         var final_money = intent.getIntExtra("final_money",0)
         var img = intent.getStringExtra("img")
+        use_point_final_price = final_money
 
         Glide.with(this).load(img).into(binding.paymentProductImg)
 
@@ -67,7 +70,7 @@ class PayMentActivity : AppCompatActivity() {
         binding.paymentProductPrice.setText(product_amount.toString()+"원")
         binding.paymentFinalPrice.setText(final_money.toString()+"원")
 
-        binding.paymentWhenBuyingPointText.setText("구매시 "+final_money.div(100).toString()+"원")
+        binding.paymentWhenBuyingPointText.setText("구매시 "+price!!.toInt().div(100).toString()+"원")
 
 
         if (type =="1") {
@@ -77,6 +80,7 @@ class PayMentActivity : AppCompatActivity() {
         }else {
             binding.paymentDeliveryInfoext.setText("포장 주소")
             binding.paymentAddress.setText(address)
+            binding.paymentDeliveryMoneyPrice.setText("0원")
         }
 
         binding.paymentActionBar.backBtn.setOnClickListener {
@@ -114,8 +118,14 @@ class PayMentActivity : AppCompatActivity() {
 
             override fun afterTextChanged(p0: Editable?) {
                 if (p0!!.length != 0){
-                    if (p0.toString().length >= my_point.length){
-                        if (p0.toString().toInt() > my_point.toInt()) {
+
+                    if( p0.toString().toInt() > final_money){
+                        binding.paymentUsepointEdit.setText(before_text)
+                        binding.paymentUsepointEdit.setSelection(binding.paymentUsepointEdit.text.length)
+                    }else if (p0.toString().length >= my_point.length){
+                        Log.e("final_money",final_money.toString())
+                        if (p0.toString().toInt() > my_point.toInt() ) {
+                            Log.e("unserviceable","point")
                             binding.paymentUsepointEdit.setText(before_text)
                             binding.paymentUsepointEdit.setSelection(binding.paymentUsepointEdit.text.length)
 
@@ -123,6 +133,8 @@ class PayMentActivity : AppCompatActivity() {
                     }
                     binding.paymentUsePoint.setText(binding.paymentUsepointEdit.text.toString()+"원")
                     binding.paymentFinalPrice.setText((final_money - (binding.paymentUsepointEdit.text.toString().toInt())).toString()+"원")
+                    use_point_final_price = final_money - (binding.paymentUsepointEdit.text.toString().toInt())
+                    use_point = binding.paymentUsepointEdit.text.toString().toInt()
                 }else{
                     binding.paymentUsePoint.setText("0"+"원")
                     binding.paymentFinalPrice.setText(final_money.toString() +"원")
@@ -187,38 +199,52 @@ class PayMentActivity : AppCompatActivity() {
                 // 주문 템플릿 생성
                 var myOrder : Order
                 if (type.equals("1")) {
+                    Log.e("price",use_point_final_price.toString())
+                    var total_price = 0
+                    var total_delivery_price = 3000
+                    if(price.toInt() - use_point > 0)
+                        total_price = price.toInt() - use_point
+                    else
+                        total_delivery_price = total_delivery_price + (price.toInt() - use_point)
+
+                    Log.e("total_price",total_price.toString())
+                    Log.e("total_delivery_price",total_delivery_price.toString())
                     myOrder = Order(
                             id = null,
                             date_created = null,
                             customer_id = user_id,
-                            billing = Billing(MainApplication.instance.user.first_name, address_1, binding.paymentAddressDetail.text.toString(), post_code, post_code),
-                            shipping = Shipping(MainApplication.instance.user.first_name, address_1, binding.paymentAddressDetail.text.toString(), post_code, post_code),
+                            billing = Billing(MainApplication.instance.user.first_name, address_1, binding.paymentAddressDetail.text.toString(), post_code, MainApplication.instance.user.shipping.phone),
+                            shipping = Shipping(MainApplication.instance.user.first_name, address_1, binding.paymentAddressDetail.text.toString(), post_code, MainApplication.instance.user.shipping.phone),
                             line_items = listOf(
-                                    LineItems(name = name, product_id = product_id!!, quantity = quantity!!, total = final_money.toString())
+                                    LineItems(name = name, product_id = product_id!!, quantity = quantity!!, total = total_price.toString())
+                            ),
+                            shipping_lines = listOf(
+                                ShippingLines(total = total_delivery_price.toString())
                             ),
                             meta_data = listOf(
                                     OrderMeta(id = null, key = "store_name", value = shop!!),
-                                    OrderMeta(id = null, key = "order_point", value = final_money.div(100).toString()),
+                                    OrderMeta(id = null, key = "order_point", value = price!!.toInt().div(100).toString()),
                                     OrderMeta(id = null, key = "is_parcel", value = "1"),
-                                    OrderMeta(id = null, key = "paid_point", value = binding.paymentUsepointEdit.text.toString()),
+                                    OrderMeta(id = null, key = "paid_point", value = use_point),
                             ),
                             payment_url = null
                     )
                 }else{
+                    Log.e("price",use_point_final_price.toString())
                     myOrder = Order(
                             id = null,
                             date_created = null,
                             customer_id = user_id,
-                            billing = Billing(MainApplication.instance.user.first_name, address!!, "", post_code, post_code),
-                            shipping = Shipping(MainApplication.instance.user.first_name, address!!, "", post_code, post_code),
+                            billing = Billing(MainApplication.instance.user.first_name, address!!, "", post_code, MainApplication.instance.user.shipping.phone),
+                            shipping = Shipping(MainApplication.instance.user.first_name, address!!, "", post_code, MainApplication.instance.user.shipping.phone),
                             line_items = listOf(
-                                    LineItems(name = name, product_id = product_id!!, quantity = quantity!!, total = final_money.toString())
+                                    LineItems(name = name, product_id = product_id!!, quantity = quantity!!, total = use_point_final_price.toString())
                             ),
                             meta_data = listOf(
                                     OrderMeta(id = null, key = "store_name", value = shop!!),
-                                    OrderMeta(id = null, key = "order_point", value = final_money.div(100).toString()),
+                                    OrderMeta(id = null, key = "order_point", value = price!!.toInt().div(100).toString()),
                                     OrderMeta(id = null, key = "is_parcel", value = "0"),
-                                    OrderMeta(id = null, key = "paid_point", value = binding.paymentUsepointEdit.text.toString()),
+                                    OrderMeta(id = null, key = "paid_point", value = use_point),
                             ),
                             payment_url = null
                     )

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -60,6 +61,7 @@ class HomeFragment() : Fragment() {
 
         var pedometerHome=view.findViewById<View>(R.id.pedometer)
         var currentTimeText=pedometerHome.findViewById<TextView>(R.id.current_date);
+        var pedometer_img=pedometerHome.findViewById<ImageView>(R.id.pedometer_img);
         var total_stepText = pedometerHome.findViewById<TextView>(R.id.total_step);
         var finish_step = pedometerHome.findViewById<TextView>(R.id.finish_step);
 
@@ -73,14 +75,44 @@ class HomeFragment() : Fragment() {
         val full_sdf = SimpleDateFormat("yyyy.MM.dd")
         currentTimeText.setText(full_sdf.format(dt).toString()+getCurrentWeek(dayOfWeekNumber))
 
+        Log.e("point_roulette",MainApplication.instance.getPedometerSuccessCount("point_roulette").toString())
+
 
         total_stepText.setText(PedometerService.getStep().toString())
-        if(PedometerService.getStep() <3000){
-            finish_step.setText("/3000보")
-        }else if(PedometerService.getStep() <5000){
-            finish_step.setText("/5000보")
+//        if(PedometerService.getStep() <3000){
+//            finish_step.setText("/3000보")
+//        }else if(PedometerService.getStep() <5000){
+//            finish_step.setText("/5000보")
+//        }else{
+//            finish_step.setText("/10000보")
+//        }
+
+        if(PedometerService.getStep() <10){
+            finish_step.setText("/10보")
+        }else if(PedometerService.getStep() <20){
+            finish_step.setText("/20보")
         }else{
-            finish_step.setText("/10000보")
+            finish_step.setText("/30보")
+        }
+
+
+        if (PedometerService.getStep() >=30){
+            pedometer_img.setBackgroundResource(R.drawable.pedometer_icon_on)
+            pedometerHome.setBackgroundResource(R.drawable.pedometer_background_on)
+            currentTimeText.setTextColor(resources.getColor(R.color.white))
+            total_stepText.setTextColor(resources.getColor(R.color.white))
+            finish_step.setTextColor(resources.getColor(R.color.white))
+        }
+
+        pedometer_img.setOnClickListener {
+            PedometerService.resetStep()
+            pedometer_img.setBackgroundResource(R.drawable.pedometer_icon)
+//            pedometerHome.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(),))
+            pedometerHome.setBackgroundResource(R.drawable.pedometer_background)
+
+            currentTimeText.setTextColor(resources.getColor(R.color.app_basic_color))
+            total_stepText.setTextColor(resources.getColor(R.color.black))
+            finish_step.setTextColor(resources.getColor(R.color.gray_b9b9b9))
         }
 
 
@@ -93,19 +125,30 @@ class HomeFragment() : Fragment() {
         }
 
 //
-        val tabName = arrayOf<String>("육지","바다"," 산","해외")
+//        val tabName = arrayOf<String>("육지","바다"," 산","해외")
+//        val imageResId = intArrayOf(
+//                R.drawable.land_icon,
+//                R.drawable.sea_icon,
+//                R.drawable.mount_icon,
+//                R.drawable.overseas_icon,
+//            R.drawable.mount_icon,
+//            R.drawable.overseas_icon)
+//        val textColor = intArrayOf(
+//                R.color.category_land_color,
+//                R.color.category_sea_color,
+//                R.color.category_mount_color,
+//                R.color.category_overseas_color,
+//            R.color.category_sea_color,
+//            R.color.category_mount_color)
+
+        val tabName = arrayOf<String>("공동구매","상시구매","명절선물")
         val imageResId = intArrayOf(
-                R.drawable.land_icon,
-                R.drawable.sea_icon,
-                R.drawable.mount_icon,
-                R.drawable.overseas_icon,
-            R.drawable.mount_icon,
-            R.drawable.overseas_icon)
+            R.drawable.group_purchase_icon,
+            R.drawable.regular_purchase_icon,
+            R.drawable.holiday_purchase_icon,
+            R.drawable.overseas_icon,)
         val textColor = intArrayOf(
-                R.color.category_land_color,
-                R.color.category_sea_color,
-                R.color.category_mount_color,
-                R.color.category_overseas_color,
+            R.color.category_overseas_color,
             R.color.category_sea_color,
             R.color.category_mount_color)
 
@@ -158,8 +201,8 @@ class HomeFragment() : Fragment() {
         val tab_icon = tabView.findViewById<ImageView>(R.id.tabIcon) as ImageView
 
         tab_name.text = tabName
-        if (tabName.equals("육지"))
-            tab_name.setTextColor(resources.getColor(R.color.category_land_color))
+        if (tabName.equals("공동구매"))
+            tab_name.setTextColor(resources.getColor(R.color.category_overseas_color))
         tab_icon.setBackgroundResource(tabIcon)
 
         return tabView

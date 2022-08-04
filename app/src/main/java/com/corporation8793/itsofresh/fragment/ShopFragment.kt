@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.corporation8793.itsofresh.*
 import com.corporation8793.itsofresh.adapter.ShopViewAdapter
@@ -52,6 +53,9 @@ class ShopFragment() : Fragment() {
 
         tabLayout = view.findViewById<TabLayout>(R.id.select_shop_view_way)
 
+        val user_address = view.findViewById<TextView>(R.id.user_address)
+
+        user_address.setText(MainApplication.instance.user.shipping.address_1)
 //
         val viewPager = view.findViewById<ViewPager2>(R.id.kit_list)
         viewPager.isUserInputEnabled = false

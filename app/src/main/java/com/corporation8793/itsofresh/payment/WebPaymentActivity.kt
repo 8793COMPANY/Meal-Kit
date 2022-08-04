@@ -2,9 +2,12 @@ package com.corporation8793.itsofresh.payment
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.RelativeLayout
@@ -39,12 +42,47 @@ class WebPaymentActivity : AppCompatActivity() {
         var webview = findViewById<WebView>(R.id.webView)
         var loading_bar = findViewById<RelativeLayout>(R.id.payment_progress)
         webview.getSettings().setJavaScriptEnabled(true)
+
+//        webview.settings.setSupportMultipleWindows(true)
+
+//        webview.webChromeClient = WebChromeClient()
+
         webview.webViewClient = WebViewClient()
 
-
 //        webview.addJavascriptInterface(MyJavaScriptInterface(), "Android")
-
+        webview.loadUrl(payment_url)
         webview.setWebViewClient(object : WebViewClient() {
+
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                if (url!!.startsWith("intent://")) {
+                    val intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME)
+                    if (intent != null) {
+                        Log.e("intent","not null!")
+                        startActivity(intent)
+                        return true
+                    }
+                }
+                else if (url.startsWith("tel:")){
+                    val intent = Intent(Intent.ACTION_DIAL)
+                    intent.data = Uri.parse(url)
+                    startActivity(intent)
+                    return true
+                }
+                else if (url.startsWith("mailto:")) {
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    val data = Uri.parse(
+                        url + Uri.encode("subject") + "&body=" + Uri.encode(
+                            "body"
+                        )
+                    )
+                    intent.data = data
+                    startActivity(intent)
+                    return true
+                }
+
+
+                return false
+            }
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 Log.e("loading start", url.toString())
 
@@ -111,7 +149,7 @@ class WebPaymentActivity : AppCompatActivity() {
             }
         })
 
-        webview.loadUrl(payment_url)
+
 
     }
 }

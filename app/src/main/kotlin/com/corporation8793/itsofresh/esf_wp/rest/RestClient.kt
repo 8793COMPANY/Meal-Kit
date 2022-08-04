@@ -17,7 +17,7 @@ object RestClient {
     /**
      * Static IP of AWS Server (Eat-So-Fresh 밀키트)
      */
-    private const val baseUrl = "http://13.209.29.68/"
+    private const val baseUrl = "https://eatsofresh.co.kr/"
     /**
      * CONSUMER KEY
      */
