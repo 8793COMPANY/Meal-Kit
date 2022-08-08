@@ -27,6 +27,10 @@ class CompleteOrdersActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_complete_orders)
         binding.setActionBar("주문 완료")
 
+
+
+
+
         type = intent.getStringExtra("type")
         var order_id = intent.getStringExtra("id")
         var address_type = intent.getStringExtra("address_type")
@@ -40,12 +44,26 @@ class CompleteOrdersActivity : AppCompatActivity() {
         var address = intent.getStringExtra("address")
         var payment_way = intent.getStringExtra("payment_way")
 
+        if(type.equals("check"))
+            binding.completeOrdersOrderListBtn.visibility = View.GONE
+        else if(type.equals("request_cancel")){
+            binding.completeOrdersOrderListBtn.visibility = View.GONE
+            binding.paymentCompleteText.setText("결제가 취소되었습니다")
+            binding.setActionBar("주문 취소")
+        }
+
         if (paid_point != "0"){
             binding.completeOrdersHoldPoint.visibility = View.VISIBLE
             binding.completeOrdersHoldPointText.visibility = View.VISIBLE
             binding.completeOrdersHoldPointText.text = paid_point+"원"
         }
-        if (payment_way != "none"){
+
+        if (payment_way == "not"){
+            binding.paymentCompleteText.setText("결제가 완료되었습니다!")
+//            binding.completeOrdersPaymentWay.visibility = View.VISIBLE
+//            binding.completeOrdersPaymentWayText.visibility = View.VISIBLE
+//            binding.completeOrdersPaymentWayText.setText(payment_way)
+        } else if (payment_way != "none"){
             binding.paymentCompleteText.setText("결제 확인 전입니다.")
             binding.completeOrdersPaymentWay.visibility = View.VISIBLE
             binding.completeOrdersPaymentWayText.visibility = View.VISIBLE
@@ -87,8 +105,7 @@ class CompleteOrdersActivity : AppCompatActivity() {
         }
 
 
-        if(type.equals("check"))
-            binding.completeOrdersOrderListBtn.visibility = View.GONE
+
 
         if(address_type.equals("1")) {
             binding.completeOrdersDeliveryAddressText.setText(address)
@@ -108,7 +125,7 @@ class CompleteOrdersActivity : AppCompatActivity() {
 
 
         binding.paymentActionBar.backBtn.setOnClickListener {
-            if (type.equals("check"))
+            if (type.equals("check") || type.equals("request_cancel"))
                 finish()
             else{
                 var intent = Intent(this@CompleteOrdersActivity, MainActivity::class.java)
@@ -130,7 +147,7 @@ class CompleteOrdersActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        if (type.equals("check"))
+        if (type.equals("check")|| type.equals("request_cancel"))
             finish()
         else{
             var intent = Intent(this@CompleteOrdersActivity, MainActivity::class.java)

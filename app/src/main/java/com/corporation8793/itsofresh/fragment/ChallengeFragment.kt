@@ -1,5 +1,6 @@
 package com.corporation8793.itsofresh.fragment
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.VideoView
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.Navigation
-import com.corporation8793.itsofresh.MainApplication
-import com.corporation8793.itsofresh.R
+import androidx.navigation.fragment.findNavController
+import com.corporation8793.itsofresh.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -32,6 +34,8 @@ class ChallengeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     var video_ending_check = true
+
+    val saved_point = mapOf(1 to 10,2 to 30, 3 to 50,4 to 70,5 to 100,)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,22 +58,22 @@ class ChallengeFragment : Fragment() {
 
         when(num){
             1-> {uri = Uri.parse("android.resource://"+requireActivity().packageName+"/"+R.raw.point_10)
-                insertPoint(10,"룰렛 포인트")
+//                insertPoint(10,"룰렛 포인트")
 
             }
             2->{uri = Uri.parse("android.resource://"+requireActivity().packageName+"/"+R.raw.point_30)
-                insertPoint(30,"룰렛 포인트")
+//                insertPoint(30,"룰렛 포인트")
 
             }
             3->{uri = Uri.parse("android.resource://"+requireActivity().packageName+"/"+R.raw.point_50)
-                insertPoint(50,"룰렛 포인트")
+//                insertPoint(50,"룰렛 포인트")
             }
             4->{uri = Uri.parse("android.resource://"+requireActivity().packageName+"/"+R.raw.point_70)
-                insertPoint(70,"룰렛 포인트")
+//                insertPoint(70,"룰렛 포인트")
 
             }
             5->{uri = Uri.parse("android.resource://"+requireActivity().packageName+"/"+R.raw.point_100)
-                insertPoint(100,"룰렛 포인트")
+
 
             }
         }
@@ -82,16 +86,27 @@ class ChallengeFragment : Fragment() {
             if (video_ending_check) {
                 video_ending_check = false
                 videoview.start()
+                insertPoint(saved_point.get(num)!!,"룰렛 포인트")
             }
         }
 
 
         view.findViewById<Button>(R.id.back_btn).setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_back_to_home)
+            if (video_ending_check)
+                Navigation.findNavController(view).navigate(R.id.action_back_to_home)
         }
 
         videoview.setOnCompletionListener {
-            video_ending_check = true
+//            video_ending_check = true
+            val dialog = PointSavedDialog(requireActivity(),saved_point.get(num)!!)
+            dialog.setButtonClickListener(object: PointSavedDialog.OnButtonClickListener{
+                override fun onButton1Clicked() {
+
+                    findNavController().popBackStack()
+                }
+
+            })
+            dialog.show(parentFragmentManager!!,"hello")
         }
 
         return view
@@ -116,6 +131,24 @@ class ChallengeFragment : Fragment() {
                         putString(ARG_PARAM2, param2)
                     }
                 }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed() {
+                    // Leave empty do disable back press or
+                    // write your code which you want
+                    if (video_ending_check)
+                        findNavController().popBackStack()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            callback
+        )
     }
 
 

@@ -47,7 +47,7 @@ public class AddreesWebActivity extends AppCompatActivity {
             }
         });
 
-        browser.loadUrl("https://eatsofresh.co.kr/daum/daum.html");
+        browser.loadUrl("http://13.209.29.68/daum/daum.html");
 
 
     }

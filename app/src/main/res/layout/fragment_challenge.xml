@@ -30,6 +30,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"></VideoView>
 
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/challenge_text_img"
+        app:layout_constraintDimensionRatio="512:302"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@+id/back_btn"></ImageView>
+
    <androidx.appcompat.widget.AppCompatButton
        android:id="@+id/back_btn"
        android:layout_width="0dp"

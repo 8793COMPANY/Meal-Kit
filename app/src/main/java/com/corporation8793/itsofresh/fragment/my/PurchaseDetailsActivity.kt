@@ -9,12 +9,15 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.corporation8793.itsofresh.MainApplication
+import com.corporation8793.itsofresh.OrderCancelDialog
 import com.corporation8793.itsofresh.R
 import com.corporation8793.itsofresh.activity.MainActivity
 import com.corporation8793.itsofresh.adapter.PurchaseAdapter
+import com.corporation8793.itsofresh.adapter.SelectStoreAdapter
 import com.corporation8793.itsofresh.databinding.ActivityPurchaseDetailsBinding
 import com.corporation8793.itsofresh.decoration.KitDecoration
 import com.corporation8793.itsofresh.dto.PurchaseItem
+import com.corporation8793.itsofresh.dto.ShopItem
 import com.corporation8793.itsofresh.esf_wp.rest.RestClient
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.Dispatchers
@@ -27,14 +30,19 @@ class PurchaseDetailsActivity : AppCompatActivity() {
     var type : String? = ""
     val kit_status = mapOf("on-hold" to "결제 확인 중","pending" to "결제 확인 전", "processing" to "처리중",
             "shipping" to "결제 확인 중", "shipped" to "처리중",
+            "start-shipping" to "배송중",
             "cancelled" to "취소됨", "cancel-request" to "주문취소요청",
-            "completed" to "완료됨", "refunded" to "환불됨")
+            "completed" to "완료됨", "refunded" to "환불됨", "request-cancel" to "결제취소")
+    lateinit var dialog : OrderCancelDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_purchase_details)
         binding.setActionBar("비밀번호 변경")
 
         type = intent.getStringExtra("type")
+
+        var activity = this
 
         val display : DisplayMetrics = DisplayMetrics()
         windowManager?.defaultDisplay?.getMetrics(display)
@@ -44,7 +52,8 @@ class PurchaseDetailsActivity : AppCompatActivity() {
 //        val purchase_list = view.findViewById<RecyclerView>(R.id.purchase_list)
 //        val purchase_progress = view.findViewById<RelativeLayout>(R.id.purchase_progress)
 
-        val adapter = PurchaseAdapter(this,this,height)
+        val adapter = PurchaseAdapter(this,this,height,supportFragmentManager)
+
 
         binding.backBtn.setOnClickListener {
             if (type.equals("purchase")) {
@@ -62,8 +71,35 @@ class PurchaseDetailsActivity : AppCompatActivity() {
         binding.purchaseList.layoutManager = lm
         var pos =0
 
+        adapter.setOnItemClickListener(object : PurchaseAdapter.OnItemClickListener{
+            override fun onItemClick(v: View,  pos : Int, item: PurchaseItem) {
+                Log.e("adapter","onclick")
+                dialog = OrderCancelDialog(activity,item.id)
+                dialog.setButtonClickListener(object: OrderCancelDialog.OnButtonClickListener{
+                    override fun onButton1Clicked() {
+                        Log.e("hi","!!")
+                    }
 
-        GlobalScope.launch(Dispatchers.Default) {
+                    override fun onButton2Clicked() {
+                        Log.e("hi","!!")
+                        adapter.datas.get(pos).status = "결제취소"
+                        adapter.notifyDataSetChanged()
+
+                    }
+
+                    override fun onButton3Clicked() {
+                    }
+                })
+
+                dialog.show(supportFragmentManager,"hello")
+            }
+
+        })
+
+
+
+
+                GlobalScope.launch(Dispatchers.Default) {
             //      var user_id = RestClient.nonceService.checkUsername(MainApplication.instance.user.).execute().body()!!.get(0).id
             val item = RestClient.boardService.listAllOrder(MainApplication.instance.user.id).execute().body()!!
             Log.e("listAllOrder", "PDA isEmpty : ${item.isEmpty()}")
@@ -86,6 +122,7 @@ class PurchaseDetailsActivity : AppCompatActivity() {
                                     .first().value.toString()
                             Log.e("paid_point", paid_point)
                             Log.e("meta_data", "end")
+                            Log.e("status", it.status)
                             if (it.status.equals("failed"))
                                 status = "조회 실패"
                             else
@@ -222,6 +259,8 @@ class PurchaseDetailsActivity : AppCompatActivity() {
         binding.purchaseList.addItemDecoration(divider)
 
     }
+
+
 
     override fun onBackPressed() {
         super.onBackPressed()

@@ -79,24 +79,24 @@ class HomeFragment() : Fragment() {
 
 
         total_stepText.setText(PedometerService.getStep().toString())
-//        if(PedometerService.getStep() <3000){
-//            finish_step.setText("/3000보")
-//        }else if(PedometerService.getStep() <5000){
-//            finish_step.setText("/5000보")
-//        }else{
-//            finish_step.setText("/10000보")
-//        }
-
-        if(PedometerService.getStep() <10){
-            finish_step.setText("/10보")
-        }else if(PedometerService.getStep() <20){
-            finish_step.setText("/20보")
+        if(PedometerService.getStep() <3000){
+            finish_step.setText("/3000보")
+        }else if(PedometerService.getStep() <5000){
+            finish_step.setText("/5000보")
         }else{
-            finish_step.setText("/30보")
+            finish_step.setText("/10000보")
         }
 
+//        if(PedometerService.getStep() <10){
+//            finish_step.setText("/10보")
+//        }else if(PedometerService.getStep() <20){
+//            finish_step.setText("/20보")
+//        }else{
+//            finish_step.setText("/30보")
+//        }
 
-        if (PedometerService.getStep() >=30){
+
+        if (PedometerService.getStep() >=10000){
             pedometer_img.setBackgroundResource(R.drawable.pedometer_icon_on)
             pedometerHome.setBackgroundResource(R.drawable.pedometer_background_on)
             currentTimeText.setTextColor(resources.getColor(R.color.white))

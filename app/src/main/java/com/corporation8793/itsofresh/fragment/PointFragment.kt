@@ -88,11 +88,19 @@ class PointFragment() : Fragment() {
 //        spinner.adapter = myAdapter
 //        spinner.setSelection(0)
 
+        if ( NumberFormat.getInstance(Locale.getDefault()).format( MainApplication.instance.user.meta_data?.filter {
+                    metaData -> metaData.key =="point"}?.first()?.value.toString().toInt())< "0"){
+            total_point_box.setText(
+                "0"
+            )
+        }else{
+            total_point_box.setText(
+                NumberFormat.getInstance(Locale.getDefault()).format( MainApplication.instance.user.meta_data?.filter {
+                        metaData -> metaData.key =="point"}?.first()?.value.toString().toInt())
+            )
+        }
 
-        total_point_box.setText(
-            NumberFormat.getInstance(Locale.getDefault()).format( MainApplication.instance.user.meta_data?.filter {
-                    metaData -> metaData.key =="point"}?.first()?.value.toString().toInt())
-           )
+
 
         total_point_count.setOnClickListener {
 
@@ -144,6 +152,8 @@ class PointFragment() : Fragment() {
                 var data =         NumberFormat.getInstance(Locale.getDefault()).format( validUserResponse.second?.meta_data?.filter {
                         metaData -> metaData.key =="point"}?.first()?.value.toString().toInt())
                 Log.e("data",data)
+                if(data <= "0")
+                    data = "0"
                 total_point_box.setText(data)
                 pointAdapter.datas = datas
                 pointAdapter.notifyDataSetChanged()

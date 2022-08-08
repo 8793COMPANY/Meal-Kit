@@ -194,36 +194,36 @@ public class PedometerService extends Service implements SensorEventListener {
         if (sensorEvent.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
             if (sensorEvent.values[0] == 1.0f) {
                 mStepDetector += sensorEvent.values[0];
-                if(mStepDetector>= 10 && MainApplication.instance.getPedometerSuccessCount("10p") == 0){
-                    MainApplication.instance.setPedometerSuccessCount("10p",1);
-                    updateNotification();
-                }
-
-                if(mStepDetector>= 20 && MainApplication.instance.getPedometerSuccessCount("20p") == 0){
-                    MainApplication.instance.setPedometerSuccessCount("20p",1);
-                    updateNotification();
-                }
-
-                if(mStepDetector>= 30 && MainApplication.instance.getPedometerSuccessCount("30p") == 0){
-                    MainApplication.instance.setPedometerSuccessCount("30p",1);
-                    MainApplication.instance.setPedometerSuccessCount("point_roulette",1);
-                    updateNotification();
-                }
-//                if(mStepDetector>= 3000 && MainApplication.instance.getPedometerSuccessCount("3000p") == 0){
-//                    MainApplication.instance.setPedometerSuccessCount("3000p",1);
+//                if(mStepDetector>= 10 && MainApplication.instance.getPedometerSuccessCount("10p") == 0){
+//                    MainApplication.instance.setPedometerSuccessCount("10p",1);
 //                    updateNotification();
 //                }
 //
-//                if(mStepDetector>= 5000 && MainApplication.instance.getPedometerSuccessCount("5000p") == 0){
-//                    MainApplication.instance.setPedometerSuccessCount("5000p",1);
+//                if(mStepDetector>= 20 && MainApplication.instance.getPedometerSuccessCount("20p") == 0){
+//                    MainApplication.instance.setPedometerSuccessCount("20p",1);
 //                    updateNotification();
 //                }
 //
-//                if(mStepDetector>= 10000 && MainApplication.instance.getPedometerSuccessCount("10000p") == 0){
-//                    MainApplication.instance.setPedometerSuccessCount("10000p",1);
+//                if(mStepDetector>= 30 && MainApplication.instance.getPedometerSuccessCount("30p") == 0){
+//                    MainApplication.instance.setPedometerSuccessCount("30p",1);
 //                    MainApplication.instance.setPedometerSuccessCount("point_roulette",1);
 //                    updateNotification();
 //                }
+                if(mStepDetector>= 3000 && MainApplication.instance.getPedometerSuccessCount("3000p") == 0){
+                    MainApplication.instance.setPedometerSuccessCount("3000p",1);
+                    updateNotification();
+                }
+
+                if(mStepDetector>= 5000 && MainApplication.instance.getPedometerSuccessCount("5000p") == 0){
+                    MainApplication.instance.setPedometerSuccessCount("5000p",1);
+                    updateNotification();
+                }
+
+                if(mStepDetector>= 10000 && MainApplication.instance.getPedometerSuccessCount("10000p") == 0){
+                    MainApplication.instance.setPedometerSuccessCount("10000p",1);
+                    MainApplication.instance.setPedometerSuccessCount("point_roulette",1);
+                    updateNotification();
+                }
             }
         }
     }

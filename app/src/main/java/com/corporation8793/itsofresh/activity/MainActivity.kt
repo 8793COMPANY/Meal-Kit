@@ -24,68 +24,28 @@ class MainActivity : AppCompatActivity() {
         var navController = navHostFragment.findNavController()
         NavigationUI.setupWithNavController(binding.bottomNavigation,navController)
 
-        if(MainApplication.instance.getPedometerSuccessCount("10p") == 1){
-
-            GlobalScope.launch(Dispatchers.Default) {
-                val pointResult= MainApplication.instance.nonceRepository.editPoint(MainApplication.instance.board4BaRepository,MainApplication.instance.user.id,30,"+","만보기 100 걸음")
-                if(pointResult.first.equals("200")){
-                    MainApplication.instance.setPedometerSuccessCount("10p",2);
-                }
-            }
-        }
-
-        if(MainApplication.instance.getPedometerSuccessCount("20p") == 1){
-
-            GlobalScope.launch(Dispatchers.Default) {
-                val pointResult= MainApplication.instance.nonceRepository.editPoint(MainApplication.instance.board4BaRepository,MainApplication.instance.user.id,50,"+","만보기 200 걸음")
-                if(pointResult.first.equals("200")){
-                    MainApplication.instance.setPedometerSuccessCount("20p",2);
-                }
-            }
-        }
-
-
-        if(MainApplication.instance.getPedometerSuccessCount("30p") == 1) {
-
-            GlobalScope.launch(Dispatchers.Default) {
-                val pointResult = MainApplication.instance.nonceRepository.editPoint(
-                    MainApplication.instance.board4BaRepository,
-                    MainApplication.instance.user.id,
-                    100,
-                    "+",
-                    "만보기 300 걸음"
-                )
-                if (pointResult.first.equals("200")) {
-                    MainApplication.instance.setPedometerSuccessCount("30p", 2);
-
-                }
-            }
-
-        }
-
-
-//        if(MainApplication.instance.getPedometerSuccessCount("3000p") == 1){
+//        if(MainApplication.instance.getPedometerSuccessCount("10p") == 1){
 //
 //            GlobalScope.launch(Dispatchers.Default) {
-//               val pointResult= MainApplication.instance.nonceRepository.editPoint(MainApplication.instance.board4BaRepository,MainApplication.instance.user.id,30,"+","만보기 3000 걸음")
+//                val pointResult= MainApplication.instance.nonceRepository.editPoint(MainApplication.instance.board4BaRepository,MainApplication.instance.user.id,30,"+","만보기 100 걸음")
 //                if(pointResult.first.equals("200")){
-//                    MainApplication.instance.setPedometerSuccessCount("3000p",2);
+//                    MainApplication.instance.setPedometerSuccessCount("10p",2);
 //                }
 //            }
 //        }
 //
-//        if(MainApplication.instance.getPedometerSuccessCount("5000p") == 1){
+//        if(MainApplication.instance.getPedometerSuccessCount("20p") == 1){
 //
 //            GlobalScope.launch(Dispatchers.Default) {
-//                val pointResult= MainApplication.instance.nonceRepository.editPoint(MainApplication.instance.board4BaRepository,MainApplication.instance.user.id,50,"+","만보기 5000 걸음")
+//                val pointResult= MainApplication.instance.nonceRepository.editPoint(MainApplication.instance.board4BaRepository,MainApplication.instance.user.id,50,"+","만보기 200 걸음")
 //                if(pointResult.first.equals("200")){
-//                    MainApplication.instance.setPedometerSuccessCount("5000p",2);
+//                    MainApplication.instance.setPedometerSuccessCount("20p",2);
 //                }
 //            }
 //        }
 //
 //
-//        if(MainApplication.instance.getPedometerSuccessCount("10000p") == 1) {
+//        if(MainApplication.instance.getPedometerSuccessCount("30p") == 1) {
 //
 //            GlobalScope.launch(Dispatchers.Default) {
 //                val pointResult = MainApplication.instance.nonceRepository.editPoint(
@@ -93,15 +53,55 @@ class MainActivity : AppCompatActivity() {
 //                    MainApplication.instance.user.id,
 //                    100,
 //                    "+",
-//                    "만보기 10000 걸음"
+//                    "만보기 300 걸음"
 //                )
 //                if (pointResult.first.equals("200")) {
-//                    MainApplication.instance.setPedometerSuccessCount("10000p", 2);
+//                    MainApplication.instance.setPedometerSuccessCount("30p", 2);
 //
 //                }
 //            }
 //
 //        }
+
+
+        if(MainApplication.instance.getPedometerSuccessCount("3000p") == 1){
+
+            GlobalScope.launch(Dispatchers.Default) {
+               val pointResult= MainApplication.instance.nonceRepository.editPoint(MainApplication.instance.board4BaRepository,MainApplication.instance.user.id,30,"+","만보기 3000 걸음")
+                if(pointResult.first.equals("200")){
+                    MainApplication.instance.setPedometerSuccessCount("3000p",2);
+                }
+            }
+        }
+
+        if(MainApplication.instance.getPedometerSuccessCount("5000p") == 1){
+
+            GlobalScope.launch(Dispatchers.Default) {
+                val pointResult= MainApplication.instance.nonceRepository.editPoint(MainApplication.instance.board4BaRepository,MainApplication.instance.user.id,50,"+","만보기 5000 걸음")
+                if(pointResult.first.equals("200")){
+                    MainApplication.instance.setPedometerSuccessCount("5000p",2);
+                }
+            }
+        }
+
+
+        if(MainApplication.instance.getPedometerSuccessCount("10000p") == 1) {
+
+            GlobalScope.launch(Dispatchers.Default) {
+                val pointResult = MainApplication.instance.nonceRepository.editPoint(
+                    MainApplication.instance.board4BaRepository,
+                    MainApplication.instance.user.id,
+                    100,
+                    "+",
+                    "만보기 10000 걸음"
+                )
+                if (pointResult.first.equals("200")) {
+                    MainApplication.instance.setPedometerSuccessCount("10000p", 2);
+
+                }
+            }
+
+        }
     }
 
     override fun onResume() {

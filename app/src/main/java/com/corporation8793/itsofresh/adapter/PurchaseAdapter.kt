@@ -7,14 +7,33 @@ import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.corporation8793.itsofresh.MainApplication
+import com.corporation8793.itsofresh.OrderCancelDialog
 import com.corporation8793.itsofresh.R
+import com.corporation8793.itsofresh.ReportDialog
 import com.corporation8793.itsofresh.dto.PurchaseItem
+import com.corporation8793.itsofresh.dto.ShopItem
+import com.corporation8793.itsofresh.esf_wp.rest.RestClient
+import com.corporation8793.itsofresh.esf_wp.rest.data.Order
+import com.corporation8793.itsofresh.esf_wp.rest.data.updateOrderBody
 import com.corporation8793.itsofresh.payment.CompleteOrdersActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-class PurchaseAdapter (val activity: Activity?,private val context: Context?, val height : Int) : RecyclerView.Adapter<PurchaseAdapter.ViewHolder>() {
+class PurchaseAdapter (val activity: Activity?,private val context: Context?, val height : Int, val fragmentManager : FragmentManager) : RecyclerView.Adapter<PurchaseAdapter.ViewHolder>() {
     var datas = mutableListOf<PurchaseItem>()
+
+    interface OnItemClickListener{
+        fun onItemClick(v:View,  pos : Int, item : PurchaseItem)
+    }
+    private var listener : OnItemClickListener? = null
+    fun setOnItemClickListener(listener : OnItemClickListener) {
+        this.listener = listener
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.purchase_details_itemview,parent,false)
         view.layoutParams.height = height
@@ -39,6 +58,7 @@ class PurchaseAdapter (val activity: Activity?,private val context: Context?, va
         private val shipping_status  = itemView.findViewById<TextView>(R.id.shipping_status)
         private val order_details_btn = itemView.findViewById<TextView>(R.id.order_details_btn)
         private val kit_quantity = itemView.findViewById<TextView>(R.id.kit_quantity)
+        private val order_cancel_btn = itemView.findViewById<TextView>(R.id.order_cancel_btn)
 //        private val kit_score_btn = itemView.findViewById<TextView>(R.id.kit_score_btn)
 
         fun bind(item: PurchaseItem) {
@@ -53,9 +73,21 @@ class PurchaseAdapter (val activity: Activity?,private val context: Context?, va
             shipping_status.setText(item.status)
             kit_quantity.setText(item.count+"개")
 
+            if(item.status.equals("결제취소")){
+                order_cancel_btn.isEnabled = false
+                order_cancel_btn.setText("이미 결제 취소된 상품입니다")
+            }else if(item.status.equals("배송중")){
+                order_cancel_btn.isEnabled = false
+                order_cancel_btn.setText("환불은 고객센터에 문의해주세요")
+            }
+
             order_details_btn.setOnClickListener{
                 var intent = Intent(activity, CompleteOrdersActivity::class.java)
-                intent.putExtra("type","check")
+                if (item.status.equals("결제취소"))
+                    intent.putExtra("type","request_cancel")
+                else
+                    intent.putExtra("type","check")
+
                 intent.putExtra("address_type",item.address_type)
                 intent.putExtra("id",item.id)
                 intent.putExtra("product_id",item.product_id)
@@ -69,6 +101,18 @@ class PurchaseAdapter (val activity: Activity?,private val context: Context?, va
                 intent.putExtra("address",item.address)
                 intent.putExtra("payment_way",item.payment_way)
                 activity!!.startActivity(intent)
+            }
+
+            order_cancel_btn.setOnClickListener {
+//                GlobalScope.launch(Dispatchers.Default) {
+//                    Log.e("in!","cancel btn")
+//                    var result = MainApplication.instance.nonceRepository.updateOrder(item.id, updateOrderBody("request-cancel"))
+//                    Log.e("result",result.first)
+//
+//                }
+
+                listener?.onItemClick(itemView,adapterPosition,item)
+//
             }
 
             itemView.setOnClickListener {
@@ -94,6 +138,7 @@ class PurchaseAdapter (val activity: Activity?,private val context: Context?, va
 
         }
     }
+
 
 
 

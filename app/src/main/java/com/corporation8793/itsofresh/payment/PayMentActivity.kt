@@ -39,6 +39,8 @@ class PayMentActivity : AppCompatActivity() {
     var my_point = ""
     var use_point_final_price = 0
     var use_point = 0
+    var final_money_check = false
+    var compare_point = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pay_ment)
@@ -73,6 +75,7 @@ class PayMentActivity : AppCompatActivity() {
         binding.paymentWhenBuyingPointText.setText("구매시 "+price!!.toInt().div(100).toString()+"원")
 
 
+
         if (type =="1") {
             binding.paymentDeliveryInfoext.setText("배송지 주소")
             binding.paymentAddressDetail.visibility = View.VISIBLE
@@ -104,9 +107,18 @@ class PayMentActivity : AppCompatActivity() {
         }
 
         binding.paymentUsePointBtn.setOnClickListener {
-            binding.paymentUsepointEdit.setText(my_point)
+            Log.e("click","check")
+            Log.e("click",my_point)
+            if(final_money > my_point.toInt()){
+                binding.paymentUsepointEdit.setText(my_point)
+            }else{
+                binding.paymentUsepointEdit.setText(final_money.toString())
+            }
+
         }
         var before_text = ""
+
+
         binding.paymentUsepointEdit.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 before_text = p0.toString()
@@ -118,27 +130,42 @@ class PayMentActivity : AppCompatActivity() {
 
             override fun afterTextChanged(p0: Editable?) {
                 if (p0!!.length != 0){
-
-                    if( p0.toString().toInt() > final_money){
+                    Log.e("hi","length not 0 in")
+                    if( p0.toString().toInt() > compare_point){
+                        Log.e("hi","p0 bigger than compare_point")
                         binding.paymentUsepointEdit.setText(before_text)
                         binding.paymentUsepointEdit.setSelection(binding.paymentUsepointEdit.text.length)
-                    }else if (p0.toString().length >= my_point.length){
-                        Log.e("final_money",final_money.toString())
-                        if (p0.toString().toInt() > my_point.toInt() ) {
-                            Log.e("unserviceable","point")
-                            binding.paymentUsepointEdit.setText(before_text)
-                            binding.paymentUsepointEdit.setSelection(binding.paymentUsepointEdit.text.length)
+                        Log.e("before text",before_text)
+                        if(before_text.toInt() > compare_point) {
+                            use_point = 0
 
+                        }else {
+                            use_point = before_text.toInt()
                         }
+                    }else{
+                        binding.paymentUsePoint.setText(binding.paymentUsepointEdit.text.toString()+"원")
+                        binding.paymentFinalPrice.setText((final_money - (binding.paymentUsepointEdit.text.toString().toInt())).toString()+"원")
+                        use_point_final_price = final_money - (binding.paymentUsepointEdit.text.toString().toInt())
+                        use_point = binding.paymentUsepointEdit.text.toString().toInt()
                     }
-                    binding.paymentUsePoint.setText(binding.paymentUsepointEdit.text.toString()+"원")
-                    binding.paymentFinalPrice.setText((final_money - (binding.paymentUsepointEdit.text.toString().toInt())).toString()+"원")
-                    use_point_final_price = final_money - (binding.paymentUsepointEdit.text.toString().toInt())
-                    use_point = binding.paymentUsepointEdit.text.toString().toInt()
+//                    else if (p0.toString().length >= my_point.length){
+//                        Log.e("hi","p0 bigger than my_point")
+//                        Log.e("final_money",final_money.toString())
+//                        if (p0.toString().toInt() > my_point.toInt() ) {
+//                            Log.e("unserviceable","point")
+//                            binding.paymentUsepointEdit.setText(before_text)
+//                            binding.paymentUsepointEdit.setSelection(binding.paymentUsepointEdit.text.length)
+//
+//                        }
+//                    }
+
                 }else{
+                    Log.e("hi","p0 zero")
                     binding.paymentUsePoint.setText("0"+"원")
                     binding.paymentFinalPrice.setText(final_money.toString() +"원")
+                    use_point = 0
                 }
+                Log.e("hi","use_point"+use_point)
 
             }
 
@@ -167,7 +194,20 @@ class PayMentActivity : AppCompatActivity() {
             GlobalScope.launch(Dispatchers.Main) {
                 binding.paymentOrdererNameInput.setText(value.first_name)
                 binding.paymentOrdererContactInput.setText(phone)
-                binding.paymentServiceablePoint.setText(my_point)
+                if(my_point.toInt() <=0){
+                    my_point = "0"
+//                    binding.paymentServiceablePoint.text = "0"
+                    binding.paymentUsepointEdit.isEnabled = false
+                }
+
+                if (my_point.toInt() < final_money){
+                    compare_point = my_point.toInt()
+                }else{
+                    compare_point = final_money
+                }
+
+                binding.paymentServiceablePoint.text = my_point
+                Log.e("my_point",my_point)
                 if(type.equals("1")) {
                     binding.paymentAddress.setText(value.billing?.address_1 + ",\n")
                     binding.paymentAddressDetail.setText(value.billing?.address_2)
@@ -183,6 +223,7 @@ class PayMentActivity : AppCompatActivity() {
 
         binding.paymentPaymentBtn.setOnClickListener {
             binding.paymentProgress.visibility = View.VISIBLE
+            Log.e("use_point",use_point.toString())
 
             GlobalScope.launch(Dispatchers.Default) {
 //                val sharedPreference = getSharedPreferences("other", 0)
@@ -209,45 +250,180 @@ class PayMentActivity : AppCompatActivity() {
 
                     Log.e("total_price",total_price.toString())
                     Log.e("total_delivery_price",total_delivery_price.toString())
-                    myOrder = Order(
+
+                    if (use_point_final_price == 0){
+                        final_money_check = true
+                        myOrder = Order(
                             id = null,
                             date_created = null,
+                            status = "processing",
                             customer_id = user_id,
-                            billing = Billing(MainApplication.instance.user.first_name, address_1, binding.paymentAddressDetail.text.toString(), post_code, MainApplication.instance.user.shipping.phone),
-                            shipping = Shipping(MainApplication.instance.user.first_name, address_1, binding.paymentAddressDetail.text.toString(), post_code, MainApplication.instance.user.shipping.phone),
+                            billing = Billing(
+                                MainApplication.instance.user.first_name,
+                                address_1,
+                                binding.paymentAddressDetail.text.toString(),
+                                post_code,
+                                MainApplication.instance.user.shipping.phone
+                            ),
+                            shipping = Shipping(
+                                MainApplication.instance.user.first_name,
+                                address_1,
+                                binding.paymentAddressDetail.text.toString(),
+                                post_code,
+                                MainApplication.instance.user.shipping.phone
+                            ),
                             line_items = listOf(
-                                    LineItems(name = name, product_id = product_id!!, quantity = quantity!!, total = total_price.toString())
+                                LineItems(
+                                    name = name,
+                                    product_id = product_id!!,
+                                    quantity = quantity!!,
+                                    total = total_price.toString()
+                                )
                             ),
                             shipping_lines = listOf(
                                 ShippingLines(total = total_delivery_price.toString())
                             ),
                             meta_data = listOf(
-                                    OrderMeta(id = null, key = "store_name", value = shop!!),
-                                    OrderMeta(id = null, key = "order_point", value = price!!.toInt().div(100).toString()),
-                                    OrderMeta(id = null, key = "is_parcel", value = "1"),
-                                    OrderMeta(id = null, key = "paid_point", value = use_point),
+                                OrderMeta(id = null, key = "store_name", value = shop!!),
+                                OrderMeta(
+                                    id = null,
+                                    key = "order_point",
+                                    value = price!!.toInt().div(100).toString()
+                                ),
+                                OrderMeta(id = null, key = "is_parcel", value = "1"),
+                                OrderMeta(id = null, key = "paid_point", value = use_point),
                             ),
                             payment_url = null
-                    )
-                }else{
-                    Log.e("price",use_point_final_price.toString())
-                    myOrder = Order(
+                        )
+                    }else {
+                        final_money_check = false
+                        myOrder = Order(
                             id = null,
                             date_created = null,
                             customer_id = user_id,
-                            billing = Billing(MainApplication.instance.user.first_name, address!!, "", post_code, MainApplication.instance.user.shipping.phone),
-                            shipping = Shipping(MainApplication.instance.user.first_name, address!!, "", post_code, MainApplication.instance.user.shipping.phone),
+                            billing = Billing(
+                                MainApplication.instance.user.first_name,
+                                address_1,
+                                binding.paymentAddressDetail.text.toString(),
+                                post_code,
+                                MainApplication.instance.user.shipping.phone
+                            ),
+                            shipping = Shipping(
+                                MainApplication.instance.user.first_name,
+                                address_1,
+                                binding.paymentAddressDetail.text.toString(),
+                                post_code,
+                                MainApplication.instance.user.shipping.phone
+                            ),
                             line_items = listOf(
-                                    LineItems(name = name, product_id = product_id!!, quantity = quantity!!, total = use_point_final_price.toString())
+                                LineItems(
+                                    name = name,
+                                    product_id = product_id!!,
+                                    quantity = quantity!!,
+                                    total = total_price.toString()
+                                )
+                            ),
+                            shipping_lines = listOf(
+                                ShippingLines(total = total_delivery_price.toString())
                             ),
                             meta_data = listOf(
-                                    OrderMeta(id = null, key = "store_name", value = shop!!),
-                                    OrderMeta(id = null, key = "order_point", value = price!!.toInt().div(100).toString()),
-                                    OrderMeta(id = null, key = "is_parcel", value = "0"),
-                                    OrderMeta(id = null, key = "paid_point", value = use_point),
+                                OrderMeta(id = null, key = "store_name", value = shop!!),
+                                OrderMeta(
+                                    id = null,
+                                    key = "order_point",
+                                    value = price!!.toInt().div(100).toString()
+                                ),
+                                OrderMeta(id = null, key = "is_parcel", value = "1"),
+                                OrderMeta(id = null, key = "paid_point", value = use_point),
                             ),
                             payment_url = null
-                    )
+                        )
+                    }
+
+                }else{
+                    Log.e("price",use_point_final_price.toString())
+                    if (use_point_final_price == 0) {
+                        final_money_check = true
+                        myOrder = Order(
+                            id = null,
+                            date_created = null,
+                            customer_id = user_id,
+                            status = "processing",
+                            billing = Billing(
+                                MainApplication.instance.user.first_name,
+                                address!!,
+                                "",
+                                post_code,
+                                MainApplication.instance.user.shipping.phone
+                            ),
+                            shipping = Shipping(
+                                MainApplication.instance.user.first_name,
+                                address!!,
+                                "",
+                                post_code,
+                                MainApplication.instance.user.shipping.phone
+                            ),
+                            line_items = listOf(
+                                LineItems(
+                                    name = name,
+                                    product_id = product_id!!,
+                                    quantity = quantity!!,
+                                    total = use_point_final_price.toString()
+                                )
+                            ),
+                            meta_data = listOf(
+                                OrderMeta(id = null, key = "store_name", value = shop!!),
+                                OrderMeta(
+                                    id = null,
+                                    key = "order_point",
+                                    value = price!!.toInt().div(100).toString()
+                                ),
+                                OrderMeta(id = null, key = "is_parcel", value = "0"),
+                                OrderMeta(id = null, key = "paid_point", value = use_point),
+                            ),
+                            payment_url = null
+                        )
+                    }else{
+                        final_money_check = false
+                        myOrder = Order(
+                            id = null,
+                            date_created = null,
+                            customer_id = user_id,
+                            billing = Billing(
+                                MainApplication.instance.user.first_name,
+                                address!!,
+                                "",
+                                post_code,
+                                MainApplication.instance.user.shipping.phone
+                            ),
+                            shipping = Shipping(
+                                MainApplication.instance.user.first_name,
+                                address!!,
+                                "",
+                                post_code,
+                                MainApplication.instance.user.shipping.phone
+                            ),
+                            line_items = listOf(
+                                LineItems(
+                                    name = name,
+                                    product_id = product_id!!,
+                                    quantity = quantity!!,
+                                    total = use_point_final_price.toString()
+                                )
+                            ),
+                            meta_data = listOf(
+                                OrderMeta(id = null, key = "store_name", value = shop!!),
+                                OrderMeta(
+                                    id = null,
+                                    key = "order_point",
+                                    value = price!!.toInt().div(100).toString()
+                                ),
+                                OrderMeta(id = null, key = "is_parcel", value = "0"),
+                                OrderMeta(id = null, key = "paid_point", value = use_point),
+                            ),
+                            payment_url = null
+                        )
+                    }
                 }
 
                 // 주문 시작
@@ -262,7 +438,12 @@ class PayMentActivity : AppCompatActivity() {
                 Log.e("PayMentActivity", "Order data: $makeOrderResponse")
                 GlobalScope.launch(Dispatchers.Main) {
                     binding.paymentProgress.visibility = View.GONE
-                    var intent = Intent(applicationContext, WebPaymentActivity::class.java)
+                    var intent : Intent
+                    if(final_money_check) {
+                        intent = Intent(applicationContext, CompleteOrdersActivity::class.java)
+                        intent.putExtra("payment_way","not")
+                    }else
+                        intent = Intent(applicationContext, WebPaymentActivity::class.java)
                     var shop_name = makeOrderResponse.second?.meta_data?.get(0)!!.value.toString()
                     var order_point = makeOrderResponse.second?.meta_data?.get(1)!!.value.toString()
                     if (type.equals("1"))

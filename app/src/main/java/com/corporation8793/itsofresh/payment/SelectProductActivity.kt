@@ -106,7 +106,7 @@ class SelectProductActivity : AppCompatActivity() {
             binding.selectProductPickupRadioBtn.isChecked= false
             binding.selectProductDeliveryMoneyText.setText("3000원")
             binding.selectProductFinalMoneyText.setText(finalMoney.toString()+"원")
-
+            binding.selectProductOrderBtn.setText(finalMoney.toString()+"원 주문하기")
         }
 
         binding.selectProductPickupRadioBtn.setOnClickListener {
@@ -117,6 +117,7 @@ class SelectProductActivity : AppCompatActivity() {
             binding.selectProductPickupRadioBtn.isChecked= true
             binding.selectProductDeliveryMoneyText.setText("0원")
             binding.selectProductFinalMoneyText.setText(finalMoney.toString()+"원")
+            binding.selectProductOrderBtn.setText(finalMoney.toString()+"원 주문하기")
 
         }
 
