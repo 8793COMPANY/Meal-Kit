@@ -275,7 +275,7 @@ class RecipeListFragment() : Fragment() {
                         Log.e("it", it.toString())
 
                         var like_count = "0"
-                        val profile_img = it.acf.profile_img
+                        val profile_img = it.acf.profile_img!!
 
                         var like = false
                         if (it.acf.product_likes != null && it.acf.product_likes !is Boolean) {
@@ -291,14 +291,14 @@ class RecipeListFragment() : Fragment() {
                             like = false
 
                         }
-                        Log.e("랄라", profile_img)
+                        Log.e("랄라", profile_img!!)
                         datas.add(
                             RecipeItem(
                                 it.id!!,
                                 it.featured_media_src_url,
                                 it.title.rendered,
                                 replaceText(it.excerpt.rendered),
-                                profile_img,
+                                profile_img!!,
                                 like,
                                 "0"
                             )
@@ -310,7 +310,7 @@ class RecipeListFragment() : Fragment() {
                                 it.featured_media_src_url,
                                 it.title.rendered,
                                 replaceText(it.excerpt.rendered),
-                                profile_img,
+                                profile_img!!,
                                 like,
                                 "0"
                             )

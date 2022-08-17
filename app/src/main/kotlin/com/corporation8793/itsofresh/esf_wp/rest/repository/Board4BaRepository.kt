@@ -155,7 +155,7 @@ class Board4BaRepository(val basicAuth : String) {
      * 레시피 메타 수정
      * @author  두동근
      */
-    fun updatePostAcf(id : String?, product : String?, profile_img : String) : Pair<String, PostAcf?> {
+    fun updatePostAcf(id : String?, product : String?, profile_img : String?) : Pair<String, PostAcf?> {
         val response = RestClient.board4BaService.updatePostAcf(basicAuth, id, product, profile_img).execute()
 
         return Pair(response.code().toString(), response.body())

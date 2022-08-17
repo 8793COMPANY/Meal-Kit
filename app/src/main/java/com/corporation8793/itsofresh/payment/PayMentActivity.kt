@@ -189,6 +189,7 @@ class PayMentActivity : AppCompatActivity() {
                     metaData -> metaData.key == "point" }?.first()?.value.toString().toInt()
             println(currentUserTotalPoint)
             my_point = currentUserTotalPoint.toString()
+            Log.e("my_point",my_point)
 
 
             GlobalScope.launch(Dispatchers.Main) {
